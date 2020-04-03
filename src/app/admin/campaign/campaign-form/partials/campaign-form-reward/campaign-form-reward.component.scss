@@ -1,0 +1,11 @@
+@import '~src/scss/token-theme/utils/variables';
+
+.use-global-rate {
+  padding-top: 14px;
+}
+
+:host ::ng-deep .use-global-rate {
+  .mat-checkbox-layout {
+    white-space: normal;
+  }
+}

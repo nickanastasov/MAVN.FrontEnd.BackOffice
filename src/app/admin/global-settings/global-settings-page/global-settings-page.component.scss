@@ -1,0 +1,59 @@
+@import '~src/scss/token-theme/utils/variables';
+
+.spinner-container {
+  margin-bottom: 10px;
+}
+
+.kt-subheader {
+  .kt-container {
+    .kt-subheader__toolbar {
+      .kt-subheader__wrapper {
+        .btn-action {
+          font-size: 0.9rem;
+          font-weight: 500;
+          line-height: 1.75;
+          color: $token-white;
+          border-radius: 3px;
+          padding: 0.4rem 2rem;
+
+          &.btn-cancel {
+            background-color: transparent;
+            border: 1px solid $token-blue;
+          }
+
+          &.btn-submit {
+            background-color: $token-blue;
+            border: 1px solid $token-blue;
+
+            &[disabled] {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.kt-portlet {
+  .kt-portlet__head {
+    .kt-portlet__head-label {
+      .kt-portlet__head-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $token-dark-blue;
+      }
+    }
+  }
+
+  .kt-portlet__body {
+    .kt-portlet__body-text {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.54;
+      color: $token-dark-grey-blue;
+      margin-bottom: 1.7rem;
+      max-width: 16rem;
+    }
+  }
+}

@@ -1,0 +1,104 @@
+@import '~src/scss/token-theme/utils/mixins';
+@import '~src/scss/token-theme/utils/variables';
+
+.kt-portlet {
+  .kt-portlet__body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .table {
+    th,
+    td {
+      padding-bottom: 16px;
+      padding-top: 16px;
+
+      &:first-child {
+        padding-left: 25px;
+      }
+
+      &:last-child {
+        padding-right: 25px;
+      }
+    }
+
+    &#customer-details-table {
+      thead {
+        tr {
+          &:hover {
+            background-color: #eff1f1;
+          }
+        }
+      }
+
+      th,
+      td {
+        &:first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.spinner-wrapper {
+  position: relative;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    &--top {
+      transform: translate(-50%);
+    }
+  }
+}
+
+.customer-details-history {
+  .wallet-address-link {
+    color: $token-dark-gray-color;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.no-operations {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.copy-modal {
+  @include modal();
+
+  &-overlay {
+    background: transparent;
+  }
+
+  &-content {
+    border-radius: 1px;
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.4);
+    padding: 16px 19px;
+    right: auto;
+    width: auto;
+
+    ._content {
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+
+    ._actions {
+      .copy-link {
+        color: #4d4d4f;
+        font-size: 13px;
+        text-decoration: underline;
+      }
+    }
+  }
+}

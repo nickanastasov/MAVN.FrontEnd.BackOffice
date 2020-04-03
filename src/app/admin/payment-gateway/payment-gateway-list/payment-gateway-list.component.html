@@ -1,0 +1,143 @@
+<div class="kt-subheader kt-grid__item"
+     id="kt_subheader">
+  <div class="kt-container kt-container--fluid">
+    <div class="kt-subheader__main">
+      <h3 class="kt-subheader__title"
+          i18n>Payments</h3>
+      <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+      <div class="kt-subheader__toolbar"
+           id="kt_subheader_search">
+        <span class="kt-subheader__desc"
+              id="kt_subheader_total"
+              i18n>List of payments in referral program</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+
+      <div class="payments-table-wrapper bg-white">
+        <table id="payments-table"
+               class="table table-striped table-bordered table-hover">
+          <thead>
+            <th i18n>Email</th>
+            <th i18n>Action Rule</th>
+            <th class="text-right"
+                i18n>Amount ({{tokenSymbol}})</th>
+            <th class="text-right"
+                i18n>Amount ({{baseCurrencyCode}})</th>
+            <th i18n>Payment ID</th>
+            <th i18n>Invoice ID</th>
+            <th i18n>Time Sent</th>
+            <th class="text-right"
+                i18n>Actions</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of payments; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="customerEmail">
+                <span>{{payment.CustomerEmail}}</span>
+              </td>
+              <td data-id="actionRuleName">
+                <span>{{payment.CampaignName}}</span>
+              </td>
+              <td data-id="amountInTokens"
+                  class="text-right">
+                <span>{{payment.AmountInTokens | token}}</span>
+              </td>
+              <td data-id="amountInCurrency"
+                  class="text-right">
+                <span>{{payment.AmountInCurrency | number}}</span>
+              </td>
+              <td data-id="paymentId">
+                <span>{{payment.Id}}</span>
+              </td>
+              <td data-id="invoiceId">
+                <span>{{payment.InvoiceId}}</span>
+              </td>
+              <td data-id="paymentTimestamp">
+                <span>{{payment.Timestamp | date:'H:mm'}} {{payment.Timestamp | date:'shortDate'}}</span>
+              </td>
+              <td data-id="actions"
+                  class="text-right">
+                <a href="javascript:void(0)"
+                   class="btn btn-outline-primary btn-upper btn-bold"
+                   (click)="reject(payment.Id)">
+                  <span i18n>Reject</span>
+                </a>
+                <a href="javascript:void(0)"
+                   class="btn btn-outline-primary btn-upper btn-bold"
+                   (click)="approve(payment.Id)">
+                  <span i18n>Approve</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!isLoading && payments.length === 0">
+          <span i18n>There are no pending payments</span>
+        </ng-container>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container"
+             *ngIf="isLoading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+
+    </div>
+  </div>
+</div>
+
+<!-- Translates -->
+
+<!-- Approve -->
+
+<div #approveDialogHeaderTemplate
+     hidden
+     i18n>Approve Payment</div>
+
+<div #approveDialogMessageTemplate
+     hidden
+     i18n>Are you sure you want to approve this payment?</div>
+
+<div #dialogButtonCancelTextTemplate
+     hidden
+     i18n>Back</div>
+
+<div #approveDialogButtonConfirmTextTemplate
+     hidden
+     i18n>Yes, Approve Payment</div>
+
+<div #approveSuccessMessageTemplate
+     hidden
+     i18n>Payment has been successfully approved</div>
+
+<!-- Reject -->
+
+<div #rejectDialogHeaderTemplate
+     hidden
+     i18n>Reject Payment</div>
+
+<div #rejectDialogMessageTemplate
+     hidden
+     i18n>Are you sure you want to reject this payment?</div>
+
+<div #rejectDialogButtonConfirmTextTemplate
+     hidden
+     i18n>Yes, Reject Payment</div>
+
+<div #rejectSuccessMessageTemplate
+     hidden
+     i18n>Payment has been successfully rejected</div>

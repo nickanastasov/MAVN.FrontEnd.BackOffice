@@ -1,0 +1,22 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+
+:host ::ng-deep {
+  .mat-datepicker-toggle {
+    display: flex;
+  }
+}
+
+.context-badge {
+  margin-top: -4px;
+}
+
+.form-navigation {
+  padding: 10px 0;
+
+  #slide_isEnabled {
+    font-size: 16px;
+    @include margin-end(30px, true);
+    position: relative;
+    top: 4px;
+  }
+}

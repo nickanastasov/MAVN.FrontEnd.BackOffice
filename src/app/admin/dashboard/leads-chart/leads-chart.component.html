@@ -1,0 +1,41 @@
+<div *ngIf="isLoading"
+     class="text-center">
+  <div class="spinner-border"></div>
+</div>
+
+<div class="chart-container row"
+     id="leads-chart-container"
+     [ngStyle]="{height: isFirstLoading ? 0 : 'auto'}">
+  <div class="col-xl-12 col-lg-12">
+    <!-- <app-small-graphic-boxes [smallGraphicItems]="smallGraphicItems"></app-small-graphic-boxes> -->
+
+    <div class="big-chart-container">
+      <app-chart-select [dropdownData]="dropdownData"
+                        (chartSelectType)="handleChartSelectType($event)"
+                        [hidden]="isLoading"></app-chart-select>
+
+      <div class="chart-wrapper">
+        <div [ngClass]="{'hidden': selectedChartType !== 'TOTAL'}">
+          <canvas id="leads-total-chart"
+                  style="height: 275px;"></canvas>
+        </div>
+        <div [ngClass]="{'hidden': selectedChartType === 'TOTAL'}">
+          <canvas id="leads-chart"
+                  style="height: 275px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #leadsPendingLabelTooltipTemplate
+     hidden
+     i18n>New leads (referred ones, who haven't yet confirmed themselves as leads)</div>
+
+<div #leadsConfirmedLabelTooltipTemplate
+     hidden
+     i18n>Leads who verified their referral status by confirmation</div>
+
+<div #leadsApprovedLabelTooltipTemplate
+     hidden
+     i18n>Leads in the program whose statuses were approved by the Salesforce team</div>

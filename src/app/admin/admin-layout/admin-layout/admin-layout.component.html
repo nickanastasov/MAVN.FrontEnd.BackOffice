@@ -1,0 +1,454 @@
+<div>
+  <!-- begin:: Header Mobile -->
+  <div id="kt_header_mobile"
+       class="kt-header-mobile  kt-header-mobile--fixed ">
+    <div class="kt-header-mobile__logo">
+      <ng-container [ngTemplateOutlet]="logoAnchor"></ng-container>
+    </div>
+    <div class="kt-header-mobile__toolbar">
+      <button class="kt-header-mobile__toolbar-toggler kt-header-mobile__toolbar-toggler--left"
+              id="kt_aside_mobile_toggler"><span></span></button>
+      <button class="kt-header-mobile__toolbar-topbar-toggler"
+              id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+    </div>
+  </div>
+  <!-- end:: Header Mobile -->
+
+  <div class="kt-grid kt-grid--hor kt-grid--root">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+      <!-- begin:: Aside -->
+      <button class="kt-aside-close "
+              id="kt_aside_close_btn"><i class="la la-close"></i></button>
+      <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop"
+           id="kt_aside">
+        <div class="kt-aside__brand   kt-grid__item"
+             id="kt_aside_brand">
+          <div class="kt-aside__brand-logo">
+            <ng-container [ngTemplateOutlet]="logoAnchor"></ng-container>
+          </div>
+          <div class="kt-aside__brand-tools">
+            <button class="kt-aside__brand-aside-toggler kt-aside__brand-aside-toggler--left"
+                    id="kt_aside_toggler"><span></span></button>
+          </div>
+        </div>
+        <!-- end:: Aside -->
+
+        <!-- begin:: Aside total supply wiget -->
+        <div class="kt-aside__total_widget kt-grid__item"
+             id="kt_aside_total_widget">
+          <div class="kt-aside__total_widget">
+            <ng-container [ngTemplateOutlet]="totalSupply"></ng-container>
+          </div>
+
+        </div>
+        <!-- end:: Aside wiget -->
+
+        <!-- begin:: Aside Menu -->
+        <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid"
+             id="kt_aside_menu_wrapper">
+          <div id="kt_aside_menu"
+               class="kt-aside-menu "
+               data-ktmenu-vertical="1"
+               data-ktmenu-scroll="1"
+               data-ktmenu-dropdown-timeout="500">
+            <ul class="kt-menu__nav ">
+              <li class="kt-menu__item "
+                  [hidden]="!showDashboard"
+                  routerLinkActive="kt-menu__item--active">
+                <a class="kt-menu__link "
+                   routerLink="dashboard">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">show_chart</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Dashboard</span>
+                </a>
+              </li>
+              <li class="kt-menu__section ">
+                <h4 class="kt-menu__section-text"
+                    i18n>Customers and Campaigns</h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+              </li>
+              <li class="kt-menu__item "
+                  [hidden]="!showCustomers"
+                  routerLinkActive="kt-menu__item--active">
+                <a class="kt-menu__link "
+                   routerLink="customers">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">account_circle</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Customers</span>
+                </a>
+              </li>
+              <li class="kt-menu__item  kt-menu__item--submenu"
+                  [hidden]="!showActionRules"
+                  routerLinkActive="kt-menu__item--open">
+                <a href="javascript:void(0);"
+                   class="kt-menu__link kt-menu__toggle">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">account_balance_wallet</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Action Rules</span>
+                  <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="kt-menu__submenu ">
+                  <span class="kt-menu__arrow"></span>
+                  <ul class="kt-menu__subnav">
+                    <li class="kt-menu__item  kt-menu__item--parent">
+                      <span class="kt-menu__link">
+                        <span class="kt-menu__link-text"
+                              i18n>Action Rules</span>
+                      </span>
+                    </li>
+                    <li class="kt-menu__item "
+                        routerLinkActive="kt-menu__item--active">
+                      <a class="kt-menu__link "
+                         routerLink="earn-action-rules">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="kt-menu__link-text"
+                              i18n>Earn Rules</span>
+                      </a>
+                    </li>
+                    <li class="kt-menu__item "
+                        routerLinkActive="kt-menu__item--active">
+                      <a class="kt-menu__link "
+                         routerLink="spend-action-rules">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="kt-menu__link-text"
+                              i18n>Spend Rules</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="kt-menu__item "
+                  [hidden]="!showProgramPartners"
+                  routerLinkActive="kt-menu__item--active">
+                <a class="kt-menu__link "
+                   routerLink="partners">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">supervisor_account</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Program Partners</span>
+                </a>
+              </li>
+              <li class="kt-menu__section ">
+                <h4 class="kt-menu__section-text"
+                    i18n>Blockchain and Reports</h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+              </li>
+              <li class="kt-menu__item "
+                  [hidden]="!showBlockchainOperations"
+                  routerLinkActive="kt-menu__item--active">
+                <a class="kt-menu__link "
+                   routerLink="events">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">account_tree</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Blockchain Operations</span>
+                </a>
+              </li>
+              <li class="kt-menu__item "
+                  [hidden]="!showReports"
+                  routerLinkActive="kt-menu__item--active">
+                <a class="kt-menu__link "
+                   routerLink="transactions">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">swap_horiz</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Transactions</span>
+                </a>
+              </li>
+              <li class="kt-menu__section ">
+                <h4 class="kt-menu__section-text"
+                    i18n>Settings and Management</h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+              </li>
+              <li class="kt-menu__item  kt-menu__item--submenu"
+                  routerLinkActive="kt-menu__item--open">
+                <a href="javascript:void(0);"
+                   class="kt-menu__link kt-menu__toggle">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">settings_applications</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Settings</span>
+                  <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+
+                <div class="kt-menu__submenu ">
+                  <span class="kt-menu__arrow"></span>
+                  <ul class="kt-menu__subnav">
+                    <li class="kt-menu__item  kt-menu__item--parent">
+                      <span class="kt-menu__link">
+                        <span class="kt-menu__link-text"
+                              i18n>Settings</span>
+                      </span>
+                    </li>
+                    <li class="kt-menu__item "
+                        [hidden]="!showSettings"
+                        routerLinkActive="kt-menu__item--active">
+                      <a class="kt-menu__link "
+                         routerLink="global-settings/system-settings">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="kt-menu__link-text"
+                              i18n>System Settings</span>
+                      </a>
+                    </li>
+                    <li class="kt-menu__item "
+                        routerLinkActive="kt-menu__item--active">
+                      <a class="kt-menu__link "
+                         routerLink="global-settings/my-profile">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="kt-menu__link-text"
+                              i18n>My Profile</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="kt-menu__item "
+                  routerLinkActive="kt-menu__item--active"
+                  [hidden]="!showSegmentMenu">
+                <a class="kt-menu__link "
+                   onclick="javascript:void(0)">
+                  <i class="kt-menu__link-icon fa fa-users"></i>
+                  <span class="kt-menu__link-text">
+                    <span>Segments</span>
+                    <span>&nbsp;</span>
+                    <span class="in-progress">(in progress)</span>
+                  </span>
+                </a>
+              </li>
+              <li class="kt-menu__item "
+                  routerLinkActive="kt-menu__item--active"
+                  [hidden]="!showTierMenu">
+                <a class="kt-menu__link "
+                   routerLink="tiers">
+                  <i class="kt-menu__link-icon fa fa-ruler"></i>
+                  <span class="kt-menu__link-text"
+                        i18n>Tiers</span>
+                </a>
+              </li>
+              <li class="kt-menu__item "
+                  routerLinkActive="kt-menu__item--active"
+                  [hidden]="!showAdminUsers">
+                <a class="kt-menu__link "
+                   routerLink="users">
+                  <mat-icon class="kt-menu__link-icon material-icons-outlined">assignment_ind</mat-icon>
+                  <span class="kt-menu__link-text"
+                        i18n>Admin Users</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- end:: Aside Menu -->
+      </div>
+
+      <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper">
+        <!-- begin:: Header -->
+        <app-header-menu>
+          <!--begin: User -->
+          <div *ngIf="user"
+               class="kt-header__topbar-item kt-header__topbar-item--user"
+               dropdownMenu>
+            <div id="btn_account"
+                 class="kt-header__topbar-wrapper"
+                 data-toggle="dropdown"
+                 data-offset="2px,0px">
+              <div class="kt-header__topbar-user">
+                <span class="kt-header__topbar-username kt-hidden-mobile">
+                  {{user.FirstName}} {{user.LastName}}
+                </span>
+                <span class="kt-header__topbar-icon"
+                      style="height: 25px; width: 25px;">
+                  <mat-icon class="material-icons-outlined"
+                            style="font-size: 25px; color: #4e3a96;">account_circle
+                  </mat-icon>
+                </span>
+                <!-- <span class="kt-badge kt-badge--username kt-badge--lg kt-badge--brand kt-badge--bold">
+                    {{userInitials}}
+                  </span> -->
+              </div>
+            </div>
+            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-md"
+                 style="width: 300px">
+              <div class="kt-user-card kt-margin-b-40 kt-margin-b-30-tablet-and-mobile">
+                <!-- style="background-image: url(assets/media/misc/head_bg_sm.jpg)"> -->
+                <div class="kt-user-card__wrapper">
+                  <div class="kt-user-card__pic">
+                    <span class="badge badge-secondary badge-user-initials badge-user-initials--profile"
+                          i18n>{{userInitials}}</span>
+                  </div>
+                  <div class="kt-user-card__details">
+                    <div class="kt-user-card__name">{{user.FirstName}} {{user.LastName}}</div>
+                    <div class="kt-user-card__position"
+                         style="word-break: break-word;">
+                      {{user.Email}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="kt-nav kt-margin-b-10">
+                <li class="kt-nav__custom kt-space-between top-menu">
+                  <div [routerLink]="['/admin/platform/global-settings/my-profile']">
+                    <span class="icon-container">
+                      <mat-icon class="material-icons-outlined">person</mat-icon>
+                    </span>
+                    <span i18n
+                          class="text">
+                      My Profile
+                    </span>
+                  </div>
+                </li>
+                <li class="kt-nav__custom kt-space-between top-menu"
+                    (click)="goToHelp()">
+                  <div id="btn_help">
+                    <span class="icon-container">
+                      <mat-icon class="material-icons-outlined">help_outline</mat-icon>
+                    </span>
+                    <span i18n
+                          class="text">
+                      Help
+                    </span>
+                    <span class="icon-container-second">
+                      <mat-icon class="material-icons-outlined">open_in_new</mat-icon>
+                    </span>
+                  </div>
+                </li>
+                <li class="kt-nav__separator kt-nav__separator--fit"></li>
+                <li class="kt-nav__custom kt-space-between">
+                  <a href="javascript:void(0)"
+                     class="btn btn-label-brand btn-upper btn-sm btn-bold"
+                     (click)="logout()"
+                     i18n>Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </app-header-menu>
+        <!-- end:: Header -->
+
+        <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor"
+             id="kt_content">
+          <!-- example of subheader is here -->
+          <!-- <div class="kt-subheader kt-grid__item"
+               id="kt_subheader">
+            <div class="kt-container kt-container--fluid">
+              <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title"
+                    i18n>Earn Rules</h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                <div class="kt-subheader__toolbar"
+                     id="kt_subheader_search">
+                  <span class="kt-subheader__desc"
+                        id="kt_subheader_total">Enter some details</span>
+                </div>
+              </div>
+
+              <div class="kt-subheader__toolbar">
+                <a href="/keen/preview/demo1/#.html"
+                   class="btn btn-default btn-bold">Back</a>
+                <button type="button"
+                        class="btn btn-brand btn-bold">Add User</button>
+              </div>
+            </div>
+          </div> -->
+          <!-- begin:: Content -->
+          <router-outlet></router-outlet>
+          <!-- end:: Content -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #logoAnchor>
+  <a href="/"
+     class="logo-anchor">
+    <img class="logo-image"
+         alt="Logo"
+         src="assets/images/token-icon.svg" />
+    <span class="logo-text">MAVN</span>
+  </a>
+</ng-template>
+
+<ng-template #totalSupply>
+  <div class="total-supply-container">
+    <div class="total-supply-item">
+      <div class="total-supply-title"
+           i18n>{{tokenSymbol}} Supply</div>
+      <div class="total-supply-title-number"
+           *ngIf="!isLoading">{{totalTokenSupply}}</div>
+      <div class="spinner-container"
+           *ngIf="isLoading">
+        <div class="spinner-border"></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div #errorMessageElement
+     hidden
+     i18n>Something went wrong. Please try again or contact support.</div>
+
+<div #errorImageUploadMessageElement
+     hidden
+     i18n>Error occured during uploading image(s). Please try again or contact
+  support.</div>
+
+<div #closeSnackbarBtnTextElement
+     hidden
+     i18n>Close</div>
+
+<!-- #region Translates for errors -->
+
+<ng-template #lengthError
+             let-ctx>
+  <div i18n>Field has to be between {{ctx.min}} and {{ctx.max}} characters long</div>
+</ng-template>
+
+<ng-template #moneyFormatError>
+  <div i18n>Invalid number</div>
+</ng-template>
+
+<ng-template #minNumberError
+             let-ctx>
+  <div i18n>Minimum required number is {{ctx.min}}</div>
+</ng-template>
+
+<ng-template #minMoreZeroNumberError>
+  <div i18n>Number should be greater than 0</div>
+</ng-template>
+
+<ng-template #maxNumberError
+             let-ctx>
+  <div i18n>Maximum number can be {{ctx.max}}</div>
+</ng-template>
+
+<ng-template #invalidAccuracyError
+             let-ctx>
+  <div i18n>Maximum number accuracy is {{ctx.accuracy}}</div>
+</ng-template>
+
+<ng-template #intRangeError
+             let-ctx>
+  <div i18n>Field has to be between {{ctx.min}} and {{ctx.max}}</div>
+</ng-template>
+
+<!-- endregion -->
+
+<!-- Translates for Business Vertical -->
+<div #BusinessVerticalTypeHospitality
+     hidden
+     i18n>Hospitality</div>
+
+<div #BusinessVerticalTypeRealEstate
+     hidden
+     i18n>Real Estate</div>
+
+<div #BusinessVerticalTypeRetail
+     hidden
+     i18n>Retail</div>

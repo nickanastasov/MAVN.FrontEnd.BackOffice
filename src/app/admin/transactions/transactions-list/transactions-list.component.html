@@ -1,0 +1,181 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of transactions in referral program</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <button id="btn-export"
+                class="btn btn-brand btn-bold"
+                (click)="exportToCsv()"
+                [disabled]="isExporting || !timestampFromDate || !timestampToDate">
+          <span [hidden]="isExporting"
+                i18n>Export</span>
+          <div *ngIf="isExporting"
+               class="spinner-with-text">
+            <span class="spinner-border"></span>
+            <span class="spinner-text"
+                  i18n>Exporting...</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+      <div class="filter-wrapper">
+        <mat-form-field appearance="outline"
+                        class="col-xl-2 col-lg-3">
+          <mat-label i18n>From</mat-label>
+          <input [(ngModel)]="timestampFromDate"
+                 id="transactions-from-date"
+                 matInput
+                 [max]="timestampToDate"
+                 [matDatepicker]="fromPicker"
+                 [disabled]="isSearching">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="fromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline"
+                        class="col-xl-2 col-lg-3">
+          <mat-label i18n>To</mat-label>
+          <input [(ngModel)]="timestampToDate"
+                 id="transactions-to-date"
+                 matInput
+                 [max]="periodMaxDate"
+                 [matDatepicker]="toPicker"
+                 [disabled]="isSearching">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="toPicker"></mat-datepicker-toggle>
+          <mat-datepicker #toPicker></mat-datepicker>
+        </mat-form-field>
+        <button class="btn btn-brand btn-upper"
+                id="customers-chart-apply-btn"
+                style="min-width: 100px; margin-top: 8px;"
+                (click)="onFilter()"
+                [disabled]="isSearching || !timestampFromDate || !timestampToDate"
+                i18n>Apply</button>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="table-wrapper">
+          <table id="table-blockTransactions"
+                 class="block-transactions table table-hover">
+            <thead>
+              <tr>
+                <th i18n>Id</th>
+                <th i18n>Sender Name</th>
+                <th i18n>Sender Email</th>
+                <th i18n>Timestamp</th>
+                <th i18n>Transaction Type</th>
+                <th i18n>Status</th>
+                <th i18n>Action Rule Name</th>
+                <th i18n>Additional Information</th>
+                <th i18n>Receiver Name</th>
+                <th i18n>Receiver Email</th>
+                <th i18n>Transaction Location</th>
+                <th i18n>Location External Id</th>
+                <th i18n>Location Integration Code</th>
+                <th i18n>Business Unit</th>
+                <th i18n>Amount ({{assetSymbol}})</th>
+                <th i18n>Transaction Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of transactions; let i = index"
+                  class="data-row-{{i}}">
+                <td data-id="Id">
+                  <span>{{row.Id}}</span>
+                </td>
+                <td data-id="SenderName">
+                  <span>{{row.SenderName}}</span>
+                </td>
+                <td data-id="SenderEmail">
+                  <span>{{row.SenderEmail}}</span>
+                </td>
+                <td data-id="Timestamp">
+                  <span>{{row.Timestamp}}</span>
+                </td>
+                <td data-id="TransactionType">
+                  <span>{{row.TransactionType}}</span>
+                </td>
+                <td data-id="Status">
+                  <span>{{row.Status}}</span>
+                </td>
+                <td data-id="ActionRuleName">
+                  <span>{{row.CampaignName}}</span>
+                </td>
+                <td data-id="Info">
+                  <span>{{row.Info}}</span>
+                </td>
+                <td data-id="ReceiverName">
+                  <span>{{row.ReceiverName}}</span>
+                </td>
+                <td data-id="ReceiverEmail">
+                  <span>{{row.ReceiverEmail}}</span>
+                </td>
+                <td data-id="LocationInfo">
+                  <span>{{row.LocationInfo}}</span>
+                </td>
+                <td data-id="LocationExternalId">
+                  <span>{{row.LocationExternalId}}</span>
+                </td>
+                <td data-id="LocationIntegrationCode">
+                  <span>{{row.LocationIntegrationCode}}</span>
+                </td>
+                <td data-id="Vertical">
+                  <span>{{row.Vertical}}</span>
+                </td>
+                <td data-id="Amount"
+                    class="text-right">
+                  <span>{{row.Amount | token}}</span>
+                </td>
+                <td data-id="TransactionCategory">
+                  <span>{{row.TransactionCategory}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="spinner-wrapper">
+          <div class="spinner-container spinner-container"
+               *ngIf="isLoading">
+            <div class="spinner-border"></div>
+          </div>
+        </div>
+
+        <div class="table-states-container text-center">
+          <ng-container *ngIf="!isLoading && !isSearching && transactions.length === 0">
+            <span i18n>Transactions not found</span>
+          </ng-container>
+        </div>
+
+        <app-pagination-container [totalCount]="totalCount"
+                                  [currentPage]="currentPage"
+                                  (paginationEvent)="onPaginationChangeEvent($event)"
+                                  showFirstLastButtons="false"
+                                  showLength="false"
+                                  showPages="false"></app-pagination-container>
+      </div>
+    </div>
+  </div>
+</div>

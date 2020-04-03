@@ -1,0 +1,45 @@
+pipelines:
+  branches:
+    'dev':
+      - step:
+          name: Dotnet Build / Build Docker Image
+          image: node:10-alpine
+          caches:
+            - node-modules
+          script:
+            - export IMAGE_NAME=$DOCKER_REPO/$IMAGE_PROJECT_TYPE-$IMAGE_COMPONENT_NAME:$BITBUCKET_BRANCH
+            - echo $IMAGE_NAME
+            # build the Docker image (this will use the Dockerfile in the root of the repo)
+            - docker build -t $IMAGE_NAME ./
+            # authenticate with the Docker Hub registry
+            - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+            # push the new Docker image to the Docker registry
+            - docker push $IMAGE_NAME
+          services:
+            - docker
+      - step:
+          # trigger: manual
+          name: Deploy to Kubernetes
+          image: atlassian/pipelines-kubectl
+          script:
+            - echo $Dev_Kube_Token | base64 -d > ./kube_token
+            - echo $Dev_Kube_CA | base64 -d > ./kube_ca
+            - kubectl config set-cluster maven-demo-aks --server=https://maven-demo-aks-b54a5075.hcp.westeurope.azmk8s.io:443 --certificate-authority="./kube_ca"
+            - kubectl config set-credentials gitlab-user --token="$(cat ./kube_token)"
+            - kubectl config set-context maven-demo-aks --cluster=maven-demo-aks --user=gitlab-user
+            - kubectl config use-context maven-demo-aks
+            # Change Yamls
+            - sed -i -e "s|\$version|$BITBUCKET_BUILD_NUMBER|"  deploy-yamls/deployment.yaml
+            - sed -i -e "s|\$ConnectionString|$SETTINGS_URL|"  deploy-yamls/deployment.yaml
+            - cat deploy-yamls/deployment.yaml
+            # Apply Yaml Files
+            - kubectl apply -f  deploy-yamls/namespace.yaml
+            - kubectl apply -f  deploy-yamls/service.yaml
+            - kubectl apply -f  deploy-yamls/deployment.yaml
+
+definitions:
+  caches:
+    node-modules: /usr/src/app/node_modules
+  services:
+    docker:
+      memory: 3072

@@ -1,0 +1,35 @@
+@import '../../utils/rtl-mixins';
+@import '../../utils/variables';
+
+.multiple-select-custom-option {
+  padding: 0 !important;
+
+  > .mat-pseudo-checkbox {
+    display: none !important;
+  }
+
+  > .mat-option-text {
+    > .actions {
+      padding: 0 16px;
+
+      > button {
+        min-width: 100px;
+
+        &:not(:last-of-type) {
+          @include margin-end(16px);
+        }
+      }
+    }
+  }
+}
+
+.mat-optgroup {
+  .mat-optgroup-label {
+    color: $dark-primary-text;
+    font-weight: bold;
+  }
+
+  .mat-option-multiple {
+    @include padding-start(32px);
+  }
+}

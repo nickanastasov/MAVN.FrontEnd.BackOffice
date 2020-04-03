@@ -1,0 +1,26 @@
+.conversion-rate-text {
+  font-size: 1.2rem;
+  padding-bottom: 20px;
+}
+
+.form-navigation {
+  padding: 10px 0;
+}
+
+.use-global-rate {
+  padding-top: 14px;
+}
+
+:host ::ng-deep .mat-checkbox-layout {
+  white-space: normal;
+}
+
+:host ::ng-deep .credentials {
+  .mat-form-field-infix {
+    width: auto;
+  }
+}
+
+.delete-location {
+  margin-bottom: 20px;
+}

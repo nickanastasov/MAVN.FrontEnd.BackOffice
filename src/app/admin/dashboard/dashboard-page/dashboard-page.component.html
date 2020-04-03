@@ -1,0 +1,552 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <span class="kt-subheader__desc"
+              id="kt_subheader_total"
+              i18n>Statistics about customers, tokens and
+          leads</span>
+      </div>
+      <div class="kt-subheader__toolbar"
+           id="kt_subheader_search">
+        <div class="kt-subheader__desc"
+             *ngIf="currentFilter !== 'Custom'"
+             id="kt_subheader_filter"
+             i18n>
+
+          <button *ngFor="let filterItem of filtersList"
+                  type="button"
+                  [ngClass]="{ 'active-filter': currentFilter === filterItem.value, 'has-icon': filterItem.value === 'Custom' }"
+                  class="subheader-filter-btn"
+                  (click)="handleFilterClick($event, filterItem)">
+            <ng-template [ngIf]="filterItem.value !== 'Custom'">{{ filterItem.name }}</ng-template>
+            <mat-icon *ngIf="filterItem.value === 'Custom'">event</mat-icon>
+          </button>
+        </div>
+
+        <div class="kt-subheader__desc"
+             *ngIf="currentFilter === 'Custom'"
+             id="kt_subheader_filter-date"
+             i18n>
+          <mat-form-field>
+            <mat-label i18n>From</mat-label>
+            <input [(ngModel)]="chartPeriodFromDate"
+                   (ngModelChange)="handleChartPeriodRangeChange($event, 'fromDate')"
+                   id="customers-chart-from-date"
+                   matInput
+                   [max]="chartPeriodMaxDate"
+                   [matDatepicker]="fromPicker">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="fromPicker">
+              <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #fromPicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n>To</mat-label>
+            <input [(ngModel)]="chartPeriodToDate"
+                   (ngModelChange)="handleChartPeriodRangeChange($event, 'toDate')"
+                   id="customers-chart-to-date"
+                   matInput
+                   [min]="chartPeriodMinDate"
+                   [max]="chartPeriodMaxDate"
+                   [matDatepicker]="toPicker">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="toPicker">
+              <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #toPicker></mat-datepicker>
+          </mat-form-field>
+
+          <button class="subheader-filter-btn subheader-filter-submit-btn"
+                  (click)="applyCustomChartPeriod()"
+                  [disabled]="!chartPeriodFromDate || !chartPeriodToDate"
+                  i18n>Apply</button>
+
+          <button type="button"
+                  class="subheader-filter-btn has-icon"
+                  (click)="handleClearFilter($event)">
+            <mat-icon>close</mat-icon>
+          </button>
+
+          <button type="button"
+                  class="subheader-filter-btn has-icon">
+            <mat-icon>event</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+
+  <div class="kt-portlet">
+    <div class="row row-no-padding">
+      <div class="col-md-12 col-lg-4">
+        <div class="kt-pricing-v1">
+          <div class="kt-pricing-v1__header">
+            <div class="kt-iconbox kt-iconbox--no-hover">
+              <div class="kt-iconbox__icon">
+                <div class="kt-iconbox__icon-bg"
+                     style="background-image: url(assets/media/misc/iconbox_bg.png)"></div>
+                <!-- <i class="flaticon-rocket"></i> -->
+                <img src="assets/images/icons/icon-customer.svg" />
+              </div>
+              <div class="kt-iconbox__title">
+                Total Customers
+              </div>
+            </div>
+          </div>
+          <div class="kt-pricing-v1__body">
+            <div class="kt-pricing-v1__price">
+              {{ totalNumbers.Customers | number }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <div class="kt-pricing-v1">
+          <div class="kt-pricing-v1__header">
+            <div class="kt-iconbox">
+              <div class="kt-iconbox__icon">
+                <div class="kt-iconbox__icon-bg"
+                     style="background-image: url(assets/media/misc/iconbox_bg.png)"></div>
+                <!-- <i class="flaticon-customer"></i> -->
+                <img src="assets/images/icons/token-icon.svg" />
+              </div>
+              <div class="kt-iconbox__title">
+                Wallet's Balance, {{ tokenSymbol }}
+              </div>
+            </div>
+          </div>
+          <div class="kt-pricing-v1__body">
+            <div class="kt-pricing-v1__price">
+              {{ totalNumbers.Tokens | number }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <div class="kt-pricing-v1 kt-pricing-v1--last">
+          <div class="kt-pricing-v1__header">
+            <div class="kt-iconbox">
+              <div class="kt-iconbox__icon">
+                <div class="kt-iconbox__icon-bg"
+                     style="background-image: url(assets/media/misc/iconbox_bg.png)"></div>
+                <!-- <i class="flaticon-bus-stop"></i> -->
+                <img src="assets/images/icons/icon-leads.svg" />
+              </div>
+              <div class="kt-iconbox__title">
+                Total Referrals
+              </div>
+            </div>
+          </div>
+          <div class="kt-pricing-v1__body">
+            <div class="kt-pricing-v1__price">
+              {{ totalNumbers.Leads | number }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="kt-portlet">
+    <div class="kt-portlet__body no-padding">
+      <div class="total-numbers-container">
+        <div class="total-numbers-item">
+          <p class="total-numbers-item-icon">
+            <img src="assets/images/icons/icon-customer.svg"
+                 alt="Total Customers"
+                 title="Total Customers" />
+          </p>
+          <p class="total-numbers-item-title"
+             i18n>Total Customers</p>
+          <p class="total-numbers-item-number">{{ totalNumbers.Customers | number }}</p>
+        </div>
+
+        <div class="total-numbers-item">
+          <p class="total-numbers-item-icon">
+            <img src="assets/images/icons/token-icon-gray.svg"
+                 alt="Wallet's Balance {{ tokenSymbol }}"
+                 title="Wallet's Balance {{ tokenSymbol }}" />
+          </p>
+          <p class="total-numbers-item-title"
+             i18n>Wallet's Balance {{ tokenSymbol }}</p>
+          <p class="total-numbers-item-number">{{ totalNumbers.Tokens | number }}</p>
+        </div>
+
+        <div class="total-numbers-item">
+          <p class="total-numbers-item-icon">
+            <img src="assets/images/icons/icon-leads.svg"
+                 alt="Total Leads"
+                 title="Total Leads" />
+          </p>
+          <p class="total-numbers-item-title"
+             i18n>Total Leads</p>
+          <p class="total-numbers-item-number">{{ totalNumbers.Leads | number }}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>New Customers
+          <span class="kt-portlet__head-title-number kt-portlet__head-title-number--with-background"
+                [hidden]="isFirstLoading">
+            +{{ totalNewCustomers | number }}
+          </span>
+        </h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <app-customers-chart (totalCustomersCount)="handleTotalCustomersCount($event)"></app-customers-chart>
+    </div>
+  </div>
+
+  <!-- <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>Customers by countries</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div style="text-align: center;">
+        <div style="display: inline-block; width: auto; max-width: 800px">
+          <img src="assets/images/dashboard/customers-by-country.png"
+               style="width: 100%; height: auto" />
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <div class="kt-portlet">
+        <div class="kt-portlet__head">
+          <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title"
+                i18n>Active and Repeat Customers</h3>
+          </div>
+        </div>
+        <div class="kt-portlet__body">
+          <div class="row row-no-padding">
+            <div class="col-md-12 col-lg-6 text-center"
+                 style="border-right: 1px solid #ebebf5;">
+              <div class="active-and-repeat-customers">
+                <div class="active-and-repeat-customers__img-container">
+                  <div class="customers-donut-chart-wrapper">
+                    <!-- <img src="assets/images/dashboard/customers-share-1.png" /> -->
+                    <canvas id="active-customers-donut-chart"></canvas>
+                    <div class="active-and-repeat-customers__img-container-label">
+                      %{{totalActiveCustomersPercentage}}
+                    </div>
+                  </div>
+                </div>
+                <div class="active-and-repeat-customers__header">
+                  Active Customers Share
+                </div>
+                <div class="active-and-repeat-customers__text">
+                  Customers who earned or redeemed points during the period
+                </div>
+                <div class="active-and-repeat-customers__total">
+                  <div class="active-and-repeat-customers__total-header">
+                    Total Active Customers
+                  </div>
+                  <div class="active-and-repeat-customers__total-number">
+                    {{this.totalActiveCustomers | number}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6 text-center">
+              <div class="active-and-repeat-customers">
+                <div class="active-and-repeat-customers__img-container">
+                  <div class="customers-donut-chart-wrapper">
+                    <!-- <img src="assets/images/dashboard/customers-share-2.png" /> -->
+                    <canvas id="repeated-customers-donut-chart"></canvas>
+                    <div class="active-and-repeat-customers__img-container-label">
+                      %{{this.repeatedCustomersPercentage}}
+                    </div>
+                  </div>
+                </div>
+                <div class="active-and-repeat-customers__header">
+                  Repeat Customers Share
+                </div>
+                <div class="active-and-repeat-customers__text">
+                  Customers who made repeat earnings or redemption during the period
+                </div>
+                <div class="active-and-repeat-customers__total">
+                  <div class="active-and-repeat-customers__total-header">
+                    Total Repeat Customers
+                  </div>
+                  <div class="active-and-repeat-customers__total-number">
+                    {{this.repeatedCustomers | number}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>TRANSACTIONS</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="total-tokens">
+        <div class="row">
+          <div class="col-md-4 total-number-wrapper">
+            <div class="total-number">
+              <!-- <i class="total-number__icon total-number__icon--earn fa fa-coins">
+              <i class="total-number__subicon fa fa-arrow-circle-up"></i>
+            </i> -->
+              <i class="total-number__icon total-number__icon--earn fa fa-exchange-alt"></i>
+              <div class="total-number__text">
+                <div class="total-number__header"
+                     i18n>Number of Transactions</div>
+                <div class="total-number__digits">294,894</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 total-number-wrapper">
+            <div class="total-number">
+              <!-- <i class="total-number__icon total-number__icon--burn fa fa-coins">
+              <i class="total-number__subicon fa fa-arrow-circle-down"></i>
+            </i> -->
+              <i class="total-number__icon total-number__icon--burn flaticon-coins"></i>
+              <div class="total-number__text">
+                <div class="total-number__header"
+                     i18n>Total Transactions Cost</div>
+                <div class="total-number__digits">34,356,789 {{tokenSymbol}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 total-number-wrapper">
+            <div class="total-number">
+              <!-- <i class="total-number__icon fa fa-wallet"></i> -->
+              <i class="total-number__icon fa fa-money-check-alt"></i>
+              <div class="total-number__text">
+                <div class="total-number__header"
+                     i18n>Average Transaction</div>
+                <div class="total-number__digits">134.79 {{tokenSymbol}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>Bonus Points <span class="kt-portlet__head-title-number">{{ totalNumbers.Tokens | number }}</span>
+        </h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <app-tokens-chart (totalTokensCount)="handleTitleNumbers($event, 'Tokens')"></app-tokens-chart>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <div class="kt-portlet">
+        <div class="kt-portlet__head">
+          <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title"
+                i18n>Earn, Top 5 Partners</h3>
+          </div>
+        </div>
+        <div class="kt-portlet__body">
+          <div class="kt-widget-11">
+            <div *ngFor="let topPartner of topEarnPartners; let i = index"
+                 class="kt-widget-11__item data-row-{{i}}">
+              <div class="kt-widget-11__wrapper">
+                <div class="kt-widget-11__title">
+                  {{topPartner.Name}}
+                </div>
+                <div class="kt-widget-11__value">
+                  {{topPartner.Value | number}} {{tokenSymbol}}
+                </div>
+              </div>
+              <div class="kt-widget-11__progress">
+                <div class="progress">
+                  <div class="progress-bar bg-primary"
+                       role="progressbar"
+                       style="width: 0%;"
+                       [ngStyle]="{'width.%': topPartner.Value/topEarnPartnerValue * 100}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-lg-6">
+      <div class="kt-portlet">
+        <div class="kt-portlet__head">
+          <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title"
+                i18n>Spend, Top 5 Partners</h3>
+          </div>
+        </div>
+        <div class="kt-portlet__body">
+          <div class="kt-widget-11">
+            <div *ngFor="let topPartner of topSpendPartners; let i = index"
+                 class="kt-widget-11__item data-row-{{i}}">
+              <div class="kt-widget-11__wrapper">
+                <div class="kt-widget-11__title">
+                  {{topPartner.Name}}
+                </div>
+                <div class="kt-widget-11__value">
+                  {{topPartner.Value | number}} {{tokenSymbol}}
+                </div>
+              </div>
+              <div class="kt-widget-11__progress">
+                <div class="progress">
+                  <div class="progress-bar bg-danger"
+                       role="progressbar"
+                       style="width: 0%;"
+                       [ngStyle]="{'width.%': topPartner.Value/topSpendPartnerValue * 100}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>Top 5 Rules by Participation</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="table-wrapper">
+        <table id="customers-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: auto"
+                  i18n>Rule</th>
+              <th style="width: auto"
+                  i18n>Partner</th>
+              <th style="width: auto"
+                  class="text-right"
+                  i18n>Completed</th>
+              <th style="width: auto"
+                  class="text-right"
+                  i18n>Tokens Earned</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span>Earn staying in a Hotel</span>
+              </td>
+              <td>
+                <span>Hospitality</span>
+              </td>
+              <td class="text-right">
+                <span>50</span>
+              </td>
+              <td class="text-right">
+                <span>{{1500 | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Refer a Hotel</span>
+              </td>
+              <td>
+                <span>MAVN</span>
+              </td>
+              <td class="text-right">
+                <span>45</span>
+              </td>
+              <td class="text-right">
+                <span>{{1049 | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Product Purchase</span>
+              </td>
+              <td>
+                <span>Retail</span>
+              </td>
+              <td class="text-right">
+                <span>39</span>
+              </td>
+              <td class="text-right">
+                <span>{{982 | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Refer a Property</span>
+              </td>
+              <td>
+                <span>Property</span>
+              </td>
+              <td class="text-right">
+                <span>3</span>
+              </td>
+              <td class="text-right">
+                <span>{{900 | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Refer a Friend</span>
+              </td>
+              <td>
+                <span>MAVN</span>
+              </td>
+              <td class="text-right">
+                <span>2</span>
+              </td>
+              <td class="text-right">
+                <span>{{100 | number}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>Leads <span class="kt-portlet__head-title-number">{{ totalNumbers.Leads | number }}</span>
+        </h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <app-leads-chart (totalLeadsCount)="handleTitleNumbers($event, 'Leads')"></app-leads-chart>
+    </div>
+  </div>
+</div>

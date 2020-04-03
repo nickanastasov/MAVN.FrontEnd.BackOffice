@@ -1,0 +1,49 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>Enter user details and submit</span>
+        </div>
+      </div>
+      <div *ngIf="!isLoading"
+           class="kt-subheader__toolbar">
+        <button class="btn btn-bold btn-link"
+                matTooltip="New password will be auto-generated and sent to the admin by the attached email address"
+                i18n-matTooltip
+                [disabled]="isProcessingResetPassword || !hasEditPermission"
+                (click)="resetPassword()">
+          <div *ngIf="isProcessingResetPassword"
+               class="spinner-with-text">
+            <span class="spinner-border"></span>
+            <span class="spinner-text"
+                  i18n>Proccessing...</span>
+          </div>
+
+          <span [hidden]="isProcessingResetPassword"
+                i18n>Reset Password</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="user-add kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+      <app-users-form *ngIf="!isLoading"
+                      (submitSuccess)="onFormSubmit($event)"
+                      [isSaving]="isSaving"
+                      [user]="user"></app-users-form>
+
+      <div class="spinner-container"
+           *ngIf="isLoading || isSaving">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3073 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64" datatype="html">
+        <source>Dashboard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/dashboard-page/dashboard-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dd5bba9d8d3f50c9a9928405a8b2f1d44547efc0" datatype="html">
+        <source>Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/dashboard-page/dashboard-page.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bee1695c91af481b531706806064107a0154337f" datatype="html">
+        <source>Action Rules</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="19db4be540708b5a164b50d2b457e4a40deefedc" datatype="html">
+        <source>Earn Rules</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0eb9a43cab24a09691becb5836326b501e69fdb1" datatype="html">
+        <source>Spend Rules</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="908c587e87387a9afc357a3345858636ce29d641" datatype="html">
+        <source>Payment Gateway</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="19b5a67aab244f4128c7923078d332284cfe24c6" datatype="html">
+        <source>Blockchain Operations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="add4cd82e3e38a3110fe67b3c7df56e9602644ee" datatype="html">
+        <source>Transactions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b5300526554fa4c22b96fb5c872339e6b2668500" datatype="html">
+        <source>Program Partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04a6113dfb7f6c8ced20bc8b1329241864c71625" datatype="html">
+        <source>Tiers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/tiers/tiers-list/tiers-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e09ff151c3ffac9dc687aa06ea671a0f45e35d7" datatype="html">
+        <source>Admin Users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1df17b9f6d567523479210975e33c48f5c1f5406" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{userInitials}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">280</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">297</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb8f59de38734d16af86774b7594de37ea20f33a" datatype="html">
+        <source>Something went wrong. Please try again or contact support.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">356</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f1b15579d60c52345b6ee0b1da5bd49dc7e6cb5a" datatype="html">
+        <source>Error occured during uploading image(s). Please try again or contact support.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">360</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">364</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c3b4f7c5021f3f9ea8f0af0e0fa3290b67ba8ea4" datatype="html">
+        <source>Field has to be between <x id="INTERPOLATION" equiv-text="{{ctx.min}}"/> and <x id="INTERPOLATION_1" equiv-text="{{ctx.max}}"/> characters long</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">370</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1e09bde4e3ad8f6816381778d89b21e83a3a1ddd" datatype="html">
+        <source>Invalid number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">374</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8b93944cdc6a55f4559084bc3f14904b70c1d4c1" datatype="html">
+        <source>Minimum required number is <x id="INTERPOLATION" equiv-text="{{ctx.min}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">379</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="639662ed7e020ce4d9138f7633407bc5b29dca62" datatype="html">
+        <source>Number should be greater than 0</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">383</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71cba68c6a81b31899d99382eff801eecdd71547" datatype="html">
+        <source>Maximum number can be <x id="INTERPOLATION" equiv-text="{{ctx.max}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">388</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="79701922bf83f401db1e9f360eac44b41f65c93c" datatype="html">
+        <source>Maximum number accuracy is <x id="INTERPOLATION" equiv-text="{{ctx.accuracy}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">393</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="23af164df42449e0a1a95054c45a57fc307c419e" datatype="html">
+        <source>Hospitality</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">401</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d29e6ad4d18c1ff16942c0370ab205656bd6b2f1" datatype="html">
+        <source>Real Estate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">405</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d3793724b4f530678801475b11a7b182089388f7" datatype="html">
+        <source>Retail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">409</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ef3f70345faf104f65a15d0f8821363ac313026b" datatype="html">
+        <source>Field is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/error-message/error-message.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/error-message/error-message.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9ee02385a89f0788fd35fd61cce47d1f882de536" datatype="html">
+        <source>Field has to be whole number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/error-message/error-message.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/error-message/error-message.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/confirmation-dialog/confirmation-dialog.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">428</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68e710782ccb5398b3acb8844caf0b199da2c3da" datatype="html">
+        <source>Confirm</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/confirmation-dialog/confirmation-dialog.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="af848956f6d48636a11a1194f1a668943332fe8e" datatype="html">
+        <source>First page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/custom-pager/custom-pager.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="575e782fd27f2ee70a034a775efe9ad162472250" datatype="html">
+        <source>Previous page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/custom-pager/custom-pager.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ce3cefb1cd0099aa5003dda16ec9eb21fd8ba789" datatype="html">
+        <source>Next page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/custom-pager/custom-pager.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="65f86c516832ca3fd99a1d353f0c166344886b1b" datatype="html">
+        <source>Last page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/custom-pager/custom-pager.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2045151788cbdda7512752e408da59a6b54a8ef0" datatype="html">
+        <source>Items per page</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b105f50be6bdd52a475bf46361e7170687032843" datatype="html">
+        <source>Showing</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="169eed2bc3e08e1bea977bcc5d799379f6b8a758" datatype="html">
+        <source>of</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/beautified-paginator/beautified-paginator.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b01e0de975c626925a60869e29705a93a25df769" datatype="html">
+        <source>List of earn rules in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7acea0b5c6d88b9acd22fd456f4861cb758f9006" datatype="html">
+        <source>Add Earn Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92f8b474ec6bdb8ee6dd6cd772f8a636b96d1a65" datatype="html">
+        <source>Search by title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e6acd589d8b82cafd8546409da0a36469d297a0" datatype="html">
+        <source>Start Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0f551576faafbd2806d4af653469655f1b35afe1" datatype="html">
+        <source>End Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="12f86e6747a5ad39e62d3480ddc472b1aeab5b76" datatype="html">
+        <source>Reward</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="030b4423b92167200e39519599f9b863b4f7c62c" datatype="html">
+        <source>Actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98407ae22f914c82920dae7d28aaacedd0409dbf" datatype="html">
+        <source>There are no Earn Action Rules please create one</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c92e6d14862b48811b9243d6da4dc9a8a11ac05" datatype="html">
+        <source>Earn Action Rule not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaigns-list-page/campaigns-list-page.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="924d7742fa7f3fb29e92b52dd77002efd248962c" datatype="html">
+        <source>New Earn Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-add/campaign-add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aecb39d56a08097aa1dcbe7e7ec8178848acb4df" datatype="html">
+        <source>Enter earn rule details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-add/campaign-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-edit/campaign-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="190b2ffc8785b0edae1849ca0f3d04d930bf30d7" datatype="html">
+        <source>Edit Earn Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-edit/campaign-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2ef005d44d41a2b8b696c27733fe49e497c6c9b" datatype="html">
+        <source>Basic Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="77bbe324b08f6636fb50f673cea05313b86fb692" datatype="html">
+        <source>Start date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f60960faa2cd3e0db11e48688774d05dfa9d715b" datatype="html">
+        <source>End date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">287</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="223aae0477f79f0bc4436c1c57619415f04cbbb3" datatype="html">
+        <source>Publish</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="86022280b7836d1aff7fdc0182415b041ae3625c" datatype="html">
+        <source>Draft</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <source>Save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">433</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f36107b3287e8a1fb22c0ae7b30eb4b840e7bac4" datatype="html">
+        <source>Fixed amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dce0394e22426e3b7b5bc702817e55fdd935810a" datatype="html">
+        <source>Conversion rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="040e13f8a42607cb7d48c6bcf1298364c2b92cca" datatype="html">
+        <source>Percentage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08d340c62dc7e964fb421667036fb5e9410349c2" datatype="html">
+        <source>Unlimited participation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="41d931b223d20f8412f61b0ccd8a9f800c9d2ec2" datatype="html">
+        <source>Can participate once</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="67156bc2f41888a601cf9ea1a5e000954d3ade25" datatype="html">
+        <source>Can participate multiple times</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bd5e17c9582661e20763a7634ef07881e33bbd7" datatype="html">
+        <source>Action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a20835f355331a7398ce79b54cff3c57e96b3c75" datatype="html">
+        <source>Event</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d19003ae52130e11fbc2ef8e28566518f207738" datatype="html">
+        <source>Partner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="30d849c1c34a07b4dd79cc5f07059ae703af0336" datatype="html">
+        <source>Search Partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-conditions/campaign-form-conditions.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73ca6d3954139a82ceaacf739a94b10e3a89c0f1" datatype="html">
+        <source>Optional Rewards</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="223db523e42f9f38a8f6f4d5c03f1f2839333719" datatype="html">
+        <source>Add Optional Reward</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3efb0f9ce5e7e3dccf0e82d891e8182dbc8efe63" datatype="html">
+        <source>Type of reward</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e79bf7ecc35369ba18cf3a571ebc3d8b3a48aaea" datatype="html">
+        <source>Immediate reward, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eac09042143dfeb34e7bad9d5098f4701b66f0f0" datatype="html">
+        <source>Reward, %</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="099168cd2b4161bfc823504b6739760da90d21e7" datatype="html">
+        <source>Add Reward Ratio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="881a1bb025744f525c71e10eb3f54d80604f88dc" datatype="html">
+        <source>Ratio of payments, %</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">268</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="88c672d512c53b83f5a2a54827d6b3a72de28c98" datatype="html">
+        <source>Ratio of rewards, %</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">301</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">304</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c337a09204ad78fa71ae4717f0bf009b2b9da2f6" datatype="html">
+        <source>Delete Reward Ratio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">337</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04371bb836c2ce9bc5d17d57884954373e9707df" datatype="html">
+        <source>The sum of all &apos;Ratio of payments&apos; fields should be equal to 100</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">346</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ee923d0f48d0c895e63e489fff97fe7fe1c0fd3" datatype="html">
+        <source>The sum of all &apos;Ratio of rewards&apos; fields should be equal to 100</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">349</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">373</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e046784a2630f010df22217ea2fbbe58f2679268" datatype="html">
+        <source>Delete Optional Reward</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-optional-conditions/campaign-form-optional-conditions.component.html</context>
+          <context context-type="linenumber">369</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="560b11784eed5555ca24dfdf0106142e2b0cdfc5" datatype="html">
+        <source>Staking Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="43ad16ab2a0e59276b83cd213be35ee66de8b200" datatype="html">
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c441c4cd0c15bf582e211c40a2d35cdbfb42769" datatype="html">
+        <source>Staking Period, days</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="36265c82e1eafa36e708c6a694edadceb2e1cb63" datatype="html">
+        <source>Warning Period, days</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b8bf864f6ae6830126f7ce501f883bf39aa82ef" datatype="html">
+        <source>Should be less than Staking Period</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa09c965965b0d203da45db1f51206d7c18df070" datatype="html">
+        <source>Staking Rule, % of Staking Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68664bb4c7ba4ca675050b4380afd3a30653fe5c" datatype="html">
+        <source>Burning Rule, % of Staking Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-staking/campaign-form-staking.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c313d2e651e86f62432040bb1fab4b7b5bde643" datatype="html">
+        <source>Reward &amp; Participation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acbe1075d58b136c780bf960a18c1408cdc9ff54" datatype="html">
+        <source>Amount of reward, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ceee4f759aaf2ee4f57b99bc8c1b095a923846e2" datatype="html">
+        <source>Participation Limit per Customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">203</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">206</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a1191b7fcf36b1e14078b77a69e1030e0e0b96c7" datatype="html">
+        <source>Usage limit condition</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">223</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-reward/campaign-form-reward.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55514c5d38a75a23c98117abfb3d58ef970458f0" datatype="html">
+        <source>Content For Mobile App</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">235</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0843de0a64adcc7ee6a946408b6876cd8abdcae" datatype="html">
+        <source>English</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">249</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70d4ffcec9d1f508902052017aa1f28bde5b33b5" datatype="html">
+        <source>Arabic</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e5d8bb389c702588877f039d72178f219453a72d" datatype="html">
+        <source>Unknown</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac520e5f04b4dbcadf2c1ef2a4cb8bd69496b39f" datatype="html">
+        <source>Action rule title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">169</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">265</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">269</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">404</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="400b744ec6b8f7283603dafcb56c6525a607fb2e" datatype="html">
+        <source>Description of action rule purpose and scope to be displayed in customer app comes here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">292</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b3eec9565d5323ee72b19d8a3135a5b9742ede69" datatype="html">
+        <source>Action rule image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">312</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7be556e581ded78c3e1385099fee326accaa0a34" datatype="html">
+        <source>Choose image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">321</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e09804c4cbaedcbfd5427c26b5da4d092f8e8a90" datatype="html">
+        <source>No image chosen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">331</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="385d9dc9d6f38881d41105b1ddc3f02c38de1a5b" datatype="html">
+        <source>File Requirements:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">336</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dbf7b00f1faf9a731797f81e691e1d5a3f3469c9" datatype="html">
+        <source>Minimum dimensions: <x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_MAX_WIDTH}}"/>x<x id="INTERPOLATION_1" equiv-text="{{MOBILE_APP_IMAGE_MAX_HEIGHT}}"/> px</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">344</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d6e29de4b1efc80eb40795d9af64a1b2042f7d9" datatype="html">
+        <source>Max size: <x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_MAX_SIZE_MB}}"/>MB</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45b6316cf261ee93be8325db2c9f922c6af38ffb" datatype="html">
+        <source>Accepted formats: <x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(&apos;,&apos;).join(&apos;, &apos;)}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">362</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dcb0a18677fd130250915d67e1466d42d5749ccf" datatype="html">
+        <source>Content Preview</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">381</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5f9ba9bb9faa8284bcadb1cdbc6aaf969e9c4bb" datatype="html">
+        <source>Image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">395</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="40935eaaa7e884a3a16f82c8d6f8d5397e49b749" datatype="html">
+        <source>Description of action rule purpose and scope to be displayed in customer app comes
+                here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/campaign/campaign-form/partials/campaign-form-mobile-content/campaign-form-mobile-content.component.html</context>
+          <context context-type="linenumber">176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e85a30628b502c939d1ad9f651309a0356f40af8" datatype="html">
+        <source>Partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="613560bd86c442843f849d18855a05555148ef4f" datatype="html">
+        <source>List of partners in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8de6a7c2f9eb9ebda51b063d6b05793ce613c93a" datatype="html">
+        <source>Add Partner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d3482a2fe17d28c2051e895925c9f35d47dbcc29" datatype="html">
+        <source>Search by name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45cc8ca94b5a50842a9a8ef804a5ab089a38ae5c" datatype="html">
+        <source>ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/tiers/tiers-list/tiers-list.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62f2b30f59be1acb4a4271973c847e2949e1e7fe" datatype="html">
+        <source>Vertical</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ff94d2e7b6ac6938a388aa9c4e05e2346d1514ad" datatype="html">
+        <source>Created at</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="160233c4328b7602d5c990dcab132b24c0f51788" datatype="html">
+        <source>There are no Partners please create one</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc8eed956fa13cd17e7dda054688aedae0eed47d" datatype="html">
+        <source>Partners not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partners-list/partners-list.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a98ca502cd98981e1ccb30376d6138d12872d10b" datatype="html">
+        <source>Partner Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8caf9487715e342f17d96b00eaa9863661d363cb" datatype="html">
+        <source>Business Vertical</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="787119da3f7995e7d2d17231be68174522449a76" datatype="html">
+        <source>Partner&apos;s Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eae81dbf41fc4bd96f2a93e9347d8304b28cf890" datatype="html">
+        <source>Partner&apos;s Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="434c13681c4fcc6191cb057113b7087cb664a60f" datatype="html">
+        <source>Locations</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c74facc0baeeac867451dcc6014bfc2bd7ea2690" datatype="html">
+        <source>Add Location</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="729754dd19eb9ce0670b0aeb5a6ae60574c2c563" datatype="html">
+        <source>Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da3920def6835f1db6f05a24423b47d2d84e2a7c" datatype="html">
+        <source>External ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e7eca0245a55919566e2f9bad33a280b51b65461" datatype="html">
+        <source>- Contact Person Details ------</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c83b838d845690bcb897f775f53b5316535306dc" datatype="html">
+        <source>First Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="166b2cc65003221ff5f3ec05d5baca41e6821396" datatype="html">
+        <source>Last Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">237</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="db654f91d847f34e71ffb99268ff3a1807913421" datatype="html">
+        <source>Phone Number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">256</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">276</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="254ad48dc50c572572b8097e6c47ebf116c58d97" datatype="html">
+        <source>Delete Location</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">298</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c3872e7e8771e1cf8b1f02ee4f9c996f131bf48" datatype="html">
+        <source>Conversion Rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">309</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a89152f1dded354003e4c79655f6d9c18382eb9e" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{partnerForm.get(&apos;AmountInTokens&apos;).value | token}}"/> <x id="INTERPOLATION_1" equiv-text="{{assetSymbol}}"/> to
+            <x id="INTERPOLATION_2" equiv-text="{{partnerForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">321</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18e318bbca3f556fcd717311a09fa45c7849858a" datatype="html">
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">330</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="521fe0a50caee7ea9c5fceaf3bdb90ba737125c2" datatype="html">
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">359</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">233</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">269</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3fa0fd921075a2689bda48d8c4a35b22ae1f5dae" datatype="html">
+        <source>Use Global Conversion Rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">387</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e012286bdc8da50cd9d25ea6a349d7a77fdcd544" datatype="html">
+        <source>The field should contains only letters.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">409</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c63b28efda6675688966b8b8c0b7af976bb5bfad" datatype="html">
+        <source>Please enter a valid phone number.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">414</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="411e14bea1395c9e8c0bf9117a505dab14346b97" datatype="html">
+        <source>Please enter a valid email address.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-form/partner-form.component.html</context>
+          <context context-type="linenumber">419</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="850ac747d319a0d66c2ee9ef5f0fe26a736d3d19" datatype="html">
+        <source>Edit Partner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-edit/partner-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c441fd1dd0721d405ea40ef415a0d2b0a29a007" datatype="html">
+        <source>Enter partner details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-edit/partner-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-add/partner-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9e59d0931cd4fc8500df5716d5b6f5862e5d14f8" datatype="html">
+        <source>New Partner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/partners/partner-add/partner-add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5cadea9672c14e3fca59fc97775d54b738483600" datatype="html">
+        <source>List of customers in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa2f9e98471409d3c62fe70d0c8c4f083be96beb" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="708aab610487ba00a0273f6bb2b61df19505ef70" datatype="html">
+        <source>Search by full email or ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7627afd89e6b69db46840cfbb326f7f43da1f446" datatype="html">
+        <source>Is Email Verified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0e2efe5e2920f7d3a4b804ee2e4d16674b920443" datatype="html">
+        <source>Is Phone Verified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05c3d167e42f3999be15a0ec0703de2cc3a76671" datatype="html">
+        <source>Connector Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f20f2d5a6882190892e58b85f6ccbedfa737952" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d3ae7deebc5949b0c1c78b9847886a94321d9fd" datatype="html">
+        <source>No</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="820fe4d0d32e56284a97122940f50ee4e0af1799" datatype="html">
+        <source>Rejected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
+        <source>View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="310bc4e66ef317ba17bc08278fc2cb7ce893c2db" datatype="html">
+        <source>Customer Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63cf9cbb6325094189e230af1ffcfda02605bb4e" datatype="html">
+        <source>Information about customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e69426bd97a606d8ae6026762858e6e7c86a1fd" datatype="html">
+        <source>Balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="94516fa213706c67ce5a5b5765681d7fb032033a" datatype="html">
+        <source>Loading...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f4b4e1ad08c33a62b48b5de8b9bc6d29cf59c61" datatype="html">
+        <source>Customer ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b374029169bb576659af9ca773ad75abc925a96" datatype="html">
+        <source>Private Wallet address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f60ab30562e5fce82ac66a7b761b9bf178f36ed7" datatype="html">
+        <source>Public Wallet address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0653b6e1fc12248e988c6044a0546b6091a5da79" datatype="html">
+        <source>Not Linked</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b93a1182614e7f6f9535f370072a294b79bfaaf7" datatype="html">
+        <source>Pending Customer Approval</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b71b3f6774002fcd858c6fb931085949b6e9ee6c" datatype="html">
+        <source>Pending Confirmation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="921a8ac1b03d7655dac86888704555218740b972" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{publicWalletAddress}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c0144613330cd0fc49f50e1e76c384e56451ca5c" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{publicWalletAddressStatus}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70a989cc34ddba8e4860475219e3f9fa26f98509" datatype="html">
+        <source>Referral Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9f73a9bcbb4a132a4adc5497ebf3da8570b3a27c" datatype="html">
+        <source>Registration date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acb53790ddf902da8f7ad67f813fb468b4cd2472" datatype="html">
+        <source>Is email verified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4dbdc34ccf0c0f9f4f52f709a5261fe4ddb2f367" datatype="html">
+        <source>Is phone verified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9cba4b19410879c2fc85f122a1c8157e4bcebe3e" datatype="html">
+        <source>Proccessing...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="46b4d2cfade7876790da1ca88b437610438b1a55" datatype="html">
+        <source>Unblock Access</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">361</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd590345d988b075be7bc9aa62df03087ee0f817" datatype="html">
+        <source>Block Access</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">342</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7f822e7fd17ad10fd41b924927671bfffd7db72" datatype="html">
+        <source>Unblock Private Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">205</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cdf8ec50abe65626fbfed5a3bde90913255f49e3" datatype="html">
+        <source>Block Private Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">207</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="efac3af0b32e953279c25b6519cae256811e0fe8" datatype="html">
+        <source>History</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
+        <source>Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">220</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b59ea65c89a5ae15b787d8318fdad9edd6fec243" datatype="html">
+        <source>Transaction</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">222</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3808e771880c480e265a0e96a5be36a2b27644de" datatype="html">
+        <source>Action Rule Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">224</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c1d901ce2f965a7817438cc6b0efb70ba6afbd3" datatype="html">
+        <source>Wallet Address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dfc2fb58e2a04ed944a4bd80f0a2087775134068" datatype="html">
+        <source>Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">229</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0df56966090f0e8f753b580e7c59f3b55107cf2" datatype="html">
+        <source>P2P</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ff84413d2975081b26372fd5fa49a7762d01af2a" datatype="html">
+        <source>Earn</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8c25ca421c95912b3f7d6a277991c551d5439b4c" datatype="html">
+        <source>Use</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">258</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55fdc1b48d37796e2851110325495f9cc957bd01" datatype="html">
+        <source>Use (Cancelled)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">261</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21461d3d263ade3ee97ff256ca2c78a345dfaf9a" datatype="html">
+        <source>Staking</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">264</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b483a43a95b6e2f493d9234986302794aa47e388" datatype="html">
+        <source>Releasing staking amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">267</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fafdc44fd6088af6a755f17f5bfe1c3558c8d437" datatype="html">
+        <source>There are no Customer operations.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">297</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
+        <source>Back</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">311</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a6e5a6aa78ca864f6542410c5dafb6334538106" datatype="html">
+        <source>Copy to clipboard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">332</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="098586247f8300e3a47480afd47642c25af7f798" datatype="html">
+        <source>Do you want to block access to the customer’s account?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">346</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a7b07257c1c72a6fe9cb4abd50dad2b81182cb5" datatype="html">
+        <source>Block Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">351</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17eb76774765b6f4d71b0999e6d48710bf3410e1" datatype="html">
+        <source>Do you want to block the wallet of the customer?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">355</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d748c60c0fe6eee0f41e4e74a29b907f614b2e6" datatype="html">
+        <source>Do you want to unblock access to the customer’s account?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">365</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14e7a979c71fec06eecd59fdd84966938cde9f7f" datatype="html">
+        <source>Unblock Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">370</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1d74c6efb9482ac4dc301e616e2bc460532b02ba" datatype="html">
+        <source>Do you want to unblock the wallet of the customer?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customer-details-page/customer-details-page.component.html</context>
+          <context context-type="linenumber">374</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="65f23b65f6c44a68724e451c9c453f71cc80e8d7" datatype="html">
+        <source>Statistics about customers, tokens and leads</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/dashboard-page/dashboard-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fbdb29784339bd4ae84e3e31348628afc826a729" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/> Tokens</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/dashboard-page/dashboard-page.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="195ef6f687b7b8c845ac65890dbe114ee1a16996" datatype="html">
+        <source>Real Estate Leads</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/dashboard-page/dashboard-page.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9ab7c8c02d999a341917be9f9f6745ea11b0bf1b" datatype="html">
+        <source>Period</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5c05002b0ac2040f1aede5e727e0ffd06eda819" datatype="html">
+        <source>Custom</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44ad91b35441c064df07bdc9912c48ad2c919072" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ctx.number}}"/> days</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
+        <source>From</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
+        <source>To</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2d0ac9f528bbd5f53fd34269fde8b59e029621b" datatype="html">
+        <source>Apply</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f10d937610197bf048aaea217dc2c15e9b7a6103" datatype="html">
+        <source>New leads (referred ones, who haven&apos;t yet confirmed themselves as leads)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c508fd9b8808277e4b1c830827b7b98aebaf58dd" datatype="html">
+        <source>Leads who verified their referral status by confirmation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="209d739fd772b3403bbea7fbd2e547c39364b145" datatype="html">
+        <source>Leads in the program whose statuses were approved by the Salesforce team</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/leads-chart/leads-chart.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5732503b1a23e174551146a9549d56ce43d47b24" datatype="html">
+        <source>Total Number of Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="50d58e5d74c1c69375cd91359e6ceb8197a17029" datatype="html">
+        <source>Active Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1fea25ff9565a27a53a2b97e423423e7e9226c7f" datatype="html">
+        <source>New Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a2776eeca883a28299f975a91932e2527a2323e" datatype="html">
+        <source>New program members who signed up and confirmed the email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="442b1dcdcf78da437f7b1ea5cedac509143fb7cc" datatype="html">
+        <source>Made a purchase during selected period</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c304657e30d1a6e0095d2ec140ef53f5fc195e4f" datatype="html">
+        <source>Non-Active Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="114a764ed287ace238252906abefab98654c580d" datatype="html">
+        <source>Did not make a purchase during selected period</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/customers-chart/customers-chart.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8ee10e80c98627d8cac73e0a65c404b5a913d34b" datatype="html">
+        <source>Earned, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="541269ff236e5942bc085117c4426beaf2cb228c" datatype="html">
+        <source>Spent, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b8aa675aa55638ecd5e0bd7959e23afdfe1cc7e2" datatype="html">
+        <source>Total Wallets Balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0573d41c1b2f15a4c23ce086aa76234e38bd5d7" datatype="html">
+        <source>Total Tokens Earned</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="139a1796f91732c2493d7f797de7035a4e5bef72" datatype="html">
+        <source>Total Tokens Spent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fcda26c0b477bac3f3150a352faf0f69b5b02df2" datatype="html">
+        <source>Sum of tokens in all members&apos; wallets, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cbe6835afc2fb00c01efe15fc2be3c8ba16bfef4" datatype="html">
+        <source>Tokens earned by all customers from day 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="263b591d7a95c3c2a4bb6746ea0e41b6d64386a0" datatype="html">
+        <source>Tokens spent by all customers from day 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/dashboard/tokens-chart/tokens-chart.component.html</context>
+          <context context-type="linenumber">178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="334fc968ec5a0ddb4864a86ed3c3c4968a43facd" datatype="html">
+        <source>List of blockchain operations in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="787e44bf8fb991dfb43b1c7eb7056090514d6905" datatype="html">
+        <source>Operation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dfc3c34e182ea73c5d784ff7c8135f087992dac1" datatype="html">
+        <source>All</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ccf17ba8bad3a1f7652ca0c457e046542033ece0" datatype="html">
+        <source>Customer Registered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d8d99cf1b19623fbff4c0198707775ba49c38a40" datatype="html">
+        <source>Issued</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cef1d79eace5eb4d2243fad36730e3e65c757bee" datatype="html">
+        <source>Sent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="69fe8781a5e4efdbba54b73f9855377378c46a14" datatype="html">
+        <source>Spent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bcf435a56248d8f4630bc85f4a891674da6b58c7" datatype="html">
+        <source>Bridge Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f98de3121c8664413426a71d844b79f976d0400f" datatype="html">
+        <source>Linker Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f9332386ca9fd86b131c128dc347449db4eb7b5" datatype="html">
+        <source>Manager Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5b1f78105851292e6c96dee8598cff6de3f9c7dd" datatype="html">
+        <source>Minter Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="117ac0b593891b4269f239a539f07f8cec9c4b58" datatype="html">
+        <source>Ownership Transferred</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8cf34c3e21863f14061baf59b5285ffeb9d810bc" datatype="html">
+        <source>Registrar Added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="798f7720c371eda6d7931bc590b771a02e2881bb" datatype="html">
+        <source>Transfer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d70b977f97a30c555cf2b7c7e1dbf267d77b5a1" datatype="html">
+        <source>Transfer Accepted</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b05f9a4382e5ce21f7cad75f22092c4ff6a07f52" datatype="html">
+        <source>Transfer Received</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="931610968e8ff8e5fb053c277612ac47ee1cdb0f" datatype="html">
+        <source>Transfer Rejected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bffa203f8fd7183fca84bcc82fce7edef277295e" datatype="html">
+        <source>Operation...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9f52acae4614107148315ea4ba4f3d4140cf50cb" datatype="html">
+        <source>
+          Search
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fac74d26ef627952edeec25e780da1896871fdd1" datatype="html">
+        <source>There are no events</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4a4dd1c06c03ba738f263851c78d02f6fc395c8c" datatype="html">
+        <source>Event not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
+        <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9209d4105b95756f2a2e180b14136fa0e11ca3f2" datatype="html">
+        <source>Date-Time</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="35e36325d2a6ed90822db6b032a51018346aaca6" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{row.EventName}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/events-list/events-list.component.html</context>
+          <context context-type="linenumber">170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c43b6a5a4d83c17322c9c6f4ab61de38de605060" datatype="html">
+        <source>Parameter details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5704ec2049d007c5f5fb495a5d8b607e68d58081" datatype="html">
+        <source>Order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5049e204c14c648691ac775a64fb504467aeb549" datatype="html">
+        <source>Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events/details-dialog/details-dialog.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f02a6a933f8029b51bcb281101aae84ac37c703a" datatype="html">
+        <source>Configuration of settings in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5868ea05c70886b91d784468731af2f0cdff0e1" datatype="html">
+        <source>Global Conversion Rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="83f71049d2fea70b74dd33f153c5b13519911268" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{rateForm.get(&apos;AmountInTokens&apos;).value | token}}"/> <x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to
+                  <x id="INTERPOLATION_2" equiv-text="{{rateForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="624f7e9e2cd0cf45b8a8f4b7f6360c8954b7ae33" datatype="html">
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ae0a79cbaa42a8da7915c096179ce8ae0866efd5" datatype="html">
+        <source>Connector: Requirements</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bea1e011385c928ec27c25d93ee3f9db99063808" datatype="html">
+        <source>Required Balance, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="30749a1b77ff4fe9f3da8c09424379735dd93d39" datatype="html">
+        <source>Operation Fees</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4eb491f6424ebd1275a2e5dfbba817e5b958c0d6" datatype="html">
+        <source>Link external Ethereum account - First time</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06f63e050f61b7aeedf3ec951160aa40c62c0026" datatype="html">
+        <source>Link external Ethereum account - Second and subsequent times</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5862ed449c544a4e7c05f514aca6df19bd118af2" datatype="html">
+        <source>Transfer tokens to external linked Ethereum account</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">262</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="af1898784465e989a2f7e44e16f573da6bf3cded" datatype="html">
+        <source>Saved successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/global-settings/global-settings-page/global-settings-page.component.html</context>
+          <context context-type="linenumber">327</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c281c9511379a759506f70bea74d08cb9236ab78" datatype="html">
+        <source>Payments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="33be6594a9221c4be73eb346c2479becbcb1fc0c" datatype="html">
+        <source>List of payments in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="651a051c1fb98987afb87a7734108e148a9a5e1e" datatype="html">
+        <source>Action Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2362e3c697abc0fd4df62cf7cfbd5c7a5389de1" datatype="html">
+        <source>Amount (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4889584cbbbdd70da21dc11b0f32e10dbccc315a" datatype="html">
+        <source>Amount (<x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca26c72160572bd7e775118181ca15dfeaf714a2" datatype="html">
+        <source>Payment ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7714ea0ea5d811e40f910b8ab49bf7fc7774dbd8" datatype="html">
+        <source>Invoice ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b26a23577c70d86f366db8a534adca39649c2d9" datatype="html">
+        <source>Time Sent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20c3d69c0b67a74df0aa3920485016b2080578f6" datatype="html">
+        <source>Reject</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73a83c0db2dbf61230eba62e1d22a6da3d190c4c" datatype="html">
+        <source>Approve</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa0b21ffcd6d47ca1696dc9a64791459dedc54a9" datatype="html">
+        <source>There are no pending payments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bec02ef88316b8b015b74df593360af720c7d7f" datatype="html">
+        <source>Approve Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3f9b9427dec0d4680d4571595aab6ebe59c0871b" datatype="html">
+        <source>Are you sure you want to approve this payment?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1fbe28899bb6906c73be16627b9124969b14dd63" datatype="html">
+        <source>Yes, Approve Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a6a9d535d0e4ede8deaaa32d718b7d32be08f142" datatype="html">
+        <source>Payment has been successfully approved</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ddd25c358ffb06df8ae05157ff550128102ff0e" datatype="html">
+        <source>Reject Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="082914e259d2c5ac4554d003d1faf073b5b20c48" datatype="html">
+        <source>Are you sure you want to reject this payment?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0064866dd3714e37a3a0cd055725e46ee214086d" datatype="html">
+        <source>Yes, Reject Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21749c7bd8026be656a429d1e44430633e911a12" datatype="html">
+        <source>Payment has been successfully rejected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/payment-gateway/payment-gateway-list/payment-gateway-list.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9ae6ee348ff24377c4d9505400cfdd3dd7f05c64" datatype="html">
+        <source>New Spend Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-add/spend-action-rule-add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ab570bfbbdeac601b580119ff690ef0b2ad40cda" datatype="html">
+        <source>Enter spend rule details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-add/spend-action-rule-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-edit/spend-action-rule-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7cb177a4ad69222697418a5e2dd193725681bc71" datatype="html">
+        <source>Spend action rule has been created successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-add/spend-action-rule-add.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fe70489de9a5c8254266d8cd7522b00e912c62f6" datatype="html">
+        <source>List of spend rules in loyalty program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aa2eea7a0f1b29fa48e27ffea36dd490d4534e50" datatype="html">
+        <source>Add Spend Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7a5d58d3d9fb747981b257115b930be27f92233" datatype="html">
+        <source>
+                  Active
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34543768c00bb909d21155d9533e91a9293a4770" datatype="html">
+        <source>There are no spend action rules, please create one</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="09d7cb09c70ea5d1e2d028efba930a81fa30126f" datatype="html">
+        <source>Spend action rule not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="09922bc4c30d8e2c5b87f10c32427f1a171f519a" datatype="html">
+        <source>Do you want to delete the spend rule &quot;<x id="INTERPOLATION" equiv-text="{{title}}"/>&quot;?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="daceaf21a740ca003a61d49ac5c37483b736bb98" datatype="html">
+        <source>Action rule deleted successfully.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-list-page/spend-action-rule-list-page.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a600d66ea68db84a1eb5aab543af3144958c656" datatype="html">
+        <source>Edit Spend Rule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-edit/spend-action-rule-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f261e1d14dac850243a539c2099e77e10cd2358" datatype="html">
+        <source>You have edited spend action rule successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-edit/spend-action-rule-edit.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="30a30b27b706500630d742a77371001b8a856450" datatype="html">
+        <source>Action Rule Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f8b403888712c826f65a73a5e2c8204fa95da187" datatype="html">
+        <source>Select All</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fdd8c0ec42148f76f93fa98129edf03bb03ac990" datatype="html">
+        <source>Deselect All</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72b905f21f64e21119ed5cb910806a7edc071c65" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{actionRuleForm.get(&apos;AmountInTokens&apos;).value | token}}"/> <x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to
+            <x id="INTERPOLATION_2" equiv-text="{{actionRuleForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aee66bd3dd210584cf9ff3da6708b5eca49f6902" datatype="html">
+        <source>Use Partner/Global Rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5705a0fed6f4f963fed34879abea52451fae6c4a" datatype="html">
+        <source>Partner rate will be used as a priority. In case if more than one Partner selected, Global rate
+            would be applied.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">222</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e44ca4a9d55a78e4d92f0ca2cc0d92d620741069" datatype="html">
+        <source>Description of action rule purpose and scope to be displayed in customer app comes
+                  here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">411</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="985d260af1811990ca72efa1f77058a47e8d605f" datatype="html">
+        <source>Please check the form and fill the required fields</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">441</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="249f5e987892138a7090e1e35b23cccfb029b09b" datatype="html">
+        <source>Condition Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/tiers/tiers-list/tiers-list.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="223cb14ff3f5de9bfc8f262f484358b3244ab54b" datatype="html">
+        <source>Number of Customers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/tiers/tiers-list/tiers-list.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a2326533159d4a03aa9cb63d830e117bd3ff2f7" datatype="html">
+        <source>List of transactions in loyality program</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b5917c9b7750d9d798ed14018dc288af7bb2851d" datatype="html">
+        <source>There are no transactions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58e0be14bf2e19de92344030e900d34b17331c0a" datatype="html">
+        <source>Transaction not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d784746e2d6234719c097d998fa576b012c0e350" datatype="html">
+        <source>Sender Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8b11ab9f0904346b31c74347368e395795256d50" datatype="html">
+        <source>Sender Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0bbf4a1e9840f50cd2f7b583279dad94c0cc0ef3" datatype="html">
+        <source>Sender Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd0c1a51e0e90fcb81d97aa1a05a52dd56b59cc9" datatype="html">
+        <source>Inbound Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="07193288a0312875e18f38c3a2486b927a15520a" datatype="html">
+        <source>Timestamp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="742127865eef677296cc1bccdb10f6c01b9db4a2" datatype="html">
+        <source>Transaction Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="672070cf3fd3224548b0b0b234c340af510b5778" datatype="html">
+        <source>Reciever Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="85fab395fc980de9f58f2ac47fb9be21ace09989" datatype="html">
+        <source>Reciever Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d493914a56a5a64c26d4d3e09f242b7b343deef" datatype="html">
+        <source>Reciever Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7726b952d0bd75dcd835a519b2fc1f4e0210bab" datatype="html">
+        <source>Outbound Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/transactions/transactions-list/transactions-list.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4d5ce739fb2898e4024982f61281645b00ba5f0" datatype="html">
+        <source>List of admin users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="94be6ae6ec1f87bedc67020629343b27fdbece0a" datatype="html">
+        <source>Add User</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d640cbc619dc98c0deef89ed86026c5804deff20" datatype="html">
+        <source>Search by full email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0ae1b8adef560b96a5408861dd75418249a13833" datatype="html">
+        <source>User Id</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="484b0e541230d60ddb5fbd771a34a5c8d90e7a57" datatype="html">
+        <source>Full Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5e538d8948a58cc9389f36c011afcbb1e11da0f9" datatype="html">
+        <source>Registration Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="182d7a3c918a0d13fb92bc499b28efcb5fba7155" datatype="html">
+        <source>There are no admin users please create one</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="83354978ad3a6a1c3e9df18679d1ccadda652a79" datatype="html">
+        <source>Admin user not found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-list/users-list.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
+        <source>New User</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-add/users-add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="823bd87a1c7f37f228f4113e907c572b7199744a" datatype="html">
+        <source>Enter user details and submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-add/users-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac6dfd9cbb28c21edcfad6751998e5466bd2fb57" datatype="html">
+        <source>Admin user has been created successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-add/users-add.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ef0619a37140118b9e640c6cc36ee4e9fb4372a" datatype="html">
+        <source>Company</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a6405c2af5225e2f302b76fa98ed13f3eba2b1c" datatype="html">
+        <source>Department</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20d9489fdbfc121f7c504271b36691515d02f632" datatype="html">
+        <source>Job Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user/users-form/users-form.component.html</context>
+          <context context-type="linenumber">165</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,116 @@
+<mat-card>
+  <mat-card-title class="d-flex justify-content-between align-items-center">
+    <span i18n>Action</span>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-card-content [formGroup]="campaign.conditionsFormArray"
+                    id="conditions">
+    <div class="condition"
+         [formGroup]="condition"
+         *ngFor="let condition of campaign.conditionsFormArray.controls | slice : 0 : 1; let conditionIndex = index;">
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div *ngIf="campaign.isLoadingBonusTypes"
+               class="spinner-centered">
+            <div class="spinner-container spinner-container--top">
+              <div class="spinner-border"></div>
+            </div>
+          </div>
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Event</mat-label>
+            <mat-select formControlName="Type"
+                        (selectionChange)="campaign.onBonusTypeChanged(conditionIndex)"
+                        placeholder="Event"
+                        i18n-placeholder
+                        matTooltip="Action/event that should happen for the action rule to be applied"
+                        i18n-matTooltip
+                        class="mat-select-with-tag"
+                        panelClass="token-select-panel mat-select-with-tag"
+                        required>
+              <mat-select-trigger>
+                <div class="mat-select-value-with-tag">
+                  <div class="mat-select-value-text">
+                    {{campaign.getBonusTypeByConditionIndex(conditionIndex)?.DisplayText}}
+                  </div>
+                  <div *ngIf="campaign.getBonusTypeByConditionIndex(conditionIndex)?.DisplayTag"
+                       class="select-tag-container">
+                    <span class="select-tag-text">
+                      {{campaign.getBonusTypeByConditionIndex(conditionIndex)?.DisplayTag}}
+                    </span>
+                  </div>
+                </div>
+              </mat-select-trigger>
+              <mat-option *ngFor="let bonusType of campaign.bonusTypesMandatory"
+                          [value]="bonusType.Type"
+                          [disabled]="campaign.isBonusTypeOptionDisabled(bonusType.Type)">
+                <div class="d-flex justify-content-between">
+                  <div>{{bonusType.DisplayText}}</div>
+                  <div *ngIf="bonusType.DisplayTag">
+                    <span class="select-tag-text">{{bonusType.DisplayTag}}</span>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <app-error-message controlName="Type"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div *ngIf="campaign.isLoadingPartners"
+               class="spinner-centered">
+            <div class="spinner-container spinner-container--top">
+              <div class="spinner-border"></div>
+            </div>
+          </div>
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Partner</mat-label>
+            <mat-select id="conditionPartners"
+                        formControlName="PartnerId"
+                        (selectionChange)="campaign.partnersChanged(conditionIndex)"
+                        placeholder="Partner"
+                        i18n-placeholder
+                        matTooltip="Program partner by which the participation in the action rule will be filtered"
+                        i18n-matTooltip
+                        panelClass="token-select-panel"
+                        disableRipple>
+              <mat-option class="multiple-select-custom-option multiple-select-search-option"
+                          disabled>
+                <mat-form-field appearance="standard"
+                                style="padding: 0 16px; width: 100%; position: relative; top: 6px; color: #000;">
+                  <mat-label i18n>Search Partners</mat-label>
+                  <input type="text"
+                         matInput
+                         placeholder="Search Partners"
+                         i18n-placeholder
+                         id="partnersSearch"
+                         formControlName="PartnersSearch"
+                         (keydown)="$event.stopPropagation()"
+                         (click)="$event.stopPropagation()">
+                  <mat-icon id="clearPartnersSearchBtn"
+                            *ngIf="condition.get(campaign.conditionFormProps.PartnersSearch).value"
+                            (click)="condition.get(campaign.conditionFormProps.PartnersSearch).setValue('')"
+                            style="margin-right: 0; cursor: pointer;"
+                            matSuffix>clear</mat-icon>
+                </mat-form-field>
+              </mat-option>
+              <mat-optgroup [label]="campaign.businessVerticalDisplayNamesDict[campaign.getConditionVertical(conditionIndex)]">
+                <mat-option [value]="null">
+                  <span i18n>No partner</span>
+                </mat-option>
+                <mat-option *ngFor="let partner of campaign.partners | partnersByVertical : campaign.getConditionVertical(conditionIndex) | searchPartners : condition.get(campaign.conditionFormProps.PartnersSearch).value"
+                            [hidden]="partner.IsHidden"
+                            [value]="partner.Id">{{partner.Name}}</mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <app-campaign-form-staking [campaign]="campaign"
+                                 [condition]="condition"></app-campaign-form-staking>
+    </div>
+  </mat-card-content>
+</mat-card>

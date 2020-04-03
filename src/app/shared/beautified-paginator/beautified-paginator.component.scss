@@ -1,0 +1,119 @@
+@import '~src/scss/token-theme/utils/variables';
+
+$color: #93a2dd;
+$bg: rgba(100, 92, 161, 0.1);
+$bg-hover: $kt-brand-color;
+
+.kt-datatable.kt-datatable--default > .kt-datatable__pager {
+  margin-bottom: 1rem !important;
+  padding: 0 !important;
+
+  .kt-datatable__pager-size {
+    display: flex;
+
+    .mat-paginator-page-size-select {
+      background: $bg;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      width: 60px;
+
+      .mat-form-field-wrapper {
+        align-items: center;
+        height: 30px;
+        margin: 0;
+        padding-bottom: 0;
+
+        .mat-form-field-flex {
+          margin: 0;
+
+          .mat-form-field-outline {
+            display: none;
+          }
+
+          .mat-select-value-text {
+            color: $color;
+          }
+        }
+
+        .mat-form-field-infix {
+          border: 0;
+          padding: 8px 0;
+        }
+
+        .mat-form-field-subscript-wrapper {
+          display: none;
+        }
+      }
+
+      &:hover {
+        background: $bg-hover;
+
+        .mat-select-value-text {
+          color: #fff !important;
+        }
+      }
+
+      .mat-select-arrow-wrapper {
+        opacity: 0;
+      }
+
+      .select-icon {
+        color: $color;
+        font-size: 20px;
+        position: absolute;
+        right: -8px;
+        top: 5px;
+      }
+    }
+  }
+
+  > .kt-datatable__pager-nav {
+    > li {
+      > .kt-datatable__pager-link {
+        padding: 0;
+
+        &.kt-datatable__pager-link--first,
+        &.kt-datatable__pager-link--last,
+        &.kt-datatable__pager-link--prev,
+        &.kt-datatable__pager-link--next {
+          background: $bg;
+
+          &:hover {
+            background: $bg-hover;
+          }
+        }
+
+        &--active {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  &.kt-pagination--circle {
+    > .kt-datatable__pager-nav {
+      > li {
+        > .kt-datatable__pager-link {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.kt-datatable.kt-datatable--default
+  > .kt-datatable__pager
+  > .kt-datatable__pager-nav
+  > li
+  > .kt-datatable__pager-link.kt-datatable__pager-link--disabled {
+  cursor: default;
+}
+
+.mat-paginator-icon {
+  width: 13px;
+
+  [dir='rtl'] & {
+    transform: rotate(180deg);
+  }
+}

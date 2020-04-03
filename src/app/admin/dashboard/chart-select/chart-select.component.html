@@ -1,0 +1,9 @@
+<mat-form-field class="chart-select-container col-xl-2 col-lg-3" *ngIf="dropdownData.length > 0">
+  <mat-label i18n>Show</mat-label>
+  <mat-select [(ngModel)]="selectedChartType"
+              (ngModelChange)="showValueChanged($event)">
+    <mat-option *ngFor="let ddData of dropdownData" [value]="ddData.value" [disabled]="ddData.isDisabled">
+      {{ ddData.label }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

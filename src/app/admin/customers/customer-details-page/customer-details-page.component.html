@@ -1,0 +1,408 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar">
+          <a class="btn btn-clean btn-back"
+             routerLink="/admin/platform/customers"
+             [queryParams]="{ page: previousPage, pageSize: previousPageSize }">
+            <mat-icon class="material-icons-outlined">navigate_before</mat-icon>
+            <span i18n>Back</span>
+          </a>
+        </div>
+        <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+        <div class="kt-subheader__toolbar">
+          <span class="kt-subheader__desc"
+                i18n>Customer Details</span>
+        </div>
+      </div>
+      <div *ngIf="!isLoadingCustomer"
+           class="kt-subheader__toolbar">
+        <button class="btn btn-bold kt-margin-r-15"
+                [ngClass]="isCustomerBlocked?'btn-outline-success': 'btn-link'"
+                [disabled]="isProcessingCustomer || !isCustomerVerified || !hasEditPermission"
+                (click)="isCustomerBlocked ?  unblockCustomer() : blockCustomer()">
+          <!-- <i *ngIf="!isProcessingCustomer"
+           [ngClass]="(isCustomerBlocked)?'fa fa-lock-open':'fa fa-lock'"></i> -->
+
+          <div *ngIf="isProcessingCustomer"
+               class="spinner-with-text">
+            <span class="spinner-border"></span>
+            <span class="spinner-text"
+                  i18n>Proccessing...</span>
+          </div>
+
+          <span *ngIf="!isProcessingCustomer && isCustomerBlocked"
+                i18n>Unblock Access</span>
+          <span *ngIf="!isProcessingCustomer && !isCustomerBlocked"
+                i18n>Block Access</span>
+        </button>
+
+        <button class="btn btn-bold"
+                [ngClass]="(isWalletBlocked)? 'btn-outline-success' : 'btn-link'"
+                (click)="isWalletBlocked ? unblockWallet() : blockWallet()"
+                [disabled]="isProcessingWallet || !isCustomerVerified || !hasEditPermission">
+          <!-- <i *ngIf="!isProcessingWallet"
+           [ngClass]="(isWalletBlocked)? 'fa fa-lock-open' : 'fa fa-lock'"></i> -->
+
+          <div *ngIf="isProcessingWallet"
+               class="spinner-with-text">
+            <span class="spinner-border"></span>
+            <span class="spinner-text"
+                  i18n>Proccessing...</span>
+          </div>
+          <span *ngIf="!isProcessingWallet && isWalletBlocked "
+                i18n>Unblock Private Wallet</span>
+          <span *ngIf="!isProcessingWallet && !isWalletBlocked"
+                i18n>Block Private Wallet</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="spinner-container text-center"
+       *ngIf="isLoadingCustomer">
+    <div class="spinner-border"></div>
+  </div>
+
+  <div class="kt-portlet"
+       *ngIf="!isLoadingCustomer">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>{{customer.FirstName}} {{customer.LastName}}</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="table-wrapper">
+        <table id="customer-details-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: 50%;">
+                <span i18n>Email</span>
+              </th>
+              <th style="width: 50%; font-weight: 400;">
+                <span>{{customer.Email}}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span i18n>Balance</span></td>
+              <td>
+                <div *ngIf="isLoadingBalance"
+                     class="spinner-with-text">
+                  <span class="spinner-border"></span>
+                  <span class="spinner-text"
+                        i18n>Loading...</span>
+                </div>
+                <span *ngIf="!isLoadingBalance">
+                  <span>{{balance.Amount | token}} {{balance.Asset}}</span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><span i18n>Customer ID</span></td>
+              <td>{{customer.CustomerId}}</td>
+            </tr>
+            <tr>
+              <td><span i18n>Private Wallet address</span></td>
+              <td>
+                <div *ngIf="isLoadingWalletAddress"
+                     class="spinner-with-text">
+                  <span class="spinner-border"></span>
+                  <span class="spinner-text"
+                        i18n>Loading...</span>
+                </div>
+                <span *ngIf="!isLoadingWalletAddress">{{walletAddress}}</span>
+              </td>
+            </tr>
+            <tr *ngIf="isVisiblePublicWalletAddress">
+              <td><span i18n>Public Wallet address</span></td>
+              <td>
+                <div *ngIf="isLoadingPublicWalletAddress"
+                     class="spinner-with-text">
+                  <span class="spinner-border"></span>
+                  <span class="spinner-text"
+                        i18n>Loading...</span>
+                </div>
+                <span *ngIf="!isLoadingPublicWalletAddress">
+                  <ng-container [ngSwitch]="publicWalletAddressStatus">
+                    <ng-container *ngSwitchCase="CustomerPublicWalletAddressStatus.NotLinked">
+                      <span i18n>Not Linked</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="CustomerPublicWalletAddressStatus.PendingCustomerApproval">
+                      <span i18n>Pending Customer Approval</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="CustomerPublicWalletAddressStatus.PendingConfirmation">
+                      <span i18n>Pending Confirmation</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="CustomerPublicWalletAddressStatus.Linked">
+                      <span i18n>{{publicWalletAddress}}</span>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <span i18n>{{publicWalletAddressStatus}}</span>
+                    </ng-container>
+                  </ng-container>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><span i18n>Referral Code</span></td>
+              <td>{{customer.ReferralCode}}</td>
+            </tr>
+            <tr>
+              <td><span i18n>Registration date</span></td>
+              <td>{{customer.RegisteredDate | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+              <td><span i18n>Is email verified</span></td>
+              <td>
+                <ng-container *ngIf="customer.IsEmailVerified">
+                  <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                  <span i18n>Yes</span>
+                </ng-container>
+                <ng-container *ngIf="!customer.IsEmailVerified">
+                  <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                  <span i18n>No</span>
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td><span i18n>Is phone verified</span></td>
+              <td>
+                <ng-container *ngIf="customer.IsPhoneVerified">
+                  <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                  <span i18n>Yes</span>
+                </ng-container>
+                <ng-container *ngIf="!customer.IsPhoneVerified">
+                  <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                  <span i18n>No</span>
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td><span i18n>Connector Status</span></td>
+              <td>
+                <ng-container [ngSwitch]="customer.AgentStatus">
+                  <ng-container *ngSwitchCase="CustomerAgentStatus.ApprovedAgent">
+                    <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Active</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerAgentStatus.Rejected">
+                    <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Rejected</span>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                    <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Not active</span>
+                  </ng-container>
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>History</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="table-wrapper"
+           *ngIf="!isLoadingCustomerOperationsAtFirstTime">
+        <table id="table-customerOperations"
+               class="customer-details-history table table-hover">
+          <thead>
+            <th style="width: auto"
+                i18n>ID</th>
+            <th style="width: 140px"
+                i18n>Date</th>
+            <th style="width: 100px"
+                i18n>Transaction</th>
+            <th style="width: auto"
+                i18n>Action Rule Name</th>
+            <th style="width: auto"
+                i18n>Wallet Address</th>
+            <th style="width: 140px"
+                class="text-right"
+                i18n>Amount</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of customerOperations; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="id">
+                <span>
+                  <ng-container [ngSwitch]="row.TransactionType">
+                    <ng-container *ngSwitchCase="CustomerOperationTransactionType.P2P">
+                      {{row.ReceiverCustomerId}}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="CustomerOperationTransactionType.VoucherPurchasePayment">
+                      {{row.TransactionId}}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'FeeCollected'">
+                      {{row.TransactionId}}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'LinkedWalletTransfer'">
+                      {{row.TransactionId}}
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      {{row.PartnerId}}
+                    </ng-container>
+                  </ng-container>
+                </span>
+              </td>
+              <td data-id="date">
+                <span>{{row.Timestamp | date : 'dd/MM/yyyy HH:mm:ss'}}</span>
+              </td>
+              <td data-id="transactionType">
+                <ng-container [ngSwitch]="row.TransactionType">
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.P2P">
+                    <span i18n>P2P</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.Earn">
+                    <span i18n>Earn</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.Burn">
+                    <span i18n>Use</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.BurnCancelled">
+                    <span i18n>Use (Cancelled)</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.VoucherPurchasePayment">
+                    <span i18n>Voucher purchase</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.ReferralStake">
+                    <span i18n>Staking</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.ReleasedReferralStake">
+                    <span i18n>Releasing staking amount</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.LinkedWalletTransfer">
+                    <span i18n>Linked wallet transfer</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerOperationTransactionType.FeeCollected">
+                    <span i18n>Fee collected</span>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>–</ng-container>
+                </ng-container>
+              </td>
+              <td data-id="campaignName">
+                <span>{{row.CampaignName ? row.CampaignName : '–'}}</span>
+              </td>
+              <td data-id="walletAddress">
+                <ng-container *ngIf="row.WalletAddress">
+                  <a href="javascript:void(0)"
+                     class="wallet-address-link"
+                     (click)="openFullText($event, row.WalletAddress)">
+                    {{row.WalletAddress}}
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!row.WalletAddress">
+                  <span>–</span>
+                </ng-container>
+              </td>
+              <td data-id="amount"
+                  class="text-right">
+                <span>{{row.Amount | token}}</span>
+                <span>&nbsp;{{row.AssetSymbol}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-container *ngIf="customerOperations == null || customerOperations.length === 0">
+          <span class="no-operations"
+                i18n>There are no Customer operations.</span>
+        </ng-container>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container text-center"
+             *ngIf="isLoadingCustomerOperations">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div style="padding: 0 25px;">
+        <app-pagination-container [totalCount]="customerOperationsTotalCount"
+                                  (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-clean btn-outline-hover-primary btn-back"
+            routerLink="/admin/platform/customers"
+            [queryParams]="{ page: previousPage, pageSize: previousPageSize }">
+      <mat-icon class="material-icons-outlined">navigate_before</mat-icon>
+      <span i18n>Back</span>
+    </button>
+  </div>
+</div>
+
+<div class="copy-modal"
+     *ngIf="isVisibleCopyModal">
+  <aside class="copy-modal-overlay"
+         (click)="closeCopyModal($event)"></aside>
+  <div class="copy-modal-content"
+       [ngStyle]="{'left.px': copyModalLeft, 'top.px': copyModalTop}">
+    <div class="_content">
+      <span>{{copyToClipboardText}}</span>
+    </div>
+    <div class="_actions">
+      <a href="javascript:void(0)"
+         class="copy-link"
+         [appCopyToClipboard]="copyToClipboardText"
+         (click)="closeCopyModal($event)"
+         i18n>Copy to clipboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- Translates -->
+
+<!--Block access-->
+<div #blockAccessDialogHeaderTemplate
+     hidden
+     i18n>Block Access</div>
+
+<div #blockAccessDialogMessageTemplate
+     hidden
+     i18n>Do you want to block access to the customer’s account?</div>
+
+<!--Block wallet-->
+<div #blockWalletDialogHeaderTemplate
+     hidden
+     i18n>Block Wallet</div>
+
+<div #blockWalletDialogMessageTemplate
+     hidden
+     i18n>Do you want to block the wallet of the customer?</div>
+
+<!-- Unblock access-->
+
+<div #unblockAccessDialogHeaderTemplate
+     hidden
+     i18n>Unblock Access</div>
+
+<div #unblockAccessDialogMessageTemplate
+     hidden
+     i18n>Do you want to unblock access to the customer’s account?</div>
+
+<!--Unblock wallet-->
+<div #unblockWalletDialogHeaderTemplate
+     hidden
+     i18n>Unblock Wallet</div>
+
+<div #unblockWalletDialogMessageTemplate
+     hidden
+     i18n>Do you want to unblock the wallet of the customer?</div>

@@ -1,0 +1,135 @@
+@import '~src/scss/token-theme/utils/variables';
+@import '../../utils/rtl-mixins';
+
+$margin-bottom: 15px;
+$padding-side: 15px;
+$mobile-width: 360px;
+$image-height: $mobile-width/4 * 3;
+$scroll-width: 8px;
+
+.mobile-content {
+  padding-bottom: 20px;
+
+  > .mat-card {
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .has-error {
+    color: $red;
+  }
+
+  &__file {
+    font-size: 13px;
+
+    > label {
+      padding-bottom: 2px;
+    }
+
+    &-choose {
+      position: relative;
+
+      > * {
+        z-index: 1;
+      }
+
+      .btn {
+        position: relative;
+      }
+
+      input {
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+      }
+    }
+
+    > .mat-error {
+      font-size: 75%;
+      margin-top: 4px;
+      padding: 0 1em;
+    }
+  }
+
+  .file-name {
+    @include padding-start(10px);
+  }
+}
+
+.content-preview {
+  border: 1px solid $light-border-color;
+  border-radius: 0.2rem;
+  height: $mobile-width * 1.8;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  overflow-y: auto;
+  width: $mobile-width;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: $scroll-width;
+    width: $scroll-width;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &-image-wrapper {
+    margin-bottom: $margin-bottom;
+    text-align: center;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+
+    .image-placeholder {
+      > div {
+        background: #efefef;
+        height: $image-height;
+        text-align: center;
+        width: 100%;
+
+        > span {
+          font-size: 2rem;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+
+  &-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: $margin-bottom;
+    padding: 0 $padding-side;
+  }
+
+  &-description {
+    font-size: 1.5rem;
+    margin-bottom: $margin-bottom;
+    padding: 0 $padding-side;
+  }
+}

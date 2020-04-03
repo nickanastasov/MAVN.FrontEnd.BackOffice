@@ -1,0 +1,304 @@
+@import '~src/scss/token-theme/utils/variables';
+
+$login-grey-blue: $token-grey-blue;
+$login-grey: #f9f9fc;
+$login-light-blue: rgba(78, 58, 150, 0.85);
+$login-light-grey: #edeef3;
+$login-white: #ffffff;
+$login-font-size: 16px;
+
+@mixin login-container-items() {
+  padding: 0 66px;
+}
+
+.login-wrapper {
+  background-color: $login-grey;
+  display: flex;
+  height: 100vh;
+
+  .login-container {
+    background-color: $login-white;
+    border-radius: 4px;
+    box-shadow: 0 1px 15px 0 rgba(69, 65, 78, 0.08);
+    padding: 40px 0 50px;
+    position: relative;
+    width: 425px;
+
+    .logo-container {
+      @include login-container-items;
+      margin-bottom: 40px;
+
+      .token-company-logo {
+        max-width: 100%;
+        max-height: 40px;
+      }
+    }
+
+    .form-container {
+      .title-container {
+        @include login-container-items;
+        margin-bottom: 16px;
+
+        .login-title {
+          color: #3d3b56;
+          font-size: 24px;
+          font-weight: 500;
+          line-height: normal;
+          margin-bottom: 0;
+        }
+      }
+
+      .title-divider {
+        background-color: $login-light-grey;
+        display: block;
+        height: 1px;
+        position: relative;
+        width: 100%;
+
+        .loading-bar {
+          position: absolute;
+          top: 0;
+        }
+      }
+
+      .form-holder {
+        @include login-container-items;
+        margin-top: 5rem;
+
+        form {
+          position: relative;
+
+          .form-item {
+            margin-bottom: 69px;
+
+            &:last-of-type() {
+              margin-bottom: 60px;
+            }
+
+            .mat-form-field-label {
+              color: rgba(0, 0, 0, 0.7);
+              font-size: $login-font-size;
+              line-height: 1.25;
+              top: 1.15em;
+
+              &.mat-form-field-empty {
+                color: $login-grey-blue;
+              }
+            }
+
+            .mat-input-element {
+              color: $token-dark-grey-blue;
+              font-size: $login-font-size;
+              letter-spacing: -0.25px;
+              line-height: 1.25;
+
+              &[type='password'] {
+                color: $kt-brand-color;
+                height: 21px;
+                letter-spacing: 3px;
+
+                .chrome & {
+                  font-size: 30px;
+                }
+              }
+            }
+
+            .mat-form-field-wrapper {
+              padding-bottom: 0;
+            }
+
+            .mat-form-field-underline {
+              background-color: $login-grey-blue;
+              bottom: 0;
+              height: 1px;
+            }
+
+            .mat-form-field-subscript-wrapper {
+              top: 100%;
+            }
+
+            &.mat-focused {
+              .mat-form-field-ripple {
+                background-color: $login-light-blue;
+              }
+            }
+
+            &.mat-form-field-invalid {
+              .mat-form-field-label {
+                color: $error-color;
+              }
+
+              .mat-form-field-ripple {
+                background-color: $error-color;
+              }
+
+              &:not(.mat-focused) {
+                .mat-form-field-ripple {
+                  height: 2px;
+                }
+              }
+            }
+
+            .mat-icon {
+              color: $login-light-blue;
+            }
+          }
+
+          input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+            -webkit-text-fill-color: $token-dark-grey-blue;
+          }
+
+          .server-error {
+            font-size: $login-font-size;
+            font-weight: 500;
+            line-height: 1;
+            margin-top: 10px;
+          }
+        }
+
+        .form-actions {
+          display: block;
+
+          .btn {
+            height: 34px;
+            min-width: 94px;
+            padding-bottom: 0;
+            padding-top: 0;
+
+            .spinner-border {
+              height: 21px;
+              width: 21px;
+            }
+          }
+        }
+      }
+    }
+
+    .copyright-container {
+      @include login-container-items;
+      bottom: 50px;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+
+      .support-link {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .copyright-text {
+        color: #7178a5;
+        font-size: 13px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .login-logo-wrapper {
+    background-image: url('~/assets/images/login-illustration.svg');
+    background-position: right top;
+    background-repeat: no-repeat;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+
+    .login-logo {
+      height: 100%;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) and (orientation: landscape) {
+  .login-wrapper {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (max-height: 700px) and (orientation: portrait) {
+  .login-wrapper {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .login-wrapper {
+    .login-container {
+      width: 50%;
+      min-width: 30rem;
+      margin: 0 auto;
+      background-color: transparent;
+      box-shadow: none;
+      padding: 3.5rem 0 5rem;
+
+      .logo-container {
+        padding: 0;
+        margin-bottom: 4rem;
+      }
+
+      .form-container {
+        background-color: $login-white;
+        border-radius: 4px;
+        box-shadow: 0 1px 15px 0 rgba(69, 65, 78, 0.08);
+
+        .title-container {
+          padding: 20px 24px;
+          margin-bottom: 0;
+
+          .login-title {
+            font-size: 17px;
+          }
+        }
+
+        .form-holder {
+          margin-top: 4rem;
+          padding: 0 4rem 4rem;
+
+          .form-actions {
+            .loading-bar {
+              bottom: 5.5rem;
+            }
+          }
+        }
+      }
+
+      .copyright-container {
+        position: static;
+        padding: 0;
+        margin-top: 6rem;
+      }
+    }
+
+    .login-logo-wrapper {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-wrapper {
+    .login-container {
+      width: 100%;
+      min-width: auto;
+      padding: 3.5rem 2rem 5rem;
+
+      .form-container {
+        .title-container {
+          .login-title {
+            font-size: 13px;
+          }
+        }
+
+        .form-holder {
+          margin-top: 3rem;
+          padding: 1.5rem 2rem;
+        }
+      }
+    }
+  }
+}

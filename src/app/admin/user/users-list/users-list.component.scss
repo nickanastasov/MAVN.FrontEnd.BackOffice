@@ -1,0 +1,18 @@
+#btn_clear,
+#btn_search {
+  cursor: pointer;
+}
+
+.spinner-wrapper {
+  position: relative;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    &--top {
+      transform: translate(-50%);
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="212" height="82" viewBox="0 0 212 82">
+    <defs>
+        <path id="a" d="M0 0h212v82H0z"/>
+        <linearGradient id="c" x1="50%" x2="50%" y1="0%" y2="135.162%">
+            <stop offset="0%" stop-color="#5C4DE5"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="b" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <use fill="#FFF" xlink:href="#a"/>
+        <g mask="url(#b)" opacity=".6">
+            <path fill="url(#c)" fill-rule="nonzero" d="M0 56.613l7.865-3.086h13.067l9.399-5.177h15.713l8.72-4.693H85l21.343-20.717 16.386-6.01L145 16.376l3.852-4.764L180.438 0H212v57.159H0" opacity=".152" transform="translate(0 24.841)"/>
+            <path stroke="#5C4DE5" d="M0 81.454l7.865-3.086h13.067l9.399-5.177h15.713l8.72-4.693H85l21.343-20.717 16.386-6.01L145 41.217l3.852-4.764 31.586-11.613H212"/>
+        </g>
+    </g>
+</svg>

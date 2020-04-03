@@ -1,0 +1,178 @@
+<form [formGroup]="campaignForm"
+      (ngSubmit)="onSubmit()"
+      class="basic-campaign-form">
+  <mat-card>
+    <mat-card-title>
+      <span i18n>Basic Information</span>
+      <span *ngIf="type === CampaignFormType.EDIT"
+            class="float-right context-badge {{campaign.Status | lowercase}}">
+        {{campaign.Status | titlecase}}
+      </span>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Title</mat-label>
+            <input matInput
+                   formControlName="Name"
+                   placeholder="Title"
+                   i18n-placeholder
+                   (blur)="onNameBlur()"
+                   matTooltip="Title of the action rule to be displayed in the admin panel"
+                   i18n-matTooltip
+                   required>
+            <mat-error>
+              <app-error-message controlName="Name"></app-error-message>
+              <app-error-message controlName="Name"
+                                 key="length"
+                                 [template]="templates.lengthError"
+                                 [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Order in the list on mobile app</mat-label>
+            <mat-select id="actionRuleOrder"
+                        formControlName="Order"
+                        placeholder="Order in the list on mobile app"
+                        i18n-placeholder
+                        required
+                        disableRipple>
+              <mat-option *ngFor="let orderValue of orderValues"
+                          [value]="orderValue">{{orderValue}}</mat-option>
+            </mat-select>
+            <mat-error>
+              <app-error-message controlName="Order"></app-error-message>
+              <app-error-message controlName="Order"
+                                 key="intrange"
+                                 [template]="templates.intRangeError"
+                                 [templateContext]="{$implicit: {min: 1, max: 2147483647}}"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Start date</mat-label>
+            <input matInput
+                   [min]="minStartDate"
+                   [matDatepicker]="picker"
+                   formControlName="FromDate"
+                   placeholder="Start date"
+                   i18n-placeholder
+                   matTooltip="The date when the action rule is applicable from"
+                   i18n-matTooltip
+                   required>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+              <app-error-message controlName="FromDate"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>End date</mat-label>
+            <input matInput
+                   [min]="minEndDate"
+                   [matDatepicker]="endDatePicker"
+                   formControlName="ToDate"
+                   placeholder="End date"
+                   matTooltip="The date till which the action rule is applicable"
+                   i18n-matTooltip
+                   i18n-placeholder>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label i18n>Description</mat-label>
+        <input matInput
+               placeholder="Description"
+               i18n-placeholder
+               formControlName="Description"
+               (blur)="onDescriptionBlur()"
+               matTooltip="Description (explanation) of the action rule to be displayed in the admin panel"
+               i18n-matTooltip
+               required>
+        <mat-error>
+          <app-error-message controlName="Description"></app-error-message>
+          <app-error-message controlName="Description"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 3, max: 1000}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <app-campaign-form-conditions [campaign]="component"></app-campaign-form-conditions>
+
+  <app-campaign-form-reward [campaign]="component"></app-campaign-form-reward>
+
+  <app-campaign-form-optional-conditions [campaign]="component"></app-campaign-form-optional-conditions>
+
+  <app-campaign-form-mobile-content [campaign]="component"></app-campaign-form-mobile-content>
+
+  <div class="form-navigation d-flex justify-content-between align-items-center">
+    <button type="button"
+            class="btn btn-outline-brand btn-upper btn-bold"
+            style="min-width: 120px;"
+            routerLink="/admin/platform/earn-action-rules"
+            [queryParams]="{ page: previousPage, pageSize: previousPageSize }"
+            i18n>Cancel</button>
+    <div>
+      <mat-slide-toggle id="slide_isEnabled"
+                        formControlName="IsEnabled">
+        <span *ngIf="isEnabledCampaignFormControl.value"
+              i18n>Publish</span>
+        <span *ngIf="!isEnabledCampaignFormControl.value"
+              i18n>Draft</span>
+      </mat-slide-toggle>
+      <button type="submit"
+              [hidden]="!hasEditPermission"
+              class="btn btn-brand btn-upper btn-bold"
+              style="min-width: 120px;"
+              [disabled]="isSaving || campaignForm.disabled"
+              i18n>Save</button>
+    </div>
+  </div>
+</form>
+
+<!-- #region Translates -->
+
+<div #rewardTypeFixedText
+     hidden
+     i18n>Fixed amount</div>
+
+<div #rewardTypeConversionRateText
+     hidden
+     i18n>Conversion rate</div>
+
+<div #rewardTypePercentageText
+     hidden
+     i18n>Percentage</div>
+
+<div #completionTypeUnlimitedText
+     hidden
+     i18n>Unlimited participation</div>
+
+<div #completionTypeOnceText
+     hidden
+     i18n>Can participate once</div>
+
+<div #completionTypeMultipleText
+     hidden
+     i18n>Can participate multiple times</div>
+
+<!-- endregion -->

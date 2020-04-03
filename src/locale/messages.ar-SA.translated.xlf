@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version='1.2'
+  xmlns='urn:oasis:names:tc:xliff:document:1.2'>
+  <file original='ng2.template' datatype='plaintext' tool='manual' source-language='en'>
+
+    <body>
+      <trans-unit id="0a79c07e76c48f07c8b1941fa5b6db9ac691d980" datatype="html">
+        <source>Something went wrong. Please try again</source>
+        <target xml:lang='ar'>هناك خطأ ما. حاول مرة اخرى</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">345</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/spend-action-rule/spend-action-rule-form/spend-action-rule-form.component.html</context>
+          <context context-type="linenumber">257</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <target xml:lang='ar'>قريب</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/admin-layout/admin-layout/admin-layout.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit reformat='yes' datatype='html' merged-trans='yes' id='7cb177a4ad69222697418a5e2dd193725681bc71' size-unit='pixel' translate='yes' space='default'>
+        <source>Spend action rule has been created successfully</source>
+        <target xml:lang='ar'>تم إنشاء قاعدة إجراء الإنفاق بنجاح</target>
+        <context-group purpose='location'>
+          <context match-mandatory='no' context-type='sourcefile'>
+            app/admin/spend-action-rule/spend-action-rule-add/spend-action-rule-add.component.html</context>
+          <context match-mandatory='no' context-type='linenumber'>19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit reformat='yes' datatype='html' merged-trans='yes' id='c3b4f7c5021f3f9ea8f0af0e0fa3290b67ba8ea4' size-unit='pixel' translate='yes' space='default'>
+        <source>Field has to be between
+          <x clone='yes' id='INTERPOLATION' equiv-text='{{ctx.min}}' />
+ and
+          <x clone='yes' id='INTERPOLATION_1' equiv-text='{{ctx.max}}' />
+ characters long</source>
+        <target xml:lang='ar'>يجب أن يتراوح طول الحقل بين
+          <x clone='yes' id='INTERPOLATION' equiv-text='{{ctx.min}}' />
+ و
+          <x clone='yes' id='INTERPOLATION_1' equiv-text='{{ctx.max}}' />
+ حرفًا</target>
+        <context-group purpose='location'>
+          <context match-mandatory='no' context-type='sourcefile'>app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context match-mandatory='no' context-type='linenumber'>473</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit reformat='yes' datatype='html' merged-trans='yes' id='8b93944cdc6a55f4559084bc3f14904b70c1d4c1' size-unit='pixel' translate='yes' space='default'>
+        <source>Minimum required number is
+          <x clone='yes' id='INTERPOLATION' equiv-text='{{ctx.min}}' />
+        </source>
+        <target xml:lang='ar'>العدد الأدنى المطلوب هو
+          <x clone='yes' id='INTERPOLATION' equiv-text='{{ctx.min}}' />
+        </target>
+        <context-group purpose='location'>
+          <context match-mandatory='no' context-type='sourcefile'>app/admin/campaign/campaign-form/campaign-form.component.html</context>
+          <context match-mandatory='no' context-type='linenumber'>478</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="708aab610487ba00a0273f6bb2b61df19505ef70" datatype="html">
+        <source>Search by full email or ID</source>
+        <target xml:lang='ar'>البحث عن طريق البريد الإلكتروني الكامل أو معرف</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/customers/customers-list-page/customers-list-page.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

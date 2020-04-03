@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  <h2 i18n>Parameter details</h2>
+</div>
+<div mat-dialog-content>
+  <div class="dataTables_wrapper">
+    <table id="table-transactionEvents"
+          class="transaction-events table table-striped table-bordered table-hover">
+      <thead>
+        <th i18n>Name</th>
+        <th i18n>Order</th>
+        <th i18n>Type</th>
+        <th i18n>Value</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of parameters; let i = index"
+            class="data-row-{{i}}">
+          <td data-id="name">
+            <span>{{row.Name}}</span>
+          </td>
+          <td data-id="order">
+            <span>{{row.Order}}</span>
+          </td>
+          <td data-id="type">
+            <span>{{row.Type}}</span>
+          </td>
+          <td data-id="value">
+            <span>{{row.Value}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" class="text-uppercase" (click)="cancel()" i18n>Cancel</button>
+</div>

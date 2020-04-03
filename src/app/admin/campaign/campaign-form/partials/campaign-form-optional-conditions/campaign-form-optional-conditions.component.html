@@ -1,0 +1,432 @@
+<mat-card *ngIf="campaign.isEnabledOptionalConditions || campaign.conditionsFormArray.controls.length > 1">
+  <mat-card-title class="d-flex justify-content-between align-items-center">
+    <span i18n>Additional Awards</span>
+    <button id="add-optional-conditions"
+            type="button"
+            class="btn btn-outline-brand btn-upper btn-bold"
+            *ngIf="!campaign.isLoadingBonusTypes"
+            [disabled]="campaign.conditionsFormArray.disabled || campaign.conditionsFormArray.controls.length - 1 >= campaign.bonusTypesOptional.length"
+            (click)="campaign.addCondition()">
+      <i class="fa fa-plus"
+         style="font-size: 1em;"></i>
+      <span i18n>Add additional award</span>
+    </button>
+  </mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-card-content *ngIf="campaign.isLoadingBonusTypes">
+    <div class="text-center">
+      <div class="spinner-border"></div>
+    </div>
+  </mat-card-content>
+  <mat-card-content [formGroup]="campaign.conditionsFormArray"
+                    id="conditions">
+    <div class="condition"
+         [formGroup]="condition"
+         *ngFor="let condition of campaign.conditionsFormArray.controls | slice : 1; let optionalConditionIndex = index;">
+
+      <!-- <div>{{condition.get(campaign.conditionFormProps.ImmediateReward).errors | json}}</div> -->
+
+      <div class="row">
+        <mat-form-field appearance="outline"
+                        class="col-xl-4 col-lg-6">
+          <mat-label i18n>Event</mat-label>
+          <mat-select formControlName="Type"
+                      (selectionChange)="campaign.onBonusTypeChanged(optionalConditionIndex+1)"
+                      placeholder="Event"
+                      i18n-placeholder
+                      panelClass="token-select-panel"
+                      matTooltip="Action/event that should happen for the action rule to be applied"
+                      i18n-matTooltip
+                      required>
+            <mat-option *ngFor="let bonusType of campaign.bonusTypesOptional"
+                        [value]="bonusType.Type"
+                        [disabled]="campaign.isBonusTypeOptionDisabled(bonusType.Type)">{{bonusType.DisplayName}}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-error-message controlName="Type"></app-error-message>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="col-xl-2 col-lg-6">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Type of award</mat-label>
+            <mat-select formControlName="RewardType"
+                        placeholder="Type of reward"
+                        matTooltip="Fixed award/Percentage award (“Percentage” option is available only for events where amount/purchase is involved)"
+                        i18n-matTooltip
+                        i18n-placeholder
+                        required>
+              <mat-option *ngFor="let rewardType of campaign.rewardTypes"
+                          [disabled]="campaign.isRewardTypeOfPercentageOptionDisabled(rewardType.Type, optionalConditionIndex + 1)"
+                          [value]="rewardType.Type">
+                {{rewardType.DisplayName}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <app-error-message controlName="RewardType"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-2 col-lg-6"
+             *ngIf="campaign.isEnabledConditionFixed(optionalConditionIndex+1)">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Award, {{campaign.tokenSymbol}}</mat-label>
+            <input matInput
+                   formControlName="ImmediateReward"
+                   type="text"
+                   id="ImmediateReward-{{optionalConditionIndex}}"
+                   required>
+            <mat-error>
+              <app-error-message controlName="ImmediateReward"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="moneyFormat"
+                                 [template]="campaign.templates.moneyFormatError"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="moneyMinZero"
+                                 [template]="campaign.templates.minNumberError"
+                                 [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="moneyMinMoreZero"
+                                 [template]="campaign.templates.minMoreZeroNumberError"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="moneyMaxNumber"
+                                 [template]="campaign.templates.maxNumberError"
+                                 [templateContext]="{$implicit: {max: campaign.TOKENS_INPUT_MAX_NUMBER}}">
+              </app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="accuracy"
+                                 [template]="campaign.templates.invalidAccuracyError"
+                                 [templateContext]="{$implicit: {accuracy: campaign.TOKENS_INPUT_ACCURACY}}">
+              </app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-2 col-lg-6"
+             *ngIf="campaign.isEnabledConditionPercentage(optionalConditionIndex+1)">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Award, %</mat-label>
+            <input matInput
+                   formControlName="ImmediateReward"
+                   placeholder="Award, %"
+                   i18n-placeholder
+                   type="number"
+                   min="0"
+                   max="100"
+                   [step]="campaign.PERCENTAGE_INPUT_MIN_NUMBER"
+                   id="ImmediateReward-{{optionalConditionIndex}}"
+                   required>
+            <mat-error>
+              <app-error-message controlName="ImmediateReward"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="min"
+                                 [template]="campaign.templates.minNumberError"
+                                 [templateContext]="{$implicit: {min: campaign.PERCENTAGE_INPUT_MIN_NUMBER}}">
+              </app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="max"
+                                 [template]="campaign.templates.maxNumberError"
+                                 [templateContext]="{$implicit: {max: 100}}"></app-error-message>
+              <app-error-message controlName="ImmediateReward"
+                                 key="accuracy"
+                                 [template]="campaign.templates.invalidAccuracyError"
+                                 [templateContext]="{$implicit: {accuracy: campaign.PERCENTAGE_INPUT_ACCURACY}}">
+              </app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Approximate award -->
+        <div class="col-xl-2 col-lg-6"
+             *ngIf="campaign.isConditionApproximate(optionalConditionIndex+1)">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Approximate award, {{campaign.tokenSymbol}}</mat-label>
+            <input matInput
+                   formControlName="ApproximateAward"
+                   placeholder="Approximate Award, {{campaign.tokenSymbol}}"
+                   i18n-placeholder
+                   type="text"
+                   id="ApproximateAward-{{optionalConditionIndex}}"
+                   matTooltip="Estimation value, will be displayed on the mobile app (average and preliminary forecast of what the customer is going to get as award when participating in this action rule)"
+                   i18n-matTooltip
+                   required>
+            <mat-error>
+              <app-error-message controlName="ApproximateAward"></app-error-message>
+              <app-error-message controlName="ApproximateAward"
+                                 key="moneyFormat"
+                                 [template]="campaign.templates.moneyFormatError"></app-error-message>
+              <app-error-message controlName="ApproximateAward"
+                                 key="moneyMinZero"
+                                 [template]="campaign.templates.minNumberError"
+                                 [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+              <app-error-message controlName="ApproximateAward"
+                                 key="moneyMinMoreZero"
+                                 [template]="campaign.templates.minMoreZeroNumberError"></app-error-message>
+              <app-error-message controlName="ApproximateAward"
+                                 key="moneyMaxNumber"
+                                 [template]="campaign.templates.maxNumberError"
+                                 [templateContext]="{$implicit: {max: campaign.TOKENS_INPUT_MAX_NUMBER}}">
+              </app-error-message>
+              <app-error-message controlName="ApproximateAward"
+                                 key="accuracy"
+                                 [template]="campaign.templates.invalidAccuracyError"
+                                 [templateContext]="{$implicit: {accuracy: campaign.TOKENS_INPUT_ACCURACY}}">
+              </app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-2 col-md-2 col-lg-4 text-right">
+          <!-- hide Conversion rate for now
+             [class.col-xl-6]="campaign.isEnabledConditionConversionRate(optionalConditionIndex+1)"
+             [class.col-lg-12]="campaign.isEnabledConditionConversionRate(optionalConditionIndex+1)">
+             -->
+          <ng-container [ngTemplateOutlet]="deleteButton"
+                        [ngTemplateOutletContext]="{$implicit: {optionalConditionIndex: optionalConditionIndex}}">
+          </ng-container>
+        </div>
+
+        <!-- hide Conversion rate for now
+        <div class="col-xl-12"
+             *ngIf="campaign.isEnabledConditionConversionRate(optionalConditionIndex+1)">
+          <div class="row">
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label>
+                  <span i18n>Amount, {{campaign.tokenSymbol}}</span>
+                </mat-label>
+                <input matInput
+                       formControlName="AmountInTokens"
+                       type="text"
+                       required>
+                <mat-error>
+                  <app-error-message controlName="AmountInTokens"></app-error-message>
+                  <app-error-message controlName="AmountInTokens"
+                                     key="moneyFormat"
+                                     [template]="campaign.templates.moneyFormatError"></app-error-message>
+                  <app-error-message controlName="AmountInTokens"
+                                     key="moneyMinMoreZero"
+                                     [template]="campaign.templates.minMoreZeroNumberError"></app-error-message>
+                  <app-error-message controlName="AmountInTokens"
+                                     key="moneyMaxNumber"
+                                     [template]="campaign.templates.maxNumberError"
+                                     [templateContext]="{$implicit: {max: campaign.TOKENS_INPUT_MAX_NUMBER}}">
+                  </app-error-message>
+                  <app-error-message controlName="AmountInTokens"
+                                     key="accuracy"
+                                     [template]="campaign.templates.invalidAccuracyError"
+                                     [templateContext]="{$implicit: {accuracy: campaign.TOKENS_INPUT_ACCURACY}}">
+                  </app-error-message>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label>
+                  <span i18n>Amount, {{baseCurrencyCode}}</span>
+                </mat-label>
+                <input matInput
+                       formControlName="AmountInCurrency"
+                       type="number"
+                       [min]="campaign.CURRENCY_INPUT_MIN_NUMBER"
+                       [step]="campaign.CURRENCY_INPUT_MIN_NUMBER"
+                       required>
+                <mat-error>
+                  <app-error-message controlName="AmountInCurrency"></app-error-message>
+                  <app-error-message controlName="AmountInCurrency"
+                                     key="min"
+                                     [template]="campaign.templates.minNumberError"
+                                     [templateContext]="{$implicit: {min: campaign.CURRENCY_INPUT_MIN_NUMBER}}">
+                  </app-error-message>
+                  <app-error-message controlName="AmountInCurrency"
+                                     key="max"
+                                     [template]="campaign.templates.maxNumberError"
+                                     [templateContext]="{$implicit: {max: campaign.CURRENCY_INPUT_MAX_NUMBER}}">
+                  </app-error-message>
+                  <app-error-message controlName="AmountInCurrency"
+                                     key="accuracy"
+                                     [template]="campaign.templates.invalidAccuracyError"
+                                     [templateContext]="{$implicit: {accuracy: campaign.CURRENCY_INPUT_ACCURACY}}">
+                  </app-error-message>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-lg-4 use-global-rate">
+              <mat-checkbox formControlName="UsePartnerCurrencyRate">
+                <span i18n>Use Partner/Global Rate</span>
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <div class="row"
+               *ngIf="campaign.conditionsFormArray.at(optionalConditionIndex+1).get(campaign.conditionFormProps.UsePartnerCurrencyRate).value">
+            <div class="col-md-12"
+                 style="font-style: italic; margin-bottom: 16px;">
+              <span i18n>Partner rate will be used as a priority. If no one Partner is attached to the action
+                rule, the Global rate would be applied.</span>
+            </div>
+          </div>
+        </div>-->
+
+      </div>
+
+      <div class="row"
+           *ngIf="condition.get(campaign.conditionFormProps.RewardHasRatio).value"
+           style="margin-top: 10px;">
+        <div class="col-xl-8 col-lg-10">
+          <mat-card
+                    [class.invalid-ratios]="(condition.get(campaign.conditionFormProps.RewardRatio).errors?.RewardRatio || condition.get(campaign.conditionFormProps.RewardRatio).errors?.PaymentRatio) && (condition.get(campaign.conditionFormProps.RewardRatio).touched || condition.get(campaign.conditionFormProps.RewardRatio).dirty)">
+            <mat-card-title class="d-flex justify-content-between align-items-center">
+              <span></span>
+              <button id="add-reward-ratio"
+                      type="button"
+                      class="btn btn-outline-brand btn-upper btn-bold"
+                      [disabled]="campaign.conditionsFormArray.disabled"
+                      (click)="campaign.addConditionRatio(optionalConditionIndex+1)">
+                <i class="fa fa-plus"
+                   style="font-size: 1em; vertical-align: baseline;"></i>
+                <span i18n>Add Award Ratio</span>
+              </button>
+            </mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+
+              <div class="ratio"
+                   [formGroup]="ratio"
+                   *ngFor="let ratio of campaign.getConditionRatiosFormArray(optionalConditionIndex+1).controls; let ratioIndex = index; let isLast = last">
+                <div class="row">
+                  <div class="col-5">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <mat-label i18n>Ratio of payments, %</mat-label>
+                      <input matInput
+                             formControlName="PaymentRatio"
+                             placeholder="Ratio of payments, %"
+                             i18n-placeholder
+                             type="number"
+                             min="0"
+                             max="100"
+                             [step]="campaign.PERCENTAGE_INPUT_MIN_NUMBER"
+                             id="PaymentRatio-{{ratioIndex}}"
+                             required>
+                      <mat-error>
+                        <app-error-message controlName="PaymentRatio"></app-error-message>
+                        <app-error-message controlName="PaymentRatio"
+                                           key="min"
+                                           [template]="campaign.templates.minNumberError"
+                                           [templateContext]="{$implicit: {min: campaign.PERCENTAGE_INPUT_MIN_NUMBER}}">
+                        </app-error-message>
+                        <app-error-message controlName="PaymentRatio"
+                                           key="max"
+                                           [template]="campaign.templates.maxNumberError"
+                                           [templateContext]="{$implicit: {max: 100}}"></app-error-message>
+                        <app-error-message controlName="PaymentRatio"
+                                           key="accuracy"
+                                           [template]="campaign.templates.invalidAccuracyError"
+                                           [templateContext]="{$implicit: {accuracy: campaign.PERCENTAGE_INPUT_ACCURACY}}">
+                        </app-error-message>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <div *ngIf="isLast"
+                         [class.has-error]="condition.get(campaign.conditionFormProps.RewardRatio).errors?.PaymentRatio && (condition.get(campaign.conditionFormProps.RewardRatio).touched || condition.get(campaign.conditionFormProps.RewardRatio).dirty)"
+                         class="ratio-hint">
+                      <span>{{campaign.getSumOfConditionRewardRatios(optionalConditionIndex+1, campaign.ratioFormProps.PaymentRatio)}}
+                        / 100%</span>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <mat-label i18n>Ratio of awards, %</mat-label>
+                      <input matInput
+                             formControlName="RewardRatio"
+                             placeholder="Ratio of awards, %"
+                             i18n-placeholder
+                             type="number"
+                             min="0"
+                             max="100"
+                             [step]="campaign.PERCENTAGE_INPUT_MIN_NUMBER"
+                             id="RewardRatio-{{ratioIndex}}"
+                             required>
+                      <mat-error>
+                        <app-error-message controlName="RewardRatio"></app-error-message>
+                        <app-error-message controlName="RewardRatio"
+                                           key="min"
+                                           [template]="campaign.templates.minNumberError"
+                                           [templateContext]="{$implicit: {min: 0}}">
+                        </app-error-message>
+                        <app-error-message controlName="RewardRatio"
+                                           key="max"
+                                           [template]="campaign.templates.maxNumberError"
+                                           [templateContext]="{$implicit: {max: 100}}"></app-error-message>
+                        <app-error-message controlName="RewardRatio"
+                                           key="accuracy"
+                                           [template]="campaign.templates.invalidAccuracyError"
+                                           [templateContext]="{$implicit: {accuracy: campaign.PERCENTAGE_INPUT_ACCURACY}}">
+                        </app-error-message>
+                      </mat-error>
+                    </mat-form-field>
+
+                    <div *ngIf="isLast"
+                         [class.has-error]="condition.get(campaign.conditionFormProps.RewardRatio).errors?.RewardRatio && (condition.get(campaign.conditionFormProps.RewardRatio).touched || condition.get(campaign.conditionFormProps.RewardRatio).dirty)"
+                         class="ratio-hint">
+                      <span>{{campaign.getSumOfConditionRewardRatios(optionalConditionIndex+1, campaign.ratioFormProps.RewardRatio)}}
+                        / 100%</span>
+                    </div>
+                  </div>
+                  <div class="col-2 text-right">
+                    <button href="javascript:void(0)"
+                            class="btn btn-sm btn-clean btn-icon btn-icon-md"
+                            style="margin-top: 12px;"
+                            [disabled]="campaign.conditionsFormArray.disabled"
+                            (click)="campaign.removeConditionRatio(optionalConditionIndex+1, ratioIndex)"
+                            matTooltip="Delete Award Ratio"
+                            i18n-matTooltip>
+                      <i class="la la-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <!-- <mat-error *ngIf="condition.get(campaign.conditionFormProps.RewardRatio).errors?.PaymentRatio">
+                  <div i18n>The sum of all 'Ratio of payments' fields should be equal to 100</div>
+                </mat-error>
+                <mat-error *ngIf="condition.get(campaign.conditionFormProps.RewardRatio).errors?.RewardRatio">
+                  <div i18n>The sum of all 'Ratio of awards' fields should be equal to 100</div>
+                </mat-error> -->
+                <!-- <mat-error>
+                  <div>{{condition.get(campaign.conditionFormProps.RewardRatio).errors | json}}</div>
+                </mat-error> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- for the moment there is no staking for optional condition -->
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #deleteButton
+             let-ctx>
+  <button class="condition-delete-button btn btn-outline-brand btn-upper btn-bold"
+          type="button"
+          matTooltip="Delete Optional Award"
+          i18n-matTooltip
+          [disabled]="campaign.conditionsFormArray.disabled"
+          (click)="campaign.removeCondition(ctx.optionalConditionIndex+1)">
+    <span i18n>Delete</span>
+  </button>
+</ng-template>

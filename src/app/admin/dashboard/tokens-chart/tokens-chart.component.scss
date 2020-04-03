@@ -1,0 +1,124 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+@import '~src/scss/token-theme/utils/variables';
+
+$icon-color: $kt-brand-color;
+$icon-color-earn: $kt-success-color;
+$icon-color-burn: $kt-danger-color;
+$icon-size: 50px;
+$subicon-padding: 8px;
+
+.big-chart-container {
+  margin-top: 25px;
+
+  .chart-wrapper {
+    margin-top: 25px;
+
+    .hidden {
+      display: none;
+    }
+  }
+}
+
+.tokens-chart-legend {
+  display: flex;
+  justify-content: center;
+
+  .legend {
+    align-items: center;
+    display: flex;
+
+    &:not(:last-child) {
+      @include margin-end(20px, true);
+    }
+
+    &__icon {
+      display: inline-block;
+      height: 14px;
+      width: 14px;
+      @include margin-end(4px, true);
+    }
+
+    &__icon--earn {
+      background-color: $icon-color-earn;
+    }
+
+    &__icon--burn {
+      background-color: $icon-color-burn;
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+  }
+}
+
+.total-tokens {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 1399px) {
+  .total-tokens {
+    height: 300px;
+  }
+}
+
+.total-number {
+  display: flex;
+  margin-bottom: 25px;
+
+  &--last {
+    margin-bottom: 0;
+  }
+
+  &__icon {
+    align-items: center;
+    border: 1px solid $icon-color;
+    border-radius: $icon-size;
+    box-shadow: 0px 0px 5px;
+    color: $icon-color;
+    display: flex;
+    height: $icon-size;
+    justify-content: center;
+    font-size: 24px;
+    @include margin-end(13px, true);
+    position: relative;
+    width: $icon-size;
+  }
+
+  &__icon--earn {
+    border-color: $icon-color-earn;
+    color: $icon-color-earn;
+  }
+
+  &__icon--burn {
+    border-color: $icon-color-burn;
+    color: $icon-color-burn;
+  }
+
+  &__subicon {
+    bottom: $subicon-padding;
+    right: $subicon-padding;
+    font-size: 14px;
+    position: absolute;
+  }
+
+  &__text {
+    display: inline-block;
+  }
+
+  &__header {
+    font-size: 1rem;
+  }
+
+  &__digits {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}

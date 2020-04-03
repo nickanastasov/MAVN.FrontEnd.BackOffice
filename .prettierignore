@@ -1,0 +1,11 @@
+.git/
+dist/
+node_modules/
+angular.json
+package*.json
+tsconfig.json
+tslint.json
+**/tsconfig*.json
+**/tslint*.json
+# TODO: remove the **/*.html ignore when it is well configured (SVN-3225)
+**/*.html

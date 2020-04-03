@@ -1,0 +1,15 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid"
+     style="font-weight: 500; padding-top: 25px;">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+      <div *ngIf="isLoading"
+           class="text-center">
+        <div class="spinner-border"></div>
+      </div>
+      <div [hidden]="isLoading"
+           class="text-center">
+        <span i18n>You don't have access to Dashboard so please select available section from the menu.</span>
+      </div>
+    </div>
+  </div>
+</div>

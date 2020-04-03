@@ -1,0 +1,25 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+
+.payments-table-wrapper {
+  overflow-y: auto;
+}
+
+#payments-table {
+  table-layout: auto;
+
+  td[data-id='actions'] {
+    > a:first-child {
+      @include margin-end(10px, true);
+    }
+  }
+}
+
+.spinner-wrapper {
+  position: relative;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "token-platform-backoffice": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js",
+              "mergeStrategies": {
+                "externals": "append"
+              }
+            },
+            "outputPath": "dist/token-platform-backoffice",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/favicon-16x16.png",
+              "src/favicon-32x32.png",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./nginx",
+                "output": "/nginx"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/plugins/global/plugins.bundle.js",
+              "src/assets/js/demo1/scripts.bundle.js"
+            ],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "ar": {
+              "aot": true,
+              "outputPath": "dist/token-platform-backoffice/ar",
+              "baseHref": "/ar/",
+              "deployUrl": "/ar/",
+              "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ar-SA",
+              "i18nMissingTranslation": "no_translation",
+              "fileReplacements": [
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-ar.html"
+                }
+              ]
+            },
+            "ar-prod": {
+              "aot": true,
+              "outputPath": "dist/token-platform-backoffice/ar",
+              "baseHref": "/ar/",
+              "deployUrl": "/ar/",
+              "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ar-SA",
+              "i18nMissingTranslation": "no_translation",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-ar.html"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "en": {
+              "outputPath": "dist/token-platform-backoffice/en",
+              "baseHref": "/en/",
+              "deployUrl": "/en/"
+            },
+            "en-prod": {
+              "aot": true,
+              "outputPath": "dist/token-platform-backoffice/en",
+              "baseHref": "/en/",
+              "deployUrl": "/en/",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "token-platform-backoffice:build",
+            "proxyConfig": "proxy.conf.js"
+          },
+          "configurations": {
+            "ar": {
+              "browserTarget": "token-platform-backoffice:build:ar",
+              "servePath": "/ar/"
+            },
+            "en": {
+              "browserTarget": "token-platform-backoffice:build:en",
+              "servePath": "/en/"
+            },
+            "production": {
+              "browserTarget": "token-platform-backoffice:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "token-platform-backoffice:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "token-platform-backoffice-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "token-platform-backoffice:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "token-platform-backoffice:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "token-platform-backoffice",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      },
+      "directive": {
+        "spec": false
+      },
+      "service": {
+        "spec": false
+      }
+    }
+  }
+}

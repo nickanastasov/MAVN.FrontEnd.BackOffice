@@ -1,0 +1,297 @@
+<form [formGroup]="userForm"
+      (ngSubmit)="onSubmit()"
+      class="user-form">
+
+  <div class="row">
+    <div class="col-xl-5 col-lg-5">
+      <label for="firstName"
+             i18n>First Name</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="firstName"
+               matInput
+               formControlName="FirstName"
+               required>
+        <mat-error>
+          <app-error-message controlName="FirstName"></app-error-message>
+          <app-error-message controlName="FirstName"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xl-5 col-lg-5 offset-2">
+      <label for="lastName"
+             i18n>Last Name</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="lastName"
+               matInput
+               formControlName="LastName"
+               required>
+        <mat-error>
+          <app-error-message controlName="LastName"></app-error-message>
+          <app-error-message controlName="LastName"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-5 col-lg-5">
+      <label for="email"
+             i18n>Email</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="email"
+               matInput
+               formControlName="Email"
+               required>
+        <mat-error>
+          <app-error-message controlName="Email"></app-error-message>
+          <app-error-message controlName="Email"
+                             key="email"
+                             [template]="emailError"></app-error-message>
+          <app-error-message controlName="Email"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xl-5 col-lg-5 offset-2">
+      <label for="phoneNumber"
+             i18n>Phone Number</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="phoneNumber"
+               matInput
+               formControlName="PhoneNumber"
+               required>
+        <mat-error>
+          <app-error-message controlName="PhoneNumber"></app-error-message>
+          <app-error-message controlName="PhoneNumber"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-5 col-lg-5">
+      <label for="company"
+             i18n>Company</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-select id="company"
+                    formControlName="Company"
+                    required>
+          <mat-option *ngFor="let company of companies"
+                      [value]="company.Type">{{company.DisplayName}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-error-message controlName="Company"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-5 col-lg-5 offset-2">
+      <label for="department"
+             i18n>Department</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-select id="department"
+                    formControlName="Department"
+                    required>
+          <mat-option *ngFor="let department of departments"
+                      [value]="department.Type">{{department.DisplayName}}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-error-message controlName="Department"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-5 col-lg-5">
+      <label for="jobTitle"
+             i18n>Job Title</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="jobTitle"
+               matInput
+               formControlName="JobTitle"
+               required>
+        <mat-error>
+          <app-error-message controlName="JobTitle"></app-error-message>
+          <app-error-message controlName="JobTitle"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xl-5 col-lg-5 offset-2">
+      <label for="isActive"
+             i18n>Status</label>
+      <div class="d-flex align-content-center"
+           style="margin-top: 10px;">
+        <mat-checkbox id="isActive"
+                      formControlName="IsActive">
+          <ng-container [ngSwitch]="userForm.get(userFormProps.IsActive).value">
+            <ng-container *ngSwitchCase="true">
+              <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+              <span i18n>Active</span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+              <span i18n>Not active</span>
+            </ng-container>
+          </ng-container>
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-5 col-lg-5"
+         [hidden]="!!this.user">
+      <label for="password"
+             i18n>Password</label>
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="password"
+               matInput
+               formControlName="Password"
+               required>
+        <mat-error>
+          <app-error-message controlName="Password"></app-error-message>
+          <app-error-message controlName="Password"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 8, max: 25}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table id="permissions-table"
+             class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-center">
+              <div class="header-label">
+                <span i18>View</span>
+              </div>
+              <mat-checkbox id="permissions-view-all"
+                            [(ngModel)]="ViewAll"
+                            [(indeterminate)]="IndeterminateViewAll"
+                            (ngModelChange)="changedViewAll()"
+                            [ngModelOptions]="{standalone: true}"
+                            [disabled]="isSaving || !hasEditPermission"></mat-checkbox>
+            </th>
+            <th class="text-center">
+              <div class="header-label">
+                <span i18>Edit</span>
+              </div>
+              <mat-checkbox id="permissions-edit-all"
+                            [(ngModel)]="EditAll"
+                            [(indeterminate)]="IndeterminateEditAll"
+                            (ngModelChange)="changedEditAll()"
+                            [ngModelOptions]="{standalone: true}"
+                            [disabled]="isSaving || !hasEditPermission"></mat-checkbox>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let permission of permissions | keyvalue : originalOrder">
+            <td>
+              <ng-container [ngSwitch]="permission.key">
+                <ng-container *ngSwitchCase="PermissionType.Dashboard">
+                  <span i18n>Dashboard</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.Customers">
+                  <span i18n>Customers</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.ActionRules">
+                  <span i18n>Action Rules</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.BlockchainOperations">
+                  <span i18n>Blockchain Operations</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.Reports">
+                  <span i18n>Transactions</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.ProgramPartners">
+                  <span i18n>Program Partners</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.Settings">
+                  <span i18n>Settings</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="PermissionType.AdminUsers">
+                  <span i18n>Admin Users</span>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <span i18n>{{permission.key}}</span>
+                </ng-container>
+              </ng-container>
+            </td>
+            <td class="text-center">
+              <mat-checkbox id="permission-view-{{permission.key}}"
+                            [(ngModel)]="permission.value.View"
+                            [ngModelOptions]="{standalone: true}"
+                            (ngModelChange)="changedView(permission.value)"
+                            [disabled]="isSaving || permission.value.Edit || !hasEditPermission"></mat-checkbox>
+            </td>
+            <td class="text-center">
+              <mat-checkbox id="permission-edit-{{permission.key}}"
+                            [hidden]="permission.value.IsOnlyView"
+                            [(ngModel)]="permission.value.Edit"
+                            [ngModelOptions]="{standalone: true}"
+                            (ngModelChange)="changedEdit(permission.value)"
+                            [disabled]="isSaving || !hasEditPermission"></mat-checkbox>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-navigation d-flex justify-content-between align-items-center mt-4">
+    <button type="button"
+            class="btn btn-outline-brand btn-upper btn-bold"
+            style="min-width: 120px;"
+            routerLink="/admin/platform/users"
+            [queryParams]="{ page: previousPage, pageSize: previousPageSize }"
+            [disabled]="isSaving"
+            i18n>Cancel</button>
+
+    <button type="submit"
+            [hidden]="!hasEditPermission"
+            class="btn btn-brand btn-upper btn-bold"
+            style="min-width: 120px;"
+            [disabled]="isSaving || userForm.disabled"
+            i18n>Submit</button>
+  </div>
+</form>
+
+<!-- Translates -->
+
+<ng-template #emailError>
+  <div i18n>Please enter a valid email address.</div>
+</ng-template>
+
+
+<div #fillRequiredFieldsMessage
+     hidden
+     i18n>Please check the form and fill the required fields</div>

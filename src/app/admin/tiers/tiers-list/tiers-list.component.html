@@ -1,0 +1,41 @@
+<div>
+  <div class="page-header">
+    <h1 class="page-header-title" i18n>Tiers</h1>
+  </div>
+  <div class="kt-portlet">
+  <div class="kt-portlet__body">
+    <div class="dataTables_wrapper bg-white">
+      <table id="tiers-table"
+             class="table table-striped table-bordered table-hover">
+        <thead>
+          <th i18n>Name</th>
+          <th class="text-right"
+              i18n>Condition Value ({{tokenSymbol}})</th>
+          <th i18n>Number of Customers</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tier of tiers; let i = index"
+              class="data-row-{{i}}">
+            <td data-id="name">
+              <span>{{tier.Name}}</span>
+            </td>
+            <td data-id="threshold"
+                class="text-right">
+              <span>{{tier.Threshold | token}}</span>
+            </td>
+            <td data-id="customersCount">
+              <span>{{tier.CustomersCount}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="spinner-wrapper">
+      <div class="spinner-container"
+           *ngIf="loading">
+        <mat-spinner class="margin-0-auto"></mat-spinner>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

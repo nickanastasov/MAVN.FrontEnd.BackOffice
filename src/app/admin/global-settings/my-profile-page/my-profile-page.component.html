@@ -1,0 +1,150 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>Profile settings and basic info</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+          <button (click)="save()"
+                  [hidden]="!this.changePasswordForm"
+                  class="btn-action btn-submit"
+                  [disabled]="isSavingChangePassword"
+                  i18n>Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"
+            i18n>Change Password</h3>
+      </div>
+    </div>
+
+    <div class="kt-portlet__body"
+         *ngIf="isInitialized">
+      <form [formGroup]="changePasswordForm"
+            class="change-password-form">
+
+        <div class="row">
+          <div class="col-lg-4 col-md-12">
+            <mat-form-field class="width-100">
+              <mat-label>
+                <span i18n>Current Password</span>
+              </mat-label>
+              <input matInput
+                     formControlName="CurrentPassword"
+                     type="password"
+                     required>
+              <mat-error>
+                <app-error-message controlName="CurrentPassword"></app-error-message>
+                <app-error-message controlName="CurrentPassword"
+                                   key="length"
+                                   [template]="currentPasswordInvalidFormat"></app-error-message>
+                <app-error-message controlName="CurrentPassword"
+                                   key="invalidPasswordFormat"
+                                   [template]="currentPasswordInvalidFormat"></app-error-message>
+                <ng-template #currentPasswordInvalidFormat>
+                  <span i18n>Password format is invalid</span>
+                </ng-template>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <mat-form-field class="width-100">
+              <mat-label>
+                <span i18n>New Password</span>
+              </mat-label>
+              <input matInput
+                     formControlName="Password"
+                     type="password"
+                     required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <mat-form-field class="width-100">
+              <mat-label>
+                <span i18n>Repeat New Password</span>
+              </mat-label>
+              <input matInput
+                     formControlName="RepeatPassword"
+                     type="password"
+                     required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset-lg-4 col-lg-4 offset-md-0 col-md-12">
+            <div class="password-meter-container">
+              <div class="password-meter {{passwordMeterText}}"></div>
+              <div class="password-meter-text">
+                {{ passwordMeterText }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 kt-portlet__body-text">
+            <p>Password requirements:</p>
+            <ul>
+              <li>
+                <span [ngClass]="{'invalid-rule': invalidPasswordRules.passwordNotEqualled}">Passwords must match</span>
+              </li>
+              <li>
+                <span [ngClass]="{'invalid-rule': invalidPasswordRules.length || invalidPasswordRules.required}">
+                  {{rules.MinLength}} - {{rules.MaxLength}} symbols
+                </span>
+              </li>
+
+              <li>
+                <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidUpperCase}">Min {{rules.MinUpperCase}}
+                  uppercase letter</span>, <span
+                      [ngClass]="{'invalid-rule': invalidPasswordRules.invalidLowerCase}">{{rules.MinLowerCase}}
+                  lowercase letter</span>
+              </li>
+
+              <li>
+                <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidSpecialSymbols}">Min
+                  {{rules.MinSpecialSymbols}} special symbol ({{rules.AllowedSpecialSymbols}})</span>, <span
+                      [ngClass]="{'invalid-rule': invalidPasswordRules.invalidDigits}">{{rules.MinNumbers}}
+                  number</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row spinner-wrapper">
+          <div class="col-md-12">
+            <div class="spinner-container"
+                 *ngIf="isSavingChangePassword">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Translates -->
+
+<div #passwordSuccessfullyMessage
+     hidden
+     i18n>Password changed successfully</div>
+
+<div #currentPasswordInvalidMessage
+     hidden
+     i18n>Current Password is not valid</div>

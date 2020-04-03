@@ -1,0 +1,69 @@
+<div class="chart-container row"
+     id="tokens-chart-container">
+  <div class="col-xl-12 col-lg-12"
+       [ngStyle]="{height: isFirstLoading ? 0 : 'auto'}">
+    <div *ngIf="isLoading"
+         class="text-center">
+      <div class="spinner-border"></div>
+    </div>
+    <app-small-graphic-boxes
+      [smallGraphicItems]="smallGraphicItems"
+      [showPercentage]="false"
+    >
+    </app-small-graphic-boxes>
+
+    <div class="big-chart-container">
+      <app-chart-select [dropdownData]="dropdownData"
+                        (chartSelectType)="handleChartSelectType($event)"
+                        [hidden]="isLoading"></app-chart-select>
+
+      <div class="chart-wrapper">
+        <div [ngClass]="{'hidden': selectedChartType !== 'TOTAL'}">
+          <canvas id="tokens-total-chart"
+                  style="height: 275px;"></canvas>
+        </div>
+        <div [ngClass]="{'hidden': selectedChartType === 'TOTAL'}">
+          <canvas id="tokens-chart"
+                  style="height: 275px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-xl-none col-lg-12"
+       style="width: 100%; height: 20px;"></div>
+
+  <div class="col-xl-4 col-lg-12">
+    <div *ngIf="isLoadingTokensStatistics"
+         class="text-center">
+      <div class="spinner-border"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Translates -->
+
+<div #earnLabel
+     ngNonBindable
+     hidden
+     i18n>Earned, {{tokenSymbol}}</div>
+
+<div #burnLabel
+     ngNonBindable
+     hidden
+     i18n>Spent, {{tokenSymbol}}</div>
+
+<div #totalWalletBalanceLabelTooltipTemplate
+     ngNonBindable
+     hidden
+     i18n>Sum of tokens in all members' wallets, {{tokenSymbol}}</div>
+
+<div #totalTokensEarnedLabelTooltipTemplate
+     ngNonBindable
+     hidden
+     i18n>Tokens earned by all customers from day 1, {{tokenSymbol}}</div>
+
+<div #totalTokensSpentLabelTooltipTemplate
+     ngNonBindable
+     hidden
+     i18n>Tokens spent by all customers from day 1, {{tokenSymbol}}</div>

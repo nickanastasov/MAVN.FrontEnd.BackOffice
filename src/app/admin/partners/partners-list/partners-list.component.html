@@ -1,0 +1,161 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of partners in referral program</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <button id="btn_add_partner"
+                [hidden]="!hasEditPermission"
+                class="btn btn-brand btn-bold"
+                routerLink="add-partner">
+          <span i18n>Add Partner</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <div class="spinner-container"
+             *ngIf="loading || isSearching">
+          <div class="spinner-border"></div>
+        </div>
+        <h3 class="kt-portlet__head-title"
+            [hidden]="loading || isSearching"
+            i18n>{{totalCount}} total partners</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="partners-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+
+              <th i18n>ID</th>
+              <th>
+                <div>
+                  <div>
+                    <span i18n>Name</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchName()">search</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchName"
+                       style="width: 230px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <input id="tb-search-name"
+                             type="text"
+                             matInput
+                             placeholder="Search"
+                             i18n-placeholder
+                             [(ngModel)]="searchNameValue"
+                             (ngModelChange)="searchNameValueChanged()"
+                             (keydown.enter)="searchName()">
+                      <mat-icon id="btn-search-name"
+                                class="btn-search"
+                                matSuffix
+                                (click)="searchName()">search</mat-icon>
+                      <mat-icon id="btn-clear-name"
+                                class="btn-clear"
+                                *ngIf="searchNameValue"
+                                matSuffix
+                                (click)="clearName()">clear</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 120px"
+                  i18n>Vertical</th>
+              <th style="width: auto"
+                  i18n>Conversion rate</th>
+              <th style="width: 120px"
+                  i18n>Created at</th>
+              <th style="width: 90px"
+                  i18n>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let partner of dataSource; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="id">
+                <span>{{partner.Id}}</span>
+              </td>
+              <td data-id="name">
+                <span>{{partner.Name}}</span>
+              </td>
+              <td data-id="vertical">
+                <ng-template ngFor
+                             let-item
+                             [ngForOf]="businessVerticalTypes">
+                  <span *ngIf="item.Type == partner.BusinessVertical">
+                    {{item.DisplayName}}
+                  </span>
+                </ng-template>
+              </td>
+              <td data-id="rate">
+                {{partner.AmountInTokens | token}} {{assetSymbol}} = {{partner.AmountInCurrency}} {{baseCurrencyCode}}
+              </td>
+              <td data-id="createdAt">
+                <span>{{partner.CreatedAt | date:'dd/MM/yyyy'}}</span>
+              </td>
+              <td data-id="actions">
+                <a [routerLink]="['edit-partner', partner.Id]"
+                   [state]="{ page: currentPage, pageSize: pageSize }"
+                   matTooltip="Edit"
+                   i18n-matTooltip
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons"
+                            *ngIf="!hasEditPermission">visibility</mat-icon>
+                  <mat-icon class="material-icons-outlined"
+                            *ngIf="hasEditPermission">edit</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container"
+             *ngIf="loading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!loading && !isSearching && dataSource.length === 0">
+          <span *ngIf="!searchNameValue"
+                i18n>There are no Partners please create one</span>
+          <span *ngIf="searchNameValue"
+                i18n>Partners not found</span>
+        </ng-container>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                [pageSize]="initialPageSize"
+                                (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+    </div>
+  </div>
+</div>

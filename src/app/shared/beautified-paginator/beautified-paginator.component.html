@@ -1,0 +1,106 @@
+<div class="kt-datatable kt-datatable--default"
+     style="margin-bottom: 0">
+  <div class="kt-datatable__pager kt-pagination--circle">
+    <ul class="kt-datatable__pager-nav">
+      <li *ngIf="showFirstLastButtons">
+        <a class="kt-datatable__pager-link kt-datatable__pager-link--first"
+           [class.kt-datatable__pager-link--disabled]="_previousButtonsDisabled()"
+           style="width: 30px;"
+           (click)="firstPage()"
+           [attr.aria-label]="''"
+           matTooltip="First page"
+           i18n-matTooltip
+           [matTooltipDisabled]="_previousButtonsDisabled()"
+           [matTooltipPosition]="'above'"
+           *ngIf="showFirstLastButtons">
+          <!-- <i class="flaticon2-fast-back"></i> -->
+          <mat-icon class="kt-menu__link-icon material-icons-outlined">navigate_before</mat-icon>
+          <mat-icon class="kt-menu__link-icon material-icons-outlined"
+                    style="margin-left: -19px">navigate_before</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a class="kt-datatable__pager-link kt-datatable__pager-link--prev"
+           [class.kt-datatable__pager-link--disabled]="_previousButtonsDisabled()"
+           (click)="previousPage()"
+           [attr.aria-label]="''"
+           matTooltip="Previous page"
+           i18n-matTooltip
+           [matTooltipDisabled]="_previousButtonsDisabled()"
+           [matTooltipPosition]="'above'">
+          <!-- <i class="flaticon2-back"></i> -->
+          <mat-icon class="kt-menu__link-icon material-icons-outlined">navigate_before</mat-icon>
+        </a>
+      </li>
+      <ng-container *ngIf="showPages" >
+        <li *ngFor="let page of pages">
+          <a href="javascript:void(0);"
+            class="kt-datatable__pager-link kt-datatable__pager-link-number"
+            [class.kt-datatable__pager-link--active]="pageIndex === page"
+            (click)="goToPage(page)">
+            {{page + 1}}
+          </a>
+        </li>
+      </ng-container>
+      <li>
+        <a class="kt-datatable__pager-link kt-datatable__pager-link--next"
+           [class.kt-datatable__pager-link--disabled]="_nextButtonsDisabled()"
+           (click)="nextPage()"
+           [attr.aria-label]="''"
+           matTooltip="Next page"
+           i18n-matTooltip
+           [matTooltipDisabled]="_nextButtonsDisabled()"
+           [matTooltipPosition]="'above'">
+          <!-- <i class="flaticon2-next"></i> -->
+          <mat-icon class="kt-menu__link-icon material-icons-outlined">navigate_next</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a class="kt-datatable__pager-link kt-datatable__pager-link--last"
+           [class.kt-datatable__pager-link--disabled]="_nextButtonsDisabled()"
+           style="width: 30px;"
+           (click)="lastPage()"
+           [attr.aria-label]=""
+           matTooltip="Last page"
+           i18n-matTooltip
+           [matTooltipDisabled]="_nextButtonsDisabled()"
+           [matTooltipPosition]="'above'"
+           *ngIf="showFirstLastButtons">
+          <!-- <i class="flaticon2-fast-next"></i> -->
+          <mat-icon class="kt-menu__link-icon material-icons-outlined">navigate_next</mat-icon>
+          <mat-icon class="kt-menu__link-icon material-icons-outlined"
+                    style="margin-left: -19px">navigate_next</mat-icon>
+        </a>
+      </li>
+    </ul>
+
+    <div class="kt-datatable__pager-info">
+      <div class="kt-datatable__pager-size">
+        <mat-form-field *ngIf="_displayedPageSizeOptions.length > 1"
+                        class="mat-paginator-page-size-select"
+                        matTooltip="Items per page"
+                        i18n-matTooltip
+                        appearance="outline">
+          <mat-select [value]="pageSize"
+                      [disabled]="disabled"
+                      (selectionChange)="_changePageSize($event.value)">
+            <mat-option *ngFor="let pageSizeOption of _displayedPageSizeOptions"
+                        [value]="pageSizeOption">
+              {{pageSizeOption}}
+            </mat-option>
+          </mat-select>
+          <mat-icon class="select-icon material-icons-outlined">expand_more</mat-icon>
+        </mat-form-field>
+
+        <div *ngIf="_displayedPageSizeOptions.length <= 1">{{pageSize}}</div>
+      </div>
+      <span class="kt-datatable__pager-detail">
+        <span i18n>Showing</span>
+        <span>&nbsp;{{getRangeLabel(pageIndex, pageSize, length)}}&nbsp;</span>
+        <span *ngIf="showLength" i18n>of</span>
+        <span *ngIf="showLength">&nbsp;</span>
+        <span *ngIf="showLength">{{length}}</span>
+      </span>
+    </div>
+  </div>
+</div>

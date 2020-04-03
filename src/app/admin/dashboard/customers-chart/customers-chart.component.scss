@@ -1,0 +1,114 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+@import '~src/scss/token-theme/utils/variables';
+
+$icon-color: $kt-brand-color;
+$icon-size: 50px;
+
+.tooltip-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.big-chart-container {
+  // margin-top: 25px;
+
+  .chart-wrapper {
+    margin-top: 25px;
+
+    .hidden {
+      display: none;
+    }
+  }
+}
+
+.chart-container {
+  .chart-title-wrapper {
+    text-align: center;
+
+    .chart-title {
+      color: #666666;
+      display: inline-block;
+      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.2;
+      margin: 10px auto 5px;
+    }
+  }
+}
+
+.total-number {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  &__icon {
+    align-items: center;
+    border: 1px solid $icon-color;
+    border-radius: $icon-size;
+    box-shadow: 0px 0px 5px $icon-color;
+    color: $icon-color;
+    display: flex;
+    height: $icon-size;
+    justify-content: center;
+    font-size: 24px;
+    @include margin-end(13px, true);
+    width: $icon-size;
+  }
+
+  &__text {
+    display: inline-block;
+  }
+
+  &__header {
+    font-size: 1rem;
+  }
+
+  &__digits {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.customers-donut-chart-wrapper {
+  position: relative;
+
+  > canvas {
+    position: relative;
+    z-index: 1;
+  }
+
+  .donut-center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    &__content {
+      position: relative;
+      text-align: center;
+      top: -18px;
+    }
+
+    &__percent {
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 36px;
+    }
+
+    &__description {
+      max-width: 140px;
+      word-break: break-word;
+    }
+  }
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}

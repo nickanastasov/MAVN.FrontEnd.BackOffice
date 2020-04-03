@@ -1,0 +1,6 @@
+<div *ngIf="showErrors && formControl.touched">
+  <div *ngIf="formControl.errors.required">Field is required</div>
+  <div *ngIf="formControl.errors.email">Email is invalid</div>
+  <div *ngIf="formControl.errors.invalidCredentials"></div>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,114 @@
+@import '~src/scss/token-theme/utils/variables';
+
+.kt-subheader {
+  .kt-container {
+    .kt-subheader__toolbar {
+      .kt-subheader__wrapper {
+        .btn-action {
+          font-size: 0.9rem;
+          font-weight: 500;
+          line-height: 1.75;
+          color: $token-white;
+          border-radius: 3px;
+          padding: 0.4rem 2rem;
+
+          &.btn-cancel {
+            background-color: transparent;
+            border: 1px solid $token-blue;
+          }
+
+          &.btn-submit {
+            background-color: $token-blue;
+            border: 1px solid $token-blue;
+          }
+
+          &[disabled] {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+}
+
+.kt-portlet {
+  .kt-portlet__body {
+    .kt-portlet__body-text {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.54;
+      color: $token-dark-grey-blue;
+
+      p {
+        margin-bottom: 0.3rem;
+      }
+
+      ul {
+        font-size: 0.9rem;
+        padding-left: 1.1rem;
+        font-weight: 400;
+        margin-bottom: 0;
+
+        .invalid-rule {
+          color: $kt-danger-color;
+        }
+      }
+    }
+  }
+}
+
+.password-meter-container {
+  .password-meter {
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+    height: 5px;
+    position: relative;
+    border-radius: 2.5px;
+    background-color: #ebedf2;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 0;
+      height: 100%;
+      border-radius: 2.5px;
+    }
+
+    &.Weak {
+      &:after {
+        width: 33%;
+        background-color: #ffb822;
+      }
+    }
+
+    &.Normal {
+      &:after {
+        width: 66%;
+        background-color: $kt-brand-color;
+      }
+    }
+
+    &.Strong {
+      &:after {
+        width: 100%;
+        background-color: $kt-success-color;
+      }
+    }
+  }
+
+  .password-meter-text {
+    display: inline-block;
+    width: 20%;
+    vertical-align: middle;
+    font-weight: 500;
+    text-align: right;
+  }
+}
+
+.spinner-wrapper {
+  .spinner-container {
+    margin-top: 2rem;
+  }
+}

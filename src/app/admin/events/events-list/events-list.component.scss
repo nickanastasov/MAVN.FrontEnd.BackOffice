@@ -1,0 +1,33 @@
+.spinner-wrapper {
+  position: relative;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    &--top {
+      transform: translate(-50%);
+    }
+  }
+}
+
+::ng-deep .highlight {
+  border-radius: 4px;
+  padding: 4px;
+  margin-left: -4px;
+
+  &.h-1 {
+    background-color: #fcfce3;
+  }
+
+  &.h-2 {
+    background-color: #e3fdef;
+  }
+}
+
+.filter-wrapper {
+  .mat-form-field {
+    margin-right: 20px;
+  }
+}

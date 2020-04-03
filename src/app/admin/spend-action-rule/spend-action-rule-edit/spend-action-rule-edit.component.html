@@ -1,0 +1,37 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>Enter spend rule details</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+      <app-spend-action-rule-form *ngIf="!isLoading"
+                                  [isSaving]="isSaving"
+                                  [type]="FormMode.Edit"
+                                  (submitSuccess)="onFormSubmit($event)"
+                                  [rule]="ruleForEdit">
+      </app-spend-action-rule-form>
+
+      <div class="spinner-container"
+           *ngIf="isLoading || isSaving">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #successMessageElement
+     hidden
+     i18n>You have edited spend action rule successfully</div>

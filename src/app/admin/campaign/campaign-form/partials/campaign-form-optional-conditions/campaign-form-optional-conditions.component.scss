@@ -1,0 +1,45 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+@import '~src/scss/token-theme/utils/variables';
+
+#conditions {
+  .condition {
+    position: relative;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .use-global-rate {
+      padding-top: 14px;
+
+      :host ::ng-deep .mat-checkbox-layout {
+        white-space: normal;
+      }
+    }
+
+    .invalid-ratios {
+      border-color: $error-color;
+    }
+
+    .ratio {
+      &:not(:last-of-type) {
+        margin-bottom: 5px;
+      }
+
+      .ratio-hint {
+        font-weight: 500;
+        margin-left: 10px;
+      }
+
+      .has-error {
+        color: $error-color;
+      }
+    }
+  }
+
+  .condition-delete-button {
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+}

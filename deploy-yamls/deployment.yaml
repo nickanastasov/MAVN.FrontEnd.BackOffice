@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    description: Lykke-Frontend-Backoffice
+  labels:
+    app: backoffice
+    tier: Service
+  name: backoffice
+  namespace: frontend
+spec:
+  revisionHistoryLimit: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backoffice
+  template:
+    metadata:
+      labels:
+        app: backoffice
+      name: backoffice
+    spec:
+      containers:
+      - name: backoffice
+        image: lykkebusiness/service-backoffice:dev
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+             command:
+             - /bin/sh
+             - -c
+             - "/bin/echo 'options single-request-reopen' >> /etc/resolv.conf && cp /config/env-config.json /usr/share/nginx/html/"
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /api/isalive
+            port: 80
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/isalive
+            port: 80
+          initialDelaySeconds: 40
+          periodSeconds: 20
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 20m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+        env:
+        - name: BuildNumber
+          value: '$version'
+        - name: SettingsUrl
+          value: '$ConnectionString'
+        - name: ENV_INFO
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MyMonitoringUrl
+          value: http://backoffice.frontend.svc.cluster.local/api/isalive
+        volumeMounts:
+        - name: workdir
+          mountPath: /config
+      initContainers:
+      - name: install
+        image: busybox
+        command: ["/bin/sh","-c"]
+        args: ["wget --output-document=env-config.json $ConnectionString; cp env-config.json /work-dir"]
+        volumeMounts:
+        - name: workdir
+          mountPath: "/work-dir"
+      volumes:
+      - name: workdir
+        emptyDir: {}
+

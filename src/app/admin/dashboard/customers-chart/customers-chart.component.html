@@ -1,0 +1,52 @@
+<div *ngIf="isLoading"
+     class="text-center">
+  <div class="spinner-border"></div>
+</div>
+
+<div class="chart-container row"
+     id="customers-chart-container"
+     [ngStyle]="{height: isFirstLoading ? 0 : 'auto'}">
+  <div class="col-xl-12 col-lg-12">
+    <!-- <app-small-graphic-boxes [smallGraphicItems]="smallGraphicItems"></app-small-graphic-boxes> -->
+
+    <div class="big-chart-container">
+      <!-- <app-chart-select [dropdownData]="dropdownData"
+                        [hidden]="isLoading"></app-chart-select> -->
+
+      <div class="chart-wrapper">
+        <canvas id="customers-line-chart"
+                style="height: 300px;"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Translates -->
+
+<div #lineChartLabelTemplate
+     hidden
+     i18n>New Customers</div>
+<div #newCustomersTooltipTemplate
+     hidden
+     i18n>New program members who signed up and confirmed the email</div>
+
+<div #tooltipWrapper
+     class="tooltip-wrapper">
+  <span #tooltip="matTooltip"
+        mat-raised-button
+        matTooltip=""></span>
+</div>
+
+<div #donutActiveCustomersLabelTemplate
+     hidden
+     i18n>Active Customers</div>
+<div #activeCustomersTooltipTemplate
+     hidden
+     i18n>Made a purchase during selected period</div>
+
+<div #donutNonActiveCustomersLabelTemplate
+     hidden
+     i18n>Non-Active Customers</div>
+<div #nonActiveCustomersTooltipTemplate
+     hidden
+     i18n>Did not make a purchase during selected period</div>

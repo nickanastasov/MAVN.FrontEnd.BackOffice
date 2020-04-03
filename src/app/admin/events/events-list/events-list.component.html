@@ -1,0 +1,253 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of blockchain operations in referral program</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__body">
+      <div class="filter-wrapper">
+        <mat-form-field appearance="outline">
+          <mat-label i18n>Operation</mat-label>
+          <mat-select [(ngModel)]="filterRequest.EventName">
+            <mat-option [value]="null">
+              <span i18n>All</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.CustomerRegistered">
+              <span i18n>Customer Registered</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.Minted">
+              <span i18n>Issued</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.Sent">
+              <span i18n>Sent</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.Burned">
+              <span i18n>Spent</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.Transfer">
+              <span i18n>Transfer</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.StakeDecreased">
+              <span i18n>Stake Decreased</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.StakeIncreased">
+              <span i18n>Stake Increased</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.FeeCollected">
+              <span i18n>Fee Collected</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferredFromPublicNetwork">
+              <span i18n>Transferred From Public Network</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferredToPublicNetwork">
+              <span i18n>Transferred To Public Network</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferToPublicNetworkFeeSet">
+              <span i18n>Transfer To Public Network Fee Set</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.PublicAccountLinked">
+              <span i18n>Public Account Linked</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.PublicAccountUnlinked">
+              <span i18n>Public Account Unlinked</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.RoleAdded">
+              <span i18n>Role Added</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.SeizeFrom">
+              <span i18n>Seize From</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TreasuryAccountSet">
+              <span i18n>Treasury Account Set</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferAccepted">
+              <span i18n>Transfer Accepted</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferReceived">
+              <span i18n>Transfer Received</span>
+            </mat-option>
+            <mat-option [value]="operationEnum.TransferRejected">
+              <span i18n>Transfer Rejected</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <input id="blockchain-operations-search-address-1"
+                 type="text"
+                 matInput
+                 placeholder="Address 1..."
+                 [(ngModel)]="filterRequest.AffectedAddresses[0]">
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+          <input id="blockchain-operations-search-address-2"
+                 type="text"
+                 matInput
+                 placeholder="Address 2..."
+                 [(ngModel)]="filterRequest.AffectedAddresses[1]">
+        </mat-form-field>
+        <button id="blockchain-operations-search-btn"
+                class="btn btn-brand btn-upper"
+                style="min-width: 100px"
+                (click)="onFilter()"
+                [disabled]="isSearching"
+                i18n>
+          Search
+        </button>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="table-wrapper">
+          <table id="table-blockchain-operations"
+                 class="blockchain-operations table table-hover">
+            <thead>
+              <th i18n>Operation</th>
+              <th i18n>From</th>
+              <th i18n>To</th>
+              <th i18n>Amount ({{assetSymbol}})</th>
+              <th i18n>Date-Time</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of events; let i = index"
+                  class="data-row-{{i}}">
+                <td data-id="eventName">
+                  <ng-container [ngSwitch]="row.EventName">
+                    <ng-container *ngSwitchCase="operationEnum.CustomerRegistered">
+                      <span i18n>Customer Registered</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.Minted">
+                      <span i18n>Issued</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.Sent">
+                      <span i18n>Sent</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.Burned">
+                      <span i18n>Spent</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.BridgeAdded">
+                      <span i18n>Bridge Added</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.LinkerAdded">
+                      <span i18n>Linker Added</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.ManagerAdded">
+                      <span i18n>Manager Added</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.MinterAdded">
+                      <span i18n>Minter Added</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.OwnershipTransferred">
+                      <span i18n>Ownership Transferred</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.Transfer">
+                      <span i18n>Transfer</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferAccepted">
+                      <span i18n>Transfer Accepted</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferReceived">
+                      <span i18n>Transfer Received</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferRejected">
+                      <span i18n>Transfer Rejected</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.StakeDecreased">
+                      <span i18n>Stake Decreased</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.StakeIncreased">
+                      <span i18n>Stake Increased</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.FeeCollected">
+                      <span i18n>Fee Collected</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferredFromPublicNetwork">
+                      <span i18n>Transferred From Public Network</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferredToPublicNetwork">
+                      <span i18n>Transferred To Public Network</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TransferToPublicNetworkFeeSet">
+                      <span i18n>Transfer To Public Network Fee Set</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.PublicAccountLinked">
+                      <span i18n>Public Account Linked</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.PublicAccountUnlinked">
+                      <span i18n>Public Account Unlinked</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.RoleAdded">
+                      <span i18n>Role Added</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.SeizeFrom">
+                      <span i18n>Seize From</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="operationEnum.TreasuryAccountSet">
+                      <span i18n>Treasury Account Set</span>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <span i18n>{{row.EventName}}</span>
+                    </ng-container>
+                  </ng-container>
+                </td>
+                <td data-id="From">
+                  <span innerHtml="{{row.From | highlight : filterRequest.AffectedAddresses}}"></span>
+                </td>
+                <td data-id="To">
+                  <span innerHtml="{{row.To | highlight : filterRequest.AffectedAddresses}}"></span>
+                </td>
+                <td data-id="Amount"
+                    class="text-right">
+                  <span>{{row.Amount}}</span>
+                </td>
+                <td data-id="Timestamp">
+                  <span>{{row.Timestamp}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="spinner-wrapper">
+          <div class="spinner-container spinner-container"
+               *ngIf="isLoading">
+            <div class="spinner-border"></div>
+          </div>
+        </div>
+
+        <div class="table-states-container text-center">
+          <ng-container *ngIf="!isLoading && !isSearching && events.length === 0">
+            <span *ngIf="!hasFiltering"
+                  i18n>There are no blockchain operations</span>
+            <span *ngIf="hasFiltering"
+                  i18n>Blockchain operations not found</span>
+          </ng-container>
+        </div>
+
+        <app-pagination-container [totalCount]="totalCount"
+                                  [currentPage]="currentPage"
+                                  (paginationEvent)="onPaginationChangeEvent($event)"
+                                  showFirstLastButtons="false"
+                                  showLength="false"
+                                  showPages="false"></app-pagination-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.spinner-wrapper {
+  position: relative;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+
+    &--top {
+      transform: translate(-50%);
+    }
+  }
+}
+
+.filter-wrapper {
+  .mat-form-field {
+    margin-right: 20px;
+  }
+
+  > button {
+    vertical-align: super;
+  }
+}

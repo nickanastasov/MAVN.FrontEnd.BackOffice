@@ -1,0 +1,219 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of spend rules in referral program</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <button id="btnAddSpendActionRule"
+                [hidden]="!hasEditPermission"
+                class="btn btn-brand btn-bold"
+                routerLink="add-spend-action-rule">
+          <span i18n>Add Spend Rule</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <div class="spinner-container"
+             *ngIf="isLoading || isSearching">
+          <div class="spinner-border"></div>
+        </div>
+        <h3 class="kt-portlet__head-title"
+            [hidden]="isLoading || isSearching"
+            i18n>{{totalCount}} total spend rules</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <!-- <div class="filter-wrapper d-flex justify-content-between align-items-center">
+        <mat-form-field appearance="legacy">
+          <mat-label i18n>Search</mat-label>
+          <input id="searchByTitleTextInput"
+                 matInput
+                 placeholder="Search by title"
+                 i18n-placeholder
+                 matTooltip="Search by title"
+                 i18n-matTooltip
+                 [(ngModel)]="searchByTitleText"
+                 (ngModelChange)="searchValueChanged()"
+                 (keydown.enter)="searchByTitle()">
+          <mat-icon id="clearBtn"
+                    *ngIf="searchByTitleText"
+                    matSuffix
+                    (click)="clearSearch()">clear</mat-icon>
+          <mat-icon id="searchBtn"
+                    matSuffix
+                    (click)="searchByTitle()">search</mat-icon>
+        </mat-form-field>
+      </div> -->
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <mat-spinner class="margin-0-auto"></mat-spinner>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="spend-action-rule-list-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th>
+                <div>
+                  <div>
+                    <span i18n>Title</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchTitle()">search</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchTitle"
+                       style="width: 230px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <input id="tb-search-title"
+                             type="text"
+                             matInput
+                             placeholder="Search"
+                             i18n-placeholder
+                             [(ngModel)]="searchTitleValue"
+                             (ngModelChange)="searchTitleValueChanged()"
+                             (keydown.enter)="searchTitle()">
+                      <mat-icon id="btn-search-title"
+                                class="btn-search"
+                                matSuffix
+                                (click)="searchTitle()">search</mat-icon>
+                      <mat-icon id="btn-clear-title"
+                                class="btn-clear"
+                                *ngIf="searchTitleValue"
+                                matSuffix
+                                (click)="clearTitle()">clear</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 100px"
+                  i18n>Status</th>
+              <th style="width: 120px"
+                  i18n>Start Date</th>
+              <th style="width: 120px"
+                  i18n>End Date</th>
+              <th style="width: 120px"
+                  i18n>Vertical</th>
+              <th style="width: auto"
+                  i18n>Conversion Rate</th>
+              <th style="width: auto"
+                  i18n>Order</th>
+              <th style="width: 90px; padding-right: 20px"
+                  class="text-right"
+                  i18n>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rule of spendActionRules; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="title">
+                <span>{{rule.Title}}</span>
+              </td>
+              <td data-id="status">
+                <span class="kt-badge kt-badge--dot kt-badge--md kt-badge--active"></span>
+                <span i18n>Active</span>
+              </td>
+              <td data-id="fromDate">
+                <span>{{rule.CreationDate | date:'dd/MM/yyyy'}}</span>
+              </td>
+              <td data-id="toDate">
+                <span>&nbsp;</span>
+              </td>
+              <td data-id="vertical">
+                <ng-container *ngIf="rule.Vertical">
+                  <ng-container [ngSwitch]="rule.Vertical">
+                    <ng-container *ngSwitchCase="BusinessVerticalType.Hospitality">
+                      <span i18n>Hospitality</span>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="BusinessVerticalType.RealEstate">
+                      <span i18n>Real Estate</span>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <span i18n>Retail</span>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td data-id="reward">
+                <span>{{rule.AmountInTokens | token}}</span>
+                <span>&nbsp;{{tokenSymbol}}&nbsp;/&nbsp;</span>
+                <span>{{rule.AmountInCurrency | number : '1.0-2'}}&nbsp;{{baseCurrencyCode}}</span>
+              </td>
+              <td data-id="order">
+                <span>{{rule.Order}}</span>
+              </td>
+              <td data-id="actions"
+                  class="text-right">
+                <a [routerLink]="['edit-spend-action-rule', rule.Id]"
+                   [state]="{ page: currentPage, pageSize: pageSize }"
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons"
+                            *ngIf="!hasEditPermission">visibility</mat-icon>
+                  <mat-icon class="material-icons-outlined"
+                            *ngIf="hasEditPermission">edit</mat-icon>
+                </a>
+                <a (click)="deleteActionRule(rule)"
+                   [hidden]="!hasEditPermission"
+                   href="javascript:void(0);"
+                   matTooltip="Delete"
+                   i18n-matTooltip
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container"
+             *ngIf="isLoading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!isLoading && !isSearching && spendActionRules.length === 0">
+          <span *ngIf="!searchTitleValue"
+                i18n>There are no spend action rules, please create one</span>
+          <span *ngIf="searchTitleValue"
+                i18n>Spend action rule not found</span>
+        </ng-container>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                [pageSize]="initialPageSize"
+                                (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+
+    </div>
+  </div>
+</div>
+
+<div #deleteActionRulePrompt
+     hidden
+     ngNonBindable
+     i18n>Do you want to delete the spend rule "{{title}}"?</div>
+
+<div #actionRuleDeletedMessage
+     hidden
+     i18n>Action rule deleted successfully.</div>

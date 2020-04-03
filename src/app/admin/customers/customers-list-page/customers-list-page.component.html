@@ -1,0 +1,182 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of customers in referral program</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <div class="spinner-container"
+             *ngIf="loading || isSearching">
+          <div class="spinner-border"></div>
+        </div>
+        <h3 class="kt-portlet__head-title"
+            [hidden]="loading || isSearching"
+            i18n>{{totalCount}} total customers</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="customers-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: auto"
+                  i18n>First Name</th>
+              <th style="width: auto"
+                  i18n>Last Name</th>
+              <th style="width: auto"
+                  i18n>Phone Number</th>
+              <th style="width: auto">
+                <div>
+                  <div>
+                    <span i18n>Email</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchEmail()">search</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchEmail"
+                       style="width: 230px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <input id="tb-search-email"
+                             type="text"
+                             matInput
+                             placeholder="Search by full email or ID"
+                             i18n-placeholder
+                             matTooltip="Search by full email or ID"
+                             i18n-matTooltip
+                             [(ngModel)]="searchEmailValue"
+                             (ngModelChange)="searchEmailValueChanged()"
+                             (keydown.enter)="searchEmail()">
+                      <mat-icon id="btn-search-email"
+                                class="btn-search"
+                                matSuffix
+                                (click)="searchEmail()">search</mat-icon>
+                      <mat-icon id="btn-clear-email"
+                                class="btn-clear"
+                                *ngIf="searchEmailValue"
+                                matSuffix
+                                (click)="clearEmail()">clear</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 120px"
+                  i18n>Email Verified</th>
+              <th style="width: 120px"
+                  i18n>Phone Verified</th>
+              <th style="width: 120px"
+                  i18n>Connector Status</th>
+              <th style="width: 90px"
+                  i18n>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="firstName">
+                <span>{{customer.FirstName}}</span>
+              </td>
+              <td data-id="lastName">
+                <span>{{customer.LastName}}</span>
+              </td>
+              <td data-id="phoneNumber">
+                <span>{{customer.PhoneNumber}}</span>
+              </td>
+              <td data-id="email"
+                  [ngClass]="customer.CustomerStatus ==  1 ? 'text-gray' : ''">
+                <span>{{customer.Email}}</span>
+              </td>
+              <td>
+                <ng-container *ngIf="customer.IsEmailVerified">
+                  <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                  <span i18n>Yes</span>
+                </ng-container>
+                <ng-container *ngIf="!customer.IsEmailVerified">
+                  <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                  <span i18n>No</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="customer.IsPhoneVerified">
+                  <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                  <span i18n>Yes</span>
+                </ng-container>
+                <ng-container *ngIf="!customer.IsPhoneVerified">
+                  <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                  <span i18n>No</span>
+                </ng-container>
+              </td>
+              <td data-id="agentStatus">
+                <ng-container [ngSwitch]="customer.CustomerAgentStatus">
+                  <ng-container *ngSwitchCase="CustomerAgentStatus.ApprovedAgent">
+                    <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Active</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="CustomerAgentStatus.Rejected">
+                    <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Rejected</span>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                    <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Not active</span>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td data-id="actions">
+                <a [routerLink]="['details', customer.CustomerId]"
+                   [state]="{ page: currentPage, pageSize: pageSize }"
+                   matTooltip="View"
+                   i18n-matTooltip
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons">visibility</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container"
+             *ngIf="loading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!loading && !isSearching && customers.length === 0">
+          <span *ngIf="!searchEmailValue">There are no customers yet</span>
+          <span *ngIf="searchEmailValue">Customer not found</span>
+        </ng-container>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                [pageSize]="initialPageSize"
+                                (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+
+    </div>
+  </div>
+</div>

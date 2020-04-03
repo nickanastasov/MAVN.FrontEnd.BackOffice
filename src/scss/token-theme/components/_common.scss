@@ -1,0 +1,44 @@
+@import '../utils/rtl-mixins';
+@import '../template/template';
+
+.spinner-border {
+  border-color: #d9a8fb;
+  border-right-color: $kt-brand-color;
+  border-width: 2px;
+}
+
+.spinner-with-text {
+  display: flex;
+  align-items: center;
+
+  > .spinner-text {
+    @include margin-start(5px);
+  }
+}
+
+.spinner-centered {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+
+  .spinner-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &--top {
+      top: 0;
+      transform: translate(-50%, 50%);
+    }
+  }
+}
+
+.table-states-container {
+  > span {
+    display: inline-block;
+    margin-bottom: $padding;
+    margin-top: $padding;
+  }
+}

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: backoffice
+    environment: Live
+  name: backoffice
+  namespace: frontend
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: backoffice
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,5 @@
+export const DEFAULT_STAKE_AMOUNT = '0';
+export const DEFAULT_STAKING_PERIOD = 10;
+export const DEFAULT_STAKE_WARNING_PERIOD = 2;
+export const DEFAULT_STAKING_RULE = 0;
+export const DEFAULT_BURNING_RULE = 0;

@@ -1,0 +1,19 @@
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+#leads-chart-container {
+  margin-top: 10px;
+}
+
+.big-chart-container {
+  // margin-top: 25px;
+
+  .chart-wrapper {
+    margin-top: 25px;
+
+    .hidden {
+      display: none;
+    }
+  }
+}

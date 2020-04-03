@@ -1,0 +1,44 @@
+BackofficePlatform:
+  AdminApiGatewayUrl:
+    settings-key: AdminApiGateway
+  HelpDocumentUrl:
+    settings-key: HelpDocumentUrl
+  HideBlockchainMenu:
+    settings-key: BackofficePlatform-HideBlockchainMenu
+  HideSegmentMenu:
+    settings-key: BackofficePlatform-HideSegmentMenu
+  HideTierMenu:
+    settings-key: BackofficePlatform-HideTierMenu
+  BaseCurrencyCode:
+    settings-key: Constant-BaseCurrencyCode
+  PasswordValidationSettings:
+    MinLength:
+      settings-key: PasswordValidation-MinLength
+    MaxLength:
+      settings-key: PasswordValidation-MaxLength
+    MinUpperCase:
+      settings-key: PasswordValidation-MinUpperCase
+    MinLowerCase:
+      settings-key: PasswordValidation-MinLowerCase
+    MinSpecialSymbols:
+      settings-key: PasswordValidation-MinSpecialSymbols
+    MinNumbers:
+      settings-key: PasswordValidation-MinNumbers
+    AllowedSpecialSymbols:
+      settings-key: PasswordValidation-AllowedSpecialSymbols
+    AllowWhiteSpaces:
+      settings-key: PasswordValidation-AllowWhiteSpaces
+  MobileAppImageFileSizeInKB:
+    settings-key: BackofficePlatform-MobileAppImageFileSizeInKB
+  MobileAppImageMinWidth:
+    settings-key: BackofficePlatform-MobileAppImageMinWidth
+  MobileAppImageMinHeight:
+    settings-key: BackofficePlatform-MobileAppImageMinHeight
+  IsRealEstateFeatureDisabled:
+    settings-key: IsRealEstateFeatureDisabled
+    types:
+      - Optional
+  IsPublicBlockchainFeatureDisabled:
+    settings-key: IsPublicBlockchainFeatureDisabled
+    types:
+      - Optional

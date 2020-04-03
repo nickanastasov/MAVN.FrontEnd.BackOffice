@@ -1,0 +1,51 @@
+.user-form {
+  label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .mat-form-field-appearance-outline {
+    .mat-form-field-wrapper {
+      padding-bottom: 2.5em;
+
+      .mat-form-field-infix {
+        border-top: 0.3em solid transparent;
+      }
+
+      .mat-form-field-subscript-wrapper {
+        padding: 0;
+        margin: 0;
+        top: calc(100% - 2.2em);
+      }
+    }
+
+    .mat-select-arrow-wrapper {
+      transform: translateY(10%);
+    }
+  }
+
+  #permissions-table {
+    width: auto;
+
+    label {
+      margin-bottom: 0;
+    }
+
+    thead {
+      th {
+        color: rgb(99, 100, 102);
+
+        .header-label {
+          padding-bottom: 5px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        color: rgb(99, 100, 102);
+        font-weight: 500;
+      }
+    }
+  }
+}

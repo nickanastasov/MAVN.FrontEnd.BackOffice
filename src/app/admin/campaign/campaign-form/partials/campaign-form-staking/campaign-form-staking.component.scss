@@ -1,0 +1,7 @@
+@import '~src/scss/token-theme/utils/variables';
+
+.staking {
+  &-check {
+    padding-bottom: $mat-form-field-wrapper__padding-bottom;
+  }
+}

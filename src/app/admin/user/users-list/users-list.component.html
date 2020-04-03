@@ -1,0 +1,186 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of admin users</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <button id="add_campaign_btn"
+                [hidden]="!hasEditPermission"
+                class="btn btn-brand btn-bold"
+                routerLink="add-admin-user">
+          <span i18n>Add User</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <div class="spinner-container"
+             *ngIf="loading || isSearching">
+          <div class="spinner-border"></div>
+        </div>
+        <h3 class="kt-portlet__head-title"
+            [hidden]="loading || isSearching"
+            i18n>{{totalCount}} total users</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             *ngIf="isSearching">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="users-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width: auto"
+                  i18n>User Id</th>
+              <th style="width: auto"
+                  i18n>Full Name</th>
+              <th style="width: auto">
+                <div>
+                  <div>
+                    <span i18n>Email</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchEmail()">search</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchEmail"
+                       style="width: 230px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <input id="tb-search-email"
+                             type="text"
+                             matInput
+                             placeholder="Search by full email"
+                             i18n-placeholder
+                             matTooltip="Search by full email"
+                             i18n-matTooltip
+                             [(ngModel)]="searchEmailValue"
+                             (ngModelChange)="searchEmailValueChanged()"
+                             (keydown.enter)="search()">
+                      <mat-icon id="btn-search-email"
+                                class="btn-search"
+                                matSuffix
+                                (click)="search()">search</mat-icon>
+                      <mat-icon id="btn-clear-email"
+                                class="btn-clear"
+                                *ngIf="searchEmailValue"
+                                matSuffix
+                                (click)="clearEmail()">clear</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 120px"
+                  i18n>Registration Date</th>
+              <th style="width: 110px">
+                <div>
+                  <div>
+                    <span i18n>Status</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchStatus()">filter_list</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchStatus"
+                       style="width: 110px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <mat-select id="tb-search-status"
+                                  [(ngModel)]="searchStatusValue"
+                                  (ngModelChange)="searchStatusValueChanged()"
+                                  disableRipple>
+                        <mat-option *ngFor="let item of searchStatusFilterValues"
+                                    [value]="item.Value">{{item.DisplayName}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 90px"
+                  i18n>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i = index"
+                class="data-row-{{i}} {{user.IsActive}}"
+                [class.text-gray]="!user.IsActive">
+              <td data-id="id">
+                <span>{{user.Id}}</span>
+              </td>
+              <td data-id="fullName">
+                <span>{{user.FirstName}} {{user.LastName}}</span>
+              </td>
+              <td data-id="email">
+                <span>{{user.Email}}</span>
+              </td>
+              <td data-id="registrationDate">
+                <span>{{user.Registered | date:'dd/MM/yyyy'}}</span>
+              </td>
+              <td data-id="isActive">
+                <ng-container [ngSwitch]="user.IsActive">
+                  <ng-container *ngSwitchCase="true">
+                    <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Active</span>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                    <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
+                    <span i18n>Not active</span>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td data-id="actions">
+                <a [routerLink]="['edit-admin-user', user.Id]"
+                   [state]="{ page: currentPage, pageSize: pageSize }"
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons"
+                            *ngIf="!hasEditPermission">visibility</mat-icon>
+                  <mat-icon class="material-icons-outlined"
+                            *ngIf="hasEditPermission">edit</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container"
+             *ngIf="loading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!loading && !isSearching && users.length === 0">
+          <span *ngIf="!searchEmailValue"
+                i18n>There are no admin users please create one</span>
+          <span *ngIf="searchEmailValue"
+                i18n>Admin user not found</span>
+        </ng-container>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                [pageSize]="initialPageSize"
+                                (paginationEvent)="onPaginationChangeEvent($event)">
+      </app-pagination-container>
+    </div>
+  </div>
+</div>

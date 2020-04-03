@@ -1,0 +1,172 @@
+<ng-container [formGroup]="condition">
+  <div class="row">
+    <div class="col-md-12 staking-check"
+         [class.staking-check]="condition.get(campaign.conditionFormProps.HasStaking).value">
+      <mat-checkbox formControlName="HasStaking"
+                    (change)="campaign.onConditionHasStakingChanged(condition)">
+        <span i18n
+              matTooltip="Use this option to define staking conditions (available for some of the events)"
+              i18n-matTooltip>Staking Amount</span>
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <div class="row"
+       *ngIf="condition.get(campaign.conditionFormProps.HasStaking).value">
+    <div class="col-xl-2 col-lg-4 col-md-6">
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label>
+          <span i18n>Amount, {{campaign.tokenSymbol}}</span>
+        </mat-label>
+        <input matInput
+               formControlName="StakeAmount"
+               type="text"
+               matTooltip="Amount of {{campaign.tokenSymbol}} that would be staked (frozen) to take part in this action rule"
+               i18n-matTooltip
+               required>
+        <mat-error>
+          <app-error-message controlName="StakeAmount"></app-error-message>
+          <app-error-message controlName="StakeAmount"
+                             key="moneyFormat"
+                             [template]="campaign.templates.moneyFormatError"></app-error-message>
+          <app-error-message controlName="StakeAmount"
+                             key="moneyMinMoreZero"
+                             [template]="campaign.templates.minMoreZeroNumberError"></app-error-message>
+          <app-error-message controlName="StakeAmount"
+                             key="moneyMaxNumber"
+                             [template]="campaign.templates.maxNumberError"
+                             [templateContext]="{$implicit: {max: campaign.TOKENS_INPUT_MAX_NUMBER}}">
+          </app-error-message>
+          <app-error-message controlName="StakeAmount"
+                             key="accuracy"
+                             [template]="campaign.templates.invalidAccuracyError"
+                             [templateContext]="{$implicit: {accuracy: campaign.TOKENS_INPUT_ACCURACY}}">
+          </app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-2 col-lg-4 col-md-6">
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label i18n>Staking Period, days</mat-label>
+        <input matInput
+               formControlName="StakingPeriod"
+               type="number"
+               required
+               matTooltip="Number of days for which this amount would be staked (frozen) to take part in this action rule"
+               i18n-matTooltip
+               min="1"
+               step="1">
+        <mat-error>
+          <app-error-message controlName="StakingPeriod"></app-error-message>
+          <app-error-message controlName="StakingPeriod"
+                             key="min"
+                             [template]="campaign.templates.minNumberError"
+                             [templateContext]="{$implicit: {min: 1}}"></app-error-message>
+          <app-error-message controlName="StakingPeriod"
+                             key="max"
+                             [template]="campaign.templates.maxNumberError"
+                             [templateContext]="{$implicit: {max: campaign.INTEGER_MAX_NUMBER}}"></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-2 col-lg-4 col-md-6">
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label i18n>Warning Period, days</mat-label>
+        <input matInput
+               formControlName="StakeWarningPeriod"
+               type="number"
+               matTooltip="Number of days before the end of Staking Period when the customer taking part in the action rule would be warned about the end of the Staking Period"
+               i18n-matTooltip
+               required
+               min="0"
+               step="1">
+        <mat-error>
+          <app-error-message controlName="StakeWarningPeriod"></app-error-message>
+          <app-error-message controlName="StakeWarningPeriod"
+                             key="min"
+                             [template]="campaign.templates.minNumberError"
+                             [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+          <app-error-message controlName="StakeWarningPeriod"
+                             key="shouldBeLessThanStakingPeriod"
+                             [template]="shouldBeLessThanStakingPeriodError"></app-error-message>
+          <ng-template #shouldBeLessThanStakingPeriodError>
+            <div i18n>Should be less than Staking Period</div>
+          </ng-template>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-2 col-lg-4 col-md-6">
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label>
+          <span i18n>Staking Rule, % of Staking Amount</span>
+        </mat-label>
+        <input matInput
+               formControlName="StakingRule"
+               type="number"
+               min="0"
+               max="100"
+               matTooltip="Part of the Staking Amount that will be returned to the participants (customers) in case the action/event is completed"
+               i18n-matTooltip
+               [step]="campaign.PERCENTAGE_INPUT_MIN_NUMBER"
+               required>
+        <mat-error>
+          <app-error-message controlName="StakingRule"></app-error-message>
+          <app-error-message controlName="StakingRule"
+                             key="min"
+                             [template]="campaign.templates.minNumberError"
+                             [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+          <app-error-message controlName="StakingRule"
+                             key="max"
+                             [template]="campaign.templates.maxNumberError"
+                             [templateContext]="{$implicit: {max: 100}}"></app-error-message>
+          <app-error-message controlName="StakingRule"
+                             key="accuracy"
+                             [template]="campaign.templates.invalidAccuracyError"
+                             [templateContext]="{$implicit: {accuracy: campaign.PERCENTAGE_INPUT_ACCURACY}}">
+          </app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xl-2 col-lg-4 col-md-6">
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <mat-label>
+          <span i18n>Burning Rule, % of Staking Amount</span>
+        </mat-label>
+        <input matInput
+               formControlName="BurningRule"
+               type="number"
+               min="0"
+               max="100"
+               matTooltip="Part of the Staking Amount that will be charged from the participants (customers) in case the action/event is NOT completed"
+               i18n-matTooltip
+               [step]="campaign.PERCENTAGE_INPUT_MIN_NUMBER"
+               required>
+        <mat-error>
+          <app-error-message controlName="BurningRule"></app-error-message>
+          <app-error-message controlName="BurningRule"
+                             key="min"
+                             [template]="campaign.templates.minNumberError"
+                             [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+          <app-error-message controlName="BurningRule"
+                             key="max"
+                             [template]="campaign.templates.maxNumberError"
+                             [templateContext]="{$implicit: {max: 100}}"></app-error-message>
+          <app-error-message controlName="BurningRule"
+                             key="accuracy"
+                             [template]="campaign.templates.invalidAccuracyError"
+                             [templateContext]="{$implicit: {accuracy: campaign.PERCENTAGE_INPUT_ACCURACY}}">
+          </app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</ng-container>
