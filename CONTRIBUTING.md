@@ -6,7 +6,7 @@ These guidelines are for code changes but we are always very grateful to receive
 
 ## Preparation
 
-Before starting work on a *functional* change, i.e. a new feature, a change to an existing feature or a fixing a bug, please ensure an [issue has been raised](https://github.com/OpenMAVN/MAVN.Service.WAMPHost/issues/). Indicate your intention to do the work by writing a comment on the issue. This will prevent duplication of effort. If the change is non-trivial, it's usually best to propose a design in the issue comments before making a significant effort on the implementation.
+Before starting work on a *functional* change, i.e. a new feature, a change to an existing feature or a fixing a bug, please ensure an [issue has been raised](https://github.com/OpenMAVN/MAVN.FrontEnd.BackOffice/issues/). Indicate your intention to do the work by writing a comment on the issue. This will prevent duplication of effort. If the change is non-trivial, it's usually best to propose a design in the issue comments before making a significant effort on the implementation.
 
 It is **not** necessary to raise an issue for non-functional changes, e.g. refactoring, adding tests, reformatting code, documentation, updating packages, etc.
 
@@ -22,7 +22,7 @@ There is a single mainline branches `master` which is used for trunk-based devel
 
 1. [Fork](http://help.github.com/forking/) on GitHub
 1. Clone your fork locally
-1. Configure the `upstream` repo (`git remote add upstream git://github.com/OpenMAVN/MAVN.Service.WAMPHost.git`)
+1. Configure the `upstream` repo (`git remote add upstream git://github.com/OpenMAVN/MAVN.FrontEnd.BackOffice.git`)
 1. Checkout `master` (`git checkout master`)
 1. Create a local branch (`git checkout -b my-branch`). The branch name should be descriptive, or it can just be the GitHub issue number which the work relates to, e.g. `123`.
 1. Work on your change
