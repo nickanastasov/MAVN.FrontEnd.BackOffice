@@ -36,6 +36,7 @@ import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-di
 import {CopyToClipboardDirective} from './directives/copy-to-clipboard.directive';
 // pipes
 import {TokenPipe} from './pipes/token.pipe';
+import {HideRulesPipe} from './pipes/hide-rules.pipe';
 import {HighlightPipe} from './pipes/highlight.pipe';
 import {HeaderMenuComponent} from './header-menu/header-menu.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
@@ -51,6 +52,7 @@ import {FileSizePipe} from './pipes/file-size.pipe';
     CopyToClipboardDirective,
     // pipes
     FileSizePipe,
+    HideRulesPipe,
     TokenPipe,
     HighlightPipe,
     HeaderMenuComponent
@@ -98,6 +100,7 @@ import {FileSizePipe} from './pipes/file-size.pipe';
     FileSizePipe,
     TokenPipe,
     HighlightPipe,
+    HideRulesPipe,
     // Material
     MatButtonModule,
     MatButtonModule,
