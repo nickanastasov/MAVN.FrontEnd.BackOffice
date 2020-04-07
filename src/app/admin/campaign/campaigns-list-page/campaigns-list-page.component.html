@@ -7,7 +7,7 @@
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
                 id="kt_subheader_total"
-                i18n>List of earn rules in referral program</span>
+                i18n>List of Earn Campaigns in OpenMAVN program</span>
         </div>
       </div>
 
@@ -16,7 +16,7 @@
                 [hidden]="!hasEditPermission"
                 class="btn btn-brand btn-bold"
                 routerLink="add-earn-action-rule">
-          <span i18n>Add Earn Rule</span>
+          <span i18n>Add Earn Campaign</span>
         </button>
       </div>
     </div>
@@ -33,7 +33,7 @@
         </div>
         <h3 class="kt-portlet__head-title"
             [hidden]="loading || isSearching"
-            i18n>{{totalCount}} total earn rules</h3>
+            i18n>{{totalCount}} total earn campaigns</h3>
       </div>
     </div>
     <div class="kt-portlet__body">
@@ -188,9 +188,9 @@
       <div class="table-states-container text-center">
         <ng-container *ngIf="!loading && !isSearching && earnRules.length === 0">
           <span *ngIf="!searchTitleValue"
-                i18n>There are no Earn Action Rules please create one</span>
+                i18n>There are no Earn Campaigns, please create one</span>
           <span *ngIf="searchTitleValue"
-                i18n>Earn Action Rule not found</span>
+                i18n>Earn Campaign not found</span>
         </ng-container>
       </div>
 
@@ -204,4 +204,4 @@
 </div>
 <div #deleteSuccessMessage
      hidden
-     i18n>Action rule deleted successfully.</div>
+     i18n>Earn Campaign deleted successfully.</div>
