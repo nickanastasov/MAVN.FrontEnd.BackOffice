@@ -173,6 +173,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     } else {
       this.disableRateFields(true);
       this.locationsFormArray.push(this.generateLocationsFormGroup());
+      this.updateValuesForHiddenLocationFields();
     }
 
     this.partnerForm.controls['ClientSecret'].patchValue(this.defaultPasswordValue);
@@ -290,6 +291,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     }
 
     this.locationsFormArray.push(this.generateLocationsFormGroup());
+    this.updateValuesForHiddenLocationFields();
   }
 
   onRemoveLocation(locationIndex: number) {
@@ -345,6 +347,20 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
           this.hideGeneratePassBtn = true;
         }
       }
+    });
+  }
+
+  private updateValuesForHiddenLocationFields() {
+    if (!this.locationsFormArray.length) {
+      return;
+    }
+
+    const lastItemIndex = this.locationsFormArray.length - 1;
+    const targetLocationForm = this.locationsFormArray.at(lastItemIndex);
+    const stubValue = '' + new Date().getTime() + lastItemIndex;
+    targetLocationForm.patchValue({
+      AccountingIntegrationCode: stubValue,
+      ExternalId: stubValue
     });
   }
 }
