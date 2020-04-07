@@ -42,8 +42,11 @@ export class CampaignsListPageComponent implements OnInit {
 
   @ViewChild('deleteSuccessMessage')
   deleteSuccessMessage: ElementRef<HTMLElement>;
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
   private translates = {
-    deleteSuccessMessage: ''
+    deleteSuccessMessage: '',
+    headerTitle: ''
   };
 
   constructor(
@@ -75,12 +78,13 @@ export class CampaignsListPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.deleteSuccessMessage = this.deleteSuccessMessage.nativeElement.innerText;
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Earn Rules',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
-
-    this.translates.deleteSuccessMessage = this.deleteSuccessMessage.nativeElement.innerText;
   }
 
   onPaginationChangeEvent(pageEvent: PageRequestModel) {
