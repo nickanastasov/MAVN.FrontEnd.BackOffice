@@ -42,9 +42,13 @@ export class SpendActionRuleListPageComponent implements OnInit {
   @ViewChild('actionRuleDeletedMessage')
   actionRuleDeletedMessage: ElementRef<HTMLElement>;
 
+  @ViewChild('headerSubTitle')
+  headerSubTitle: ElementRef<HTMLElement>;
+
   private translates = {
     deleteActionRulePrompt: '',
-    actionRuleDeletedMessage: ''
+    actionRuleDeletedMessage: '',
+    headerSubTitle: ''
   };
   hasEditPermission = false;
 
@@ -66,9 +70,10 @@ export class SpendActionRuleListPageComponent implements OnInit {
   ngOnInit() {
     this.translates.deleteActionRulePrompt = this.deleteActionRulePrompt.nativeElement.innerText;
     this.translates.actionRuleDeletedMessage = this.actionRuleDeletedMessage.nativeElement.innerText;
+    this.translates.headerSubTitle = this.headerSubTitle.nativeElement.innerText;
 
     this.headerMenuService.headerMenuContent = {
-      title: 'Redeem Campaigns',
+      title: this.translates.headerSubTitle,
       subHeaderContent: this.subHeaderTemplate
     };
 
