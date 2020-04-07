@@ -68,7 +68,7 @@ export class SpendActionRuleListPageComponent implements OnInit {
     this.translates.actionRuleDeletedMessage = this.actionRuleDeletedMessage.nativeElement.innerText;
 
     this.headerMenuService.headerMenuContent = {
-      title: 'Spend Rules',
+      title: 'Redeem Campaigns',
       subHeaderContent: this.subHeaderTemplate
     };
 
