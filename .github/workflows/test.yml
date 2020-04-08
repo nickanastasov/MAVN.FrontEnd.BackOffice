@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 env:
-  SERVICE_DOCKER_IMAGE: service-backoffice
+  SERVICE_DOCKER_IMAGE: backoffice-service
 
 jobs:
   build:
