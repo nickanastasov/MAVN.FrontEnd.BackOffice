@@ -41,7 +41,7 @@
                   </div>
                 </div>
               </mat-select-trigger>
-              <mat-option *ngFor="let bonusType of campaign.bonusTypesMandatory"
+              <mat-option *ngFor="let bonusType of campaign.bonusTypesMandatory | hideRules"
                           [value]="bonusType.Type"
                           [disabled]="campaign.isBonusTypeOptionDisabled(bonusType.Type)">
                 <div class="d-flex justify-content-between">
