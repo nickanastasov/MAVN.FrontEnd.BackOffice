@@ -1,0 +1,20 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+
+env:
+  SERVICE_DOCKER_IMAGE: service-backoffice
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Build Docker images
+      - name: Build docker image
+        run: |
+          docker build --tag openmavn/$SERVICE_DOCKER_IMAGE:dev ./
