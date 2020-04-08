@@ -17,9 +17,9 @@
                           [hidden]="!loading"></mat-progress-bar>
       </div>
 
-      <div class="form-holder">
+      <div class="form-holder" *ngIf="!registerFormActive">
         <form [formGroup]="loginForm"
-              (ngSubmit)="onSubmit()">
+              (ngSubmit)="onLoginSubmit()">
           <mat-card-content>
             <mat-form-field class="width-100 form-item">
               <mat-label>Enter Email</mat-label>
@@ -63,6 +63,10 @@
           </mat-card-content>
 
           <mat-card-actions class="form-actions">
+            <p class="register-btn" (click)="changeForms()">
+              <span i18n>Register new account</span>
+            </p>
+
             <button type="submit"
                     class="btn btn-brand btn-bold"
                     [disabled]="loading">
@@ -77,6 +81,112 @@
 
           <div *ngIf="loginForm.errors?.invalidLogin || !!loginErrorMessage"
                class="mat-error server-error">{{loginErrorMessage}}</div>
+
+        </form>
+      </div>
+
+      <div class="form-holder" *ngIf="registerFormActive">
+        <form [formGroup]="registerForm"
+              (ngSubmit)="onRegisterSubmit()">
+          <mat-card-content>
+            <mat-form-field class="width-100 form-item">
+              <mat-label>Enter Email</mat-label>
+              <input matInput
+                     id="email"
+                     formControlName="Email"
+                     required>
+              <mat-error>
+                <app-error-message controlName="Email"></app-error-message>
+                <app-error-message controlName="Email"
+                                   key="email"
+                                   [template]="emailError"></app-error-message>
+                <ng-template #emailError>
+                  <span i18n>Please enter a valid email address</span>
+                </ng-template>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="width-100 form-item">
+              <mat-label>Enter Password</mat-label>
+              <input matInput
+                     id="password"
+                     [type]="revealPasswordField ? 'password' : 'text'"
+                     formControlName="Password"
+                     required>
+              <mat-icon matSuffix
+                        class="material-icons-outlined"
+                        style="cursor: pointer;"
+                        (click)="onTogglePasswordDisplay()">{{revealPasswordField ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+              <mat-error>
+                <app-error-message controlName="Password"></app-error-message>
+                <app-error-message controlName="Password"
+                                   key="minlength"
+                                   [template]="minlengthError"></app-error-message>
+                <ng-template #minlengthError>
+                  <span i18n>Minimum length is 6</span>
+                </ng-template>
+              </mat-error>
+            </mat-form-field>
+
+            <div class="width-100 form-item">
+              <button class="btn btn-outline-brand btn-bold"
+                      type="button"
+                      onclick="this.blur()"
+                      (click)="companyLogoInput.click()"
+                      i18n>Choose image</button>
+              <input id="companyLogo"
+                      type="file"
+                      #companyLogoInput
+                      class="form-control"
+                      style="display: none;"
+                      (change)="onCompanyLogoChange($event)"
+                      accept="image/*" />
+              <span *ngIf="!registerForm.get('CompanyLogo').value"
+                    class="file-name"
+                    i18n>No image chosen</span>
+              <span *ngIf="registerForm.get('CompanyLogo').value"
+                    class="file-name">{{ registerForm.get('CompanyLogo').value.name }}</span>
+            </div>
+
+            <mat-form-field class="width-100 form-item">
+              <mat-label>Enter Company Colour</mat-label>
+              <input matInput
+                     id="companyColour"
+                     type="color"
+                     formControlName="CompanyColour"
+                     required>
+              <mat-error>
+                <app-error-message controlName="CompanyColour"></app-error-message>
+                <app-error-message controlName="CompanyColour"
+                                   key="companyColour"
+                                   [template]="companyColourError"></app-error-message>
+                <ng-template #companyColourError>
+                  <span i18n>Please enter a valid colour.</span>
+                </ng-template>
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+
+          <mat-card-actions class="form-actions">
+            <p class="register-btn" (click)="changeForms()">
+              <span i18n>Already have an account?</span>
+            </p>
+
+            <button type="submit"
+                    class="btn btn-brand btn-bold"
+                    [disabled]="loading">
+              <span [hidden]="loading"
+                    i18n>Register</span>
+              <div *ngIf="loading"
+                   class="spinner-with-text justify-content-center">
+                <span class="spinner-border"></span>
+              </div>
+            </button>
+          </mat-card-actions>
+
+          <div *ngIf="registerForm.errors?.invalidLogin || !!registerErrorMessage"
+               class="mat-error server-error">{{registerErrorMessage}}</div>
 
         </form>
       </div>
