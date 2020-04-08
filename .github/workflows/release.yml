@@ -28,7 +28,6 @@ jobs:
 
       # Login to Docker Hub
       - name: Login to docker hub
-        if: env.RELEASE_JOB == 'true' || env.RELEASE_SERVICE == 'true'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
