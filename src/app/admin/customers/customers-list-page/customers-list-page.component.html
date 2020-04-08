@@ -7,7 +7,7 @@
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
                 id="kt_subheader_total"
-                i18n>List of customers in referral program</span>
+                i18n>List of customers in OpenMAVN program</span>
         </div>
       </div>
     </div>
@@ -45,8 +45,8 @@
                   i18n>First Name</th>
               <th style="width: auto"
                   i18n>Last Name</th>
-              <th style="width: auto"
-                  i18n>Phone Number</th>
+              <!-- <th style="width: auto"
+                  i18n>Phone Number</th> -->
               <th style="width: auto">
                 <div>
                   <div>
@@ -82,12 +82,14 @@
                   </div>
                 </div>
               </th>
-              <th style="width: 120px"
-                  i18n>Email Verified</th>
-              <th style="width: 120px"
-                  i18n>Phone Verified</th>
-              <th style="width: 120px"
-                  i18n>Connector Status</th>
+              <th style="width: auto"
+                  i18n>Customer ID</th>
+              <!-- <th style="width: 120px"
+                  i18n>Email Verified</th> -->
+              <!-- <th style="width: 120px"
+                  i18n>Phone Verified</th> -->
+              <!-- <th style="width: 120px"
+                  i18n>Connector Status</th> -->
               <th style="width: 90px"
                   i18n>Actions</th>
             </tr>
@@ -101,14 +103,17 @@
               <td data-id="lastName">
                 <span>{{customer.LastName}}</span>
               </td>
-              <td data-id="phoneNumber">
+              <!-- <td data-id="phoneNumber">
                 <span>{{customer.PhoneNumber}}</span>
-              </td>
+              </td> -->
               <td data-id="email"
                   [ngClass]="customer.CustomerStatus ==  1 ? 'text-gray' : ''">
                 <span>{{customer.Email}}</span>
               </td>
-              <td>
+              <td data-id="id">
+                <span>{{customer.CustomerId}}</span>
+              </td>
+              <!-- <td>
                 <ng-container *ngIf="customer.IsEmailVerified">
                   <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
                   <span i18n>Yes</span>
@@ -117,8 +122,8 @@
                   <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
                   <span i18n>No</span>
                 </ng-container>
-              </td>
-              <td>
+              </td> -->
+              <!-- <td>
                 <ng-container *ngIf="customer.IsPhoneVerified">
                   <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
                   <span i18n>Yes</span>
@@ -127,8 +132,8 @@
                   <span class="kt-badge kt-badge--danger kt-badge--dot kt-badge--md"></span>
                   <span i18n>No</span>
                 </ng-container>
-              </td>
-              <td data-id="agentStatus">
+              </td> -->
+              <!-- <td data-id="agentStatus">
                 <ng-container [ngSwitch]="customer.CustomerAgentStatus">
                   <ng-container *ngSwitchCase="CustomerAgentStatus.ApprovedAgent">
                     <span class="kt-badge kt-badge--yes-row kt-badge--dot kt-badge--md"></span>
@@ -143,7 +148,7 @@
                     <span i18n>Not active</span>
                   </ng-container>
                 </ng-container>
-              </td>
+              </td> -->
               <td data-id="actions">
                 <a [routerLink]="['details', customer.CustomerId]"
                    [state]="{ page: currentPage, pageSize: pageSize }"

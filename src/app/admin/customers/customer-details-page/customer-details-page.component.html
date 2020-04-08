@@ -91,7 +91,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td><span i18n>Balance</span></td>
               <td>
                 <div *ngIf="isLoadingBalance"
@@ -104,7 +104,7 @@
                   <span>{{balance.Amount | token}} {{balance.Asset}}</span>
                 </span>
               </td>
-            </tr>
+            </tr> -->
             <tr>
               <td><span i18n>Customer ID</span></td>
               <td>{{customer.CustomerId}}</td>
@@ -151,15 +151,15 @@
                 </span>
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td><span i18n>Referral Code</span></td>
               <td>{{customer.ReferralCode}}</td>
-            </tr>
+            </tr> -->
             <tr>
               <td><span i18n>Registration date</span></td>
               <td>{{customer.RegisteredDate | date:'dd/MM/yyyy'}}</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td><span i18n>Is email verified</span></td>
               <td>
                 <ng-container *ngIf="customer.IsEmailVerified">
@@ -171,8 +171,8 @@
                   <span i18n>No</span>
                 </ng-container>
               </td>
-            </tr>
-            <tr>
+            </tr> -->
+            <!-- <tr>
               <td><span i18n>Is phone verified</span></td>
               <td>
                 <ng-container *ngIf="customer.IsPhoneVerified">
@@ -184,8 +184,8 @@
                   <span i18n>No</span>
                 </ng-container>
               </td>
-            </tr>
-            <tr>
+            </tr> -->
+            <!-- <tr>
               <td><span i18n>Connector Status</span></td>
               <td>
                 <ng-container [ngSwitch]="customer.AgentStatus">
@@ -203,7 +203,7 @@
                   </ng-container>
                 </ng-container>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
