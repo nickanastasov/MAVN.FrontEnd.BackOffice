@@ -6,7 +6,7 @@ on:
       - published
 
 env:
-  SERVICE_DOCKER_IMAGE: service-backoffice
+  SERVICE_DOCKER_IMAGE: backoffice-service
 
 jobs:
   publish-release:
