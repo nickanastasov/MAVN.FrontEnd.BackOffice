@@ -30,6 +30,10 @@ const routes: Routes = [
         loadChildren: './spend-action-rule/spend-action-rule.module#SpendActionRuleModule'
       },
       {
+        path: 'smart-vouchers',
+        loadChildren: './smart-voucher/smart-voucher.module#SmartVoucherModule'
+      },
+      {
         path: 'users',
         loadChildren: './user/user.module#UserModule'
       },
