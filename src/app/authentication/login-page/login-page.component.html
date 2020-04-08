@@ -134,7 +134,7 @@
                       type="button"
                       onclick="this.blur()"
                       (click)="companyLogoInput.click()"
-                      i18n>Choose image</button>
+                      i18n>Choose logo</button>
               <input id="companyLogo"
                       type="file"
                       #companyLogoInput
@@ -144,7 +144,7 @@
                       accept="image/*" />
               <span *ngIf="!registerForm.get('CompanyLogo').value"
                     class="file-name"
-                    i18n>No image chosen</span>
+                    i18n>No logo chosen</span>
               <span *ngIf="registerForm.get('CompanyLogo').value"
                     class="file-name">{{ registerForm.get('CompanyLogo').value.name }}</span>
             </div>
