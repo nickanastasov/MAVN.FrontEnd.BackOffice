@@ -70,6 +70,14 @@ export class SettingsService {
     return this._settings && this._settings.BackofficePlatform.IsPublicBlockchainFeatureDisabled;
   }
 
+  get DemoUserLogin() {
+    return this._settings && this._settings.BackofficePlatform.DemoUserLogin;
+  }
+
+  get DemoUserPassword() {
+    return this._settings && this._settings.BackofficePlatform.DemoUserPassword;
+  }
+
   private _settings: Readonly<Settings>;
 
   readonly baseSettings$ = this.getSettings().pipe(

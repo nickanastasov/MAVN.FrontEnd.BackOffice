@@ -42,3 +42,11 @@ BackofficePlatform:
     settings-key: IsPublicBlockchainFeatureDisabled
     types:
       - Optional
+  DemoUserLogin:
+    settings-key: BackofficePlatform-DemoUserLogin
+    types:
+      - Optional
+  DemoUserPassword:
+    settings-key: BackofficePlatform-DemoUserPassword
+    types:
+      - Optional

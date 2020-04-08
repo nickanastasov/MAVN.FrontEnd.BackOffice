@@ -15,5 +15,7 @@ export interface Settings {
     MobileAppImageMinHeight: number;
     IsRealEstateFeatureDisabled: boolean;
     IsPublicBlockchainFeatureDisabled: boolean;
+    DemoUserLogin: string;
+    DemoUserPassword: string;
   };
 }
