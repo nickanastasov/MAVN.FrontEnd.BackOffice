@@ -5,6 +5,7 @@ import {AuthTokenService} from 'ngx-api-utils';
 import {markFormControlAsTouched} from '../../shared/utils/markFormControlAsTouched';
 import {LoginErrorCodes} from './login-error-codes.enum';
 import {EmailValidator} from 'src/app/shared/utils/validators';
+import {SettingsService} from 'src/app/core/settings/settings.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,17 +17,25 @@ export class LoginPageComponent implements OnInit {
   loading = false;
   revealPasswordField = true;
   loginErrorMessage: string;
+  loginFormProps = {
+    Email: 'Email',
+    Password: 'Password'
+  };
   loginForm = this.fb.group({
-    Email: ['', [Validators.required, EmailValidator]],
-    Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+    [this.loginFormProps.Email]: ['', [Validators.required, EmailValidator]],
+    [this.loginFormProps.Password]: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
   });
 
   constructor(
     // services
     private authTokenService: AuthTokenService,
     private authService: AuthenticationService,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private settingsService: SettingsService
+  ) {
+    this.loginForm.get(this.loginFormProps.Email).setValue(this.settingsService.DemoUserLogin);
+    this.loginForm.get(this.loginFormProps.Password).setValue(this.settingsService.DemoUserPassword);
+  }
 
   ngOnInit() {}
 
@@ -52,7 +61,7 @@ export class LoginPageComponent implements OnInit {
           this.loginForm.setErrors({invalidLogin: true});
         } else if (error.error === LoginErrorCodes.InvalidEmailFormat) {
           this.loginErrorMessage = error.message;
-          this.loginForm.get('Email').setErrors({email: true});
+          this.loginForm.get(this.loginFormProps.Email).setErrors({email: true});
         } else if (error) {
           this.loginErrorMessage = error.error + ': ' + error.message;
         } else {
