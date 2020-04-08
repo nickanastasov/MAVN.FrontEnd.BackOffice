@@ -1,0 +1,179 @@
+<ng-template #subHeaderTemplate>
+  <div class="kt-subheader kt-grid__item"
+       id="kt_subheader">
+    <div class="kt-container kt-container--fluid">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__toolbar"
+             id="kt_subheader_search">
+          <span class="kt-subheader__desc"
+                id="kt_subheader_total"
+                i18n>List of Voucher Campaigns in OpenMAVN program</span>
+        </div>
+      </div>
+
+      <div class="kt-subheader__toolbar">
+        <button id="btn-add-smart-voucher"
+                disabled
+                [hidden]="!hasEditPermission"
+                class="btn btn-brand btn-bold"
+                routerLink="add-smart-voucher">
+          <span i18n>New Voucher Campaign</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <div class="spinner-container"
+             [hidden]="!isLoading || !isSearching">
+          <div class="spinner-border"></div>
+        </div>
+        <h3 class="kt-portlet__head-title"
+            [hidden]="isLoading || isSearching"
+            i18n>{{totalCount}} total voucher campaigns</h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container--top"
+             [hidden]="!isSearching">
+          <mat-spinner class="margin-0-auto"></mat-spinner>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="smart-voucher-list-table"
+               class="table table-hover">
+          <thead>
+            <tr>
+              <th>
+                <div>
+                  <div>
+                    <span i18n>Title</span>
+                    <mat-icon class="btn-toggle-search"
+                              (click)="toggleSearchTitle()">search</mat-icon>
+                  </div>
+                  <div class="column-filter-wrapper"
+                       [class.filter-visible]="isVisibleSearchTitle"
+                       style="width: 230px;">
+                    <mat-form-field appearance="outline"
+                                    class="width-100">
+                      <input id="tb-search-title"
+                             type="text"
+                             matInput
+                             placeholder="Search"
+                             i18n-placeholder
+                             [(ngModel)]="searchTitleValue"
+                             (ngModelChange)="searchTitleValueChanged()"
+                             (keydown.enter)="searchTitle()">
+                      <mat-icon id="btn-search-title"
+                                class="btn-search"
+                                matSuffix
+                                (click)="searchTitle()">search</mat-icon>
+                      <mat-icon id="btn-clear-title"
+                                class="btn-clear"
+                                *ngIf="searchTitleValue"
+                                matSuffix
+                                (click)="clearTitle()">clear</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </th>
+              <th style="width: 100px"
+                  i18n>Status</th>
+              <th style="width: 120px"
+                  i18n>Creation Date</th>
+              <th style="width: auto"
+                  i18n>Partner</th>
+              <th style="width: 90px; padding-right: 20px"
+                  class="text-right"
+                  i18n>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rule of smartVouchers; let i = index"
+                class="data-row-{{i}}">
+              <td data-id="title">
+                <span>{{rule.Title}}</span>
+              </td>
+              <td data-id="status">
+                <span class="kt-badge kt-badge--dot kt-badge--md kt-badge--active"></span>
+                <span i18n>Active</span>
+              </td>
+              <td data-id="creationDate">
+                <span>{{rule.CreationDate | date:'dd/MM/yyyy'}}</span>
+              </td>
+              <td data-id="partner">
+                <span>{{rule.Partner}}</span>
+              </td>
+              <td data-id="actions"
+                  class="text-right">
+                <!-- [routerLink]="['edit-smart-voucher', rule.Id]"
+                  [state]="{ page: currentPage, pageSize: pageSize }"-->
+                <a onclick="return false;"
+                   style="opacity: .5; cursor: default"
+                   matTooltip="Edit"
+                   i18n-matTooltip
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons"
+                            *ngIf="!hasEditPermission">visibility</mat-icon>
+                  <mat-icon class="material-icons-outlined"
+                            *ngIf="hasEditPermission">edit</mat-icon>
+                </a>
+                <!-- (click)="deleteActionRule(rule)" -->
+                <a onclick="return;"
+                   style="opacity: .5; cursor: default"
+                   [hidden]="!hasEditPermission"
+                   href="javascript:void(0);"
+                   matTooltip="Delete"
+                   i18n-matTooltip
+                   class="btn btn-sm btn-clean btn-icon btn--row-action">
+                  <mat-icon class="material-icons-outlined">delete</mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spinner-wrapper">
+        <div class="spinner-container spinner-container"
+             *ngIf="isLoading">
+          <div class="spinner-border"></div>
+        </div>
+      </div>
+
+      <div class="table-states-container text-center">
+        <ng-container *ngIf="!isLoading && !isSearching && smartVouchers.length === 0">
+          <span *ngIf="!searchTitleValue"
+                i18n>There are no Voucher Campaigns, please create one</span>
+          <span *ngIf="searchTitleValue"
+                i18n>Voucher Campaign not found</span>
+        </ng-container>
+      </div>
+
+      <app-pagination-container [totalCount]="totalCount"
+                                [currentPage]="currentPage"
+                                [pageSize]="initialPageSize"
+                                (paginationEvent)="onPaginationChangeEvent($event)"></app-pagination-container>
+
+    </div>
+  </div>
+</div>
+
+<div #headerTitle
+     hidden
+     i18n>Voucher Campaigns</div>
+
+<div #deletePrompt
+     hidden
+     ngNonBindable
+     i18n>Do you want to delete the voucher campaign "{{title}}"?</div>
+
+<div #deletedMessage
+     hidden
+     i18n>Voucher campaign deleted successfully.</div>
