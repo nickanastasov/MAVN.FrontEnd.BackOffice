@@ -1,0 +1,55 @@
+name: release
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  SERVICE_DOCKER_IMAGE: service-backoffice
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Set release version
+      - name: Get release version from tag
+        id: version
+        uses: LykkeBusiness/get-semver-from-tag-action@v1.0.2
+        with:
+          tag: ${{ github.ref }}
+      - name: Set version for release
+        uses: allenevans/set-env@v1.0.0
+        with:
+          VERSION: ${{ steps.version.outputs.non-prefixed }}
+
+      # Login to Docker Hub
+      - name: Login to docker hub
+        if: env.RELEASE_JOB == 'true' || env.RELEASE_SERVICE == 'true'
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+
+      # Build Docker images
+      - name: Build docker image
+        run: |
+          docker build --tag openmavn/$SERVICE_DOCKER_IMAGE:$VERSION ./
+
+      # Push Docker Images
+      - name: Push service docker image
+        run: docker push openmavn/$SERVICE_DOCKER_IMAGE:$VERSION
+
+      # Create next release draft
+      - name: Create next release draft
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: next
+          release_name: next
+          body:
+          draft: true
