@@ -138,7 +138,7 @@
                 <ng-container [ngSwitch]="campaign.RewardType">
                   <ng-container *ngSwitchCase="RewardType.ConversionRate">
                     <span>{{campaign.AmountInTokens | token}}</span>
-                    <span>&nbsp;{{campaign.Asset}}&nbsp;/&nbsp;</span>
+                    <span>&nbsp;{{tokenSymbol}}&nbsp;/&nbsp;</span>
                     <span>{{campaign.AmountInCurrency | number : '1.0-2'}}&nbsp;{{baseCurrencyCode}}</span>
                   </ng-container>
                   <ng-container *ngSwitchCase="RewardType.Percentage">
@@ -146,7 +146,7 @@
                   </ng-container>
                   <ng-container *ngSwitchDefault>
                     <span>{{campaign.Reward | token}}</span>
-                    <span>&nbsp;{{campaign.Asset}}</span>
+                    <span>&nbsp;{{tokenSymbol}}</span>
                   </ng-container>
                 </ng-container>
               </td>

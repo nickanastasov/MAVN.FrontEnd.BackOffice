@@ -18,6 +18,7 @@ import {PermissionType} from '../../user/models/permission-type.enum';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {SettingsService} from 'src/app/core/settings/settings.service';
+import {TOKEN_SYMBOL} from '../../../core/constants/const';
 
 @Component({
   selector: 'app-customer-details-page',
@@ -62,6 +63,7 @@ export class CustomerDetailsPageComponent implements OnInit {
   copyModalLeft = 0;
   copyModalTop = 0;
   isVisibleCopyModal = false;
+  tokenSymbol = TOKEN_SYMBOL;
 
   // #region translates
   //Block Access
