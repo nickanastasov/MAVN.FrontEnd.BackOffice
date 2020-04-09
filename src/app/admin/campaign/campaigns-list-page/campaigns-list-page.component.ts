@@ -16,6 +16,7 @@ import {AuthenticationService} from 'src/app/authentication/authentication.servi
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {BusinessVerticalType} from '../../partners/models/business-vertical.enum';
+import {TOKEN_SYMBOL} from '../../../core/constants/const';
 
 @Component({
   selector: 'app-campaigns-list-page',
@@ -39,6 +40,7 @@ export class CampaignsListPageComponent implements OnInit {
   private pageSize: number;
   private getDataSubscription: Subscription;
   hasEditPermission = false;
+  tokenSymbol = TOKEN_SYMBOL;
 
   @ViewChild('deleteSuccessMessage')
   deleteSuccessMessage: ElementRef<HTMLElement>;

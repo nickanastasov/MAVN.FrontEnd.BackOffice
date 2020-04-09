@@ -308,14 +308,14 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
 
         this.smallGraphicItems = [
           {
-            title: 'Tokens Earned',
+            title: 'Smart Points Earned',
             number: response.EarnedCount,
             // percentage: (response.EarnedCount / response.TotalCount) * 100,
             color: 'green',
             tooltip: this.translatesForTemplate.totalTokensEarnedLabelTooltip
           },
           {
-            title: 'Tokens Spent',
+            title: 'Smart Points Spent',
             number: response.BurnedCount,
             // percentage: (response.BurnedCount / response.TotalCount) * 100,
             color: 'red',
