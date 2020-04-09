@@ -1,6 +1,8 @@
-import {Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewContainerRef, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewContainerRef, ViewEncapsulation, Inject, LOCALE_ID} from '@angular/core';
 import {HeaderMenuService} from '../services/header-menu.service';
 import {Subscription} from 'rxjs';
+import {LOCALES} from 'src/app/core/constants/const';
+import {AuthenticationService} from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-header-menu',
@@ -10,12 +12,25 @@ import {Subscription} from 'rxjs';
 })
 export class HeaderMenuComponent implements OnInit, OnDestroy {
   headerTitle: string = '';
+  LOCALES = LOCALES;
+  currentLocale = '';
 
   @ViewChild('headerWrapper') private headerWrapperRef: ElementRef<HTMLElement>;
   @ViewChild('subHeaderContentViewContainer', {read: ViewContainerRef}) private subHeaderContentViewContainer: ViewContainerRef;
 
   private headerMenuServiceSubscriber: Subscription;
-  constructor(private headerMenuService: HeaderMenuService) {}
+  constructor(
+    // services
+    private authenticationService: AuthenticationService,
+    private headerMenuService: HeaderMenuService,
+    @Inject(LOCALE_ID) private locale: string
+  ) {
+    if (this.locale.startsWith(LOCALES.English)) {
+      this.currentLocale = LOCALES.English;
+    } else if (this.locale.startsWith(LOCALES.German)) {
+      this.currentLocale = LOCALES.German;
+    }
+  }
 
   ngOnInit() {
     window.addEventListener('scroll', this.handleScroll, false);
@@ -33,6 +48,17 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
     if (this.headerMenuServiceSubscriber) {
       this.headerMenuServiceSubscriber.unsubscribe();
     }
+  }
+
+  changeLanguage(locale: string) {
+    const l = window.location;
+
+    const langCode = '/' + locale;
+    const pathname = langCode + l.pathname.substr(langCode.length);
+
+    this.authenticationService.isChangingLanguage = true;
+
+    window.location.href = l.origin + pathname + l.search;
   }
 
   private handleScroll = () => {
