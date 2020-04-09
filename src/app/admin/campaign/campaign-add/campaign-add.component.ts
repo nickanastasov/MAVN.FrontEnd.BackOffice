@@ -29,7 +29,7 @@ export class CampaignAddComponent implements OnInit {
 
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
-      title: 'New Earn Rule',
+      title: 'New Earn Campaign',
       subHeaderContent: this.subHeaderTemplate
     };
   }

@@ -16,7 +16,7 @@
                 [hidden]="!hasEditPermission"
                 class="btn btn-brand btn-bold"
                 routerLink="add-spend-action-rule">
-          <span i18n>Add Spend Rule</span>
+          <span i18n>Add Campaign</span>
         </button>
       </div>
     </div>
@@ -33,7 +33,7 @@
         </div>
         <h3 class="kt-portlet__head-title"
             [hidden]="isLoading || isSearching"
-            i18n>{{totalCount}} total spend rules</h3>
+            i18n>{{totalCount}} total spend campaigns</h3>
       </div>
     </div>
     <div class="kt-portlet__body">
@@ -194,9 +194,9 @@
       <div class="table-states-container text-center">
         <ng-container *ngIf="!isLoading && !isSearching && spendActionRules.length === 0">
           <span *ngIf="!searchTitleValue"
-                i18n>There are no spend action rules, please create one</span>
+                i18n>There are no campaigns, please create one</span>
           <span *ngIf="searchTitleValue"
-                i18n>Spend action rule not found</span>
+                i18n>Campaigns not found</span>
         </ng-container>
       </div>
 
@@ -212,11 +212,11 @@
 <div #deleteActionRulePrompt
      hidden
      ngNonBindable
-     i18n>Do you want to delete the spend rule "{{title}}"?</div>
+     i18n>Do you want to delete the campaign "{{title}}"?</div>
 
 <div #actionRuleDeletedMessage
      hidden
-     i18n>Action rule deleted successfully.</div>
+     i18n>Campaign deleted successfully.</div>
 
 <div #headerSubTitle
      hidden

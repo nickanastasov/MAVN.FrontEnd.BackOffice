@@ -5,7 +5,7 @@
   <mat-card>
     <mat-card-title>
       <span class=""
-            i18n>Action Rule Details</span>
+            i18n>Redeem Campaign Details</span>
     </mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
@@ -13,11 +13,11 @@
         <div class="col-xl-3 col-lg-12">
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label i18n>Action rule title</mat-label>
+            <mat-label i18n>Campaign title</mat-label>
             <input id="actionRuleTitle"
                    matInput
                    formControlName="Title"
-                   placeholder="Action rule title"
+                   placeholder="Campaign title"
                    i18n-placeholder
                    (blur)="onTitleBlur()"
                    required>
@@ -167,7 +167,7 @@
             <div class="upload-vouchers__file-choose">
               <button class="btn btn-outline-brand btn-bold"
                       type="button"
-                      matTooltip="1 column, list of the voucher codes to be applied in this action rule"
+                      matTooltip="1 column, list of the voucher codes to be applied in this campaign"
                       i18n-matTooltip
                       onclick="this.blur()"
                       (click)="fileInputVouchers.click()"
@@ -383,11 +383,11 @@
                 <div class="col-lg-12">
                   <mat-form-field appearance="outline"
                                   class="width-100">
-                    <mat-label i18n>Action rule title</mat-label>
+                    <mat-label i18n>Campaign title</mat-label>
                     <input id="mobileContentTitle-{{mobContent.get('MobileLanguage').value}}"
                            matInput
                            formControlName="Title"
-                           placeholder="Action rule title"
+                           placeholder="Campaign title"
                            i18n-placeholder
                            [required]="mobContent.get('MobileLanguage').value === mobileLanguages.En">
                     <mat-error>
@@ -410,7 +410,7 @@
                               matInput
                               formControlName="Description"
                               i18n-placeholder
-                              placeholder="Description of action rule purpose and scope to be displayed in customer app comes here"
+                              placeholder="Description of campaign purpose and scope to be displayed in customer app comes here"
                               [required]="mobContent.get('MobileLanguage').value === mobileLanguages.En"
                               style="min-height: 60px">
                     </textarea>
@@ -430,7 +430,7 @@
                   <div class="form-group mobile-content__file">
                     <label
                            [class.has-error]="mobContent.get(mobileContentFormProps.File).invalid && (mobContent.touched || mobContent.dirty)">
-                      <span i18n>Action rule image</span>
+                      <span i18n>Campaign image</span>
                       <!-- <span>&nbsp;</span>
                       <span *ngIf="mobContent.get('MobileLanguage').value === mobileLanguages.En">*</span> -->
                     </label>
@@ -533,14 +533,14 @@
               <div class="col-lg-12">
                 <span *ngIf="contentPreviewTitle">{{contentPreviewTitle}}</span>
                 <span *ngIf="!contentPreviewTitle"
-                      i18n>Action rule title</span>
+                      i18n>Campaign title</span>
               </div>
             </div>
             <div class="row content-preview-description">
               <div class="col-lg-12">
                 <span *ngIf="contentPreviewDescription">{{contentPreviewDescription}}</span>
                 <span *ngIf="!contentPreviewDescription"
-                      i18n>Description of action rule purpose and scope to be displayed in customer app comes
+                      i18n>Description of campaign purpose and scope to be displayed in customer app comes
                   here</span>
               </div>
             </div>

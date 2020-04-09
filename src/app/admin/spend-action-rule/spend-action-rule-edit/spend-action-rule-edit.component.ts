@@ -44,7 +44,7 @@ export class SpendActionRuleEditComponent implements OnInit {
 
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
-      title: 'Edit Spend Rule',
+      title: 'Edit Redeem Campaign',
       subHeaderContent: this.subHeaderTemplate
     };
 
