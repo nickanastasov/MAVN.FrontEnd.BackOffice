@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Community Manager</title>
+  <!--begin::Base Path (base relative path for assets of this page) -->
+  <base href="/">
+  <!--end::Base Path -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="shortcut icon" href="favicon.ico?v=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=1">
+
+  <!--begin::Fonts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        "families": ["Roboto:300,400,500,600,700"]
+      },
+      active: function() {
+        sessionStorage.fonts = true;
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+      if (isChrome) {
+        document.body.classList.add('chrome');
+      }
+    });
+
+  </script>
+  <!--end::Fonts -->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+
+  <link href="assets/plugins/global/plugins.bundle.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/style.bundle.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/skins/header/base/light.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/skins/header/menu/light.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/skins/brand/light.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/skins/aside/light.css?v=1.4.8" rel="stylesheet" type="text/css" />
+  <link href="assets/css/demo1/pages/pricing/pricing-v1.css?v=1.4.8" rel="stylesheet" type="text/css" />
+</head>
+<body class="kt-header-mobile--fixed kt-subheader--enabled kt-aside--enabled kt-aside--fixed kt-page--loading">
+  <app-root>
+    <div class="text-center">
+      <div class="spinner-border"></div>
+    </div>
+  </app-root>
+
+  <!-- begin:: Scrolltop -->
+  <div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="la la-arrow-up"></i>
+  </div>
+  <!-- end:: Scrolltop -->
+</body>
+</html>

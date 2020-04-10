@@ -73,7 +73,7 @@
     <div class="kt-portlet__head kt-portlet__head--lg">
       <div class="kt-portlet__head-label">
         <h3 class="kt-portlet__head-title"
-            i18n>{{customer.FirstName}} {{customer.LastName}}</h3>
+            >{{customer.FirstName}} {{customer.LastName}}</h3>
       </div>
     </div>
     <div class="kt-portlet__body">
@@ -142,10 +142,10 @@
                       <span i18n>Pending Confirmation</span>
                     </ng-container>
                     <ng-container *ngSwitchCase="CustomerPublicWalletAddressStatus.Linked">
-                      <span i18n>{{publicWalletAddress}}</span>
+                      <span>{{publicWalletAddress}}</span>
                     </ng-container>
                     <ng-container *ngSwitchDefault>
-                      <span i18n>{{publicWalletAddressStatus}}</span>
+                      <span>{{publicWalletAddressStatus}}</span>
                     </ng-container>
                   </ng-container>
                 </span>

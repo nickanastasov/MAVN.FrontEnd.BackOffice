@@ -1,4 +1,4 @@
-import {Component, OnInit, LOCALE_ID, Inject, ViewChild, ElementRef, TemplateRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {SettingsService} from 'src/app/core/settings/settings.service';
@@ -18,8 +18,6 @@ declare var KTLayout: any;
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-  isArabic: boolean;
-
   //#region Permissions
 
   showDashboard = false;
@@ -84,12 +82,9 @@ export class AdminLayoutComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
     private businessVerticalService: BusinessVerticalService,
-    @Inject(LOCALE_ID) private locale: string,
     private translateService: TranslateService,
     private statisticService: StatisticsService
-  ) {
-    this.isArabic = this.locale.startsWith('ar');
-  }
+  ) {}
 
   ngOnInit() {
     this.user = this.authenticationService.getUserData();
@@ -225,17 +220,6 @@ export class AdminLayoutComponent implements OnInit {
           break;
       }
     });
-  }
-
-  changeLanguage() {
-    const l = window.location;
-
-    const langCode = this.isArabic ? '/en' : '/ar';
-    const pathname = langCode + l.pathname.substr(langCode.length);
-
-    this.authenticationService.isChangingLanguage = true;
-
-    window.location.href = l.origin + pathname + l.search;
   }
 
   logout() {
