@@ -11,7 +11,7 @@ Navigate to `http://localhost:4200/en`. The app will automatically reload if you
 
 ## i18n
 
-To run locally the german version execute command `npm run serve-en` and then navigate to `http://localhost:4201/de`.
+To run locally the german version execute command `npm run serve-de` and then navigate to `http://localhost:4201/de`.
 
 To append new translations make sure you put attribute i18n as described here (https://angular.io/guide/i18n).  
 Then update file with message which should be translated:  
