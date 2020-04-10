@@ -38,7 +38,7 @@ export class SpendActionRuleAddComponent implements OnInit {
     this.successMessage = (this.successMessageElement.nativeElement as HTMLElement).innerText;
 
     this.headerMenuService.headerMenuContent = {
-      title: 'New Spend Campaign',
+      title: 'New Redeem Campaign',
       subHeaderContent: this.subHeaderTemplate
     };
   }
