@@ -67,9 +67,23 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
   @ViewChild('totalTokensSpentLabelTooltipTemplate')
   totalTokensSpentLabelTooltipTemplate: ElementRef<HTMLElement>;
 
+  @ViewChild('pointsEarnedTitle')
+  pointsEarnedTitle: ElementRef<HTMLElement>;
+  @ViewChild('pointsSpentTitle')
+  pointsSpentTitle: ElementRef<HTMLElement>;
+
+  @ViewChild('tokenEarnedSpent')
+  tokenEarnedSpent: ElementRef<HTMLElement>;
+  @ViewChild('tokenTotalBalance')
+  tokenTotalBalance: ElementRef<HTMLElement>;
+
   private translates = {
     earnLabel: '',
-    burnLabel: ''
+    burnLabel: '',
+    pointsEarnedTitle: '',
+    pointsSpentTitle: '',
+    tokenEarnedSpent: '',
+    tokenTotalBalance: ''
   };
   translatesForTemplate = {
     totalWalletBalanceLabelTooltip: '',
@@ -107,6 +121,15 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
       tokenParameter,
       TOKEN_SYMBOL
     );
+
+    this.translates.pointsEarnedTitle = this.pointsEarnedTitle.nativeElement.innerText;
+    this.translates.pointsSpentTitle = this.pointsSpentTitle.nativeElement.innerText;
+
+    this.translates.tokenEarnedSpent = this.tokenEarnedSpent.nativeElement.innerText;
+    this.translates.tokenTotalBalance = this.tokenTotalBalance.nativeElement.innerText;
+
+    this.dropdownData[0].label = this.translates.tokenEarnedSpent;
+    this.dropdownData[1].label = this.translates.tokenTotalBalance;
 
     this.lineChartConfiguration = Object.assign(new ChartjsLineChartConfiguration(), {
       options: {
@@ -308,14 +331,14 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
 
         this.smallGraphicItems = [
           {
-            title: 'Smart Points Earned',
+            title: this.translates.pointsEarnedTitle,
             number: response.EarnedCount,
             // percentage: (response.EarnedCount / response.TotalCount) * 100,
             color: 'green',
             tooltip: this.translatesForTemplate.totalTokensEarnedLabelTooltip
           },
           {
-            title: 'Smart Points Spent',
+            title: this.translates.pointsSpentTitle,
             number: response.BurnedCount,
             // percentage: (response.BurnedCount / response.TotalCount) * 100,
             color: 'red',

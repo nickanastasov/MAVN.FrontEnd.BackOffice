@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef, ElementRef} from '@angular/core';
 import {Moment} from 'moment';
 import * as moment from 'moment';
 
@@ -101,12 +101,35 @@ export class DashboardPageComponent implements OnInit {
   chartPeriodMinDate: Moment = moment.utc();
   chartPeriodMaxDate: Moment = moment.utc();
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  @ViewChild('chartPeriodWeek')
+  chartPeriodWeek: ElementRef<HTMLElement>;
+  @ViewChild('chartPeriodWeeks')
+  chartPeriodWeeks: ElementRef<HTMLElement>;
+  @ViewChild('chartPeriodMonth')
+  chartPeriodMonth: ElementRef<HTMLElement>;
+  @ViewChild('chartPeriodSemester')
+  chartPeriodSemester: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: '',
+    chartPeriodWeek: '',
+    chartPeriodWeeks: '',
+    chartPeriodMonth: '',
+    chartPeriodSemester: ''
+  };
+
   constructor(private chartPeriodService: ChartPeriodService, private headerMenuService: HeaderMenuService) {}
   ngOnInit() {
     this.filtersList = this.chartPeriodService.getChartPeriodsWithNames();
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+    this.translates.chartPeriodWeek = this.chartPeriodWeek.nativeElement.innerText;
+    this.translates.chartPeriodWeeks = this.chartPeriodWeeks.nativeElement.innerText;
+    this.translates.chartPeriodMonth = this.chartPeriodMonth.nativeElement.innerText;
+    this.translates.chartPeriodSemester = this.chartPeriodSemester.nativeElement.innerText;
 
     this.headerMenuService.headerMenuContent = {
-      title: 'Dashboard',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
 

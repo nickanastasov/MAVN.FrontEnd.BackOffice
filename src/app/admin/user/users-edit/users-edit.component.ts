@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef, ElementRef} from '@angular/core';
 import {User} from '../models/user.interface';
 import {UserService} from '../user.service';
 import {MatSnackBar, MatDialog} from '@angular/material';
@@ -27,6 +27,12 @@ export class UsersEditComponent implements OnInit {
   private previousPage = '';
   private previousPageSize = '';
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     private authenticationService: AuthenticationService,
     private dialog: MatDialog,
@@ -41,8 +47,10 @@ export class UsersEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Edit User',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
 

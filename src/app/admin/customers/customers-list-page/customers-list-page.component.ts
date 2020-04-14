@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/core';
 import {CustomerRow} from '../models/customer-row.interface';
 import {CustomersService} from '../customers.service';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
@@ -29,6 +29,12 @@ export class CustomersListPageComponent implements OnInit {
   isVisibleSearchEmail: boolean;
   CustomerAgentStatus = CustomerAgentStatus;
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     // services
     private customersService: CustomersService,
@@ -52,8 +58,10 @@ export class CustomersListPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Customers',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
   }

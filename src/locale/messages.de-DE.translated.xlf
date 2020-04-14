@@ -1683,6 +1683,14 @@
         <source>Welcome to your community manager</source>
         <target state="translated">Willkommen bei Ihrem Community-Manager</target>
       </trans-unit>
+      <trans-unit id="a1ba969fe1b91ff4994dd35b32a9871764948a82" datatype="html">
+        <source>Enter Email</source>
+        <target state="translated">Email eingeben</target>
+      </trans-unit>
+      <trans-unit id="e13796974274fd6b6bbc61a60fac4e14e6e29b6d" datatype="html">
+        <source>Enter Password</source>
+        <target state="translated">Passwort eingeben</target>
+      </trans-unit>
       <trans-unit id="e527ace700a5dfcd97e170b854de7b539afacc0c" datatype="html">
         <source>Please enter a valid email address</source>
         <target state="translated">Bitte geben Sie eine gültige E-Mail-Adresse ein</target>
@@ -1694,6 +1702,79 @@
       <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
         <source>Login</source>
         <target state="translated">Anmelden</target>
+      </trans-unit>
+      <trans-unit id="73339760fe932d2b494728d4366947755d127e00" datatype="html">
+        <source>Week</source>
+        <target state="translated">Woche</target>
+      </trans-unit>
+      <trans-unit id="5fb104b55feeaa0069c039e20084ff6dc8c87d20" datatype="html">
+        <source>2 Weeks</source>
+        <target state="translated">2 Wochen</target>
+      </trans-unit>
+      <trans-unit id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702" datatype="html">
+        <source>Month</source>
+        <target state="translated">Monat</target>
+      </trans-unit>
+      <trans-unit id="fd273ee9ccd07488548c9b55c8652d39466b1a09" datatype="html">
+        <source>Semester</source>
+        <target state="translated">Semester</target>
+      </trans-unit>
+      <trans-unit id="beffdec938d76388fdce6bb2ad815d39f4c239af" datatype="html">
+        <source>Total Customers</source>
+        <target state="translated">Kunden insgesamt</target>
+      </trans-unit>
+      <trans-unit id="81a80073fa46e7e302e6e7886f03607b292ba936" datatype="html">
+        <source>Active Customers Share</source>
+        <target state="translated">Aktive Kunden teilen</target>
+      </trans-unit>
+      <trans-unit id="07c8168e42bf987c0b512bd1ddbf9a460a690634" datatype="html">
+        <source>Customers who earned or redeemed points during the period</source>
+        <target state="translated">Kunden, die im Berichtszeitraum Punkte gesammelt oder eingelöst haben</target>
+      </trans-unit>
+      <trans-unit id="4f912c087d10d7e7ab8473c0d5c638f61d3630b9" datatype="html">
+        <source>Total Active Customers</source>
+        <target state="translated">Insgesamt aktive Kunden</target>
+      </trans-unit>
+      <trans-unit id="e78798dfc23f5c11ce82c21bc7c024d0c6985ee1" datatype="html">
+        <source>Repeat Customers Share</source>
+        <target state="translated">Kundenfreigabe wiederholen</target>
+      </trans-unit>
+      <trans-unit id="788d5411d313f3427720bdc63ba9c90f72569ab3" datatype="html">
+        <source>Customers who made repeat earnings or redemption during the period</source>
+        <target state="translated">Kunden, die im Berichtszeitraum wiederholte Einnahmen oder Rücknahmen erzielt haben</target>
+      </trans-unit>
+      <trans-unit id="9ab35e1aadf4d5f87c2abbbb87f8fde087547d2a" datatype="html">
+        <source>Total Repeat Customers</source>
+        <target state="translated">Total Wiederholungskunden</target>
+      </trans-unit>
+      <trans-unit id="3e90530a2f8b7323299c15d50f7c625b6e41fd06" datatype="html">
+        <source>Smart Points</source>
+        <target state="translated">Intelligente Punkte</target>
+      </trans-unit>
+
+      <trans-unit id="6f388de112bb3b0305385d3f659c0d034d220d36" datatype="html">
+        <source>Smart Points Earned</source>
+        <target state="translated">Intelligente Punkte verdient</target>
+      </trans-unit>
+      <trans-unit id="09aa1099e735dbcf3495422b6f1517386f637391" datatype="html">
+        <source>Smart Points Spent</source>
+        <target state="translated">Intelligente Punkte ausgegeben</target>
+      </trans-unit>
+      <trans-unit id="f0a70f29564d094b7e09d981d5922fd0df448f31" datatype="html">
+        <source>Earned / Spent</source>
+        <target state="translated">Verdient / Ausgegeben</target>
+      </trans-unit>
+      <trans-unit id="2bd37275d222779abcfbc1f699f5a9e7ea9580e0" datatype="html">
+        <source>Total Balance</source>
+        <target state="translated">Gesamtsaldo</target>
+      </trans-unit>
+      <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
+        <source>New User</source>
+        <target state="translated">Neuer Benutzer</target>
+      </trans-unit>
+      <trans-unit id="2aa7c4367baad2832cb32bc21ba3b01ef2f278b9" datatype="html">
+        <source>Edit User</source>
+        <target state="translated">Benutzer bearbeiten</target>
       </trans-unit>
     </body>
   </file>
