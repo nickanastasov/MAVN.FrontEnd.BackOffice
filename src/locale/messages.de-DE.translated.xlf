@@ -1751,7 +1751,6 @@
         <source>Smart Points</source>
         <target state="translated">Intelligente Punkte</target>
       </trans-unit>
-
       <trans-unit id="6f388de112bb3b0305385d3f659c0d034d220d36" datatype="html">
         <source>Smart Points Earned</source>
         <target state="translated">Intelligente Punkte verdient</target>
@@ -1775,6 +1774,10 @@
       <trans-unit id="2aa7c4367baad2832cb32bc21ba3b01ef2f278b9" datatype="html">
         <source>Edit User</source>
         <target state="translated">Benutzer bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="c3761924e6e6aa3efc8fcd52064efdc863c51624" datatype="html">
+        <source>Enter redeem campaign details</source>
+        <target state="translated">Geben Sie die Details zum Einlösen der Kampagne ein</target>
       </trans-unit>
     </body>
   </file>
