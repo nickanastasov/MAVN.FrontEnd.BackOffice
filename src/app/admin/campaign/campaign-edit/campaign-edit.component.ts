@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {CampaignFormType} from '../campaign-form/campaign-form-type.enum';
 import {Campaign} from '../models/campaign.interface';
 import {CampaignService} from '../campaign.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActionRuleMobileContent} from '../../action-rule/models/action-rule-mobile-content.interface';
 import {ImageEditRequest} from '../../action-rule/models/image-edit-request.interface';
@@ -18,7 +18,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./campaign-edit.component.scss']
 })
 export class CampaignEditComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   campaignId: string;
   campaignForEdit: Campaign;
   CampaignFormType = CampaignFormType;

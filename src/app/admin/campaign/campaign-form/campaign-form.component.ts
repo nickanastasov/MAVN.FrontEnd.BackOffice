@@ -11,7 +11,7 @@ import {Campaign} from '../models/campaign.interface';
 import {CampaignStatus} from '../models/campaign-status.enum';
 import {Subscription} from 'rxjs';
 import {MobileLanguage} from 'src/app/shared/models/mobile-language.enum';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {DictionaryService} from 'src/app/shared/services/dictionary.service';
 import {BusinessVerticalService} from '../../partners/services/business-vertical.service';
 import {PartnerRowResponse} from '../../partners/models/partner-row.interface';
@@ -211,17 +211,17 @@ export class CampaignFormComponent implements OnInit, OnDestroy, MobileContents 
   protected isDescriptionCopied: boolean;
   protected imageUrlsDictionary: {[language: string]: string} = {};
   // #region translates
-  @ViewChild('rewardTypeFixedText')
+  @ViewChild('rewardTypeFixedText', {static: true})
   rewardTypeFixedText: ElementRef<HTMLElement>;
-  @ViewChild('rewardTypeConversionRateText')
+  @ViewChild('rewardTypeConversionRateText', {static: true})
   rewardTypeConversionRateText: ElementRef<HTMLElement>;
-  @ViewChild('rewardTypePercentageText')
+  @ViewChild('rewardTypePercentageText', {static: true})
   rewardTypePercentageText: ElementRef<HTMLElement>;
-  @ViewChild('completionTypeUnlimitedText')
+  @ViewChild('completionTypeUnlimitedText', {static: true})
   completionTypeUnlimitedText: ElementRef<HTMLElement>;
-  @ViewChild('completionTypeOnceText')
+  @ViewChild('completionTypeOnceText', {static: true})
   completionTypeOnceText: ElementRef<HTMLElement>;
-  @ViewChild('completionTypeMultipleText')
+  @ViewChild('completionTypeMultipleText', {static: true})
   completionTypeMultipleText: ElementRef<HTMLElement>;
   translates = {
     rewardTypeFixedText: '',

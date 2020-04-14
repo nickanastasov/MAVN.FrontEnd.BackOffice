@@ -8,7 +8,7 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import {FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
 import {markFormControlAsTouched} from '../../../shared/utils/markFormControlAsTouched';
@@ -18,12 +18,12 @@ import {
   FileSizeValidator,
   FileExtensionValidator,
   FileDimensionsValidator,
-  IntegerValidator
+  IntegerValidator,
 } from '../../../shared/utils/validators';
 import {Subscription} from 'rxjs';
 import {SmartVoucher} from '../models/smart-voucher.interface';
 import {MobileLanguage} from '../../../shared/models/mobile-language.enum';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
 import {DictionaryService} from 'src/app/shared/services/dictionary.service';
 import * as constants from 'src/app/core/constants/const';
@@ -44,7 +44,7 @@ import {SmartVoucherCampaignState} from '../models/smart-voucher-campaign-state.
   selector: 'app-smart-voucher-form',
   templateUrl: './smart-voucher-form.component.html',
   styleUrls: ['./smart-voucher-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   @Input()
@@ -103,7 +103,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     Title: 'Title',
     Description: 'Description',
     File: 'File',
-    ImageBlobUrl: 'ImageBlobUrl'
+    ImageBlobUrl: 'ImageBlobUrl',
   };
   contentPreviewTitle: string;
   contentPreviewDescription: string;
@@ -126,7 +126,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   @ViewChild('fillRequiredFieldsMessage')
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
   private translates = {
-    fillRequiredFieldsMessage: ''
+    fillRequiredFieldsMessage: '',
   };
 
   templates: GlobalTemplates;
@@ -161,8 +161,8 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.min(1),
         Validators.max(constants.INTEGER_MAX_NUMBER),
-        IntegerValidator
-      ]
+        IntegerValidator,
+      ],
     ],
     [this.voucherFormProps.VoucherPrice]: [
       null,
@@ -171,8 +171,8 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.min(1),
         Validators.max(constants.INTEGER_MAX_NUMBER),
-        IntegerValidator
-      ]
+        IntegerValidator,
+      ],
     ],
     [this.voucherFormProps.Currency]: [null],
     [this.voucherFormProps.PartnersSearch]: [null],
@@ -190,7 +190,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   }
   get mobileContentsEnglishOnly(): AbstractControl[] {
     return this.mobileContentsFormArray.controls
-      ? this.mobileContentsFormArray.controls.filter(x => x.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
+      ? this.mobileContentsFormArray.controls.filter((x) => x.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
       : this.mobileContentsFormArray.controls;
   }
 
@@ -213,7 +213,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       }
 
       //#region mobile content related
-      this.voucher.MobileContents.forEach(mobContent => {
+      this.voucher.MobileContents.forEach((mobContent) => {
         this.mobileContentsFormArray.push(this.generateMobileContentFormGroup(mobContent.MobileLanguage, !!mobContent.ImageId));
 
         // store image urls
@@ -244,7 +244,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
       //#region mobile content related
       this.availableMobileLanguages = this.dictionaryService.getMobileLanguages();
-      this.availableMobileLanguages.forEach(language => {
+      this.availableMobileLanguages.forEach((language) => {
         this.mobileContentsFormArray.push(this.generateMobileContentFormGroup(language));
       });
       //#endregion
@@ -265,9 +265,9 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     // mobile content related
-    this.subscriptionsContentPreview.forEach(subscription => subscription.unsubscribe());
+    this.subscriptionsContentPreview.forEach((subscription) => subscription.unsubscribe());
   }
 
   private loadAllPartners() {
@@ -279,7 +279,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
   private loadPagedPartners(page: number) {
     this.partnersService.getAll(constants.MAX_PAGE_SIZE, page, '').subscribe(
-      response => {
+      (response) => {
         this.partners = [...this.partners, ...response.Partners];
 
         if (this.partners.length >= response.PagedResponse.TotalCount) {
@@ -329,9 +329,9 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       [this.mobileContentFormProps.File]: [
         null,
         fileValidators,
-        [FileDimensionsValidator(this.MobileAppImageMinWidth, this.MobileAppImageMinHeight)]
+        [FileDimensionsValidator(this.MobileAppImageMinWidth, this.MobileAppImageMinHeight)],
       ],
-      [this.mobileContentFormProps.ImageBlobUrl]: [null]
+      [this.mobileContentFormProps.ImageBlobUrl]: [null],
     });
   }
 
@@ -345,7 +345,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
       if (titleControl.value && titleControl.valid) {
         const mobileContentTitleControl = this.mobileContentsFormArray.controls.find(
-          control => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En
+          (control) => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En
         );
 
         if (mobileContentTitleControl) {
@@ -362,7 +362,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
       if (descriptionControl.value && descriptionControl.valid) {
         const mobileContentTitleControl = this.mobileContentsFormArray.controls.find(
-          control => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En
+          (control) => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En
         );
 
         if (mobileContentTitleControl) {
@@ -431,16 +431,16 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     this.contentPreviewDescription = descriptionControl.value;
 
     if (this.subscriptionsContentPreview.length) {
-      this.subscriptionsContentPreview.forEach(subscription => subscription.unsubscribe());
+      this.subscriptionsContentPreview.forEach((subscription) => subscription.unsubscribe());
     }
 
     this.subscriptionsContentPreview = [
-      titleControl.valueChanges.subscribe(value => {
+      titleControl.valueChanges.subscribe((value) => {
         this.contentPreviewTitle = value;
       }),
-      descriptionControl.valueChanges.subscribe(value => {
+      descriptionControl.valueChanges.subscribe((value) => {
         this.contentPreviewDescription = value;
-      })
+      }),
     ];
   }
 
@@ -455,7 +455,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
     if (!this.smartVoucherForm.valid) {
       this.snackBar.open(this.translates.fillRequiredFieldsMessage, this.translateService.translates.CloseSnackbarBtnText, {
-        duration: 5000
+        duration: 5000,
       });
       return;
     }

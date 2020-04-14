@@ -17,7 +17,7 @@ import {
 import {Subscription} from 'rxjs';
 import {SpendActionRule} from '../models/spend-action-rule.interface';
 import {MobileLanguage} from '../../../shared/models/mobile-language.enum';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
 import {DictionaryService} from 'src/app/shared/services/dictionary.service';
 import * as constants from 'src/app/core/constants/const';
@@ -131,7 +131,7 @@ export class SpendActionRuleFormComponent implements OnInit, OnDestroy {
   private imageUrlsDictionary: {[language: string]: string} = {};
 
   // #region translates
-  @ViewChild('fillRequiredFieldsMessage')
+  @ViewChild('fillRequiredFieldsMessage', {static: true})
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
   private translates = {
     fillRequiredFieldsMessage: ''

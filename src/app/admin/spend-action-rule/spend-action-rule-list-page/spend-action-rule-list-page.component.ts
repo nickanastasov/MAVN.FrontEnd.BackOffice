@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {MatSnackBar, MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
 import {SpendActionRuleRow} from '../models/spend-action-rule-row.interface';
 import {SpendActionRuleService} from '../spend-action-rule.service';
@@ -18,10 +19,10 @@ import {BusinessVerticalType} from '../../partners/models/business-vertical.enum
 @Component({
   selector: 'app-spend-action-rule-list-page',
   templateUrl: './spend-action-rule-list-page.component.html',
-  styleUrls: ['./spend-action-rule-list-page.component.scss']
+  styleUrls: ['./spend-action-rule-list-page.component.scss'],
 })
 export class SpendActionRuleListPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isLoading = true;
   isSearching: boolean;
   spendActionRules: SpendActionRuleRow[] = [];
@@ -37,18 +38,18 @@ export class SpendActionRuleListPageComponent implements OnInit {
   private getDataSubscription: Subscription;
   private isFirstLoad = true;
 
-  @ViewChild('deleteActionRulePrompt')
+  @ViewChild('deleteActionRulePrompt', {static: true})
   deleteActionRulePrompt: ElementRef<HTMLElement>;
-  @ViewChild('actionRuleDeletedMessage')
+  @ViewChild('actionRuleDeletedMessage', {static: true})
   actionRuleDeletedMessage: ElementRef<HTMLElement>;
 
-  @ViewChild('headerSubTitle')
+  @ViewChild('headerSubTitle', {static: true})
   headerSubTitle: ElementRef<HTMLElement>;
 
   private translates = {
     deleteActionRulePrompt: '',
     actionRuleDeletedMessage: '',
-    headerSubTitle: ''
+    headerSubTitle: '',
   };
   hasEditPermission = false;
 
@@ -74,10 +75,10 @@ export class SpendActionRuleListPageComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerSubTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -94,7 +95,7 @@ export class SpendActionRuleListPageComponent implements OnInit {
   onPaginationChangeEvent(pageEvent: PageRequestModel) {
     let page;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       page = +params['page'];
     });
 
@@ -117,7 +118,7 @@ export class SpendActionRuleListPageComponent implements OnInit {
     }
 
     this.getDataSubscription = this.spendActionRuleService.getAll(pageSize, currentPage, title).subscribe(
-      response => {
+      (response) => {
         this.spendActionRules = response.BurnRules;
         this.totalCount = response.PagedResponse.TotalCount;
       },
@@ -134,11 +135,11 @@ export class SpendActionRuleListPageComponent implements OnInit {
   deleteActionRule(spendActionRule: SpendActionRuleRow) {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        Message: this.translates.deleteActionRulePrompt.replace('{{title}}', spendActionRule.Title)
-      } as ConfirmationDialogData
+        Message: this.translates.deleteActionRulePrompt.replace('$title', spendActionRule.Title),
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isLoading = true;
 
@@ -146,7 +147,7 @@ export class SpendActionRuleListPageComponent implements OnInit {
           () => {
             this.getData(this.pageSize, this.currentPage + 1, this.searchTitleValue);
             this.snackBar.open(this.translates.actionRuleDeletedMessage, this.translateService.translates.CloseSnackbarBtnText, {
-              duration: 5000
+              duration: 5000,
             });
           },
           () => {

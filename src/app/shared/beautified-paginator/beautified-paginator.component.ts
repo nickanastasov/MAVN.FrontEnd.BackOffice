@@ -19,7 +19,7 @@ import {
   CanDisableCtor,
   CanDisable
 } from '@angular/material/core';
-import {PageEvent} from '@angular/material';
+import {PageEvent} from '@angular/material/paginator';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 10;

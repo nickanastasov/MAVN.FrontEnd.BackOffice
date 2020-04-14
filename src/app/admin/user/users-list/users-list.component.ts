@@ -1,5 +1,5 @@
 import {Component, ViewChild, TemplateRef, OnInit, ElementRef} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {User} from '../models/user.interface';
 import {UserService} from '../user.service';
 import {Subscription} from 'rxjs';
@@ -14,10 +14,10 @@ import {AdminStatusFilter} from '../models/admin-status-filter.enum';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   initialPageSize: number;
   private pageSize: number;
   private subscription: Subscription;
@@ -31,17 +31,17 @@ export class UsersListComponent implements OnInit {
   searchStatusFilterValues: Array<{Value: AdminStatusFilter; DisplayName: string}> = [
     {Value: AdminStatusFilter.All, DisplayName: 'All'},
     {Value: AdminStatusFilter.Active, DisplayName: 'Active'},
-    {Value: AdminStatusFilter.NotActive, DisplayName: 'Not active'}
+    {Value: AdminStatusFilter.NotActive, DisplayName: 'Not active'},
   ];
   isVisibleSearchStatus: boolean;
   users: User[];
   totalCount: number;
   hasEditPermission = false;
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
   private translates = {
-    headerTitle: ''
+    headerTitle: '',
   };
 
   constructor(
@@ -55,7 +55,7 @@ export class UsersListComponent implements OnInit {
   ) {
     this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.AdminUsers].Edit;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -74,7 +74,7 @@ export class UsersListComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
@@ -158,7 +158,7 @@ export class UsersListComponent implements OnInit {
     }
 
     this.subscription = this.userService.get(pageSize, currentPage, this.searchEmailValue, active).subscribe(
-      response => {
+      (response) => {
         this.users = response.Items;
         this.totalCount = response.PagedResponse.TotalCount;
       },

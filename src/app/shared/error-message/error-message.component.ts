@@ -3,7 +3,7 @@ import {AbstractControl, ControlContainer, FormGroupDirective} from '@angular/fo
 
 @Component({
   selector: 'app-error-message',
-  templateUrl: './error-message.component.html'
+  templateUrl: './error-message.component.html',
 })
 export class ErrorMessageComponent {
   @Input()
@@ -19,6 +19,9 @@ export class ErrorMessageComponent {
 
   @Input('controlName')
   set formControlName(controlName: string) {
+    if (!this.controlContainer.control) {
+      return;
+    }
     this.formControl = this.controlContainer.control.get(controlName);
     if (!this.formControl) {
       throw new Error('This component and the associated control should be used within a formGroup');

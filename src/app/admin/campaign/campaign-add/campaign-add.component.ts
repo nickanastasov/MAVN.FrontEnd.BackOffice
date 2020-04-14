@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import {Campaign} from '../models/campaign.interface';
 import {CampaignService} from '../campaign.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {forkJoin} from 'rxjs';
 import {ImageAddRequest} from '../../action-rule/models/image-add-request.interface';
@@ -15,7 +15,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./campaign-add.component.scss']
 })
 export class CampaignAddComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isSaving = false;
 
   constructor(

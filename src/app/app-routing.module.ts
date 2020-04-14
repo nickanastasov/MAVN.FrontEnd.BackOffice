@@ -10,19 +10,19 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [ApiAuthGuardService],
     canActivateChild: [ApiAuthGuardService]
   },
   {
     path: 'authentication',
-    loadChildren: './authentication/authentication.module#AuthenticationModule',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
     canActivate: [ApiAuthGuardService],
     canActivateChild: [ApiAuthGuardService]
   },
   {
     path: '',
-    loadChildren: './public/public.module#PublicModule'
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
   }
 ];
 

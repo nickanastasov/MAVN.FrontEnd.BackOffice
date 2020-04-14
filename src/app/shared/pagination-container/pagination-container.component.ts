@@ -1,6 +1,6 @@
 import {Component, ViewChild, OnInit, Output, EventEmitter, OnDestroy, Input} from '@angular/core';
 import {PaginationRequestFromEvent} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
-import {PageEvent} from '@angular/material';
+import {PageEvent} from '@angular/material/paginator';
 import {Subscription} from 'rxjs';
 import {BeautifiedPaginatorComponent} from '../beautified-paginator/beautified-paginator.component';
 
@@ -31,7 +31,7 @@ export class PaginationContainerComponent implements OnInit, OnDestroy {
   @Output()
   paginationEvent = new EventEmitter<PaginationRequestFromEvent>();
 
-  @ViewChild(BeautifiedPaginatorComponent)
+  @ViewChild(BeautifiedPaginatorComponent, {static: true})
   paginator: BeautifiedPaginatorComponent;
 
   // current component properties

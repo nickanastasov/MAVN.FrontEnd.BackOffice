@@ -9,7 +9,7 @@ import {
   MoneyMaxNumberValidator,
   MoneyMinZeroValidator
 } from '../../../shared/utils/validators';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import * as constants from 'src/app/core/constants/const';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {GlobalTemplates} from 'src/app/shared/models/global-templates.interface';
@@ -28,7 +28,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./global-settings-page.component.scss']
 })
 export class GlobalSettingsPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isLoadingRate = true;
   isLoadingAgentRequirements = true;
   isLoadingOperationFees = true;
@@ -114,7 +114,7 @@ export class GlobalSettingsPageComponent implements OnInit {
   isVisibleOperationFees = true;
 
   // #region translates
-  @ViewChild('savedSuccessfullyMessage')
+  @ViewChild('savedSuccessfullyMessage', {static: true})
   savedSuccessfullyMessage: ElementRef<HTMLElement>;
   private translates = {
     savedSuccessfullyMessage: ''

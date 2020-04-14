@@ -3,7 +3,7 @@ import {User} from '../models/user.interface';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {markFormControlAsTouched} from '../../../shared/utils/markFormControlAsTouched';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {LengthValidator, EmailValidator, PhoneNumberValidator, OnlyLettersValidator} from 'src/app/shared/utils/validators';
 import {GlobalTemplates} from 'src/app/shared/models/global-templates.interface';
 import {UserService} from '../user.service';
@@ -73,7 +73,7 @@ export class UsersFormComponent implements OnInit {
   IndeterminateEditAll = false;
 
   // #region translates
-  @ViewChild('fillRequiredFieldsMessage')
+  @ViewChild('fillRequiredFieldsMessage', {static: true})
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
   private translates = {
     fillRequiredFieldsMessage: ''

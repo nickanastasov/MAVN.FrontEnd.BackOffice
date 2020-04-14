@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActionRuleMobileContent} from '../../action-rule/models/action-rule-mobile-content.interface';
 import {forkJoin} from 'rxjs';
@@ -15,7 +15,7 @@ import {SmartVoucherCampaignSetImageRequest} from '../models/set-image-request.i
 @Component({
   selector: 'app-smart-voucher-edit',
   templateUrl: './smart-voucher-edit.component.html',
-  styleUrls: ['./smart-voucher-edit.component.scss']
+  styleUrls: ['./smart-voucher-edit.component.scss'],
 })
 export class SmartVoucherEditComponent implements OnInit {
   @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
@@ -45,14 +45,14 @@ export class SmartVoucherEditComponent implements OnInit {
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
       title: 'Edit Voucher Campaign',
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
     this.previousPage = window.history.state.page;
     this.previousPageSize = window.history.state.pageSize;
     this.campaignId = this.route.snapshot.params.id;
     this.smartVoucherService.getById(this.campaignId).subscribe(
-      res => {
+      (res) => {
         this.campaign = res as any;
         this.campaignForEdit = DeepCopy(res);
         this.isLoading = false;
@@ -61,7 +61,7 @@ export class SmartVoucherEditComponent implements OnInit {
         this.navigateToList();
 
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText, {
-          duration: 5000
+          duration: 5000,
         });
       }
     );
@@ -107,10 +107,10 @@ export class SmartVoucherEditComponent implements OnInit {
   }
 
   private saveImages(formData: SmartVoucher) {
-    const mobileContentsWithImages = formData.MobileContents.filter(mobContent => mobContent.File && mobContent.File.size > 0);
+    const mobileContentsWithImages = formData.MobileContents.filter((mobContent) => mobContent.File && mobContent.File.size > 0);
 
     if (mobileContentsWithImages.length) {
-      const requests = mobileContentsWithImages.map(mobContent => {
+      const requests = mobileContentsWithImages.map((mobContent) => {
         const existingMobContent = this.campaign.MobileContents.find((val: any) => val.MobileLanguage === mobContent.MobileLanguage);
 
         const model: SmartVoucherCampaignSetImageRequest = {
@@ -126,14 +126,14 @@ export class SmartVoucherEditComponent implements OnInit {
         () => {
           this.handleSuccess();
         },
-        error => {
+        (error) => {
           console.error(error);
 
           this.snackBar.open(
             this.translateService.translates.ErrorImageUploadMessage,
             this.translateService.translates.CloseSnackbarBtnText,
             {
-              duration: 5000
+              duration: 5000,
             }
           );
         }
@@ -145,7 +145,7 @@ export class SmartVoucherEditComponent implements OnInit {
 
   private handleSuccess() {
     this.snackBar.open(this.successMessage, this.translateService.translates.CloseSnackbarBtnText, {
-      duration: 5000
+      duration: 5000,
     });
 
     this.navigateToList();
@@ -155,8 +155,8 @@ export class SmartVoucherEditComponent implements OnInit {
     this.router.navigate([`${ROUTE_ADMIN_ROOT}/${ROUTE_SMART_VOUCHERS}`], {
       queryParams: {
         page: this.previousPage,
-        pageSize: this.previousPageSize
-      }
+        pageSize: this.previousPageSize,
+      },
     });
   }
 }

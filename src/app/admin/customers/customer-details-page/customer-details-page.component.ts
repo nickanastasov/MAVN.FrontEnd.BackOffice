@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {CustomersService} from '../customers.service';
 import {ActivatedRoute} from '@angular/router';
-import {MatSnackBar, MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {CustomerOperation} from '../models/customer-operation.interface';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
 import {Balance} from '../models/balance.interface';
@@ -26,7 +27,7 @@ import {TOKEN_SYMBOL} from '../../../core/constants/const';
   styleUrls: ['./customer-details-page.component.scss']
 })
 export class CustomerDetailsPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   customerId: string;
   customer: CustomerDetails;
   CustomerAgentStatus = CustomerAgentStatus;
@@ -67,27 +68,27 @@ export class CustomerDetailsPageComponent implements OnInit {
 
   // #region translates
   //Block Access
-  @ViewChild('blockAccessDialogHeaderTemplate')
+  @ViewChild('blockAccessDialogHeaderTemplate', {static: true})
   blockAccessDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('blockAccessDialogMessageTemplate')
+  @ViewChild('blockAccessDialogMessageTemplate', {static: true})
   blockAccessDialogMessageTemplate: ElementRef<HTMLElement>;
 
   //Block Wallet
-  @ViewChild('blockWalletDialogHeaderTemplate')
+  @ViewChild('blockWalletDialogHeaderTemplate', {static: true})
   blockWalletDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('blockWalletDialogMessageTemplate')
+  @ViewChild('blockWalletDialogMessageTemplate', {static: true})
   blockWalletDialogMessageTemplate: ElementRef<HTMLElement>;
 
   //Unblock Access
-  @ViewChild('unblockAccessDialogHeaderTemplate')
+  @ViewChild('unblockAccessDialogHeaderTemplate', {static: true})
   unblockAccessDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('unblockAccessDialogMessageTemplate')
+  @ViewChild('unblockAccessDialogMessageTemplate', {static: true})
   unblockAccessDialogMessageTemplate: ElementRef<HTMLElement>;
 
   //Unblock Wallet
-  @ViewChild('unblockWalletDialogHeaderTemplate')
+  @ViewChild('unblockWalletDialogHeaderTemplate', {static: true})
   unblockWalletDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('unblockWalletDialogMessageTemplate')
+  @ViewChild('unblockWalletDialogMessageTemplate', {static: true})
   unblockWalletDialogMessageTemplate: ElementRef<HTMLElement>;
 
   private translates = {

@@ -57,7 +57,7 @@
               "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "ar-SA",
-              "i18nMissingTranslation": "no_translation",
+              "i18nMissingTranslation": "warning",
               "fileReplacements": [
                 {
                   "replace": "src/index.html",
@@ -73,7 +73,7 @@
               "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "ar-SA",
-              "i18nMissingTranslation": "no_translation",
+              "i18nMissingTranslation": "warning",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -108,7 +108,7 @@
               "i18nFile": "src/locale/messages.de-DE.translated.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "de-DE",
-              "i18nMissingTranslation": "no_translation",
+              "i18nMissingTranslation": "warning",
               "fileReplacements": [
                 {
                   "replace": "src/index.html",
@@ -124,7 +124,7 @@
               "i18nFile": "src/locale/messages.de-DE.translated.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "de-DE",
-              "i18nMissingTranslation": "no_translation",
+              "i18nMissingTranslation": "warning",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

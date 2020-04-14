@@ -15,8 +15,9 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
   LOCALES = LOCALES;
   currentLocale = '';
 
-  @ViewChild('headerWrapper') private headerWrapperRef: ElementRef<HTMLElement>;
-  @ViewChild('subHeaderContentViewContainer', {read: ViewContainerRef}) private subHeaderContentViewContainer: ViewContainerRef;
+  @ViewChild('headerWrapper', {static: true}) private headerWrapperRef: ElementRef<HTMLElement>;
+  @ViewChild('subHeaderContentViewContainer', {read: ViewContainerRef, static: true})
+  private subHeaderContentViewContainer: ViewContainerRef;
 
   private headerMenuServiceSubscriber: Subscription;
   constructor(

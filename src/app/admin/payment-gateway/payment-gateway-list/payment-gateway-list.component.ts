@@ -3,7 +3,8 @@ import {Subscription} from 'rxjs';
 import {Payment} from '../models/payment.interface';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
 import {PaymentGatewayService} from '../payment-gateway.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ConfirmationDialogComponent} from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import {ConfirmationDialogData} from 'src/app/shared/confirmation-dialog/confirmation-dialog-data.interface';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
@@ -26,23 +27,23 @@ export class PaymentGatewayListComponent implements OnInit {
   private getDataSubscription: Subscription;
 
   // #region translates
-  @ViewChild('approveDialogHeaderTemplate')
+  @ViewChild('approveDialogHeaderTemplate', {static: true})
   approveDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('approveDialogMessageTemplate')
+  @ViewChild('approveDialogMessageTemplate', {static: true})
   approveDialogMessageTemplate: ElementRef<HTMLElement>;
-  @ViewChild('dialogButtonCancelTextTemplate')
+  @ViewChild('dialogButtonCancelTextTemplate', {static: true})
   dialogButtonCancelTextTemplate: ElementRef<HTMLElement>;
-  @ViewChild('approveDialogButtonConfirmTextTemplate')
+  @ViewChild('approveDialogButtonConfirmTextTemplate', {static: true})
   approveDialogButtonConfirmTextTemplate: ElementRef<HTMLElement>;
-  @ViewChild('approveSuccessMessageTemplate')
+  @ViewChild('approveSuccessMessageTemplate', {static: true})
   approveSuccessMessageTemplate: ElementRef<HTMLElement>;
-  @ViewChild('rejectDialogHeaderTemplate')
+  @ViewChild('rejectDialogHeaderTemplate', {static: true})
   rejectDialogHeaderTemplate: ElementRef<HTMLElement>;
-  @ViewChild('rejectDialogMessageTemplate')
+  @ViewChild('rejectDialogMessageTemplate', {static: true})
   rejectDialogMessageTemplate: ElementRef<HTMLElement>;
-  @ViewChild('rejectDialogButtonConfirmTextTemplate')
+  @ViewChild('rejectDialogButtonConfirmTextTemplate', {static: true})
   rejectDialogButtonConfirmTextTemplate: ElementRef<HTMLElement>;
-  @ViewChild('rejectSuccessMessageTemplate')
+  @ViewChild('rejectSuccessMessageTemplate', {static: true})
   rejectSuccessMessageTemplate: ElementRef<HTMLElement>;
   private translates = {
     approveDialogHeader: '',

@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/co
 import {CustomerRow} from '../models/customer-row.interface';
 import {CustomersService} from '../customers.service';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Subscription} from 'rxjs';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {CustomerAgentStatus} from '../models/customer-agent-status.enum';
@@ -12,10 +12,10 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 @Component({
   selector: 'app-customers-list-page',
   templateUrl: './customers-list-page.component.html',
-  styleUrls: ['./customers-list-page.component.scss']
+  styleUrls: ['./customers-list-page.component.scss'],
 })
 export class CustomersListPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   initialPageSize: number;
   private pageSize: number;
   private getDataSubscription: Subscription;
@@ -29,10 +29,10 @@ export class CustomersListPageComponent implements OnInit {
   isVisibleSearchEmail: boolean;
   CustomerAgentStatus = CustomerAgentStatus;
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
   private translates = {
-    headerTitle: ''
+    headerTitle: '',
   };
 
   constructor(
@@ -43,7 +43,7 @@ export class CustomersListPageComponent implements OnInit {
     private route: ActivatedRoute,
     private headerMenuService: HeaderMenuService
   ) {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -62,7 +62,7 @@ export class CustomersListPageComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
@@ -115,7 +115,7 @@ export class CustomersListPageComponent implements OnInit {
     }
 
     this.getDataSubscription = this.customersService.get(pageSize, currentPage, searchValue).subscribe(
-      response => {
+      (response) => {
         this.customers = response.Customers;
         this.totalCount = response.PagedResponse.TotalCount;
       },

@@ -1,10 +1,10 @@
 import {Component, OnInit, ElementRef, TemplateRef, ViewChild} from '@angular/core';
 import {CampaignService} from '../campaign.service';
 import {CampaignStatus} from '../models/campaign-status.enum';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 import {Subscription} from 'rxjs';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
 import {RewardType} from '../models/reward-type.enum';
 import {EarnRuleRow} from '../models/earn-rule-row.interface';
@@ -24,7 +24,7 @@ import {TOKEN_SYMBOL} from '../../../core/constants/const';
   styleUrls: ['./campaigns-list-page.component.scss']
 })
 export class CampaignsListPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   loading = true;
   isSearching: boolean;
   earnRules: EarnRuleRow[];
@@ -42,9 +42,9 @@ export class CampaignsListPageComponent implements OnInit {
   hasEditPermission = false;
   tokenSymbol = TOKEN_SYMBOL;
 
-  @ViewChild('deleteSuccessMessage')
+  @ViewChild('deleteSuccessMessage', {static: true})
   deleteSuccessMessage: ElementRef<HTMLElement>;
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
   private translates = {
     deleteSuccessMessage: '',

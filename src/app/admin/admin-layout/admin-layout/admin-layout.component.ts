@@ -42,39 +42,39 @@ export class AdminLayoutComponent implements OnInit {
   isLoading = true;
 
   //#region global translates
-  @ViewChild('closeSnackbarBtnTextElement')
+  @ViewChild('closeSnackbarBtnTextElement', {static: true})
   closeSnackbarBtnTextElement: ElementRef;
 
-  @ViewChild('errorMessageElement')
+  @ViewChild('errorMessageElement', {static: true})
   errorMessageElement: ElementRef;
 
-  @ViewChild('errorImageUploadMessageElement')
+  @ViewChild('errorImageUploadMessageElement', {static: true})
   errorImageUploadMessageElement: ElementRef;
   //#endregion
 
   //#region global templates
-  @ViewChild('lengthError')
+  @ViewChild('lengthError', {static: true})
   lengthError: TemplateRef<any>;
-  @ViewChild('moneyFormatError')
+  @ViewChild('moneyFormatError', {static: true})
   moneyFormatError: TemplateRef<any>;
-  @ViewChild('minNumberError')
+  @ViewChild('minNumberError', {static: true})
   minNumberError: TemplateRef<any>;
-  @ViewChild('minMoreZeroNumberError')
+  @ViewChild('minMoreZeroNumberError', {static: true})
   minMoreZeroNumberError: TemplateRef<any>;
-  @ViewChild('maxNumberError')
+  @ViewChild('maxNumberError', {static: true})
   maxNumberError: TemplateRef<any>;
-  @ViewChild('invalidAccuracyError')
+  @ViewChild('invalidAccuracyError', {static: true})
   invalidAccuracyError: TemplateRef<any>;
-  @ViewChild('intRangeError')
+  @ViewChild('intRangeError', {static: true})
   intRangeError: TemplateRef<any>;
   //#endregion
 
   //#region Translates for Business Vertical
-  @ViewChild('BusinessVerticalTypeHospitality')
+  @ViewChild('BusinessVerticalTypeHospitality', {static: true})
   BusinessVerticalTypeHospitality: ElementRef<HTMLElement>;
-  @ViewChild('BusinessVerticalTypeRealEstate')
+  @ViewChild('BusinessVerticalTypeRealEstate', {static: true})
   BusinessVerticalTypeRealEstate: ElementRef<HTMLElement>;
-  @ViewChild('BusinessVerticalTypeRetail')
+  @ViewChild('BusinessVerticalTypeRetail', {static: true})
   BusinessVerticalTypeRetail: ElementRef<HTMLElement>;
   //#endregion
 
