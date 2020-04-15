@@ -9,7 +9,7 @@ import {forkJoin} from 'rxjs';
 import {ImageAddRequest} from '../../action-rule/models/image-add-request.interface';
 import {ImageContentCreatedResponse} from '../../action-rule/models/image-content-created-response.interface';
 import {TranslateService} from 'src/app/shared/services/translate.service';
-import {ROUTE_ADMIN_ROOT, ROUTE_SMART_VOUCHER} from 'src/app/core/constants/routes';
+import {ROUTE_ADMIN_ROOT} from 'src/app/core/constants/routes';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {SmartVoucher} from '../models/smart-voucher.interface';
 

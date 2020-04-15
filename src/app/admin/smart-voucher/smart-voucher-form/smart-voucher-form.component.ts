@@ -15,12 +15,7 @@ import {
   IntegerValidator
 } from '../../../shared/utils/validators';
 import {Subscription} from 'rxjs';
-<<<<<<< HEAD
-import {SmartVoucher} from './../../spend-action-rule/models/spend-action-rule.interface';
-import {SmartVoucher} from './models/smart-voucher.interface';
-=======
 import {SmartVoucher} from '../models/smart-voucher.interface';
->>>>>>> add ability to create vouchers campaign
 import {MobileLanguage} from '../../../shared/models/mobile-language.enum';
 import {MatSnackBar} from '@angular/material';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
@@ -672,7 +667,6 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     const actionRule = this.smartVoucherForm.getRawValue() as SmartVoucher;
-    console.log(actionRule);
     PartnersContainer.HandlePartnersBeforeSaving(actionRule);
 
     this.submitSuccess.emit(actionRule);

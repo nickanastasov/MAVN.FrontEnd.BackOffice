@@ -16,7 +16,6 @@ import {SmartVoucherEditComponent} from './smart-voucher-edit/smart-voucher-edit
     SmartVoucherFormComponent,
     SmartVoucherAddComponent,
     SmartVoucherEditComponent
-    // SmartVoucherEditComponent
   ],
   imports: [
     // modules
