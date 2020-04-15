@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Inject, LOCALE_ID} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {AuthTokenService} from 'ngx-api-utils';
@@ -6,6 +6,8 @@ import {markFormControlAsTouched} from '../../shared/utils/markFormControlAsTouc
 import {LoginErrorCodes} from './login-error-codes.enum';
 import {EmailValidator} from 'src/app/shared/utils/validators';
 import {SettingsService} from 'src/app/core/settings/settings.service';
+
+import {LOCALES} from 'src/app/core/constants/const';
 
 @Component({
   selector: 'app-login-page',
@@ -34,18 +36,39 @@ export class LoginPageComponent implements OnInit {
     CompanyColour: ['', [Validators.required]]
   });
 
+  LOCALES = LOCALES;
+  currentLocale = '';
+
   constructor(
     // services
     private authTokenService: AuthTokenService,
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    @Inject(LOCALE_ID) private locale: string
   ) {
+    if (this.locale.startsWith(LOCALES.English)) {
+      this.currentLocale = LOCALES.English;
+    } else if (this.locale.startsWith(LOCALES.German)) {
+      this.currentLocale = LOCALES.German;
+    }
+
     this.loginForm.get(this.loginFormProps.Email).setValue(this.settingsService.DemoUserLogin);
     this.loginForm.get(this.loginFormProps.Password).setValue(this.settingsService.DemoUserPassword);
   }
 
   ngOnInit() {}
+
+  changeLanguage(locale: string) {
+    const l = window.location;
+
+    const langCode = '/' + locale;
+    const pathname = langCode + l.pathname.substr(langCode.length);
+
+    this.authService.isChangingLanguage = true;
+
+    window.location.href = l.origin + pathname + l.search;
+  }
 
   onLoginSubmit() {
     markFormControlAsTouched(this.loginForm);

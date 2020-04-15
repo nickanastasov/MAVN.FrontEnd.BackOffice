@@ -11,6 +11,20 @@ $login-font-size: 16px;
   padding: 0 66px;
 }
 
+.kt-header-wrapper {
+  position: absolute;
+  right: 0;
+
+  .kt-header {
+    background-color: transparent;
+    border: none;
+
+    .kt-header__topbar-icon {
+      background-color: $light-primary-color;
+    }
+  }
+}
+
 .login-wrapper {
   background-color: $login-grey;
   display: flex;
