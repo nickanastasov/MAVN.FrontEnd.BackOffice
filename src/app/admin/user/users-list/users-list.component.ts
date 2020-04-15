@@ -1,4 +1,4 @@
-import {Component, ViewChild, TemplateRef, OnInit} from '@angular/core';
+import {Component, ViewChild, TemplateRef, OnInit, ElementRef} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {User} from '../models/user.interface';
 import {UserService} from '../user.service';
@@ -38,6 +38,12 @@ export class UsersListComponent implements OnInit {
   totalCount: number;
   hasEditPermission = false;
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     // services
     private authenticationService: AuthenticationService,
@@ -64,8 +70,10 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Admin Users',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
   }

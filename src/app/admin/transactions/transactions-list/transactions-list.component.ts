@@ -1,5 +1,5 @@
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/core';
 import {TransactionsService} from '../transactions.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {MatTableDataSource, MatSnackBar} from '@angular/material';
@@ -31,6 +31,12 @@ export class TransactionsListComponent implements OnInit {
   periodMaxDate: Moment = moment.utc();
   isExporting: boolean;
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     // services
     private snackBar: MatSnackBar,
@@ -40,8 +46,10 @@ export class TransactionsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Transactions',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
   }

@@ -1,5 +1,5 @@
 import {OperationType} from './../models/operation-type';
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/core';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 import {Event} from '../models/event.interface';
 import {EventsService} from '../events.service';
@@ -31,6 +31,12 @@ export class EventsListComponent implements OnInit {
   };
   hasFiltering = false;
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     // services
     private eventsService: EventsService,
@@ -40,8 +46,10 @@ export class EventsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Blockchain Operations',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
   }

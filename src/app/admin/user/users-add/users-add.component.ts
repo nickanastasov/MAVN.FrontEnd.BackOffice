@@ -28,6 +28,12 @@ export class UsersAddComponent implements OnInit {
 
   user: User;
 
+  @ViewChild('headerTitle')
+  headerTitle: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: ''
+  };
+
   constructor(
     private translateService: TranslateService,
     private userService: UserService,
@@ -37,8 +43,10 @@ export class UsersAddComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'New User',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate
     };
 

@@ -22,7 +22,7 @@
               (ngSubmit)="onLoginSubmit()">
           <mat-card-content>
             <mat-form-field class="width-100 form-item">
-              <mat-label>Enter Email</mat-label>
+              <mat-label i18n>Enter Email</mat-label>
               <input matInput
                      id="email"
                      formControlName="Email"
@@ -39,7 +39,7 @@
             </mat-form-field>
 
             <mat-form-field class="width-100 form-item">
-              <mat-label>Enter Password</mat-label>
+              <mat-label i18n>Enter Password</mat-label>
               <input matInput
                      id="password"
                      [type]="revealPasswordField ? 'password' : 'text'"

@@ -19,7 +19,10 @@
                   [ngClass]="{ 'active-filter': currentFilter === filterItem.value, 'has-icon': filterItem.value === 'Custom' }"
                   class="subheader-filter-btn"
                   (click)="handleFilterClick($event, filterItem)">
-            <ng-template [ngIf]="filterItem.value !== 'Custom'">{{ filterItem.name }}</ng-template>
+            <ng-template [ngIf]="filterItem.value === 'LastWeek'">{{ translates.chartPeriodWeek }}</ng-template>
+            <ng-template [ngIf]="filterItem.value === 'LastTwoWeeks'">{{ translates.chartPeriodWeeks }}</ng-template>
+            <ng-template [ngIf]="filterItem.value === 'LastMonth'">{{ translates.chartPeriodMonth }}</ng-template>
+            <ng-template [ngIf]="filterItem.value === 'LastHalfYear'">{{ translates.chartPeriodSemester }}</ng-template>
             <mat-icon *ngIf="filterItem.value === 'Custom'">event</mat-icon>
           </button>
         </div>
@@ -92,7 +95,7 @@
                 <!-- <i class="flaticon-rocket"></i> -->
                 <img src="assets/images/icons/icon-customer.svg" />
               </div>
-              <div class="kt-iconbox__title">
+              <div class="kt-iconbox__title" i18n>
                 Total Customers
               </div>
             </div>
@@ -247,14 +250,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="active-and-repeat-customers__header">
+                <div class="active-and-repeat-customers__header" i18n>
                   Active Customers Share
                 </div>
-                <div class="active-and-repeat-customers__text">
+                <div class="active-and-repeat-customers__text" i18n>
                   Customers who earned or redeemed points during the period
                 </div>
                 <div class="active-and-repeat-customers__total">
-                  <div class="active-and-repeat-customers__total-header">
+                  <div class="active-and-repeat-customers__total-header" i18n>
                     Total Active Customers
                   </div>
                   <div class="active-and-repeat-customers__total-number">
@@ -274,14 +277,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="active-and-repeat-customers__header">
+                <div class="active-and-repeat-customers__header" i18n>
                   Repeat Customers Share
                 </div>
-                <div class="active-and-repeat-customers__text">
+                <div class="active-and-repeat-customers__text" i18n>
                   Customers who made repeat earnings or redemption during the period
                 </div>
                 <div class="active-and-repeat-customers__total">
-                  <div class="active-and-repeat-customers__total-header">
+                  <div class="active-and-repeat-customers__total-header" i18n>
                     Total Repeat Customers
                   </div>
                   <div class="active-and-repeat-customers__total-number">
@@ -352,8 +355,7 @@
   <div class="kt-portlet">
     <div class="kt-portlet__head">
       <div class="kt-portlet__head-label">
-        <h3 class="kt-portlet__head-title"
-            i18n>Smart Points <span class="kt-portlet__head-title-number">{{ totalNumbers.Tokens | number }}</span>
+        <h3 class="kt-portlet__head-title"><span i18n>Smart Points</span> <span class="kt-portlet__head-title-number">{{ totalNumbers.Tokens | number }}</span>
         </h3>
       </div>
     </div>
@@ -547,3 +549,23 @@
     </div>
   </div> -->
 </div>
+
+<div #headerTitle
+     hidden
+     i18n>Dashboard</div>
+
+<div #chartPeriodWeek
+     hidden
+     i18n>Week</div>
+
+<div #chartPeriodWeeks
+     hidden
+     i18n>2 Weeks</div>
+
+<div #chartPeriodMonth
+     hidden
+     i18n>Month</div>
+
+<div #chartPeriodSemester
+     hidden
+     i18n>Semester</div>
