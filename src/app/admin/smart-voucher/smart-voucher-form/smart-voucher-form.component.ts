@@ -76,20 +76,18 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   isLoadingPartners: boolean;
   partners: PartnerRowResponse[] = [];
   voucherFormProps = {
-    Title: 'Title',
-    Order: 'Order',
-    BusinessVertical: 'BusinessVertical',
-    PartnerIds: 'PartnerIds',
+    Name: 'Name',
+    PartnerId: 'PartnerId',
     PartnersSearch: 'PartnersSearch',
-    Type: 'Type',
-    VouchersFile: 'VouchersFile',
-    Price: 'Price',
+    VoucherPrice: 'VoucherPrice',
     Description: 'Description',
     AmountInTokens: 'AmountInTokens',
-    AmountInCurrency: 'AmountInCurrency',
+    Currency: 'Currency',
     UsePartnerCurrencyRate: 'UsePartnerCurrencyRate',
-    MobileContents: 'MobileContents',
-    AmountOfVouchers: 'AmountOfVouchers'
+    LocalizedContents: 'LocalizedContents',
+    VouchersTotalCount: 'VouchersTotalCount',
+    FromDate: 'FromDate',
+    ToDate: 'ToDate'
   };
   VouchersCount = 0;
   VouchersInStockCount = 0;
@@ -112,7 +110,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   MobileAppImageMinHeight: number;
   mobileContentFormProps = {
     MobileLanguage: 'MobileLanguage',
-    Title: 'Title',
+    Name: 'Name',
     Description: 'Description',
     File: 'File',
     ImageBlobUrl: 'ImageBlobUrl'
@@ -127,7 +125,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   // private
   private subscriptions: Subscription[] = [];
   private rateDependencyLoadedEventEmitter = new EventEmitter();
-  private emptyPartnerIdsValue: string[] = [];
+  private emptyPartnerIdValue: string = '';
 
   // private - mobile content related
   private isEnglish: boolean;
@@ -171,14 +169,16 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   }
 
   smartVoucherForm = this.fb.group({
-    [this.voucherFormProps.Title]: [null, [Validators.required, LengthValidator(3, 50)]],
+    [this.voucherFormProps.Name]: [null, [Validators.required, LengthValidator(3, 50)]],
     // [this.voucherFormProps.Order]: [null, [Validators.required, IntegerValidator, IntegerRangeValidator(1, 2147483647)]],
     // [this.voucherFormProps.BusinessVertical]: [null, [Validators.required]],
     [this.voucherFormProps.PartnersSearch]: [null],
     // [this.voucherFormProps.Type]: [this.typeDefaultValue],
-    [this.voucherFormProps.PartnerIds]: [this.emptyPartnerIdsValue, null],
-    [this.voucherFormProps.VouchersFile]: [null, [FileExtensionValidator(this.voucherFileExtension), FileSizeValidator(1024 /*KB*/)]],
-    [this.voucherFormProps.Price]: [
+    [this.voucherFormProps.PartnerId]: [this.emptyPartnerIdValue, null],
+    [this.voucherFormProps.FromDate]: [null],
+    [this.voucherFormProps.ToDate]: [null],
+    // [this.voucherFormProps.VouchersFile]: [null, [FileExtensionValidator(this.voucherFileExtension), FileSizeValidator(1024 /*KB*/)]],
+    [this.voucherFormProps.VoucherPrice]: [
       null,
       [
         // validators
@@ -187,7 +187,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         IntegerValidator
       ]
     ],
-    [this.voucherFormProps.AmountOfVouchers]: [
+    [this.voucherFormProps.VouchersTotalCount]: [
       null,
       [
         // validators
@@ -208,7 +208,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         AccuracyValidator(constants.TOKENS_INPUT_ACCURACY)
       ]
     ],
-    [this.voucherFormProps.AmountInCurrency]: [
+    [this.voucherFormProps.Currency]: [
       null,
       [
         // Validators
@@ -219,11 +219,11 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       ]
     ],
     [this.voucherFormProps.UsePartnerCurrencyRate]: [true],
-    [this.voucherFormProps.MobileContents]: this.fb.array([])
+    [this.voucherFormProps.LocalizedContents]: this.fb.array([])
   });
 
   get mobileContentsFormArray() {
-    return this.smartVoucherForm.get(this.voucherFormProps.MobileContents) as FormArray;
+    return this.smartVoucherForm.get(this.voucherFormProps.LocalizedContents) as FormArray;
   }
   get mobileContentsEnglishOnly(): AbstractControl[] {
     return this.mobileContentsFormArray.controls
@@ -237,7 +237,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     return this.smartVoucherForm.get(this.voucherFormProps.AmountInTokens);
   }
   private get currencyControl() {
-    return this.smartVoucherForm.get(this.voucherFormProps.AmountInCurrency);
+    return this.smartVoucherForm.get(this.voucherFormProps.Currency);
   }
 
   previousPage = '';
@@ -261,12 +261,12 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     this.loadAllPartners();
 
     if (this.voucher) {
-      if (this.voucher.PartnerIds && !this.voucher.PartnerIds.length) {
-        this.voucher.PartnerIds = this.emptyPartnerIdsValue;
+      if (this.voucher.PartnerId && !this.voucher.PartnerId.length) {
+        this.voucher.PartnerId = this.emptyPartnerIdValue;
       }
 
       //#region mobile content related
-      this.voucher.MobileContents.forEach(mobContent => {
+      this.voucher.LocalizedContents.forEach(mobContent => {
         this.mobileContentsFormArray.push(this.generateMobileContentFormGroup(mobContent.MobileLanguage, !!mobContent.ImageId));
 
         // store image urls
@@ -280,9 +280,9 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
       this.smartVoucherForm.reset(this.voucher);
 
-      // disable fields in order to defence from human mistake of changing Price for already imported vouchers
-      if (this.voucher.Price && this.voucher.Price > 0 && this.voucher.BusinessVertical === BusinessVerticalType.Retail) {
-        this.smartVoucherForm.get(this.voucherFormProps.Price).setValidators(this.priceValidatorsWithRequired);
+      // disable fields in order to defence from human mistake of changing VoucherPrice for already imported vouchers
+      if (this.voucher.VoucherPrice && this.voucher.VoucherPrice > 0 && this.voucher.BusinessVertical === BusinessVerticalType.Retail) {
+        this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).setValidators(this.priceValidatorsWithRequired);
 
         this.VouchersCount = this.voucher.VouchersCount;
         this.VouchersInStockCount = this.voucher.VouchersInStockCount;
@@ -293,7 +293,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       }
     } else {
       // this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).disable();
-      // this.smartVoucherForm.get(this.voucherFormProps.Price).disable();
+      // this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
       this.disableRateFields(true);
 
       //#region mobile content related
@@ -305,17 +305,17 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     // mobile content related
-    this.updateContentPreviewBindings(0);
+    // this.updateContentPreviewBindings(0);
 
     this.subscriptions = [
       this.smartVoucherForm.get(this.voucherFormProps.UsePartnerCurrencyRate).valueChanges.subscribe(value => {
         if (value) {
-          this.setPartnerOrGlobalRate(this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).value);
+          this.setPartnerOrGlobalRate(this.smartVoucherForm.get(this.voucherFormProps.PartnerId).value);
         } else {
           this.disableRateFields(false);
         }
       }),
-      this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).valueChanges.subscribe(value => {
+      this.smartVoucherForm.get(this.voucherFormProps.PartnerId).valueChanges.subscribe(value => {
         this.setPartnerOrGlobalRate(value);
       }),
       this.rateDependencyLoadedEventEmitter.subscribe(() => {
@@ -366,7 +366,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
           } else {
             // set partners rate
             this.tokensControl.setValue(partner.AmountInTokens);
-            this.currencyControl.setValue(partner.AmountInCurrency);
+            this.currencyControl.setValue(partner.Currency);
             this.disableRateFields(true);
           }
         }
@@ -380,7 +380,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     this.tokensControl.setValue(this.globalRate.AmountInTokens);
-    this.currencyControl.setValue(this.globalRate.AmountInCurrency);
+    this.currencyControl.setValue(this.globalRate.Currency);
     this.disableRateFields(true);
   }
 
@@ -408,7 +408,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   //       fileControl.updateValueAndValidity();
 
   //       // price
-  //       const priceControl = this.smartVoucherForm.get(this.voucherFormProps.Price);
+  //       const priceControl = this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice);
   //       priceControl.setValue(null);
   //       priceControl.setValidators(null);
   //       priceControl.updateValueAndValidity();
@@ -444,14 +444,14 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     fileControl.setValue(files[0]);
     fileControl.updateValueAndValidity();
 
-    // this.updatePriceValidity();
+    // this.updateVoucherPriceValidity();
   }
 
-  // private updatePriceValidity() {
+  // private updateVoucherPriceValidity() {
   //   const vertical = this.smartVoucherForm.get(this.voucherFormProps.BusinessVertical).value;
 
   //   if (vertical === BusinessVerticalType.Retail) {
-  //     const priceControl = this.smartVoucherForm.get(this.voucherFormProps.Price);
+  //     const priceControl = this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice);
 
   //     if (!this.voucher) {
   //       priceControl.enable();
@@ -539,7 +539,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
     return this.fb.group({
       [this.mobileContentFormProps.MobileLanguage]: [language],
-      [this.mobileContentFormProps.Title]: [null, titleValidators],
+      [this.mobileContentFormProps.Name]: [null, titleValidators],
       [this.mobileContentFormProps.Description]: [null, descriptionValidators],
       [this.mobileContentFormProps.File]: [
         null,
@@ -556,7 +556,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
   onTitleBlur() {
     if (this.isEnglish && !this.isTitleCopied && this.type === FormMode.Create) {
-      const titleControl = this.smartVoucherForm.get(this.mobileContentFormProps.Title);
+      const titleControl = this.smartVoucherForm.get(this.mobileContentFormProps.Name);
 
       if (titleControl.value && titleControl.valid) {
         const mobileContentTitleControl = this.mobileContentsFormArray.controls.find(
@@ -564,7 +564,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         );
 
         if (mobileContentTitleControl) {
-          mobileContentTitleControl.get(this.mobileContentFormProps.Title).setValue(titleControl.value);
+          mobileContentTitleControl.get(this.mobileContentFormProps.Name).setValue(titleControl.value);
           this.isTitleCopied = true;
         }
       }
@@ -626,7 +626,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     const currentTabFormGroup = this.mobileContentsFormArray.at(selectedTabIndex);
 
     const mobileLanguage = currentTabFormGroup.get(this.mobileContentFormProps.MobileLanguage).value;
-    const titleControl = currentTabFormGroup.get(this.mobileContentFormProps.Title);
+    const titleControl = currentTabFormGroup.get(this.mobileContentFormProps.Name);
     const descriptionControl = currentTabFormGroup.get(this.mobileContentFormProps.Description);
     const fileControl = currentTabFormGroup.get(this.mobileContentFormProps.File);
 
@@ -672,7 +672,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     const actionRule = this.smartVoucherForm.getRawValue() as SmartVoucher;
-
+    console.log(actionRule);
     PartnersContainer.HandlePartnersBeforeSaving(actionRule);
 
     this.submitSuccess.emit(actionRule);

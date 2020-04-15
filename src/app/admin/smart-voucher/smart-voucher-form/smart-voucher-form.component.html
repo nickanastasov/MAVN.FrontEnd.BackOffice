@@ -7,7 +7,7 @@
       <span class=""
             i18n>Action Rule Details</span>
     </mat-card-title>
-    <mat-divider></mat-divider>
+    <!-- <mat-divider></mat-divider> -->
     <mat-card-content>
       <div class="row">
         <div class="col-xl-3 col-lg-12">
@@ -16,14 +16,14 @@
             <mat-label i18n>Action rule title</mat-label>
             <input id="actionRuleTitle"
                    matInput
-                   formControlName="Title"
+                   formControlName="Name"
                    placeholder="Action rule title"
                    i18n-placeholder
                    (blur)="onTitleBlur()"
                    required>
             <mat-error>
-              <app-error-message controlName="Title"></app-error-message>
-              <app-error-message controlName="Title"
+              <app-error-message controlName="Name"></app-error-message>
+              <app-error-message controlName="Name"
                                  key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
@@ -36,17 +36,55 @@
             <mat-label i18n>Amount of Vouchers</mat-label>
             <input id="vouchersAmount"
                    matInput
-                   formControlName="AmountOfVouchers"
+                   formControlName="VouchersTotalCount"
                    placeholder=""
                    i18n-placeholder
                    >
             <mat-error>
-              <app-error-message controlName="Title"></app-error-message>
-              <app-error-message controlName="Title"
+              <app-error-message controlName="Name"></app-error-message>
+              <app-error-message controlName="Name"
                                  key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
             </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Start date</mat-label>
+            <input matInput
+                   [min]="minStartDate"
+                   [matDatepicker]="picker"
+                   formControlName="FromDate"
+                   placeholder="Start date"
+                   i18n-placeholder
+                   matTooltip="The date when the action rule is applicable from"
+                   i18n-matTooltip
+                   required>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+              <app-error-message controlName="FromDate"></app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>End date</mat-label>
+            <input matInput
+                   [min]="minEndDate"
+                   [matDatepicker]="endDatePicker"
+                   formControlName="ToDate"
+                   placeholder="End date"
+                   matTooltip="The date till which the action rule is applicable"
+                   i18n-matTooltip
+                   i18n-placeholder>
+            <mat-datepicker-toggle matSuffix
+                                   [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
           </mat-form-field>
         </div>
         <!-- <div class="col-xl-3 col-lg-12">
@@ -99,7 +137,7 @@
                           class="width-100">
             <mat-label i18n>Partners</mat-label>
             <mat-select id="actionRulePartners"
-                        formControlName="PartnerIds"
+                        formControlName="PartnerId"
                         placeholder="Partners"
                         i18n-placeholder
                         panelClass="token-select-panel"
@@ -244,6 +282,31 @@
       </div> -->
 
       <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label i18n>Voucher Price, {{baseCurrencyCode}} *</mat-label>
+            <input matInput
+                   formControlName="VoucherPrice"
+                   type="number"
+                   matTooltip="Price for the uploaded voucher codes (what the customers will be asked to pay to use these vouchers)"
+                   i18n-matTooltip
+                   min="0"
+                   step="1">
+            <mat-error>
+              <app-error-message controlName="VoucherPrice"></app-error-message>
+              <app-error-message controlName="VoucherPrice"
+                                 key="min"
+                                 [template]="templates.minNumberError"
+                                 [templateContext]="{$implicit: {min: 0}}"></app-error-message>
+              <app-error-message controlName="VoucherPrice"
+                                 key="max"
+                                 [template]="templates.maxNumberError"
+                                 [templateContext]="{$implicit: {max: INTEGER_MAX_NUMBER}}">
+              </app-error-message>
+            </mat-error>
+          </mat-form-field>
+        </div>
         <div class="col-lg-12">
           <mat-form-field appearance="outline"
                           class="width-100">
@@ -269,7 +332,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card hidden>
+  <mat-card>
     <mat-card-title>
       <span i18n>Conversion Rate</span>
     </mat-card-title>
@@ -283,8 +346,8 @@
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-12 conversion-rate-text">
-          <span i18n>{{smartVoucherForm.get('AmountInTokens').value | token}} {{tokenSymbol}} to
-            {{smartVoucherForm.get('AmountInCurrency').value | number}} {{baseCurrencyCode}}</span>
+          <span i18n>{{smartVoucherForm.get('AmountInTokens').value}} {{tokenSymbol}} to
+            {{smartVoucherForm.get('Currency').value}} {{baseCurrencyCode}}</span>
         </div>
       </div>
       <div class="row">
@@ -324,22 +387,22 @@
               <span i18n>Amount, {{baseCurrencyCode}}</span>
             </mat-label>
             <input matInput
-                   formControlName="AmountInCurrency"
+                   formControlName="Currency"
                    type="number"
                    [min]="CURRENCY_INPUT_MIN_NUMBER"
                    [step]="CURRENCY_INPUT_MIN_NUMBER"
                    required>
             <mat-error>
-              <app-error-message controlName="AmountInCurrency"></app-error-message>
-              <app-error-message controlName="AmountInCurrency"
+              <app-error-message controlName="Currency"></app-error-message>
+              <app-error-message controlName="Currency"
                                  key="min"
                                  [template]="templates.minNumberError"
                                  [templateContext]="{$implicit: {min: CURRENCY_INPUT_MIN_NUMBER}}"></app-error-message>
-              <app-error-message controlName="AmountInCurrency"
+              <app-error-message controlName="Currency"
                                  key="max"
                                  [template]="templates.maxNumberError"
                                  [templateContext]="{$implicit: {max: CURRENCY_INPUT_MAX_NUMBER}}"></app-error-message>
-              <app-error-message controlName="AmountInCurrency"
+              <app-error-message controlName="Currency"
                                  key="accuracy"
                                  [template]="templates.invalidAccuracyError"
                                  [templateContext]="{$implicit: {accuracy: CURRENCY_INPUT_ACCURACY}}">
@@ -366,7 +429,7 @@
 
   <div class="row">
     <div class="col-xl-6 mobile-content"
-         formArrayName="MobileContents">
+         formArrayName="LocalizedContents">
       <mat-card>
         <mat-card-title>
           <span class=""
@@ -403,13 +466,13 @@
                     <mat-label i18n>Action rule title</mat-label>
                     <input id="mobileContentTitle-{{mobContent.get('MobileLanguage').value}}"
                            matInput
-                           formControlName="Title"
+                           formControlName="Name"
                            placeholder="Action rule title"
                            i18n-placeholder
                            [required]="mobContent.get('MobileLanguage').value === mobileLanguages.En">
                     <mat-error>
-                      <app-error-message controlName="Title"></app-error-message>
-                      <app-error-message controlName="Title"
+                      <app-error-message controlName="Name"></app-error-message>
+                      <app-error-message controlName="Name"
                                          key="length"
                                          [template]="templates.lengthError"
                                          [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>

@@ -1,3 +1,5 @@
+import {ROUTE_SMART_VOUCHERS} from './../../../core/constants/routes';
+import {SmartVoucherService} from './../smart-voucher.service';
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {SpendActionRuleService} from './../../spend-action-rule/spend-action-rule.service';
 import {SpendActionRule} from './../../spend-action-rule/models/spend-action-rule.interface';
@@ -7,8 +9,9 @@ import {forkJoin} from 'rxjs';
 import {ImageAddRequest} from '../../action-rule/models/image-add-request.interface';
 import {ImageContentCreatedResponse} from '../../action-rule/models/image-content-created-response.interface';
 import {TranslateService} from 'src/app/shared/services/translate.service';
-import {ROUTE_ADMIN_ROOT, ROUTE_SPEND_RULES, ROUTE_EDIT_SPEND_RULE} from 'src/app/core/constants/routes';
+import {ROUTE_ADMIN_ROOT, ROUTE_SMART_VOUCHER} from 'src/app/core/constants/routes';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
+import {SmartVoucher} from '../models/smart-voucher.interface';
 
 @Component({
   selector: 'app-smart-voucher-add',
@@ -34,7 +37,8 @@ export class SmartVoucherAddComponent implements OnInit {
     private snackBar: MatSnackBar,
     private spendActionRuleService: SpendActionRuleService,
     private translateService: TranslateService,
-    private headerMenuService: HeaderMenuService
+    private headerMenuService: HeaderMenuService,
+    private smartVoucherService: SmartVoucherService
   ) {}
 
   ngOnInit() {
@@ -49,10 +53,10 @@ export class SmartVoucherAddComponent implements OnInit {
     };
   }
 
-  onFormSubmit(formData: SpendActionRule) {
+  onFormSubmit(formData: any) {
     this.isLoading = true;
 
-    this.spendActionRuleService.create(formData).subscribe(
+    this.smartVoucherService.create(formData).subscribe(
       response => {
         formData.Id = response.Id;
         this.saveImages(formData, response.CreatedImageContents);
@@ -65,8 +69,8 @@ export class SmartVoucherAddComponent implements OnInit {
     );
   }
 
-  private saveImages(formData: SpendActionRule, createdImageContents: ImageContentCreatedResponse[]) {
-    const mobileContentsWithImages = formData.MobileContents.filter(mobContent => mobContent.File && mobContent.File.size > 0);
+  private saveImages(formData: SmartVoucher, createdImageContents: ImageContentCreatedResponse[]) {
+    const mobileContentsWithImages = formData.LocalizedContents.filter(mobContent => mobContent.File && mobContent.File.size > 0);
 
     const requests = mobileContentsWithImages.map(mobContent => {
       const createdImageContent = createdImageContents.find(val => val.MobileLanguage === mobContent.MobileLanguage);
@@ -129,7 +133,7 @@ export class SmartVoucherAddComponent implements OnInit {
       duration: 5000
     });
 
-    this.router.navigate([`${ROUTE_ADMIN_ROOT}/${ROUTE_SPEND_RULES}`], {
+    this.router.navigate([`${ROUTE_ADMIN_ROOT}/${ROUTE_SMART_VOUCHERS}`], {
       queryParams: {
         page: this.previousPage
       }

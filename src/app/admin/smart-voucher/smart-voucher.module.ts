@@ -7,13 +7,15 @@ import {SmartVoucherListPageComponent} from './smart-voucher-list-page/smart-vou
 import {SmartVoucherAddComponent} from './smart-voucher-add/smart-voucher-add.component';
 import {SmartVoucherFormComponent} from './smart-voucher-form/smart-voucher-form.component';
 import {PartnersModule} from './../partners/partners.module';
+import {SmartVoucherEditComponent} from './smart-voucher-edit/smart-voucher-edit.component';
 
 @NgModule({
   declarations: [
     // components
     SmartVoucherListPageComponent,
     SmartVoucherFormComponent,
-    SmartVoucherAddComponent
+    SmartVoucherAddComponent,
+    SmartVoucherEditComponent
     // SmartVoucherEditComponent
   ],
   imports: [

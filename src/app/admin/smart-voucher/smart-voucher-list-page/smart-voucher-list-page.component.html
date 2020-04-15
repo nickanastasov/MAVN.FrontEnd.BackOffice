@@ -97,7 +97,7 @@
             <tr *ngFor="let rule of smartVouchers; let i = index"
                 class="data-row-{{i}}">
               <td data-id="title">
-                <span>{{rule.Title}}</span>
+                <span>{{rule.Name}}</span>
               </td>
               <td data-id="status">
                 <span class="kt-badge kt-badge--dot kt-badge--md kt-badge--active"></span>
@@ -111,9 +111,9 @@
               </td>
               <td data-id="actions"
                   class="text-right">
-                <!-- [routerLink]="['edit-smart-voucher', rule.Id]"
-                  [state]="{ page: currentPage, pageSize: pageSize }"-->
-                <a onclick="return false;"
+                <a 
+                [routerLink]="['edit-smart-voucher', rule.Id]"
+                [state]="{ page: currentPage, pageSize: pageSize }"
                    style="opacity: .5; cursor: default"
                    matTooltip="Edit"
                    i18n-matTooltip
@@ -124,7 +124,8 @@
                             *ngIf="hasEditPermission">edit</mat-icon>
                 </a>
                 <!-- (click)="deleteActionRule(rule)" -->
-                <a onclick="return;"
+                <a
+                  (click)="deleteActionRule(rule)"
                    style="opacity: .5; cursor: default"
                    [hidden]="!hasEditPermission"
                    href="javascript:void(0);"

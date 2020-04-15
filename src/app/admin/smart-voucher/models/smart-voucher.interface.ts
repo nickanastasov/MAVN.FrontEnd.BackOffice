@@ -7,6 +7,7 @@ export class SmartVoucher implements PartnersContainer {
   Price: number;
   VouchersFile: File;
   VouchersCount: number;
+  PartnerId: string;
   VouchersInStockCount: number;
   Description: string;
   BusinessVertical: string;
@@ -15,5 +16,5 @@ export class SmartVoucher implements PartnersContainer {
   AmountInCurrency: number;
   UsePartnerCurrencyRate: boolean;
   Order: number;
-  MobileContents: ActionRuleMobileContent[];
+  LocalizedContents: ActionRuleMobileContent[];
 }

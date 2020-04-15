@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {SmartVoucherListPageComponent} from './smart-voucher-list-page/smart-voucher-list-page.component';
 import {SmartVoucherAddComponent} from './smart-voucher-add/smart-voucher-add.component';
+import {SmartVoucherEditComponent} from './smart-voucher-edit/smart-voucher-edit.component';
 
 const routes: Routes = [
   {
@@ -11,11 +12,11 @@ const routes: Routes = [
   {
     path: 'add-smart-voucher',
     component: SmartVoucherAddComponent
+  },
+  {
+    path: `edit-smart-voucher/:id`,
+    component: SmartVoucherEditComponent
   }
-  // {
-  //   path: `edit-smart-voucher/:id`,
-  //   component: SmartVoucherEditComponent
-  // }
 ];
 
 @NgModule({

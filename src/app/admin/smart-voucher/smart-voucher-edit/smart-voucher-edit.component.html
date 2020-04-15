@@ -7,7 +7,7 @@
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
                 id="kt_subheader_total"
-                i18n>Enter Voucher Campaign details</span>
+                i18n>Enter spend rule details</span>
         </div>
       </div>
     </div>
@@ -17,19 +17,21 @@
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
   <div class="kt-portlet">
     <div class="kt-portlet__body">
-      <app-smart-voucher-form (submitSuccess)="onFormSubmit($event)"
-                                  [isSaving]="isLoading"
-                                  [voucher]="spendActionRule"
-                                  ></app-smart-voucher-form>
+      <app-smart-voucher-form *ngIf="!isLoading"
+                                  [isSaving]="isSaving"
+                                  [type]="FormMode.Edit"
+                                  (submitSuccess)="onFormSubmit($event)"
+                                  [voucher]="ruleForEdit">
+    </app-smart-voucher-form>
 
       <div class="spinner-container"
-           *ngIf="isLoading">
+           *ngIf="isLoading || isSaving">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       </div>
     </div>
   </div>
 </div>
 
-<div #headerTitle
+<div #successMessageElement
      hidden
-     i18n>New voucher campaign</div>
+     i18n>You have edited spend action rule successfully</div>
