@@ -142,6 +142,13 @@ $login-font-size: 16px;
             .mat-icon {
               color: $login-light-blue;
             }
+
+            .file-name {
+              width: 56%;
+              display: inline-block;
+              vertical-align: middle;
+              margin-left: 1rem;
+            }
           }
 
           input:-webkit-autofill {
@@ -158,7 +165,10 @@ $login-font-size: 16px;
         }
 
         .form-actions {
-          display: block;
+          // display: block;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
 
           .btn {
             height: 34px;
@@ -170,6 +180,13 @@ $login-font-size: 16px;
               height: 21px;
               width: 21px;
             }
+          }
+
+          .register-btn {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: $kt-brand-color;
+            cursor: pointer;
           }
         }
       }

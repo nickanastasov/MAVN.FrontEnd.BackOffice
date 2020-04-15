@@ -21,9 +21,17 @@ export class LoginPageComponent implements OnInit {
     Email: 'Email',
     Password: 'Password'
   };
+  registerErrorMessage: string;
+  registerFormActive = false;
   loginForm = this.fb.group({
     [this.loginFormProps.Email]: ['', [Validators.required, EmailValidator]],
     [this.loginFormProps.Password]: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+  });
+  registerForm = this.fb.group({
+    Email: ['', [Validators.required, EmailValidator]],
+    Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
+    CompanyLogo: ['', [Validators.required]],
+    CompanyColour: ['', [Validators.required]]
   });
 
   constructor(
@@ -39,7 +47,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
+  onLoginSubmit() {
     markFormControlAsTouched(this.loginForm);
 
     if (!this.loginForm.valid) {
@@ -77,5 +85,30 @@ export class LoginPageComponent implements OnInit {
 
   onTogglePasswordDisplay() {
     this.revealPasswordField = !this.revealPasswordField;
+  }
+
+  changeForms() {
+    this.registerFormActive = !this.registerFormActive;
+  }
+
+  onCompanyLogoChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.registerForm.patchValue({
+        CompanyLogo: file
+      });
+    }
+  }
+
+  onRegisterSubmit() {
+    markFormControlAsTouched(this.registerForm);
+
+    if (!this.registerForm.valid) {
+      return;
+    }
+
+    this.registerErrorMessage = '';
+    this.loading = true;
   }
 }
