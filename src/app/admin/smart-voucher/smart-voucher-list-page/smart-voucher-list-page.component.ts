@@ -12,6 +12,7 @@ import {AuthenticationService} from 'src/app/authentication/authentication.servi
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {SmartVoucherService} from '../smart-voucher.service';
+import {SmartVoucherCampaignState} from '../models/smart-voucher-campaign-state.enum';
 
 @Component({
   selector: 'app-smart-voucher-list-page',
@@ -26,6 +27,7 @@ export class SmartVoucherListPageComponent implements OnInit {
   totalCount: number;
   searchTitleValue: string;
   isVisibleSearchTitle: boolean;
+  SmartVoucherCampaignState = SmartVoucherCampaignState;
   currentPage = 0;
   baseCurrencyCode: string;
   initialPageSize: number;

@@ -139,7 +139,21 @@
               <td data-id="status">
                 <span class="kt-badge kt-badge--dot kt-badge--md"
                       [ngClass]="{Draft:'kt-badge--gray',Published:'kt-badge--active'}[campaign.State]"></span>
-                <span i18n>{{campaign.State}}</span>
+
+                <ng-container [ngSwitch]="campaign.State">
+                  <ng-container *ngSwitchCase="SmartVoucherCampaignState.Draft">
+                    <span i18n>Draft</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="SmartVoucherCampaignState.Published">
+                    <span i18n>Published</span>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="SmartVoucherCampaignState.Deleted">
+                    <span i18n>Deleted</span>
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                    <span i18n>Unknown</span>
+                  </ng-container>
+                </ng-container>
               </td>
               <td data-id="actions"
                   class="text-right">
