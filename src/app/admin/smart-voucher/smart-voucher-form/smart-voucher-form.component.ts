@@ -82,7 +82,8 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     LocalizedContents: 'LocalizedContents',
     VouchersTotalCount: 'VouchersTotalCount',
     FromDate: 'FromDate',
-    ToDate: 'ToDate'
+    ToDate: 'ToDate',
+    VouchersFile: 'VouchersFile'
   };
   VouchersCount = 0;
   VouchersInStockCount = 0;
@@ -172,7 +173,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     [this.voucherFormProps.PartnerId]: [this.emptyPartnerIdValue, null],
     [this.voucherFormProps.FromDate]: [null],
     [this.voucherFormProps.ToDate]: [null],
-    // [this.voucherFormProps.VouchersFile]: [null, [FileExtensionValidator(this.voucherFileExtension), FileSizeValidator(1024 /*KB*/)]],
+    [this.voucherFormProps.VouchersFile]: [null, [FileExtensionValidator(this.voucherFileExtension), FileSizeValidator(1024 /*KB*/)]],
     [this.voucherFormProps.VoucherPrice]: [
       null,
       [
@@ -319,7 +320,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
           this.isLoadingRate = false;
 
           if (this.voucher) {
-            this.setPartnerOrGlobalRate(this.voucher.PartnerIds);
+            this.setPartnerOrGlobalRate(this.voucher.PartnerId);
           } else {
             this.setToGlobalRate();
           }
@@ -348,12 +349,12 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  private setPartnerOrGlobalRate(partnerIds: string[]): void {
-    if (this.usePartnerCurrencyRate && partnerIds) {
-      if (partnerIds.length > 1 || !partnerIds.length) {
+  private setPartnerOrGlobalRate(partnerId: string): void {
+    if (this.usePartnerCurrencyRate && partnerId) {
+      if (partnerId.length > 1 || !partnerId.length) {
         this.setToGlobalRate();
-      } else if (partnerIds.length === 1) {
-        const partner = this.partners.find(x => x.Id === partnerIds[0]);
+      } else if (partnerId.length === 1) {
+        const partner = this.partners.find(x => x.Id === partnerId[0]);
 
         if (partner) {
           if (partner.UseGlobalCurrencyRate) {
@@ -475,7 +476,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   // }
 
   deselectPartners(): void {
-    const partnersControl = this.smartVoucherForm.get(this.voucherFormProps.PartnerIds);
+    const partnersControl = this.smartVoucherForm.get(this.voucherFormProps.PartnerId);
     partnersControl.setValue([]);
   }
 

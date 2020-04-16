@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {ApiHttpService} from 'ngx-api-utils';
 import {HttpParams} from '@angular/common/http';
 import {SmartVoucherListResponse} from './models/smart-voucher-list-response.interface';
-import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +47,6 @@ export class SmartVoucherService {
     return this.apiHttp.delete(`${this.apiPath}/${id}`);
   }
   getById(id: string) {
-    const params = new HttpParams().set('id', encodeURIComponent(id));
-
     return this.apiHttp.get(`${this.apiPath}/${id}`);
   }
 

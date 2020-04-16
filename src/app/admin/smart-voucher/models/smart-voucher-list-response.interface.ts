@@ -2,6 +2,6 @@ import {PagedResponse} from 'src/app/shared/pagination-container/models/paged-re
 import {SmartVoucherRow} from './smart-voucher-row.interface';
 
 export interface SmartVoucherListResponse {
-  Vouchers: SmartVoucherRow[];
+  SmartVoucherCampaigns: SmartVoucherRow[];
   PagedResponse: PagedResponse;
 }

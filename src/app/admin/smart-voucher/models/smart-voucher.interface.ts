@@ -4,7 +4,7 @@ import {PartnersContainer} from '../../partners/models/partners-container.interf
 export class SmartVoucher implements PartnersContainer {
   Id: string;
   Title: string;
-  Price: number;
+  VoucherPrice: number;
   VouchersFile: File;
   VouchersCount: number;
   PartnerId: string;
@@ -13,7 +13,7 @@ export class SmartVoucher implements PartnersContainer {
   BusinessVertical: string;
   PartnerIds: string[];
   AmountInTokens: string;
-  AmountInCurrency: number;
+  Currency: number;
   UsePartnerCurrencyRate: boolean;
   Order: number;
   LocalizedContents: ActionRuleMobileContent[];

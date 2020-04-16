@@ -1,4 +1,4 @@
-import {ROUTE_SMART_VOUCHERS} from './../../../core/constants/routes';
+import {ROUTE_SMART_VOUCHERS, ROUTE_EDIT_SMART_VOUCHER} from './../../../core/constants/routes';
 import {SmartVoucherService} from './../smart-voucher.service';
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {SpendActionRuleService} from './../../spend-action-rule/spend-action-rule.service';
@@ -104,7 +104,7 @@ export class SmartVoucherAddComponent implements OnInit {
     }
   }
 
-  private uploadVouchers(formData: SpendActionRule) {
+  private uploadVouchers(formData: any) {
     if (formData.VouchersFile && formData.VouchersFile.size > 0) {
       this.spendActionRuleService.uploadVouchers(formData.Id, formData.VouchersFile).subscribe(
         () => {
@@ -120,7 +120,7 @@ export class SmartVoucherAddComponent implements OnInit {
 
           this.snackBar.open(errorMessage, this.translateService.translates.CloseSnackbarBtnText);
 
-          this.router.navigate([`${ROUTE_ADMIN_ROOT}/${ROUTE_SPEND_RULES}/${ROUTE_EDIT_SPEND_RULE}/${formData.Id}`]);
+          this.router.navigate([`${ROUTE_ADMIN_ROOT}/${ROUTE_SMART_VOUCHERS}/${ROUTE_EDIT_SMART_VOUCHER}/${formData.Id}`]);
         }
       );
     } else {

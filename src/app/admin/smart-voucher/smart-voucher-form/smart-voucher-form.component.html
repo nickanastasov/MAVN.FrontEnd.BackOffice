@@ -54,7 +54,6 @@
                           class="width-100">
             <mat-label i18n>Start date</mat-label>
             <input matInput
-                   [min]="minStartDate"
                    [matDatepicker]="picker"
                    formControlName="FromDate"
                    placeholder="Start date"
@@ -75,7 +74,6 @@
                           class="width-100">
             <mat-label i18n>End date</mat-label>
             <input matInput
-                   [min]="minEndDate"
                    [matDatepicker]="endDatePicker"
                    formControlName="ToDate"
                    placeholder="End date"

@@ -1,4 +1,4 @@
-import {NumberFormatStyle} from '@angular/common';
+// import {NumberFormatStyle} from '@angular/common';
 
 export interface GlobalRate {
   AmountInTokens: string;

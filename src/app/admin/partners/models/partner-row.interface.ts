@@ -10,4 +10,6 @@ export interface PartnerRowResponse {
   CreatedBy: string;
   BusinessVertical?: BusinessVerticalType;
   IsHidden: boolean;
+
+  Currency: number;
 }
