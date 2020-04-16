@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './admin-layout/admin-layout/admin-layout.component';
 import {AdminLayoutModule} from './admin-layout/admin-layout.module';
-import {ROUTE_SPEND_RULES} from '../core/constants/routes';
+import {ROUTE_SPEND_RULES, ROUTE_SMART_VOUCHERS} from '../core/constants/routes';
 
 const routes: Routes = [
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
         loadChildren: './spend-action-rule/spend-action-rule.module#SpendActionRuleModule'
       },
       {
-        path: 'smart-vouchers',
+        path: ROUTE_SMART_VOUCHERS,
         loadChildren: './smart-voucher/smart-voucher.module#SmartVoucherModule'
       },
       {
