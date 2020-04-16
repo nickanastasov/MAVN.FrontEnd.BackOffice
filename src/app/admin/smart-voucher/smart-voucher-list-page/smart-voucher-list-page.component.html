@@ -52,7 +52,7 @@
               <th>
                 <div>
                   <div>
-                    <span i18n>Title</span>
+                    <span i18n>Name</span>
                     <mat-icon class="btn-toggle-search"
                               (click)="toggleSearchTitle()">search</mat-icon>
                   </div>
@@ -82,39 +82,69 @@
                   </div>
                 </div>
               </th>
+              <th style="width: 150px"
+                  class="text-right"
+                  i18n>Amount of Vouchers</th>
+              <th style="width: 150px"
+                  class="text-right"
+                  i18n>Bought Vouchers</th>
+              <th style="width: 150px"
+                  class="text-right"
+                  i18n>Voucher Price</th>
               <th style="width: 100px"
-                  i18n>Status</th>
+                  i18n>Currency</th>
+              <th style="width: 120px"
+                  i18n>Start Date</th>
+              <th style="width: 120px"
+                  i18n>End Date</th>
               <th style="width: 120px"
                   i18n>Creation Date</th>
-              <th style="width: auto"
-                  i18n>Partner</th>
+              <th style="width: 100px"
+                  i18n>Status</th>
               <th style="width: 90px; padding-right: 20px"
                   class="text-right"
                   i18n>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let rule of smartVouchers; let i = index"
+            <tr *ngFor="let campaign of campaigns; let i = index"
                 class="data-row-{{i}}">
-              <td data-id="title">
-                <span>{{rule.Name}}</span>
+              <td data-id="name">
+                <span>{{campaign.Name}}</span>
               </td>
-              <td data-id="status">
-                <span class="kt-badge kt-badge--dot kt-badge--md kt-badge--active"></span>
-                <span i18n>Active</span>
+              <td data-id="VouchersTotalCount"
+                  class="text-right">
+                <span>{{campaign.VouchersTotalCount}}</span>
+              </td>
+              <td data-id="BoughtVouchersCount"
+                  class="text-right">
+                <span>{{campaign.BoughtVouchersCount}}</span>
+              </td>
+              <td data-id="VoucherPrice"
+                  class="text-right">
+                <span>{{campaign.VoucherPrice | number}}</span>
+              </td>
+              <td data-id="Currency">
+                <span>{{campaign.Currency}}</span>
+              </td>
+              <td data-id="FromDate">
+                <span>{{campaign.FromDate | date:'dd/MM/yyyy'}}</span>
+              </td>
+              <td data-id="ToDate">
+                <span>{{campaign.ToDate | date:'dd/MM/yyyy'}}</span>
               </td>
               <td data-id="creationDate">
-                <span>{{rule.CreationDate | date:'dd/MM/yyyy'}}</span>
+                <span>{{campaign.CreationDate | date:'dd/MM/yyyy'}}</span>
               </td>
-              <td data-id="partner">
-                <span>{{rule.Partner}}</span>
+              <td data-id="status">
+                <span class="kt-badge kt-badge--dot kt-badge--md"
+                      [ngClass]="{Draft:'kt-badge--gray',Published:'kt-badge--active'}[campaign.State]"></span>
+                <span i18n>{{campaign.State}}</span>
               </td>
               <td data-id="actions"
                   class="text-right">
-                <a 
-                [routerLink]="['edit-smart-voucher', rule.Id]"
-                [state]="{ page: currentPage, pageSize: pageSize }"
-                   style="opacity: .5; cursor: default"
+                <a [routerLink]="['edit-smart-voucher', campaign.Id]"
+                   [state]="{ page: currentPage, pageSize: pageSize }"
                    matTooltip="Edit"
                    i18n-matTooltip
                    class="btn btn-sm btn-clean btn-icon btn--row-action">
@@ -123,10 +153,8 @@
                   <mat-icon class="material-icons-outlined"
                             *ngIf="hasEditPermission">edit</mat-icon>
                 </a>
-                <!-- (click)="deleteActionRule(rule)" -->
-                <a
-                  (click)="deleteActionRule(rule)"
-                   style="opacity: .5; cursor: default"
+
+                <a (click)="deleteCampaign(campaign)"
                    [hidden]="!hasEditPermission"
                    href="javascript:void(0);"
                    matTooltip="Delete"
@@ -148,7 +176,7 @@
       </div>
 
       <div class="table-states-container text-center">
-        <ng-container *ngIf="!isLoading && !isSearching && smartVouchers.length === 0">
+        <ng-container *ngIf="!isLoading && !isSearching && campaigns.length === 0">
           <span *ngIf="!searchTitleValue"
                 i18n>There are no Voucher Campaigns, please create one</span>
           <span *ngIf="searchTitleValue"
@@ -172,8 +200,8 @@
 <div #deletePrompt
      hidden
      ngNonBindable
-     i18n>Do you want to delete the voucher campaign "{{title}}"?</div>
+     i18n>Do you want to delete the voucher campaign "{{name}}"?</div>
 
 <div #deletedMessage
      hidden
-     i18n>Voucher campaign deleted successfully.</div>
+     i18n>Voucher campaign has been deleted successfully.</div>

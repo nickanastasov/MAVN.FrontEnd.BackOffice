@@ -2,17 +2,15 @@ import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/co
 import {Subscription} from 'rxjs';
 import {MatSnackBar, MatDialog} from '@angular/material';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
-import {SmartVoucherRow} from '../models/smart-voucher-row.interface';
+import {SmartVoucherCampaignRow} from '../models/smart-voucher-row.interface';
 import {ConfirmationDialogComponent} from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import {ConfirmationDialogData} from 'src/app/shared/confirmation-dialog/confirmation-dialog-data.interface';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {ActivatedRoute} from '@angular/router';
 import {SettingsService} from 'src/app/core/settings/settings.service';
-import * as constants from 'src/app/core/constants/const';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
-import {BusinessVerticalType} from '../../partners/models/business-vertical.enum';
 import {SmartVoucherService} from '../smart-voucher.service';
 
 @Component({
@@ -24,16 +22,14 @@ export class SmartVoucherListPageComponent implements OnInit {
   @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
   isLoading = true;
   isSearching: boolean;
-  smartVouchers: SmartVoucherRow[] = [];
+  campaigns: SmartVoucherCampaignRow[] = [];
   totalCount: number;
   searchTitleValue: string;
   isVisibleSearchTitle: boolean;
   currentPage = 0;
   baseCurrencyCode: string;
-  tokenSymbol = constants.TOKEN_SYMBOL;
-  BusinessVerticalType = BusinessVerticalType;
   initialPageSize: number;
-  private pageSize: number;
+  pageSize: number;
   private getDataSubscription: Subscription;
   private isFirstLoad = true;
 
@@ -117,7 +113,7 @@ export class SmartVoucherListPageComponent implements OnInit {
 
     this.getDataSubscription = this.smartVoucherService.getAll(pageSize, currentPage, title).subscribe(
       response => {
-        this.smartVouchers = response.SmartVoucherCampaigns;
+        this.campaigns = response.SmartVoucherCampaigns;
         this.totalCount = response.PagedResponse.TotalCount;
       },
       () => {
@@ -130,10 +126,10 @@ export class SmartVoucherListPageComponent implements OnInit {
     );
   }
 
-  deleteActionRule(SmartVoucher: SmartVoucherRow) {
+  deleteCampaign(campaign: SmartVoucherCampaignRow) {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        Message: this.translates.deletePrompt.replace('{{title}}', SmartVoucher.Title)
+        Message: this.translates.deletePrompt.replace('{{name}}', campaign.Name)
       } as ConfirmationDialogData
     });
 
@@ -141,7 +137,7 @@ export class SmartVoucherListPageComponent implements OnInit {
       if (result) {
         this.isLoading = true;
 
-        this.smartVoucherService.delete(SmartVoucher.Id).subscribe(
+        this.smartVoucherService.delete(campaign.Id).subscribe(
           () => {
             this.getData(this.pageSize, this.currentPage + 1, this.searchTitleValue);
             this.snackBar.open(this.translates.deletedMessage, this.translateService.translates.CloseSnackbarBtnText, {

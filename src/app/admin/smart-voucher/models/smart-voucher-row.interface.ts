@@ -1,7 +1,14 @@
-export interface SmartVoucherRow {
+export interface SmartVoucherCampaignRow {
   Id: string;
-  Title: string;
-  Status: string;
+  Name: string;
+  VouchersTotalCount: number;
+  BoughtVouchersCount: number;
+  VoucherPrice: number;
+  Currency: string;
+  PartnerId: string;
+  FromDate: Date;
+  ToDate: Date;
   CreationDate: Date;
-  Partner: string;
+  CreatedBy: string;
+  State: string;
 }
