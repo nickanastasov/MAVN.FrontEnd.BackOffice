@@ -5,7 +5,7 @@ import {SettingsService} from 'src/app/core/settings/settings.service';
 import {BusinessVerticalService} from '../../partners/services/business-vertical.service';
 import {BusinessVerticalType} from '../../partners/models/business-vertical.enum';
 import {User} from '../../user/models/user.interface';
-import {StatisticsService} from 'src/app/shared/services/staistics.service';
+import {StatisticsService} from 'src/app/shared/services/statistics.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 
@@ -38,7 +38,7 @@ export class AdminLayoutComponent implements OnInit {
   user: User;
   userInitials: string;
   tokenSymbol = TOKEN_SYMBOL;
-  totalTokenSupply: string;
+  totalTokenSupply: string | number;
   isLoading = true;
 
   //#region global translates
@@ -154,8 +154,8 @@ export class AdminLayoutComponent implements OnInit {
 
     //#endregion
 
-    this.statisticService.getTotalSupplyTokens().subscribe(response => {
-      this.totalTokenSupply = response.TotalSupply;
+    this.statisticService.getTotalVoucherCampaignsSupply().subscribe(response => {
+      this.totalTokenSupply = response.ActiveCampaignsVouchersTotalCount;
       this.isLoading = false;
     });
 
