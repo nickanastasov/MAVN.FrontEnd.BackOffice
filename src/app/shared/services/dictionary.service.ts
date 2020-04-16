@@ -6,6 +6,6 @@ import {MobileLanguage} from '../models/mobile-language.enum';
 })
 export class DictionaryService {
   getMobileLanguages(): MobileLanguage[] {
-    return [MobileLanguage.En, MobileLanguage.Ar];
+    return [MobileLanguage.En, MobileLanguage.De];
   }
 }

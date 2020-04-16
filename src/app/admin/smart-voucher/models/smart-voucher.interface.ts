@@ -1,20 +1,8 @@
 import {ActionRuleMobileContent} from '../../action-rule/models/action-rule-mobile-content.interface';
+import {SmartVoucherCampaignRow} from './smart-voucher-row.interface';
 import {PartnersContainer} from '../../partners/models/partners-container.interface';
 
-export class SmartVoucher implements PartnersContainer {
-  Id: string;
-  Title: string;
-  VoucherPrice: number;
-  VouchersFile: File;
-  VouchersCount: number;
-  PartnerId: string;
-  VouchersInStockCount: number;
-  Description: string;
-  BusinessVertical: string;
+export class SmartVoucher extends SmartVoucherCampaignRow implements PartnersContainer {
   PartnerIds: string[];
-  AmountInTokens: string;
-  Currency: number;
-  UsePartnerCurrencyRate: boolean;
-  Order: number;
-  LocalizedContents: ActionRuleMobileContent[];
+  MobileContents: ActionRuleMobileContent[];
 }

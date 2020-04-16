@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {ApiHttpService} from 'ngx-api-utils';
 import {HttpParams} from '@angular/common/http';
 import {SmartVoucherListResponse} from './models/smart-voucher-list-response.interface';
+import {toParamsString} from 'src/app/shared/utils/common';
+import {SmartVoucherCampaignSetImageRequest} from './models/set-image-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,14 @@ export class SmartVoucherService {
 
   create(model: any) {
     return this.apiHttp.post<any>(this.apiPath, model);
+  }
+
+  setImage(model: SmartVoucherCampaignSetImageRequest, file: File) {
+    const formData = new FormData();
+    const paramsStr = toParamsString(model);
+    formData.append('formFile', file, file.name);
+
+    return this.apiHttp.post(this.apiPath + '/image' + paramsStr, formData);
   }
 
   delete(id: string) {

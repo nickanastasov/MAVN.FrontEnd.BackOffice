@@ -1,4 +1,4 @@
-export interface SmartVoucherCampaignRow {
+export class SmartVoucherCampaignRow {
   Id: string;
   Name: string;
   VouchersTotalCount: number;
