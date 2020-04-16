@@ -12,12 +12,13 @@
       </div>
 
       <div class="kt-subheader__toolbar">
-        <button id="btn-add-smart-voucher"
-                [hidden]="!hasEditPermission"
-                class="btn btn-brand btn-bold"
-                routerLink="add-smart-voucher">
+        <a id="btn-add-smart-voucher"
+           [hidden]="!hasEditPermission"
+           class="btn btn-brand btn-bold"
+           routerLink="add-smart-voucher"
+           [state]="{ page: currentPage, pageSize: pageSize }">
           <span i18n>New Voucher Campaign</span>
-        </button>
+        </a>
       </div>
     </div>
   </div>

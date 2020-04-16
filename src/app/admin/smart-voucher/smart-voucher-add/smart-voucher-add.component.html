@@ -18,9 +18,7 @@
   <div class="kt-portlet">
     <div class="kt-portlet__body">
       <app-smart-voucher-form (submitSuccess)="onFormSubmit($event)"
-                                  [isSaving]="isLoading"
-                                  [voucher]="spendActionRule"
-                                  ></app-smart-voucher-form>
+                              [isSaving]="isLoading"></app-smart-voucher-form>
 
       <div class="spinner-container"
            *ngIf="isLoading">
@@ -30,6 +28,10 @@
   </div>
 </div>
 
+<div #successMessageElement
+     hidden
+     i18n>You have saved campaign successfully.</div>
+
 <div #headerTitle
      hidden
-     i18n>New voucher campaign</div>
+     i18n>New Voucher Campaign</div>

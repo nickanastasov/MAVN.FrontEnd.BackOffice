@@ -1,16 +1,22 @@
-// import {IntegerRangeValidator} from 'src/app/shared/utils/validators';
-import {Component, EventEmitter, Input, OnInit, Output, OnDestroy, LOCALE_ID, Inject, ElementRef, ViewChild} from '@angular/core';
+import {
+  // components
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {FormArray, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
 import {markFormControlAsTouched} from '../../../shared/utils/markFormControlAsTouched';
-// tslint:disable-next-line: prettier
 import {
+  // validators
   LengthValidator,
   FileSizeValidator,
   FileExtensionValidator,
-  AccuracyValidator,
-  MoneyFormatValidator,
-  MoneyMinMoreZeroValidator,
-  MoneyMaxNumberValidator,
   FileDimensionsValidator,
   IntegerValidator
 } from '../../../shared/utils/validators';
@@ -23,23 +29,23 @@ import {DictionaryService} from 'src/app/shared/services/dictionary.service';
 import * as constants from 'src/app/core/constants/const';
 import {BusinessVerticalType} from '../../partners/models/business-vertical.enum';
 import {BusinessVerticalTypeItem} from '../../partners/models/business-vertical-type-item.interface';
-import {BusinessVerticalService} from '../../partners/services/business-vertical.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {PartnersService} from '../../partners/partners.service';
 import {PartnerRowResponse} from '../../partners/models/partner-row.interface';
 import {PartnersContainer} from '../../partners/models/partners-container.interface';
 import {GlobalTemplates} from 'src/app/shared/models/global-templates.interface';
-import {GlobalSettingsService} from '../../global-settings/services/global-settings.service';
 import {GlobalRate} from '../../global-settings/models/global-rate.interface';
 import {SettingsService} from 'src/app/core/settings/settings.service';
 import * as actionRulesConstants from '../../action-rule/constants/const';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
+import {ROUTE_ADMIN_ROOT, ROUTE_SMART_VOUCHERS} from 'src/app/core/constants/routes';
 
 @Component({
   selector: 'app-smart-voucher-form',
   templateUrl: './smart-voucher-form.component.html',
-  styleUrls: ['./smart-voucher-form.component.scss']
+  styleUrls: ['./smart-voucher-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   @Input()
@@ -55,7 +61,9 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   voucher: SmartVoucher;
 
   // bindable fields
+  FormMode = FormMode;
   tokenSymbol = constants.TOKEN_SYMBOL;
+  navigateToListUrl = `${ROUTE_ADMIN_ROOT}/${ROUTE_SMART_VOUCHERS}`;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
   CURRENCY_INPUT_MAX_NUMBER = constants.CURRENCY_INPUT_MAX_NUMBER;
   CURRENCY_INPUT_MIN_NUMBER = constants.CURRENCY_INPUT_MIN_NUMBER;
@@ -72,31 +80,19 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   partners: PartnerRowResponse[] = [];
   voucherFormProps = {
     Name: 'Name',
-    PartnerId: 'PartnerId',
-    PartnersSearch: 'PartnersSearch',
-    VoucherPrice: 'VoucherPrice',
-    Description: 'Description',
-    AmountInTokens: 'AmountInTokens',
-    Currency: 'Currency',
-    UsePartnerCurrencyRate: 'UsePartnerCurrencyRate',
-    LocalizedContents: 'LocalizedContents',
-    VouchersTotalCount: 'VouchersTotalCount',
     FromDate: 'FromDate',
     ToDate: 'ToDate',
-    VouchersFile: 'VouchersFile'
+    VouchersTotalCount: 'VouchersTotalCount',
+    VoucherPrice: 'VoucherPrice',
+    Currency: 'Currency',
+    PartnerId: 'PartnerId',
+    PartnersSearch: 'PartnersSearch',
+    Description: 'Description',
+    MobileContents: 'MobileContents'
   };
   VouchersCount = 0;
+  BoughtVouchersCount = 0;
   VouchersInStockCount = 0;
-  typeDefaultValue = 'Vouchers';
-  voucherFileExtension = '.csv';
-  priceValidatorsWithRequired = [
-    // validators
-    Validators.required,
-    Validators.min(0),
-    Validators.max(constants.INTEGER_MAX_NUMBER),
-    IntegerValidator
-  ];
-
   globalRate: GlobalRate;
   isLoadingRate = true;
 
@@ -106,7 +102,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   MobileAppImageMinHeight: number;
   mobileContentFormProps = {
     MobileLanguage: 'MobileLanguage',
-    Name: 'Name',
+    Title: 'Title',
     Description: 'Description',
     File: 'File',
     ImageBlobUrl: 'ImageBlobUrl'
@@ -116,15 +112,13 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   contentPreviewImageUrl: string;
   mobileLanguages = MobileLanguage;
   availableMobileLanguages: MobileLanguage[] = [];
-  orderValues: number[];
 
   // private
   private subscriptions: Subscription[] = [];
   private rateDependencyLoadedEventEmitter = new EventEmitter();
-  private emptyPartnerIdValue: string = '';
+  private emptyPartnerIdValue = '';
 
   // private - mobile content related
-  private isEnglish: boolean;
   private subscriptionsContentPreview: Subscription[] = [];
   private isTitleCopied: boolean;
   private isDescriptionCopied: boolean;
@@ -143,97 +137,59 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private businessVerticalService: BusinessVerticalService,
     private settingsService: SettingsService,
     private dictionaryService: DictionaryService,
-    private globalSettingsService: GlobalSettingsService,
     private partnersService: PartnersService,
     private translateService: TranslateService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    @Inject(LOCALE_ID) private locale: string
+    private snackBar: MatSnackBar
   ) {
     this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ActionRules].Edit;
-    this.isEnglish = this.locale.startsWith('en');
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
     this.MobileAppImageFileSizeInKB = this.settingsService.MobileAppImageFileSizeInKB;
     this.MobileAppImageMinWidth = this.settingsService.MobileAppImageMinWidth;
     this.MobileAppImageMinHeight = this.settingsService.MobileAppImageMinHeight;
-
-    this.orderValues = Array.from({length: 100}, (_v, k) => k + 1);
   }
 
   smartVoucherForm = this.fb.group({
     [this.voucherFormProps.Name]: [null, [Validators.required, LengthValidator(3, 50)]],
-    // [this.voucherFormProps.Order]: [null, [Validators.required, IntegerValidator, IntegerRangeValidator(1, 2147483647)]],
-    // [this.voucherFormProps.BusinessVertical]: [null, [Validators.required]],
-    [this.voucherFormProps.PartnersSearch]: [null],
-    // [this.voucherFormProps.Type]: [this.typeDefaultValue],
-    [this.voucherFormProps.PartnerId]: [this.emptyPartnerIdValue, null],
-    [this.voucherFormProps.FromDate]: [null],
+    [this.voucherFormProps.FromDate]: [null, [Validators.required]],
     [this.voucherFormProps.ToDate]: [null],
-    [this.voucherFormProps.VouchersFile]: [null, [FileExtensionValidator(this.voucherFileExtension), FileSizeValidator(1024 /*KB*/)]],
-    [this.voucherFormProps.VoucherPrice]: [
-      null,
-      [
-        // validators
-        Validators.min(0),
-        Validators.max(constants.INTEGER_MAX_NUMBER),
-        IntegerValidator
-      ]
-    ],
     [this.voucherFormProps.VouchersTotalCount]: [
       null,
       [
         // validators
-        Validators.min(0),
+        Validators.required,
+        Validators.min(1),
         Validators.max(constants.INTEGER_MAX_NUMBER),
         IntegerValidator
       ]
     ],
-    [this.voucherFormProps.Description]: [null, [LengthValidator(3, 1000)]],
-    [this.voucherFormProps.AmountInTokens]: [
+    [this.voucherFormProps.VoucherPrice]: [
       null,
       [
         // validators
         Validators.required,
-        MoneyFormatValidator(),
-        MoneyMinMoreZeroValidator(),
-        MoneyMaxNumberValidator(),
-        AccuracyValidator(constants.TOKENS_INPUT_ACCURACY)
+        Validators.min(1),
+        Validators.max(constants.INTEGER_MAX_NUMBER),
+        IntegerValidator
       ]
     ],
-    [this.voucherFormProps.Currency]: [
-      null,
-      [
-        // Validators
-        Validators.required,
-        Validators.min(constants.CURRENCY_INPUT_MIN_NUMBER),
-        Validators.max(constants.CURRENCY_INPUT_MAX_NUMBER),
-        AccuracyValidator(constants.CURRENCY_INPUT_ACCURACY)
-      ]
-    ],
-    [this.voucherFormProps.UsePartnerCurrencyRate]: [true],
-    [this.voucherFormProps.LocalizedContents]: this.fb.array([])
+    [this.voucherFormProps.Currency]: [null],
+    [this.voucherFormProps.PartnersSearch]: [null],
+    [this.voucherFormProps.PartnerId]: [this.emptyPartnerIdValue, [Validators.required]],
+    [this.voucherFormProps.Description]: [null, [LengthValidator(3, 1000)]],
+    [this.voucherFormProps.MobileContents]: this.fb.array([])
   });
 
   get mobileContentsFormArray() {
-    return this.smartVoucherForm.get(this.voucherFormProps.LocalizedContents) as FormArray;
+    return this.smartVoucherForm.get(this.voucherFormProps.MobileContents) as FormArray;
   }
   get mobileContentsEnglishOnly(): AbstractControl[] {
     return this.mobileContentsFormArray.controls
       ? this.mobileContentsFormArray.controls.filter(x => x.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
       : this.mobileContentsFormArray.controls;
-  }
-  get usePartnerCurrencyRate() {
-    return this.smartVoucherForm.get(this.voucherFormProps.UsePartnerCurrencyRate).value;
-  }
-  private get tokensControl() {
-    return this.smartVoucherForm.get(this.voucherFormProps.AmountInTokens);
-  }
-  private get currencyControl() {
-    return this.smartVoucherForm.get(this.voucherFormProps.Currency);
   }
 
   previousPage = '';
@@ -246,14 +202,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     // translates
     this.translates.fillRequiredFieldsMessage = this.fillRequiredFieldsMessage.nativeElement.innerText;
 
-    this.businessVerticalTypes = this.businessVerticalService.getBusinessVerticalItems();
-
-    this.businessVerticalDisplayNamesDict = this.businessVerticalService.getBusinessVerticalItems().reduce((obj, item) => {
-      obj[item.Type] = item.DisplayName;
-      return obj;
-    }, {} as {[key: string]: string});
-
-    this.loadRate();
+    // load related data
     this.loadAllPartners();
 
     if (this.voucher) {
@@ -262,7 +211,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       }
 
       //#region mobile content related
-      this.voucher.LocalizedContents.forEach(mobContent => {
+      this.voucher.MobileContents.forEach(mobContent => {
         this.mobileContentsFormArray.push(this.generateMobileContentFormGroup(mobContent.MobileLanguage, !!mobContent.ImageId));
 
         // store image urls
@@ -272,25 +221,22 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       });
       //#endregion
 
-      (this.voucher as any).Type = this.typeDefaultValue;
-
       this.smartVoucherForm.reset(this.voucher);
+      this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
 
       // disable fields in order to defence from human mistake of changing VoucherPrice for already imported vouchers
-      if (this.voucher.VoucherPrice && this.voucher.VoucherPrice > 0 && this.voucher.BusinessVertical === BusinessVerticalType.Retail) {
-        this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).setValidators(this.priceValidatorsWithRequired);
+      this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
+      this.smartVoucherForm.get(this.voucherFormProps.VouchersTotalCount).disable();
 
-        this.VouchersCount = this.voucher.VouchersCount;
-        this.VouchersInStockCount = this.voucher.VouchersInStockCount;
-      }
+      this.VouchersCount = this.voucher.VouchersTotalCount;
+      this.BoughtVouchersCount = this.voucher.BoughtVouchersCount;
+      this.VouchersInStockCount = this.VouchersCount - this.BoughtVouchersCount;
 
       if (!this.hasEditPermission) {
         this.smartVoucherForm.disable();
       }
     } else {
-      // this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).disable();
-      // this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
-      this.disableRateFields(true);
+      this.smartVoucherForm.get(this.voucherFormProps.Currency).setValue(this.baseCurrencyCode);
 
       //#region mobile content related
       this.availableMobileLanguages = this.dictionaryService.getMobileLanguages();
@@ -301,183 +247,15 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     // mobile content related
-    // this.updateContentPreviewBindings(0);
+    this.updateContentPreviewBindings(0);
 
-    this.subscriptions = [
-      this.smartVoucherForm.get(this.voucherFormProps.UsePartnerCurrencyRate).valueChanges.subscribe(value => {
-        if (value) {
-          this.setPartnerOrGlobalRate(this.smartVoucherForm.get(this.voucherFormProps.PartnerId).value);
-        } else {
-          this.disableRateFields(false);
-        }
-      }),
-      this.smartVoucherForm.get(this.voucherFormProps.PartnerId).valueChanges.subscribe(value => {
-        this.setPartnerOrGlobalRate(value);
-      }),
-      this.rateDependencyLoadedEventEmitter.subscribe(() => {
-        // check that all necessary dependencies have loaded and then continue with logic
-        if (this.globalRate && !this.isLoadingPartners) {
-          this.isLoadingRate = false;
-
-          if (this.voucher) {
-            this.setPartnerOrGlobalRate(this.voucher.PartnerId);
-          } else {
-            this.setToGlobalRate();
-          }
-        }
-      })
-    ];
+    this.subscriptions = [];
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
     // mobile content related
     this.subscriptionsContentPreview.forEach(subscription => subscription.unsubscribe());
-  }
-
-  private loadRate(): void {
-    this.globalSettingsService.getGlobalRate().subscribe(
-      response => {
-        this.globalRate = response;
-
-        this.rateDependencyLoadedEventEmitter.emit();
-      },
-      error => {
-        console.error(error);
-        this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
-      }
-    );
-  }
-
-  private setPartnerOrGlobalRate(partnerId: string): void {
-    if (this.usePartnerCurrencyRate && partnerId) {
-      if (partnerId.length > 1 || !partnerId.length) {
-        this.setToGlobalRate();
-      } else if (partnerId.length === 1) {
-        const partner = this.partners.find(x => x.Id === partnerId[0]);
-
-        if (partner) {
-          if (partner.UseGlobalCurrencyRate) {
-            this.setToGlobalRate();
-          } else {
-            // set partners rate
-            this.tokensControl.setValue(partner.AmountInTokens);
-            this.currencyControl.setValue(partner.Currency);
-            this.disableRateFields(true);
-          }
-        }
-      }
-    }
-  }
-
-  private setToGlobalRate(): void {
-    if (!this.globalRate) {
-      return;
-    }
-
-    this.tokensControl.setValue(this.globalRate.AmountInTokens);
-    this.currencyControl.setValue(this.globalRate.Currency);
-    this.disableRateFields(true);
-  }
-
-  private disableRateFields(disable: boolean): void {
-    if (disable) {
-      this.tokensControl.disable();
-      this.currencyControl.disable();
-    } else {
-      this.tokensControl.enable();
-      this.currencyControl.enable();
-    }
-  }
-
-  // onBusinessVerticalChanged(): void {
-  //   const vertical = this.smartVoucherForm.get(this.voucherFormProps.BusinessVertical).value;
-
-  //   if (vertical) {
-  //     this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).enable();
-  //     this.smartVoucherForm.get(this.voucherFormProps.PartnerIds).setValue(this.emptyPartnerIdsValue);
-  //     this.setPartnersAvailability();
-
-  //     if (vertical !== BusinessVerticalType.Retail) {
-  //       const fileControl = this.smartVoucherForm.get(this.voucherFormProps.VouchersFile);
-  //       fileControl.setValue(null);
-  //       fileControl.updateValueAndValidity();
-
-  //       // price
-  //       const priceControl = this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice);
-  //       priceControl.setValue(null);
-  //       priceControl.setValidators(null);
-  //       priceControl.updateValueAndValidity();
-  //     }
-  //   }
-  // }
-
-  // // disable partners if the Vertical does not have them
-  // setPartnersAvailability(): void {
-  //   const vertical = this.smartVoucherForm.get(this.voucherFormProps.BusinessVertical).value;
-  //   const partnersControl = this.smartVoucherForm.get(this.voucherFormProps.PartnerIds);
-
-  //   if (vertical) {
-  //     const partnersByVertical = this.partners.filter(x => x.BusinessVertical && x.BusinessVertical === vertical);
-  //     const hasPartners = partnersByVertical && partnersByVertical.length;
-
-  //     if (!hasPartners) {
-  //       partnersControl.disable();
-  //     }
-  //   }
-  // }
-
-  // #region Vouchers
-
-  addVouchersFiles(files: FileList): void {
-    if (!files || files.length === 0) {
-      return;
-    }
-
-    const fileControl = this.smartVoucherForm.get(this.voucherFormProps.VouchersFile);
-
-    markFormControlAsTouched(fileControl);
-    fileControl.setValue(files[0]);
-    fileControl.updateValueAndValidity();
-
-    // this.updateVoucherPriceValidity();
-  }
-
-  // private updateVoucherPriceValidity() {
-  //   const vertical = this.smartVoucherForm.get(this.voucherFormProps.BusinessVertical).value;
-
-  //   if (vertical === BusinessVerticalType.Retail) {
-  //     const priceControl = this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice);
-
-  //     if (!this.voucher) {
-  //       priceControl.enable();
-  //       markFormControlAsTouched(priceControl);
-  //     }
-
-  //     priceControl.setValidators(this.priceValidatorsWithRequired);
-  //     priceControl.updateValueAndValidity();
-  //   }
-  // }
-
-  // #endregion
-
-  // #region Partners
-
-  // selectPartners(): void {
-  //   const businessVertical = this.smartVoucherForm.get(this.voucherFormProps.BusinessVertical).value;
-
-  //   if (!businessVertical) {
-  //     return;
-  //   }
-
-  //   const partnersByVertical = this.partners.filter(x => x.BusinessVertical && x.BusinessVertical === businessVertical).map(x => x.Id);
-  //   const partnersControl = this.smartVoucherForm.get(this.voucherFormProps.PartnerIds);
-  //   partnersControl.setValue(partnersByVertical);
-  // }
-
-  deselectPartners(): void {
-    const partnersControl = this.smartVoucherForm.get(this.voucherFormProps.PartnerId);
-    partnersControl.setValue([]);
   }
 
   private loadAllPartners() {
@@ -491,12 +269,11 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     this.partnersService.getAll(constants.MAX_PAGE_SIZE, page, '').subscribe(
       response => {
         this.partners = [...this.partners, ...response.Partners];
-        console.log(this.partners);
+
         if (this.partners.length >= response.PagedResponse.TotalCount) {
           this.partners = this.partners.sort((a, b) => (a.Name > b.Name ? 1 : -1));
           this.isLoadingPartners = false;
           this.rateDependencyLoadedEventEmitter.emit();
-          // this.setPartnersAvailability();
         } else {
           page++;
           this.loadPagedPartners(page);
@@ -523,7 +300,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       descriptionValidators.push(Validators.required);
 
       if (!hasImage) {
-        // fileValidators.push(Validators.required);
+        // fileValidators.push(Validators.required); // uncomment when image should be mandatory
       }
     }
 
@@ -535,7 +312,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
     return this.fb.group({
       [this.mobileContentFormProps.MobileLanguage]: [language],
-      [this.mobileContentFormProps.Name]: [null, titleValidators],
+      [this.mobileContentFormProps.Title]: [null, titleValidators],
       [this.mobileContentFormProps.Description]: [null, descriptionValidators],
       [this.mobileContentFormProps.File]: [
         null,
@@ -546,13 +323,13 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getAcceptFilesExtensions(): string {
+  getAcceptFilesExtensions(): string {
     return actionRulesConstants.MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION;
   }
 
   onTitleBlur() {
-    if (this.isEnglish && !this.isTitleCopied && this.type === FormMode.Create) {
-      const titleControl = this.smartVoucherForm.get(this.mobileContentFormProps.Name);
+    if (!this.isTitleCopied && this.type === FormMode.Create) {
+      const titleControl = this.smartVoucherForm.get(this.voucherFormProps.Name);
 
       if (titleControl.value && titleControl.valid) {
         const mobileContentTitleControl = this.mobileContentsFormArray.controls.find(
@@ -560,7 +337,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         );
 
         if (mobileContentTitleControl) {
-          mobileContentTitleControl.get(this.mobileContentFormProps.Name).setValue(titleControl.value);
+          mobileContentTitleControl.get(this.mobileContentFormProps.Title).setValue(titleControl.value);
           this.isTitleCopied = true;
         }
       }
@@ -568,7 +345,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   }
 
   onDescriptionBlur() {
-    if (this.isEnglish && !this.isDescriptionCopied && this.type === FormMode.Create) {
+    if (!this.isDescriptionCopied && this.type === FormMode.Create) {
       const descriptionControl = this.smartVoucherForm.get(this.voucherFormProps.Description);
 
       if (descriptionControl.value && descriptionControl.valid) {
@@ -622,7 +399,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     const currentTabFormGroup = this.mobileContentsFormArray.at(selectedTabIndex);
 
     const mobileLanguage = currentTabFormGroup.get(this.mobileContentFormProps.MobileLanguage).value;
-    const titleControl = currentTabFormGroup.get(this.mobileContentFormProps.Name);
+    const titleControl = currentTabFormGroup.get(this.mobileContentFormProps.Title);
     const descriptionControl = currentTabFormGroup.get(this.mobileContentFormProps.Description);
     const fileControl = currentTabFormGroup.get(this.mobileContentFormProps.File);
 
