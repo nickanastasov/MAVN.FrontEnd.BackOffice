@@ -1,8 +1,10 @@
 name: test
 
 on:
+  pull_request:
+    branches: [ master ]
   push:
-    branches: [master]
+    branches: [ master ]
 
 env:
   SERVICE_DOCKER_IMAGE: backoffice-service
