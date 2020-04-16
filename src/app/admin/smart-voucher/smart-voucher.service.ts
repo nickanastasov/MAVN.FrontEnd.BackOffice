@@ -15,28 +15,9 @@ export class SmartVoucherService {
     const params = new HttpParams()
       .set('pageSize', pageSize.toString())
       .set('currentPage', currentPage.toString())
-      .set('title', title);
-    console.log(params);
+      .set('CampaignName', title);
 
     return this.apiHttp.get<SmartVoucherListResponse>(this.apiPath, {params: params});
-
-    // const mockedData: SmartVoucherListResponse = {
-    //   Vouchers: [
-    //     {
-    //       Id: '1',
-    //       Title: 'Demo Voucher Campaign (is under development)',
-    //       Status: 'Active',
-    //       CreationDate: new Date(),
-    //       Partner: 'Your company name'
-    //     }
-    //   ],
-    //   PagedResponse: {
-    //     CurrentPage: 1,
-    //     TotalCount: 1
-    //   }
-    // };
-
-    // return of(mockedData);
   }
 
   create(model: any) {
