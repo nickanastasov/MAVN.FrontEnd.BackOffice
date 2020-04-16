@@ -117,7 +117,7 @@ export class SmartVoucherListPageComponent implements OnInit {
 
     this.getDataSubscription = this.smartVoucherService.getAll(pageSize, currentPage, title).subscribe(
       response => {
-        this.smartVouchers = response.Vouchers;
+        this.smartVouchers = response.SmartVoucherCampaigns;
         this.totalCount = response.PagedResponse.TotalCount;
       },
       () => {
@@ -141,21 +141,21 @@ export class SmartVoucherListPageComponent implements OnInit {
       if (result) {
         this.isLoading = true;
 
-        // this.SmartVoucherService.delete(SmartVoucher.Id).subscribe(
-        //   () => {
-        //     this.getData(this.pageSize, this.currentPage + 1, this.searchTitleValue);
-        //     this.snackBar.open(this.translates.deletedMessage, this.translateService.translates.CloseSnackbarBtnText, {
-        //       duration: 5000
-        //     });
-        //   },
-        //   () => {
-        //     this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
-        //   },
-        //   () => {
-        //     this.isLoading = false;
-        //     this.isSearching = false;
-        //   }
-        // );
+        this.smartVoucherService.delete(SmartVoucher.Id).subscribe(
+          () => {
+            this.getData(this.pageSize, this.currentPage + 1, this.searchTitleValue);
+            this.snackBar.open(this.translates.deletedMessage, this.translateService.translates.CloseSnackbarBtnText, {
+              duration: 5000
+            });
+          },
+          () => {
+            this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
+          },
+          () => {
+            this.isLoading = false;
+            this.isSearching = false;
+          }
+        );
       }
     });
   }
