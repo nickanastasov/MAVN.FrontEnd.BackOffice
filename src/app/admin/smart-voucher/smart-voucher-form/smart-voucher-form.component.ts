@@ -86,7 +86,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     PartnersSearch: 'PartnersSearch',
     Description: 'Description',
     MobileContents: 'MobileContents',
-    IsPublished: 'IsPublished'
+    IsPublished: 'IsPublished',
   };
   VouchersCount = 0;
   BoughtVouchersCount = 0;
@@ -123,7 +123,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   private imageUrlsDictionary: {[language: string]: string} = {};
 
   // #region translates
-  @ViewChild('fillRequiredFieldsMessage')
+  @ViewChild('fillRequiredFieldsMessage', {static: true})
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
   private translates = {
     fillRequiredFieldsMessage: '',
@@ -179,7 +179,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     [this.voucherFormProps.PartnerId]: [this.emptyPartnerIdValue, [Validators.required]],
     [this.voucherFormProps.Description]: [null, [LengthValidator(3, 1000)]],
     [this.voucherFormProps.MobileContents]: this.fb.array([]),
-    [this.voucherFormProps.IsPublished]: [false]
+    [this.voucherFormProps.IsPublished]: [false],
   });
 
   get mobileContentsFormArray() {
@@ -381,7 +381,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     // const fileControl = this.mobileContentsFormArray.at(index).get(this.mobileContentFormProps.File);
     // Because for now only English used, so index is not convenient
     const fileControl = this.mobileContentsFormArray.controls
-      .find(control => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
+      .find((control) => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
       .get(this.mobileContentFormProps.File);
 
     markFormControlAsTouched(fileControl);

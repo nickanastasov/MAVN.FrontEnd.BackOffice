@@ -17,13 +17,14 @@ import {SmartVoucherCampaignSetImageRequest} from '../models/set-image-request.i
   styleUrls: ['./smart-voucher-add.component.scss'],
 })
 export class SmartVoucherAddComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true})
+  private subHeaderTemplate: TemplateRef<any>;
   isLoading: boolean;
 
-  @ViewChild('successMessageElement')
+  @ViewChild('successMessageElement', {static: true})
   successMessageElement: ElementRef;
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef;
   successMessage: string;
   private previousPage: string;

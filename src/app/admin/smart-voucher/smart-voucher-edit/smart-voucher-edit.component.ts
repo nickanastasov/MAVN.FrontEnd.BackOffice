@@ -18,7 +18,8 @@ import {SmartVoucherCampaignSetImageRequest} from '../models/set-image-request.i
   styleUrls: ['./smart-voucher-edit.component.scss'],
 })
 export class SmartVoucherEditComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true})
+  private subHeaderTemplate: TemplateRef<any>;
   campaignId: string;
   campaignForEdit: SmartVoucher;
   FormMode = FormMode;
@@ -29,7 +30,7 @@ export class SmartVoucherEditComponent implements OnInit {
   private previousPageSize = '';
 
   // translates
-  @ViewChild('successMessageElement')
+  @ViewChild('successMessageElement', {static: true})
   successMessageElement: ElementRef;
   successMessage: string;
 
@@ -116,7 +117,7 @@ export class SmartVoucherEditComponent implements OnInit {
         const model: SmartVoucherCampaignSetImageRequest = {
           ContentId: existingMobContent ? existingMobContent.ImageId : '',
           CampaignId: this.campaignId,
-          Localization: existingMobContent ? existingMobContent.MobileLanguage : ''
+          Localization: existingMobContent ? existingMobContent.MobileLanguage : '',
         };
 
         return this.smartVoucherService.setImage(model, mobContent.File);
