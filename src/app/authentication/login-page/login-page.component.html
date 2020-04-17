@@ -77,7 +77,8 @@
                           [hidden]="!loading"></mat-progress-bar>
       </div>
 
-      <div class="form-holder" *ngIf="!registerFormActive">
+      <div class="form-holder"
+           *ngIf="!registerFormActive">
         <form [formGroup]="loginForm"
               (ngSubmit)="onLoginSubmit()">
           <mat-card-content>
@@ -92,9 +93,6 @@
                 <app-error-message controlName="Email"
                                    key="email"
                                    [template]="emailError"></app-error-message>
-                <ng-template #emailError>
-                  <span i18n>Please enter a valid email address</span>
-                </ng-template>
               </mat-error>
             </mat-form-field>
 
@@ -123,7 +121,8 @@
           </mat-card-content>
 
           <mat-card-actions class="form-actions">
-            <p class="register-btn" (click)="changeForms()">
+            <p class="register-btn"
+               (click)="changeForms()">
               <span i18n>Register new account</span>
             </p>
 
@@ -145,33 +144,60 @@
         </form>
       </div>
 
-      <div class="form-holder" *ngIf="registerFormActive">
+      <div class="form-holder form-holder--registration"
+           *ngIf="registerFormActive">
         <form [formGroup]="registerForm"
               (ngSubmit)="onRegisterSubmit()">
           <mat-card-content>
-            <mat-form-field class="width-100 form-item">
-              <mat-label>Enter Email</mat-label>
+            <div class="width-100 form-item form-item--registration">
+              <div class="alert alert-outline-danger fade show"
+                   role="alert">
+                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                <div class="alert-text kt-font-bolder"
+                     i18n>Coming soon!</div>
+              </div>
+            </div>
+            <mat-form-field class="width-100 form-item form-item--registration">
+              <mat-label i18n>Company Name</mat-label>
+              <input matInput
+                     id="CompanyName"
+                     formControlName="CompanyName"
+                     required>
+              <mat-error>
+                <app-error-message controlName="CompanyName"></app-error-message>
+                <app-error-message controlName="CompanyName"
+                                   key="length"
+                                   [template]="lengthError"
+                                   [templateContext]="{$implicit: {min: 3, max: 255}}"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="width-100 form-item form-item--registration">
+              <mat-label i18n>Email</mat-label>
               <input matInput
                      id="email"
                      formControlName="Email"
+                     autocomplete="new-password"
                      required>
               <mat-error>
                 <app-error-message controlName="Email"></app-error-message>
                 <app-error-message controlName="Email"
                                    key="email"
                                    [template]="emailError"></app-error-message>
-                <ng-template #emailError>
-                  <span i18n>Please enter a valid email address</span>
-                </ng-template>
+                <app-error-message controlName="Email"
+                                   key="length"
+                                   [template]="lengthError"
+                                   [templateContext]="{$implicit: {min: 1, max: 255}}"></app-error-message>
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="width-100 form-item">
-              <mat-label>Enter Password</mat-label>
+            <mat-form-field class="width-100 form-item form-item--registration">
+              <mat-label i18n>Enter Password</mat-label>
               <input matInput
-                     id="password"
+                     id="Password"
                      [type]="revealPasswordField ? 'password' : 'text'"
                      formControlName="Password"
+                     autocomplete="new-password"
                      required>
               <mat-icon matSuffix
                         class="material-icons-outlined"
@@ -180,64 +206,70 @@
               </mat-icon>
               <mat-error>
                 <app-error-message controlName="Password"></app-error-message>
-                <app-error-message controlName="Password"
-                                   key="minlength"
-                                   [template]="minlengthError"></app-error-message>
-                <ng-template #minlengthError>
-                  <span i18n>Minimum length is 6</span>
-                </ng-template>
               </mat-error>
             </mat-form-field>
 
-            <div class="width-100 form-item">
-              <button class="btn btn-outline-brand btn-bold"
-                      type="button"
-                      onclick="this.blur()"
-                      (click)="companyLogoInput.click()"
-                      i18n>Choose logo</button>
-              <input id="companyLogo"
-                      type="file"
-                      #companyLogoInput
-                      class="form-control"
-                      style="display: none;"
-                      (change)="onCompanyLogoChange($event)"
-                      accept="image/*" />
-              <span *ngIf="!registerForm.get('CompanyLogo').value"
-                    class="file-name"
-                    i18n>No logo chosen</span>
-              <span *ngIf="registerForm.get('CompanyLogo').value"
-                    class="file-name">{{ registerForm.get('CompanyLogo').value.name }}</span>
+            <mat-form-field class="width-100 form-item form-item--registration">
+              <mat-label i18n>Repeat Password</mat-label>
+              <input matInput
+                     id="RepeatPassword"
+                     [type]="revealRepeatPasswordField ? 'password' : 'text'"
+                     formControlName="RepeatPassword"
+                     required>
+              <mat-icon matSuffix
+                        class="material-icons-outlined"
+                        style="cursor: pointer;"
+                        (click)="onToggleRepeatPasswordDisplay()">
+                {{revealRepeatPasswordField ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+              <mat-error>
+                <app-error-message controlName="Password"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+
+            <div class="width-100 form-item form-item--registration password-requirements">
+              <p i18n>Password requirements:</p>
+              <ul>
+                <li>
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.passwordNotEqualled}"
+                        i18n>Passwords must match</span>
+                </li>
+                <li>
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.length || invalidPasswordRules.required}"
+                        i18n>{{rules.MinLength}} - {{rules.MaxLength}} symbols</span>
+                </li>
+
+                <li>
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidUpperCase}"
+                        i18n>Min {{rules.MinUpperCase}} uppercase letter</span>,
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidLowerCase}"
+                        i18n>{{rules.MinLowerCase}} lowercase letter</span>
+                </li>
+
+                <li>
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidSpecialSymbols}"
+                        i18n>Min {{rules.MinSpecialSymbols}} special symbol ({{rules.AllowedSpecialSymbols}})</span>,
+                  <span [ngClass]="{'invalid-rule': invalidPasswordRules.invalidDigits}"
+                        i18n>{{rules.MinNumbers}} number</span>
+                </li>
+              </ul>
             </div>
 
-            <mat-form-field class="width-100 form-item">
-              <mat-label>Enter Company Colour</mat-label>
-              <input matInput
-                     id="companyColour"
-                     type="color"
-                     formControlName="CompanyColour"
-                     required>
-              <mat-error>
-                <app-error-message controlName="CompanyColour"></app-error-message>
-                <app-error-message controlName="CompanyColour"
-                                   key="companyColour"
-                                   [template]="companyColourError"></app-error-message>
-                <ng-template #companyColourError>
-                  <span i18n>Please enter a valid colour.</span>
-                </ng-template>
-              </mat-error>
-            </mat-form-field>
+
           </mat-card-content>
 
           <mat-card-actions class="form-actions">
-            <p class="register-btn" (click)="changeForms()">
+            <p class="register-btn"
+               (click)="changeForms()">
               <span i18n>Already have an account?</span>
             </p>
 
             <button type="submit"
                     class="btn btn-brand btn-bold"
-                    [disabled]="loading">
-              <span [hidden]="loading"
-                    i18n>Register</span>
+                    [disabled]="loading || true">
+              <span [hidden]="loading || true"
+                    i18n>Register</span>&nbsp;
+              <span i18n>Coming soon!</span>
               <div *ngIf="loading"
                    class="spinner-with-text justify-content-center">
                 <span class="spinner-border"></span>
@@ -263,3 +295,12 @@
          src="assets/images/login-illustration.svg"> -->
   </div>
 </div>
+
+<ng-template #emailError>
+  <span i18n>Please enter a valid email address</span>
+</ng-template>
+
+<ng-template #lengthError
+             let-ctx>
+  <div i18n>Field has to be between {{ctx.min}} and {{ctx.max}} characters long</div>
+</ng-template>

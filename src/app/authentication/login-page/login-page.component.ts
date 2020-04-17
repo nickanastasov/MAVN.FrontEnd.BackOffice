@@ -1,13 +1,16 @@
-import {Component, OnInit, ViewEncapsulation, Inject, LOCALE_ID} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {Component, OnInit, ViewEncapsulation, Inject, LOCALE_ID, OnDestroy} from '@angular/core';
+import {FormBuilder, Validators, FormGroup, ValidationErrors} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {AuthTokenService} from 'ngx-api-utils';
 import {markFormControlAsTouched} from '../../shared/utils/markFormControlAsTouched';
 import {LoginErrorCodes} from './login-error-codes.enum';
-import {EmailValidator} from 'src/app/shared/utils/validators';
+import {EmailValidator, LengthValidator, PasswordValidator, PasswordEqualledValidator} from 'src/app/shared/utils/validators';
 import {SettingsService} from 'src/app/core/settings/settings.service';
 
 import {LOCALES} from 'src/app/core/constants/const';
+import {TranslateService} from 'src/app/shared/services/translate.service';
+import {PasswordValidationRules} from 'src/app/shared/models/password-validation.interface';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -15,9 +18,10 @@ import {LOCALES} from 'src/app/core/constants/const';
   styleUrls: ['./login-page.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   loading = false;
   revealPasswordField = true;
+  revealRepeatPasswordField = true;
   loginErrorMessage: string;
   loginFormProps = {
     Email: 'Email',
@@ -29,12 +33,17 @@ export class LoginPageComponent implements OnInit {
     [this.loginFormProps.Email]: ['', [Validators.required, EmailValidator]],
     [this.loginFormProps.Password]: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
   });
-  registerForm = this.fb.group({
-    Email: ['', [Validators.required, EmailValidator]],
-    Password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
-    CompanyLogo: ['', [Validators.required]],
-    CompanyColour: ['', [Validators.required]]
-  });
+  registerFormProps = {
+    CompanyName: 'CompanyName',
+    Email: 'Email',
+    Password: 'Password',
+    RepeatPassword: 'RepeatPassword'
+  };
+  rules: PasswordValidationRules;
+  invalidPasswordRules: ValidationErrors = {};
+  registerForm: FormGroup;
+  private passwordFieldSubscription: Subscription;
+  private registerFormSubscription: Subscription;
 
   LOCALES = LOCALES;
   currentLocale = '';
@@ -45,6 +54,7 @@ export class LoginPageComponent implements OnInit {
     private authService: AuthenticationService,
     private fb: FormBuilder,
     private settingsService: SettingsService,
+    private translateService: TranslateService,
     @Inject(LOCALE_ID) private locale: string
   ) {
     if (this.locale.startsWith(LOCALES.English)) {
@@ -55,9 +65,71 @@ export class LoginPageComponent implements OnInit {
 
     this.loginForm.get(this.loginFormProps.Email).setValue(this.settingsService.DemoUserLogin);
     this.loginForm.get(this.loginFormProps.Password).setValue(this.settingsService.DemoUserPassword);
+
+    if (this.settingsService.PasswordValidationRules) {
+      this.rules = this.settingsService.PasswordValidationRules;
+
+      this.registerForm = this.fb.group(
+        {
+          [this.registerFormProps.CompanyName]: ['', [Validators.required, LengthValidator(3, 255)]],
+          [this.registerFormProps.Email]: ['', [Validators.required, EmailValidator]],
+          [this.registerFormProps.Password]: [
+            null,
+            [
+              // validators
+              Validators.required,
+              LengthValidator(this.rules.MinLength, this.rules.MaxLength),
+              PasswordValidator(this.rules)
+            ]
+          ],
+          [this.registerFormProps.RepeatPassword]: [
+            null,
+            [
+              // validators
+              Validators.required,
+              LengthValidator(this.rules.MinLength, this.rules.MaxLength),
+              PasswordValidator(this.rules)
+            ]
+          ]
+        },
+        {
+          validator: [PasswordEqualledValidator]
+        }
+      );
+    }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.registerForm) {
+      return;
+    }
+
+    this.passwordFieldSubscription = this.registerForm.get(this.registerFormProps.Password).valueChanges.subscribe(() => {
+      const invalidRules = this.registerForm.get(this.registerFormProps.Password).errors;
+
+      this.invalidPasswordRules = {...invalidRules};
+    });
+
+    this.registerFormSubscription = this.registerForm.valueChanges.subscribe(() => {
+      const invalidRules = this.registerForm.errors;
+
+      if (invalidRules && invalidRules.passwordNotEqualled) {
+        this.invalidPasswordRules.passwordNotEqualled = invalidRules.passwordNotEqualled;
+      } else {
+        delete this.invalidPasswordRules.passwordNotEqualled;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.passwordFieldSubscription) {
+      this.passwordFieldSubscription.unsubscribe();
+    }
+
+    if (this.registerFormSubscription) {
+      this.registerFormSubscription.unsubscribe();
+    }
+  }
 
   changeLanguage(locale: string) {
     const l = window.location;
@@ -96,7 +168,7 @@ export class LoginPageComponent implements OnInit {
         } else if (error) {
           this.loginErrorMessage = error.error + ': ' + error.message;
         } else {
-          this.loginErrorMessage = 'Unknown error occured, please try again or contact support.';
+          this.loginErrorMessage = this.translateService.globalTranslates.ErrorMessage;
         }
 
         console.error(error);
@@ -110,18 +182,12 @@ export class LoginPageComponent implements OnInit {
     this.revealPasswordField = !this.revealPasswordField;
   }
 
-  changeForms() {
-    this.registerFormActive = !this.registerFormActive;
+  onToggleRepeatPasswordDisplay() {
+    this.revealRepeatPasswordField = !this.revealRepeatPasswordField;
   }
 
-  onCompanyLogoChange(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-
-      this.registerForm.patchValue({
-        CompanyLogo: file
-      });
-    }
+  changeForms() {
+    this.registerFormActive = !this.registerFormActive;
   }
 
   onRegisterSubmit() {
