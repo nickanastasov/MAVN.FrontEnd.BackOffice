@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActionRuleMobileContent} from '../../action-rule/models/action-rule-mobile-content.interface';
 import {ImageEditRequest} from '../../action-rule/models/image-edit-request.interface';
@@ -18,7 +18,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   templateUrl: './spend-action-rule-edit.component.html'
 })
 export class SpendActionRuleEditComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   ruleId: string;
   ruleForEdit: SpendActionRule;
   FormMode = FormMode;
@@ -29,7 +29,7 @@ export class SpendActionRuleEditComponent implements OnInit {
   private previousPageSize = '';
 
   // translates
-  @ViewChild('successMessageElement')
+  @ViewChild('successMessageElement', {static: true})
   successMessageElement: ElementRef;
   successMessage: string;
 

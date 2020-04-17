@@ -1,6 +1,6 @@
 import {OnInit, Component, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {SpendActionRuleService} from '../spend-action-rule.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {SpendActionRule} from '../models/spend-action-rule.interface';
 import {forkJoin} from 'rxjs';
@@ -15,10 +15,10 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   templateUrl: './spend-action-rule-add.component.html'
 })
 export class SpendActionRuleAddComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isLoading: boolean;
 
-  @ViewChild('successMessageElement')
+  @ViewChild('successMessageElement', {static: true})
   successMessageElement: ElementRef;
   successMessage: string;
 

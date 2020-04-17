@@ -6,7 +6,8 @@ import * as moment from 'moment';
 import {CustomersStatisticResponse} from './models/customers-statistic-response.interface';
 import {CustomersStatisticsService} from '../services/customers-statistics.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
-import {MatSnackBar, MatTooltip} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTooltip} from '@angular/material/tooltip';
 import {DAY_FORMAT} from '../models/chart-constants';
 import {ChartPeriodService} from '../services/chart-period.service';
 import {BasePeriodRequest} from '../models/base-period-request.interface';
@@ -49,24 +50,24 @@ export class CustomersChartComponent extends PeriodChangeComponent implements On
   @Output() totalCustomersCount = new EventEmitter<CustomersCount>();
 
   // #region translates
-  @ViewChild('lineChartLabelTemplate')
+  @ViewChild('lineChartLabelTemplate', {static: true})
   lineChartLabelTemplate: ElementRef<HTMLElement>;
-  @ViewChild('newCustomersTooltipTemplate')
+  @ViewChild('newCustomersTooltipTemplate', {static: true})
   newCustomersTooltipTemplate: ElementRef<HTMLElement>;
 
-  @ViewChild('donutActiveCustomersLabelTemplate')
+  @ViewChild('donutActiveCustomersLabelTemplate', {static: true})
   donutActiveCustomersLabelTemplate: ElementRef<HTMLElement>;
-  @ViewChild('activeCustomersTooltipTemplate')
+  @ViewChild('activeCustomersTooltipTemplate', {static: true})
   activeCustomersTooltipTemplate: ElementRef<HTMLElement>;
 
-  @ViewChild('donutNonActiveCustomersLabelTemplate')
+  @ViewChild('donutNonActiveCustomersLabelTemplate', {static: true})
   donutNonActiveCustomersLabelTemplate: ElementRef<HTMLElement>;
-  @ViewChild('nonActiveCustomersTooltipTemplate')
+  @ViewChild('nonActiveCustomersTooltipTemplate', {static: true})
   nonActiveCustomersTooltipTemplate: ElementRef<HTMLElement>;
 
-  @ViewChild('tooltipWrapper')
+  @ViewChild('tooltipWrapper', {static: true})
   tooltipWrapper: ElementRef<HTMLElement>;
-  @ViewChild('tooltip')
+  @ViewChild('tooltip', {static: true})
   tooltip: MatTooltip;
 
   private translates = {

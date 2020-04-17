@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ElementRef, TemplateRef} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {MatSnackBar, MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageRequestModel.interface';
 import {SmartVoucherCampaignRow} from '../models/smart-voucher-row.interface';
 import {ConfirmationDialogComponent} from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
@@ -17,10 +18,10 @@ import {SmartVoucherCampaignState} from '../models/smart-voucher-campaign-state.
 @Component({
   selector: 'app-smart-voucher-list-page',
   templateUrl: './smart-voucher-list-page.component.html',
-  styleUrls: ['./smart-voucher-list-page.component.scss']
+  styleUrls: ['./smart-voucher-list-page.component.scss'],
 })
 export class SmartVoucherListPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isLoading = true;
   isSearching: boolean;
   campaigns: SmartVoucherCampaignRow[] = [];
@@ -35,17 +36,17 @@ export class SmartVoucherListPageComponent implements OnInit {
   private getDataSubscription: Subscription;
   private isFirstLoad = true;
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
-  @ViewChild('deletePrompt')
+  @ViewChild('deletePrompt', {static: true})
   deletePrompt: ElementRef<HTMLElement>;
-  @ViewChild('deletedMessage')
+  @ViewChild('deletedMessage', {static: true})
   deletedMessage: ElementRef<HTMLElement>;
 
   private translates = {
     headerTitle: '',
     deletePrompt: '',
-    deletedMessage: ''
+    deletedMessage: '',
   };
   hasEditPermission = false;
 
@@ -71,10 +72,10 @@ export class SmartVoucherListPageComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -91,7 +92,7 @@ export class SmartVoucherListPageComponent implements OnInit {
   onPaginationChangeEvent(pageEvent: PageRequestModel) {
     let page;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       page = +params['page'];
     });
 
@@ -114,7 +115,7 @@ export class SmartVoucherListPageComponent implements OnInit {
     }
 
     this.getDataSubscription = this.smartVoucherService.getAll(pageSize, currentPage, title).subscribe(
-      response => {
+      (response) => {
         this.campaigns = response.SmartVoucherCampaigns;
         this.totalCount = response.PagedResponse.TotalCount;
       },
@@ -131,11 +132,11 @@ export class SmartVoucherListPageComponent implements OnInit {
   deleteCampaign(campaign: SmartVoucherCampaignRow) {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        Message: this.translates.deletePrompt.replace('{{name}}', campaign.Name)
+        Message: this.translates.deletePrompt.replace('$name', campaign.Name)
       } as ConfirmationDialogData
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isLoading = true;
 

@@ -17,7 +17,8 @@ import {markFormControlAsTouched} from 'src/app/shared/utils/markFormControlAsTo
 import {Partner} from '../models/partner.interface';
 import {BusinessVerticalTypeItem} from '../models/business-vertical-type-item.interface';
 import {PartnersService} from '../partners.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ConfirmationDialogComponent} from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import {ConfirmationDialogData} from 'src/app/shared/confirmation-dialog/confirmation-dialog-data.interface';
 import {BusinessVerticalService} from '../services/business-vertical.service';
@@ -95,9 +96,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   // #region translates
 
-  @ViewChild('editChangeClientLoginMessageTemplate')
+  @ViewChild('editChangeClientLoginMessageTemplate', {static: true})
   editChangeClientLoginMessageTemplate: ElementRef<HTMLElement>;
-  @ViewChild('createChangeClientLoginMessageTemplate')
+  @ViewChild('createChangeClientLoginMessageTemplate', {static: true})
   createChangeClientLoginMessageTemplate: ElementRef<HTMLElement>;
 
   private translates = {

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ChartPeriod} from '../models/chart-period.enum';
 import {LeadsStatisticsService} from '../services/leads-statistics.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
@@ -85,11 +85,11 @@ export class LeadsChartComponent extends PeriodChangeComponent implements OnInit
   @Output() totalLeadsCount = new EventEmitter<number>();
 
   // #region translates
-  @ViewChild('leadsPendingLabelTooltipTemplate')
+  @ViewChild('leadsPendingLabelTooltipTemplate', {static: true})
   leadsPendingLabelTooltipTemplate: ElementRef<HTMLElement>;
-  @ViewChild('leadsConfirmedLabelTooltipTemplate')
+  @ViewChild('leadsConfirmedLabelTooltipTemplate', {static: true})
   leadsConfirmedLabelTooltipTemplate: ElementRef<HTMLElement>;
-  @ViewChild('leadsApprovedLabelTooltipTemplate')
+  @ViewChild('leadsApprovedLabelTooltipTemplate', {static: true})
   leadsApprovedLabelTooltipTemplate: ElementRef<HTMLElement>;
 
   translatesForTemplate = {

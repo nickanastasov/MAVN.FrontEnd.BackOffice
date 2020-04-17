@@ -3,7 +3,7 @@ import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {PasswordEqualledValidator, PasswordValidator, LengthValidator} from 'src/app/shared/utils/validators';
 import {PasswordValidationRules} from 'src/app/shared/models/password-validation.interface';
 import {markFormControlAsTouched} from 'src/app/shared/utils/markFormControlAsTouched';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {GlobalTemplates} from 'src/app/shared/models/global-templates.interface';
 import {Subscription} from 'rxjs';
@@ -17,7 +17,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./my-profile-page.component.scss']
 })
 export class MyProfilePageComponent implements OnInit, OnDestroy {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isSavingChangePassword = false;
   changePasswordFormProps = {
     CurrentPassword: 'CurrentPassword',
@@ -34,9 +34,9 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
   private changePasswordFormSubscription: Subscription;
 
   // #region translates
-  @ViewChild('passwordSuccessfullyMessage')
+  @ViewChild('passwordSuccessfullyMessage', {static: true})
   passwordSuccessfullyMessage: ElementRef<HTMLElement>;
-  @ViewChild('currentPasswordInvalidMessage')
+  @ViewChild('currentPasswordInvalidMessage', {static: true})
   currentPasswordInvalidMessage: ElementRef<HTMLElement>;
   private translates = {
     passwordSuccessfullyMessage: '',

@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild, TemplateRef, ElementRef} from '@angular/core';
 import {User} from '../models/user.interface';
 import {UserService} from '../user.service';
-import {MatSnackBar, MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router, ActivatedRoute} from '@angular/router';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {AdminPermission} from '../models/admin-permission.interface';
@@ -14,10 +15,10 @@ import {ConfirmationDialogData} from 'src/app/shared/confirmation-dialog/confirm
 @Component({
   selector: 'app-users-edit',
   templateUrl: './users-edit.component.html',
-  styleUrls: ['./users-edit.component.scss']
+  styleUrls: ['./users-edit.component.scss'],
 })
 export class UsersEditComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   isLoading = true;
   isSaving: boolean;
   isProcessingResetPassword = false;
@@ -27,10 +28,10 @@ export class UsersEditComponent implements OnInit {
   private previousPage = '';
   private previousPageSize = '';
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
   private translates = {
-    headerTitle: ''
+    headerTitle: '',
   };
 
   constructor(
@@ -51,14 +52,14 @@ export class UsersEditComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
     this.previousPage = window.history.state.page;
     this.previousPageSize = window.history.state.pageSize;
     this.userId = this.route.snapshot.params.id;
     this.userService.getById(this.userId).subscribe(
-      user => {
+      (user) => {
         this.user = user;
         this.isLoading = false;
       },
@@ -77,11 +78,11 @@ export class UsersEditComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         Header: 'Reset Password',
-        Message: 'Do you want to reset password of the user?'
-      } as ConfirmationDialogData
+        Message: 'Do you want to reset password of the user?',
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isProcessingResetPassword = true;
         this.userService.resetPassword(this.userId).subscribe(
@@ -91,7 +92,7 @@ export class UsersEditComponent implements OnInit {
               'Admin user’s password has been successfully updated',
               this.translateService.translates.CloseSnackbarBtnText,
               {
-                duration: 5000
+                duration: 5000,
               }
             );
           },
@@ -123,7 +124,7 @@ export class UsersEditComponent implements OnInit {
   private updatePermissions(adminUserId: string, permissions: AdminPermission[]) {
     const model = {
       AdminUserId: adminUserId,
-      Permissions: permissions
+      Permissions: permissions,
     };
 
     this.userService.updatePermissions(model).subscribe(
@@ -138,7 +139,7 @@ export class UsersEditComponent implements OnInit {
 
   private handleSuccess() {
     this.snackBar.open('Admin user has been edited successfully', this.translateService.translates.CloseSnackbarBtnText, {
-      duration: 5000
+      duration: 5000,
     });
 
     this.navigateToList();
@@ -148,8 +149,8 @@ export class UsersEditComponent implements OnInit {
     this.router.navigate(['/admin/platform/users'], {
       queryParams: {
         page: this.previousPage,
-        pageSize: this.previousPageSize
-      }
+        pageSize: this.previousPageSize,
+      },
     });
   }
 }

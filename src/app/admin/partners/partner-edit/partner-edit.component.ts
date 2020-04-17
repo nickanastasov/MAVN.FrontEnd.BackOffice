@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import {Partner} from '../models/partner.interface';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
 import {PartnersService} from '../partners.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router, ActivatedRoute} from '@angular/router';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 
@@ -12,7 +12,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./partner-edit.component.scss']
 })
 export class PartnerEditComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   partnerId: string;
   partner: Partner;
   FormMode = FormMode;

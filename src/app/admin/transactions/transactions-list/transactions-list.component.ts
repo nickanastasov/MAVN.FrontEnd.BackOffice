@@ -2,7 +2,8 @@ import {PageRequestModel} from 'src/app/shared/pagination-container/models/pageR
 import {Component, OnInit, TemplateRef, ViewChild, ElementRef} from '@angular/core';
 import {TransactionsService} from '../transactions.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
-import {MatTableDataSource, MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatTableDataSource} from '@angular/material/table';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 import {Transaction} from '../models/transaction.interface';
 import {Moment} from 'moment';
@@ -14,10 +15,10 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 @Component({
   selector: 'app-transactions-list',
   templateUrl: './transactions-list.component.html',
-  styleUrls: ['./transactions-list.component.scss']
+  styleUrls: ['./transactions-list.component.scss'],
 })
 export class TransactionsListComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   pageSize = 0;
   currentPage = 0;
   totalCount = Infinity;
@@ -31,10 +32,10 @@ export class TransactionsListComponent implements OnInit {
   periodMaxDate: Moment = moment.utc();
   isExporting: boolean;
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
   private translates = {
-    headerTitle: ''
+    headerTitle: '',
   };
 
   constructor(
@@ -50,7 +51,7 @@ export class TransactionsListComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
@@ -60,10 +61,10 @@ export class TransactionsListComponent implements OnInit {
         From: this.timestampFromDate.format(DATE_ONLY_FORMAT),
         To: this.timestampToDate.format(DATE_ONLY_FORMAT),
         PageSize: pageSize,
-        CurrentPage: currentPage
+        CurrentPage: currentPage,
       })
       .subscribe(
-        transactions => {
+        (transactions) => {
           if (transactions.Items.length < this.pageSize) {
             this.totalCount = transactions.Items.length;
           } else {
@@ -74,7 +75,7 @@ export class TransactionsListComponent implements OnInit {
           this.isLoading = false;
           this.isSearching = false;
         },
-        error => {
+        (error) => {
           this.isLoading = false;
           this.isSearching = false;
           console.error(error);
@@ -104,13 +105,13 @@ export class TransactionsListComponent implements OnInit {
     const to = this.timestampToDate.format(DATE_ONLY_FORMAT);
 
     this.transactionsService.exportToCsv(from, to).subscribe(
-      blobResponse => {
+      (blobResponse) => {
         this.isExporting = false;
         const blobObject = new Blob([blobResponse], {type: 'text/csv'});
         const filename = `transactions_from_${from}_to_${to}.csv`;
         saveAs(blobObject, filename);
       },
-      error => {
+      (error) => {
         this.isExporting = false;
         console.error(error);
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);

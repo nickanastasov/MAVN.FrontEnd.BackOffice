@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TiersService} from '../tiers.service';
 import {Tier} from '../models/tier.interface';
 import {Subscription} from 'rxjs';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 
 @Component({

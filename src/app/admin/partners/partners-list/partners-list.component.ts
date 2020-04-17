@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import {PartnersService} from '../partners.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 import {PartnerRowResponse} from '../models/partner-row.interface';
 import {Subscription} from 'rxjs';
@@ -23,7 +23,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
   styleUrls: ['./partners-list.component.scss']
 })
 export class PartnersListComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   assetSymbol = TOKEN_SYMBOL;
   baseCurrencyCode: string;
   loading = true;

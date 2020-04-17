@@ -17,16 +17,16 @@ import {TopPartner} from '../models/top-partner.interface';
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardPageComponent implements OnInit {
-  @ViewChild('subHeaderTemplate') private subHeaderTemplate: TemplateRef<any>;
+  @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   tokenSymbol = TOKEN_SYMBOL;
 
   totalNumbers: {[key: string]: number} = {
     Customers: 0,
     Tokens: 0,
-    Leads: 0
+    Leads: 0,
   };
 
   // #region new charts
@@ -47,48 +47,48 @@ export class DashboardPageComponent implements OnInit {
   topEarnPartners: TopPartner[] = [
     {
       Name: 'Mall of Arabia',
-      Value: this.topEarnPartnerValue
+      Value: this.topEarnPartnerValue,
     },
     {
       Name: 'Ritz-Carlton',
-      Value: 2150
+      Value: 2150,
     },
     {
       Name: 'SAUDIA',
-      Value: 1789
+      Value: 1789,
     },
     {
       Name: 'Darraq Apartments',
-      Value: 1567
+      Value: 1567,
     },
     {
       Name: 'Hertz Car Rental',
-      Value: 1320
-    }
+      Value: 1320,
+    },
   ];
 
   topSpendPartnerValue = 3700;
   topSpendPartners: TopPartner[] = [
     {
       Name: 'Ritz-Carlton',
-      Value: this.topSpendPartnerValue
+      Value: this.topSpendPartnerValue,
     },
     {
       Name: 'Mall of Arabia',
-      Value: 2650
+      Value: 2650,
     },
     {
       Name: 'SAUDIA',
-      Value: 1462
+      Value: 1462,
     },
     {
       Name: 'Air Taxi',
-      Value: 1340
+      Value: 1340,
     },
     {
       Name: 'Hertz Car Rental',
-      Value: 1238
-    }
+      Value: 1238,
+    },
   ];
   // //#endregion
 
@@ -101,22 +101,22 @@ export class DashboardPageComponent implements OnInit {
   chartPeriodMinDate: Moment = moment.utc();
   chartPeriodMaxDate: Moment = moment.utc();
 
-  @ViewChild('headerTitle')
+  @ViewChild('headerTitle', {static: true})
   headerTitle: ElementRef<HTMLElement>;
-  @ViewChild('chartPeriodWeek')
+  @ViewChild('chartPeriodWeek', {static: true})
   chartPeriodWeek: ElementRef<HTMLElement>;
-  @ViewChild('chartPeriodWeeks')
+  @ViewChild('chartPeriodWeeks', {static: true})
   chartPeriodWeeks: ElementRef<HTMLElement>;
-  @ViewChild('chartPeriodMonth')
+  @ViewChild('chartPeriodMonth', {static: true})
   chartPeriodMonth: ElementRef<HTMLElement>;
-  @ViewChild('chartPeriodSemester')
+  @ViewChild('chartPeriodSemester', {static: true})
   chartPeriodSemester: ElementRef<HTMLElement>;
   private translates = {
     headerTitle: '',
     chartPeriodWeek: '',
     chartPeriodWeeks: '',
     chartPeriodMonth: '',
-    chartPeriodSemester: ''
+    chartPeriodSemester: '',
   };
 
   constructor(private chartPeriodService: ChartPeriodService, private headerMenuService: HeaderMenuService) {}
@@ -130,20 +130,20 @@ export class DashboardPageComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: this.translates.headerTitle,
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
     this.activeCustomersDonutChartConfiguration = Object.assign(new ChartjsDonutChartConfiguration(), {
       options: {
         cutoutPercentage: 70,
         legend: {
-          display: false
+          display: false,
         },
         maintainAspectRatio: false,
         tooltips: {
-          enabled: false
-        }
-      }
+          enabled: false,
+        },
+      },
     });
 
     this.repeatedCustomersDonutChartConfiguration = Object.assign(
@@ -175,15 +175,15 @@ export class DashboardPageComponent implements OnInit {
     activeCustomersChartData.datasets = [
       {
         data: [this.totalActiveCustomersPercentage, 100 - this.totalActiveCustomersPercentage],
-        backgroundColor: ['#2B61D4', secondColor]
-      }
+        backgroundColor: ['#2B61D4', secondColor],
+      },
     ];
 
     repeatedCustomersChartData.datasets = [
       {
         data: [this.repeatedCustomersPercentage, 100 - this.repeatedCustomersPercentage],
-        backgroundColor: ['#3EC1D0', secondColor]
-      }
+        backgroundColor: ['#3EC1D0', secondColor],
+      },
     ];
 
     this.activeCustomersDonutChartConfiguration.data = activeCustomersChartData;
@@ -232,7 +232,7 @@ export class DashboardPageComponent implements OnInit {
   applyCustomChartPeriod() {
     this.chartPeriodService.customChartPeriod = {
       from: this.chartPeriodFromDate,
-      to: this.chartPeriodToDate
+      to: this.chartPeriodToDate,
     };
   }
 }

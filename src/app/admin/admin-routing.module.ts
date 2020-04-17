@@ -15,47 +15,47 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
         path: 'customers',
-        loadChildren: './customers/customers.module#CustomersModule'
+        loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
       },
       {
         path: 'earn-action-rules',
-        loadChildren: './campaign/campaign.module#CampaignModule'
+        loadChildren: () => import('./campaign/campaign.module').then(m => m.CampaignModule)
       },
       {
         path: ROUTE_SPEND_RULES,
-        loadChildren: './spend-action-rule/spend-action-rule.module#SpendActionRuleModule'
+        loadChildren: () => import('./spend-action-rule/spend-action-rule.module').then(m => m.SpendActionRuleModule)
       },
       {
         path: ROUTE_SMART_VOUCHERS,
-        loadChildren: './smart-voucher/smart-voucher.module#SmartVoucherModule'
+        loadChildren: () => import('./smart-voucher/smart-voucher.module').then(m => m.SmartVoucherModule)
       },
       {
         path: 'users',
-        loadChildren: './user/user.module#UserModule'
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule)
       },
       {
         path: 'transactions',
-        loadChildren: './transactions/transactions.module#TransactionsModule'
+        loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule)
       },
       {
         path: 'events',
-        loadChildren: './events/events.module#EventsModule'
+        loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
       },
       {
         path: 'partners',
-        loadChildren: './partners/partners.module#PartnersModule'
+        loadChildren: () => import('./partners/partners.module').then(m => m.PartnersModule)
       },
       {
         path: 'global-settings',
-        loadChildren: './global-settings/global-settings.module#GlobalSettingsModule'
+        loadChildren: () => import('./global-settings/global-settings.module').then(m => m.GlobalSettingsModule)
       },
       {
         path: 'tiers',
-        loadChildren: './tiers/tiers.module#TiersModule'
+        loadChildren: () => import('./tiers/tiers.module').then(m => m.TiersModule)
       }
     ]
   }

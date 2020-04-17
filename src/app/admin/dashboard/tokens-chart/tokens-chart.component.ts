@@ -4,7 +4,7 @@ import {ChartPeriod} from '../models/chart-period.enum';
 import {Moment} from 'moment';
 import * as moment from 'moment';
 import {TranslateService} from 'src/app/shared/services/translate.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {DAY_FORMAT} from '../models/chart-constants';
 import {ChartPeriodService} from '../services/chart-period.service';
 import {BasePeriodRequest} from '../models/base-period-request.interface';
@@ -24,7 +24,7 @@ import {ChartData} from 'chart.js';
   selector: 'app-tokens-chart',
   templateUrl: './tokens-chart.component.html',
   styleUrls: ['./tokens-chart.component.scss'],
-  providers: [DecimalPipe]
+  providers: [DecimalPipe],
 })
 export class TokensChartComponent extends PeriodChangeComponent implements OnInit {
   isLoading = true;
@@ -43,7 +43,7 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
   smallGraphicItems: SmallGraphicItem[] = [];
   dropdownData: any[] = [
     {label: 'Earned / Spent', value: 'EarnedSpent'},
-    {label: 'Total Balance', value: 'TOTAL'}
+    {label: 'Total Balance', value: 'TOTAL'},
   ];
   selectedChartType = 'EarnedSpent';
   // private
@@ -55,26 +55,26 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
   @Output() totalTokensCount = new EventEmitter<number>();
 
   // #region translates
-  @ViewChild('earnLabel')
+  @ViewChild('earnLabel', {static: true})
   earnLabel: ElementRef<HTMLElement>;
-  @ViewChild('burnLabel')
+  @ViewChild('burnLabel', {static: true})
   burnLabel: ElementRef<HTMLElement>;
 
-  @ViewChild('totalWalletBalanceLabelTooltipTemplate')
+  @ViewChild('totalWalletBalanceLabelTooltipTemplate', {static: true})
   totalWalletBalanceLabelTooltipTemplate: ElementRef<HTMLElement>;
-  @ViewChild('totalTokensEarnedLabelTooltipTemplate')
+  @ViewChild('totalTokensEarnedLabelTooltipTemplate', {static: true})
   totalTokensEarnedLabelTooltipTemplate: ElementRef<HTMLElement>;
-  @ViewChild('totalTokensSpentLabelTooltipTemplate')
+  @ViewChild('totalTokensSpentLabelTooltipTemplate', {static: true})
   totalTokensSpentLabelTooltipTemplate: ElementRef<HTMLElement>;
 
-  @ViewChild('pointsEarnedTitle')
+  @ViewChild('pointsEarnedTitle', {static: true})
   pointsEarnedTitle: ElementRef<HTMLElement>;
-  @ViewChild('pointsSpentTitle')
+  @ViewChild('pointsSpentTitle', {static: true})
   pointsSpentTitle: ElementRef<HTMLElement>;
 
-  @ViewChild('tokenEarnedSpent')
+  @ViewChild('tokenEarnedSpent', {static: true})
   tokenEarnedSpent: ElementRef<HTMLElement>;
-  @ViewChild('tokenTotalBalance')
+  @ViewChild('tokenTotalBalance', {static: true})
   tokenTotalBalance: ElementRef<HTMLElement>;
 
   private translates = {
@@ -83,12 +83,12 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
     pointsEarnedTitle: '',
     pointsSpentTitle: '',
     tokenEarnedSpent: '',
-    tokenTotalBalance: ''
+    tokenTotalBalance: '',
   };
   translatesForTemplate = {
     totalWalletBalanceLabelTooltip: '',
     totalTokensEarnedLabelTooltip: '',
-    totalTokensSpentLabelTooltip: ''
+    totalTokensSpentLabelTooltip: '',
   };
   // #endregion
 
@@ -105,7 +105,7 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
   }
 
   ngOnInit() {
-    const tokenParameter = '{{tokenSymbol}}';
+    const tokenParameter = '$tokenSymbol';
     // translates
     this.translates.earnLabel = this.earnLabel.nativeElement.innerText.replace(tokenParameter, TOKEN_SYMBOL);
     this.translates.burnLabel = this.burnLabel.nativeElement.innerText.replace(tokenParameter, TOKEN_SYMBOL);
@@ -134,10 +134,10 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
     this.lineChartConfiguration = Object.assign(new ChartjsLineChartConfiguration(), {
       options: {
         title: {
-          display: false
+          display: false,
         },
         legend: {
-          display: false
+          display: false,
         },
         maintainAspectRatio: false,
         tooltips: {
@@ -147,51 +147,51 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
           callbacks: {
             label: (tooltipItem: Chart.ChartTooltipItem, data: ChartData) => {
               return this.chartjsUtilsService.applyNumberSeparatorsToTooltips(tooltipItem, data, this.decimalPipe);
-            }
-          }
+            },
+          },
         },
         scales: {
           xAxes: [
             {
               gridLines: {
                 drawBorder: false,
-                display: false
-              }
-            }
+                display: false,
+              },
+            },
           ],
           yAxes: [
             {
               gridLines: {
                 drawBorder: false,
                 borderDash: [6, 4],
-                color: '#d8dffd'
+                color: '#d8dffd',
               },
               ticks: {
                 callback: (value: any) => {
                   return this.decimalPipe.transform(value);
                 },
-                padding: 5
-              }
-            }
-          ]
+                padding: 5,
+              },
+            },
+          ],
         },
         elements: {
           point: {
             radius: 0,
             borderWidth: 0,
             hoverRadius: 0,
-            hoverBorderWidth: 0
-          }
+            hoverBorderWidth: 0,
+          },
         },
         layout: {
           padding: {
             left: 0,
             right: 0,
             top: 0,
-            bottom: 0
-          }
-        }
-      }
+            bottom: 0,
+          },
+        },
+      },
     });
 
     this.barChartConfiguration = Object.assign({} as Chart.ChartConfiguration, {
@@ -202,10 +202,10 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
           labels: {
             fontSize: 14,
             padding: 20,
-            usePointStyle: true
+            usePointStyle: true,
           },
           onClick: (e: MouseEvent) => e.stopPropagation(),
-          position: 'top'
+          position: 'top',
         },
         maintainAspectRatio: false,
         scales: {
@@ -213,9 +213,9 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
             {
               gridLines: {
                 drawBorder: false,
-                display: false
-              }
-            }
+                display: false,
+              },
+            },
           ],
           yAxes: [
             {
@@ -223,71 +223,71 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
               gridLines: {
                 drawBorder: false,
                 borderDash: [6, 4],
-                color: '#d8dffd'
+                color: '#d8dffd',
               },
               scaleLabel: {
                 display: false,
-                labelString: this.translates.earnLabel
+                labelString: this.translates.earnLabel,
               },
               ticks: {
                 callback: (value: any) => {
                   return this.decimalPipe.transform(value);
                 },
                 min: 0,
-                padding: 5
+                padding: 5,
               },
-              weight: 2
+              weight: 2,
             },
             {
               id: 'y-axis-burn',
               gridLines: {
                 drawBorder: false,
                 borderDash: [6, 4],
-                color: '#d8dffd'
+                color: '#d8dffd',
               },
               position: 'right',
               scaleLabel: {
                 display: false,
-                labelString: this.translates.burnLabel
+                labelString: this.translates.burnLabel,
               },
               ticks: {
                 callback: (value: any) => {
                   return this.decimalPipe.transform(value);
                 },
                 min: 0,
-                padding: 5
+                padding: 5,
               },
-              weight: 1
-            }
-          ]
+              weight: 1,
+            },
+          ],
         },
         elements: {
           point: {
             radius: 0,
             borderWidth: 0,
             hoverRadius: 0,
-            hoverBorderWidth: 0
-          }
+            hoverBorderWidth: 0,
+          },
         },
         layout: {
           padding: {
             left: 0,
             right: 0,
             top: 0,
-            bottom: 0
-          }
+            bottom: 0,
+          },
         },
         tooltips: {
           callbacks: {
             label: (tooltipItem: Chart.ChartTooltipItem, data: Chart.ChartData) => {
               return this.chartjsUtilsService.applyNumberSeparatorsToTooltips(tooltipItem, data, this.decimalPipe);
-            }
+            },
           },
           intersect: false,
           mode: 'nearest',
           xPadding: 10,
-          yPadding: 10
-        }
+          yPadding: 10,
+        },
       },
       data: {
         labels: [],
@@ -298,7 +298,7 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
             backgroundColor: '#1dc9b7',
             borderColor: '#1dc9b7',
             yAxisID: 'y-axis-earn',
-            data: []
+            data: [],
           },
           {
             label: this.translates.burnLabel,
@@ -306,10 +306,10 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
             backgroundColor: '#fd397a',
             borderColor: '#fd397a',
             yAxisID: 'y-axis-burn',
-            data: []
-          }
-        ]
-      }
+            data: [],
+          },
+        ],
+      },
     });
 
     super.ngOnInit();
@@ -320,7 +320,7 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
 
   loadTotalTokensStatistics() {
     this.tokensStatisticsService.get().subscribe(
-      response => {
+      (response) => {
         this.tokensStatistics = response;
 
         // #region handle tokens to units
@@ -335,15 +335,15 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
             number: response.EarnedCount,
             // percentage: (response.EarnedCount / response.TotalCount) * 100,
             color: 'green',
-            tooltip: this.translatesForTemplate.totalTokensEarnedLabelTooltip
+            tooltip: this.translatesForTemplate.totalTokensEarnedLabelTooltip,
           },
           {
             title: this.translates.pointsSpentTitle,
             number: response.BurnedCount,
             // percentage: (response.BurnedCount / response.TotalCount) * 100,
             color: 'red',
-            tooltip: this.translatesForTemplate.totalTokensSpentLabelTooltip
-          }
+            tooltip: this.translatesForTemplate.totalTokensSpentLabelTooltip,
+          },
         ];
 
         this.totalTokensCount.emit(this.tokensStatistics.TotalCount);
@@ -367,11 +367,11 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
     this.tokensStatisticsService.getChartStatistics(request).subscribe(
       (res: TokensListResponse) => {
         // #region handle tokens to units
-        res.Burn.forEach(x => RoundToAccuracyPeriodTokensStatistics(x));
+        res.Burn.forEach((x) => RoundToAccuracyPeriodTokensStatistics(x));
 
-        res.Earn.forEach(x => RoundToAccuracyPeriodTokensStatistics(x));
+        res.Earn.forEach((x) => RoundToAccuracyPeriodTokensStatistics(x));
 
-        res.WalletBalance.forEach(x => RoundToAccuracyPeriodTokensStatistics(x));
+        res.WalletBalance.forEach((x) => RoundToAccuracyPeriodTokensStatistics(x));
 
         function RoundToAccuracyPeriodTokensStatistics(x: PeriodTokensStatistics) {
           x.Amount = RoundToAccuracy(x.Amount);
@@ -477,7 +477,7 @@ export class TokensChartComponent extends PeriodChangeComponent implements OnIni
     const newDataSet: Chart.ChartDataSets = {
       backgroundColor: BRAND_SECOND_CHART_COLOR,
       borderColor: BRAND_COLOR,
-      label: ''
+      label: '',
     };
 
     const points: number[] = [];
