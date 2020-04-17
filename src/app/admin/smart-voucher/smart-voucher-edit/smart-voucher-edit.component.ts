@@ -69,13 +69,13 @@ export class SmartVoucherEditComponent implements OnInit {
     this.successMessage = (this.successMessageElement.nativeElement as HTMLElement).innerText;
   }
 
-  onFormSubmit(formData: any) {
+  onFormSubmit(formData: SmartVoucher) {
     this.isSaving = true;
 
     const editModel = {...this.campaign, ...formData};
 
-    if (editModel.LocalizedContents !== this.campaign.MobileContents) {
-      const editedLocalizedContentsDictinary: any = editModel.LocalizedContents.reduce(
+    if (editModel.MobileContents !== this.campaign.MobileContents) {
+      const editedLocalizedContentsDictinary: any = editModel.MobileContents.reduce(
         (obj: {[key: string]: ActionRuleMobileContent}, item: any) => {
           obj[item.MobileLanguage] = item;
           return obj;
@@ -115,7 +115,7 @@ export class SmartVoucherEditComponent implements OnInit {
 
         const model: SmartVoucherCampaignSetImageRequest = {
           ContentId: existingMobContent ? existingMobContent.ImageId : '',
-          CampaignId: formData.Id,
+          CampaignId: this.campaignId,
           Localization: existingMobContent ? existingMobContent.MobileLanguage : ''
         };
 
