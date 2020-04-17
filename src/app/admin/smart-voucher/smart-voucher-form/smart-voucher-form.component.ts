@@ -361,12 +361,16 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  addFiles(files: FileList, index: number): void {
+  addFiles(files: FileList /*, index: number*/): void {
     if (!files || files.length === 0) {
       return;
     }
 
-    const fileControl = this.mobileContentsFormArray.at(index).get(this.mobileContentFormProps.File);
+    // const fileControl = this.mobileContentsFormArray.at(index).get(this.mobileContentFormProps.File);
+    // Because for now only English used, so index is not convenient
+    const fileControl = this.mobileContentsFormArray.controls
+      .find(control => control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
+      .get(this.mobileContentFormProps.File);
 
     markFormControlAsTouched(fileControl);
     fileControl.setValue(files[0]);
