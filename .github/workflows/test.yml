@@ -30,7 +30,8 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+
       # Build Docker images
-      # - name: Build docker image
-      #   run: |
-      #     docker build --tag openmavn/$SERVICE_DOCKER_IMAGE:dev ./
+      - name: Build docker image
+        run: |
+          docker build --tag openmavn/$SERVICE_DOCKER_IMAGE:dev ./
