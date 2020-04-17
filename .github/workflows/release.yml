@@ -33,6 +33,26 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
+      # Frontend
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install Dependencies
+        # run: npm ci --prefer-offline --no-audit
+        run: npm ci --cache ~/.npm
+
+      - name: Build Angular
+        run: npm run build
+
       # Build Docker images
       - name: Build docker image
         run: |
