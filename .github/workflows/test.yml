@@ -29,7 +29,8 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit
+        # run: npm ci --prefer-offline --no-audit
+        run: npm ci --cache ~/.npm
 
       # Build Docker images
       - name: Build docker image
