@@ -429,12 +429,24 @@
             [queryParams]="{ page: previousPage, pageSize: previousPageSize }"
             [disabled]="isSaving"
             i18n>Cancel</button>
-    <button type="submit"
-            [hidden]="!hasEditPermission"
-            class="btn btn-brand btn-upper btn-bold"
-            style="min-width: 120px;"
-            [disabled]="isSaving || smartVoucherForm.disabled"
-            i18n>Save</button>
+
+    <div [hidden]="voucher && voucher.State === SmartVoucherCampaignState.Deleted">
+      <mat-slide-toggle id="slide_IsPublished"
+                        class="slide-toggle"
+                        [hidden]="type === FormMode.Create"
+                        formControlName="IsPublished">
+        <span *ngIf="isPublishedControl.value"
+              i18n>Publish</span>
+        <span *ngIf="!isPublishedControl.value"
+              i18n>Draft</span>
+      </mat-slide-toggle>
+      <button type="submit"
+              [hidden]="!hasEditPermission"
+              class="btn btn-brand btn-upper btn-bold"
+              style="min-width: 120px;"
+              [disabled]="isSaving || smartVoucherForm.disabled"
+              i18n>Save</button>
+    </div>
   </div>
 </form>
 
