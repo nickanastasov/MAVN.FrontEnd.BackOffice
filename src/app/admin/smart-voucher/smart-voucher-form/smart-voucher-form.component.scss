@@ -1,5 +1,14 @@
+@import '~src/scss/token-theme/utils/rtl-mixins';
+
 .form-navigation {
   padding: 10px 0;
+
+  .slide-toggle {
+    font-size: 16px;
+    @include margin-end(30px);
+    position: relative;
+    top: 4px;
+  }
 }
 
 .multiple-select-search-option {
