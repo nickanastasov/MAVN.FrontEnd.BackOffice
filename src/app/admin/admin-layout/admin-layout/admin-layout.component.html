@@ -388,9 +388,9 @@
   <div class="total-supply-container">
     <div class="total-supply-item">
       <div class="total-supply-title"
-           >{{tokenSymbol}} Supply</div>
+           i18n>Vouchers Supply</div>
       <div class="total-supply-title-number"
-           *ngIf="!isLoading">{{totalTokenSupply}}</div>
+           *ngIf="!isLoading">{{totalTokenSupply | number}}</div>
       <div class="spinner-container"
            *ngIf="isLoading">
         <div class="spinner-border"></div>

@@ -79,11 +79,19 @@ $login-font-size: 16px;
         @include login-container-items;
         margin-top: 5rem;
 
+        &--registration {
+          margin-top: 10px;
+        }
+
         form {
           position: relative;
 
           .form-item {
             margin-bottom: 69px;
+
+            &--registration {
+              margin-bottom: 18px;
+            }
 
             &:last-of-type() {
               margin-bottom: 60px;
@@ -162,6 +170,27 @@ $login-font-size: 16px;
               display: inline-block;
               vertical-align: middle;
               margin-left: 1rem;
+            }
+          }
+
+          .password-requirements {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.54;
+
+            p {
+              margin-bottom: 0.3rem;
+            }
+
+            ul {
+              font-size: 0.9rem;
+              padding-left: 1.1rem;
+              font-weight: 400;
+              margin-bottom: 0;
+
+              .invalid-rule {
+                color: $kt-danger-color;
+              }
             }
           }
 

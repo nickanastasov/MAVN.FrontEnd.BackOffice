@@ -7,8 +7,8 @@
     "serve-en": "ng serve --configuration=en",
     "serve-de": "ng serve --configuration=de --port=4201",
     "serve-ar": "ng serve --configuration=ar --port=4202",
-    "build-all": "run-p \"build:*\"",
-    "build": "npm run ng-build-en && npm run build-de",
+    "build": "run-p ng-build-en build-de",
+    "build-conseq": "npm run ng-build-en && npm run build-de",
     "build-en": "npm run ng-build-en && npm run gulp-en",
     "ng-build-en": "ng build --configuration=en-prod --localize",
     "gulp-en": "gulp default",
@@ -19,7 +19,7 @@
     "prettier:fix-staged": "pretty-quick --staged",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "husky": {
     "hooks": {

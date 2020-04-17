@@ -80,7 +80,7 @@ $badge-size-profile: 50px;
   position: relative;
 
   &:before {
-    background: url('/assets/images/total-supply-background.svg') no-repeat left center;
+    background: url('~src/assets/images/total-supply-background.svg') no-repeat left center;
     content: ' ';
     display: block;
     height: 100%;

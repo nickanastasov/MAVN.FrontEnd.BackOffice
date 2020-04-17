@@ -3,16 +3,14 @@ FROM node:10-alpine as node
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+#COPY package*.json ./
 
-RUN npm ci
+#RUN npm ci
 
 COPY . .
 
-# RUN npm run build:ar
-# RUN npm run build:en
-# now use parallel building for both languages
-RUN npm run build
+# extracted build into github workflow
+#RUN npm run build
 
 # Stage 2
 FROM nginx:1.13.12-alpine
