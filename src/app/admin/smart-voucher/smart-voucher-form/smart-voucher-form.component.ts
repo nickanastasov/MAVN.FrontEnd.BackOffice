@@ -247,7 +247,15 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     }
 
     // mobile content related
-    this.updateContentPreviewBindings(0);
+    // Because for now only English used and order of languages is not fixed so need to find En content
+    for (let i = 0; i < this.mobileContentsFormArray.controls.length; i++) {
+      const control = this.mobileContentsFormArray.controls[i];
+
+      if (control.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En) {
+        this.updateContentPreviewBindings(i);
+        break;
+      }
+    }
 
     this.subscriptions = [];
   }
