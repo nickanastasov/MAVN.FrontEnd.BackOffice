@@ -32,7 +32,9 @@ jobs:
         # run: npm ci --prefer-offline --no-audit
         run: npm ci --cache ~/.npm
 
-      # Build Docker images
+      - name: Build Angular
+        run: npm run build
+
       - name: Build docker image
         run: |
           docker build --tag openmavn/$SERVICE_DOCKER_IMAGE:dev ./

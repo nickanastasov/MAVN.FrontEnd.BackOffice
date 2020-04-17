@@ -9,8 +9,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-# now use parallel building for both languages
-RUN npm run build
+# extracted build into github workflow
+#RUN npm run build
 
 # Stage 2
 FROM nginx:1.13.12-alpine
