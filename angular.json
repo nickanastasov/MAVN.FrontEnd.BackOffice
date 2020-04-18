@@ -13,16 +13,23 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "de": "src/locale/messages.de-DE.translated.xlf"
+        }
+      },
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
+          "builder_webpack-backup": "@angular-builders/custom-webpack:browser",
+          "options_customWebpackConfig-backup": {
+            "path": "extra-webpack.config.js",
+            "mergeStrategies": {
+              "externals": "append"
+            }
+          },
           "options": {
-            "customWebpackConfig": {
-              "path": "extra-webpack.config.js",
-              "mergeStrategies": {
-                "externals": "append"
-              }
-            },
             "outputPath": "dist/token-platform-backoffice",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -49,118 +56,21 @@
             "es5BrowserSupport": true
           },
           "configurations": {
-            "ar": {
-              "aot": true,
-              "outputPath": "dist/token-platform-backoffice/ar",
-              "baseHref": "/ar/",
-              "deployUrl": "/ar/",
-              "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ar-SA",
-              "i18nMissingTranslation": "warning",
-              "fileReplacements": [
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-ar.html"
-                }
-              ]
-            },
-            "ar-prod": {
-              "aot": true,
-              "outputPath": "dist/token-platform-backoffice/ar",
-              "baseHref": "/ar/",
-              "deployUrl": "/ar/",
-              "i18nFile": "src/locale/messages.ar-SA.translated.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ar-SA",
-              "i18nMissingTranslation": "warning",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-ar.html"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": true,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "3mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            },
             "de": {
               "aot": true,
               "outputPath": "dist/token-platform-backoffice/de",
               "baseHref": "/de/",
               "deployUrl": "/de/",
-              "i18nFile": "src/locale/messages.de-DE.translated.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "de-DE",
-              "i18nMissingTranslation": "warning",
-              "fileReplacements": [
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-de.html"
-                }
-              ]
-            },
-            "de-prod": {
-              "aot": true,
-              "outputPath": "dist/token-platform-backoffice/de",
-              "baseHref": "/de/",
-              "deployUrl": "/de/",
-              "i18nFile": "src/locale/messages.de-DE.translated.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "de-DE",
-              "i18nMissingTranslation": "warning",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-de.html"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": true,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "4.5mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "localize": ["de"],
+              "i18nLocale": "de",
+              "i18nMissingTranslation": "warning"
             },
             "en": {
-              "outputPath": "dist/token-platform-backoffice/en",
               "baseHref": "/en/",
               "deployUrl": "/en/"
             },
-            "en-prod": {
-              "aot": true,
-              "outputPath": "dist/token-platform-backoffice/en",
-              "baseHref": "/en/",
-              "deployUrl": "/en/",
+            "production": {
+              "outputPath": "dist/token-platform-backoffice/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -172,6 +82,7 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": true,
               "buildOptimizer": true,
@@ -179,30 +90,6 @@
                 {
                   "type": "initial",
                   "maximumWarning": "4.5mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            },
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": true,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "3mb",
                   "maximumError": "5mb"
                 }
               ]

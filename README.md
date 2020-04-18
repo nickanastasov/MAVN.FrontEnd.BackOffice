@@ -14,8 +14,8 @@ Navigate to `http://localhost:4200/en`. The app will automatically reload if you
 To run locally the german version execute command `npm run serve-de` and then navigate to `http://localhost:4201/de`.
 
 To append new translations make sure you put attribute i18n as described here (https://angular.io/guide/i18n).  
-Then update file with message which should be translated:  
-ng xi18n --i18n-format=xlf --i18n-locale en-US --out-file messages.generated.xlf --output-path locale  
+Then update file with message(s) which should be translated:  
+`npm run i18n`  
 Copy new items to messages.de-DE.generated.xlf and then translate them.  
 In result new tags `<target>` should appear: e.g. `<target state="translated">Kunden</target>`
 
