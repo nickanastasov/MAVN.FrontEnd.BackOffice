@@ -1,0 +1,24 @@
+{
+  "BackofficePlatform": {
+    "AdminApiGatewayUrl": "https://admin-api.mavn.ch",
+    "AdminApiGatewayUrl_localhost_url_example": "http://localhost:64538",
+    "AdminApiGatewayUrl_vpn_url_example": "http://admin-api.services.svc.cluster.local",
+    "HelpDocumentUrl": "https://github.com/OpenMAVN/Welcome/wiki/Environments",
+    "BaseCurrencyCode": "CHF",
+    "PasswordValidationSettings": {
+      "MinLength": 8,
+      "MaxLength": 50,
+      "MinUpperCase": 1,
+      "MinLowerCase": 1,
+      "MinSpecialSymbols": 1,
+      "MinNumbers": 1,
+      "AllowedSpecialSymbols": "!@#$%&",
+      "AllowWhiteSpaces": false
+    },
+    "MobileAppImageFileSizeInKB": 10240,
+    "MobileAppImageMinWidth": 1024,
+    "MobileAppImageMinHeight": 683,
+    "IsRealEstateFeatureDisabled": true,
+    "IsPublicBlockchainFeatureDisabled": true
+  }
+}

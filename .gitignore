@@ -12,8 +12,7 @@
 yarn.lock
 
 # local development
-nginx/env-config.json
-src/nginx/env-config.json
+# nginx/env-config.json
 
 # profiling files
 chrome-profiler-events.json
