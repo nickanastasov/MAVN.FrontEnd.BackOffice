@@ -17,17 +17,9 @@ To run locally the german version execute command `npm run serve-de` and then na
 To append new translations make sure you put attribute i18n as described here (https://angular.io/guide/i18n).  
 Then update file with message(s) which should be translated:  
 `npm run i18n`  
-Copy new items to messages.de-DE.generated.xlf and then translate them.  
-In result new tags `<target>` should appear: e.g. `<target state="translated">Kunden</target>`
-
-Note: to compare easier the files `messages.generated.xlf` and `messages.de-DE.generated.xlf` you can clear extra tags with Notepad++.
-
-Find and replace by regex to clear extra tags:  
-(?s-i)<context-group (purpose="location"){1}>.+?</context-group>
-
-When click Replace all, it hangs out for a couple of seconds and then finishes.
-
-Then install plugin XML Tools and format with "Linearize XML", then by "Pretty print (XML only - with line breaks).
+Now you can compare the files `messages.generated.xlf` and `messages.de-DE.generated.xlf` and copy new untranslated strings.  
+Then translate new strings in translation tools or manually by addings tags `<target>`.  
+So in result should appear: e.g. `<target state="translated">Kunden</target>`
 
 ## Code scaffolding
 
