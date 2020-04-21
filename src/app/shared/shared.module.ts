@@ -38,6 +38,7 @@ import {HideRulesPipe} from './pipes/hide-rules.pipe';
 import {HighlightPipe} from './pipes/highlight.pipe';
 import {HeaderMenuComponent} from './header-menu/header-menu.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
+import {LanguageSwitcherComponent} from './language-switcher/language-switcher.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {FileSizePipe} from './pipes/file-size.pipe';
     HideRulesPipe,
     TokenPipe,
     HighlightPipe,
-    HeaderMenuComponent
+    HeaderMenuComponent,
+    LanguageSwitcherComponent
   ],
   imports: [
     CommonModule,
@@ -129,7 +131,8 @@ import {FileSizePipe} from './pipes/file-size.pipe';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    HeaderMenuComponent
+    HeaderMenuComponent,
+    LanguageSwitcherComponent
   ],
   entryComponents: [ConfirmationDialogComponent],
   providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}]

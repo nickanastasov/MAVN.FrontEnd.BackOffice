@@ -5,52 +5,9 @@
     <!-- begin:: Topbar -->
     <div class="kt-header__topbar">
 
+      
       <!--begin: Languages -->
-      <div class="kt-header__topbar-item kt-header__topbar-item--langs">
-        <div class="kt-header__topbar-wrapper"
-             data-toggle="dropdown"
-             data-offset="2px,0px">
-          <span class="kt-header__topbar-icon">
-            <ng-container [ngSwitch]="currentLocale">
-              <ng-container *ngSwitchCase="LOCALES.English">
-                <span>{{LOCALES.English | uppercase}}</span>
-              </ng-container>
-              <ng-container *ngSwitchCase="LOCALES.German">
-                <span>{{LOCALES.German | uppercase}}</span>
-              </ng-container>
-              <ng-container *ngSwitchDefault>
-                <span i18n>Unknown</span>
-              </ng-container>
-            </ng-container>
-          </span>
-        </div>
-        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim">
-          <ul class="kt-nav kt-margin-t-10 kt-margin-b-10">
-            <li class="kt-nav__item"
-                [class.kt-nav__item--active]="currentLocale === LOCALES.German">
-              <a href="javascript:void(0)"
-                 class="kt-nav__link"
-                 (click)="changeLanguage(LOCALES.German)">
-                <span class="kt-nav__link-icon">
-                  <img src="assets/media/flags/162-germany.svg"
-                       alt="" /></span>
-                <span class="kt-nav__link-text">Deutsch</span>
-              </a>
-            </li>
-            <li class="kt-nav__item"
-                [class.kt-nav__item--active]="currentLocale === LOCALES.English">
-              <a href="javascript:void(0)"
-                 class="kt-nav__link"
-                 (click)="changeLanguage(LOCALES.English)">
-                <span class="kt-nav__link-icon">
-                  <img src="assets/media/flags/020-flag.svg"
-                       alt="" /></span>
-                <span class="kt-nav__link-text">English</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <!-- <app-language-switcher></app-language-switcher> -->
 
       <!--end: Languages -->
     </div>

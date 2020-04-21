@@ -1,0 +1,27 @@
+@import '~src/scss/token-theme/utils/variables';
+
+.kt-header-wrapper {
+  position: absolute;
+  right: 0;
+
+  .kt-header {
+    background-color: transparent;
+    border: none;
+
+    .kt-header__topbar {
+      & > * {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        margin: 0 0.1rem;
+      }
+
+      .kt-header__topbar-icon {
+        background-color: $light-primary-color;
+      }
+    }
+  }
+}
