@@ -11,6 +11,11 @@
   }
 
   .kt-header {
+    &--white {
+      background-color: #fff !important;
+      border-bottom: 1px solid #eff0f6 !important;
+    }
+
     .kt-header-menu-wrapper {
       .kt-header-menu {
         .kt-header-menu__title {
