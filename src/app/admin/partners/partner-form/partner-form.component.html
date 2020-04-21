@@ -42,68 +42,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 credentials d-flex">
-          <mat-form-field appearance="outline"
-                          class="width-100">
-            <mat-label i18n>Partner's Login</mat-label>
-            <input matInput
-                   formControlName="ClientId"
-                   placeholder="Partner's Login"
-                   required>
-
-            <mat-error>
-              <app-error-message controlName="ClientId"></app-error-message>
-            </mat-error>
-          </mat-form-field>
-          <button matSuffix
-                  [hidden]="!hasEditPermission"
-                  type="button"
-                  class="btn btn-icon btn-lg mb-3"
-                  (click)="changeClietId()">
-            <mat-icon matTooltip="Generate new login">loop</mat-icon>
-          </button>
-          <a href="javascript:void(0)"
-             class="btn btn-icon btn-lg mb-3"
-             matTooltip="Copy login"
-             [appCopyToClipboard]="copyToClipboardLogin">
-            <mat-icon>content_copy</mat-icon>
-          </a>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 credentials d-flex">
-          <mat-form-field appearance="outline"
-                          class="width-100"
-                          [matTooltipDisabled]="revealPasswordField ? false : true"
-                          matTooltip="Password is not visible! You have to generate a new password if you have forgotten the current one!">
-            <mat-label i18n>Partner's Password</mat-label>
-            <input matInput
-                   formControlName="ClientSecret"
-                   placeholder="Partner's Password"
-                   required>
-            <mat-icon matSuffix
-                      *ngIf="revealPasswordField">
-              warning
-            </mat-icon>
-            <mat-error>
-              <app-error-message controlName="ClientSecret"></app-error-message>
-            </mat-error>
-          </mat-form-field>
-
-          <button class="btn btn-icon btn-lg mb-3"
-                  [hidden]="!hasEditPermission"
-                  (click)="changeClietSecret()"
-                  *ngIf="!hideGeneratePassBtn"
-                  type="button">
-            <mat-icon matTooltip="Generate new">loop</mat-icon>
-          </button>
-
-          <a href="javascript:void(0)"
-             class="btn btn-icon btn-lg mb-3"
-             matTooltip="Copy password"
-             *ngIf="!revealPasswordField"
-             [appCopyToClipboard]="copyToClipboardPass">
-            <mat-icon>content_copy</mat-icon>
-          </a>
-        </div>
       </div>
       <mat-form-field appearance="outline"
                       class="width-100">

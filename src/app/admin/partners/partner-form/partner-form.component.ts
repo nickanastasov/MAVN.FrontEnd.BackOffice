@@ -11,16 +11,12 @@ import {
   MoneyMinMoreZeroValidator,
   OnlyLettersValidator,
   PhoneNumberValidator,
-  EmailValidator
+  EmailValidator,
 } from 'src/app/shared/utils/validators';
 import {markFormControlAsTouched} from 'src/app/shared/utils/markFormControlAsTouched';
 import {Partner} from '../models/partner.interface';
 import {BusinessVerticalTypeItem} from '../models/business-vertical-type-item.interface';
-import {PartnersService} from '../partners.service';
-import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ConfirmationDialogComponent} from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import {ConfirmationDialogData} from 'src/app/shared/confirmation-dialog/confirmation-dialog-data.interface';
 import {BusinessVerticalService} from '../services/business-vertical.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {GlobalTemplates} from 'src/app/shared/models/global-templates.interface';
@@ -35,7 +31,7 @@ import {BusinessVerticalType} from '../models/business-vertical.enum';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
-  styleUrls: ['./partner-form.component.scss']
+  styleUrls: ['./partner-form.component.scss'],
 })
 export class PartnerFormComponent implements OnInit, OnDestroy {
   @Input()
@@ -73,11 +69,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     private settingsSetvice: SettingsService,
     private fb: FormBuilder,
     private globalSettingsService: GlobalSettingsService,
-    private partnerService: PartnersService,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
-    private businessVerticalService: BusinessVerticalService,
-    private dialog: MatDialog
+    private businessVerticalService: BusinessVerticalService
   ) {
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsSetvice.baseCurrencyCode;
@@ -85,11 +79,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   FormMode = FormMode;
-  revealPasswordField = true;
-  hideGeneratePassBtn = false;
-  defaultPasswordValue = '**********';
-  copyToClipboardPass = '';
-  copyToClipboardLogin = '';
   baseCurrencyCode: string;
 
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
@@ -103,26 +92,22 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   private translates = {
     editChangeClientLoginMessage: '',
-    createChangeClientLoginMessage: ''
+    createChangeClientLoginMessage: '',
   };
 
   partnerFormProps = {
     Name: 'Name',
     BusinessVertical: 'BusinessVertical',
-    ClientId: 'ClientId',
-    ClientSecret: 'ClientSecret',
     Description: 'Description',
     Locations: 'Locations',
     AmountInTokens: 'AmountInTokens',
     AmountInCurrency: 'AmountInCurrency',
-    UseGlobalCurrencyRate: 'UseGlobalCurrencyRate'
+    UseGlobalCurrencyRate: 'UseGlobalCurrencyRate',
   };
 
   partnerForm = this.fb.group({
     [this.partnerFormProps.Name]: [null, [Validators.required, LengthValidator(3, 50)]],
     [this.partnerFormProps.BusinessVertical]: [null, [Validators.required]],
-    [this.partnerFormProps.ClientId]: [{value: null, disabled: true}, [Validators.required]],
-    [this.partnerFormProps.ClientSecret]: [{value: null, disabled: true}, [Validators.required]],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
@@ -133,8 +118,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         MoneyFormatValidator(),
         MoneyMinMoreZeroValidator(),
         MoneyMaxNumberValidator(),
-        AccuracyValidator(constants.TOKENS_INPUT_ACCURACY)
-      ]
+        AccuracyValidator(constants.TOKENS_INPUT_ACCURACY),
+      ],
     ],
     [this.partnerFormProps.AmountInCurrency]: [
       null,
@@ -143,10 +128,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.min(constants.CURRENCY_INPUT_MIN_NUMBER),
         Validators.max(constants.CURRENCY_INPUT_MAX_NUMBER),
-        AccuracyValidator(constants.CURRENCY_INPUT_ACCURACY)
-      ]
+        AccuracyValidator(constants.CURRENCY_INPUT_ACCURACY),
+      ],
     ],
-    [this.partnerFormProps.UseGlobalCurrencyRate]: [true]
+    [this.partnerFormProps.UseGlobalCurrencyRate]: [true],
   });
 
   ngOnInit() {
@@ -154,7 +139,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.previousPageSize = window.history.state.pageSize;
     this.businessVerticalTypes = this.businessVerticalService
       .getBusinessVerticalItems()
-      .filter(x => x.Type !== BusinessVerticalType.RealEstate);
+      .filter((x) => x.Type !== BusinessVerticalType.RealEstate);
     this.translates.createChangeClientLoginMessage = this.createChangeClientLoginMessageTemplate.nativeElement.innerText;
     this.translates.editChangeClientLoginMessage = this.editChangeClientLoginMessageTemplate.nativeElement.innerText;
 
@@ -165,7 +150,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
       });
 
-      this.copyToClipboardLogin = this.partner.ClientId.toString();
       this.partnerForm.reset(this.partner);
 
       if (!this.hasEditPermission) {
@@ -177,42 +161,26 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       this.updateValuesForHiddenLocationFields();
     }
 
-    this.partnerForm.controls['ClientSecret'].patchValue(this.defaultPasswordValue);
-
-    if (this.type === 'Create') {
-      this.revealPasswordField = false;
-
-      this.partnerService.generateClientIdAsync().subscribe(response => {
-        this.partnerForm.controls['ClientId'].patchValue(response);
-        this.copyToClipboardLogin = response.toString();
-      });
-
-      this.partnerService.generateClientSecretAsync().subscribe(response => {
-        this.partnerForm.controls['ClientSecret'].patchValue(response);
-        this.copyToClipboardPass = response.toString();
-      });
-    }
-
     this.subscriptions = [
-      this.partnerForm.get(this.partnerFormProps.UseGlobalCurrencyRate).valueChanges.subscribe(value => {
+      this.partnerForm.get(this.partnerFormProps.UseGlobalCurrencyRate).valueChanges.subscribe((value) => {
         if (value) {
           this.setToGlobalRate();
         } else {
           this.disableRateFields(false);
         }
-      })
+      }),
     ];
 
     this.previousPage = window.history.state.page;
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   private loadRate(): void {
     this.globalSettingsService.getGlobalRate().subscribe(
-      response => {
+      (response) => {
         this.globalRate = response;
 
         const useGlobalRateControl = this.partnerForm.get(this.partnerFormProps.UseGlobalCurrencyRate);
@@ -221,7 +189,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
           this.setToGlobalRate();
         }
       },
-      error => {
+      (error) => {
         console.error(error);
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
       }
@@ -259,10 +227,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.partnerForm.controls['ClientSecret'].value === this.defaultPasswordValue) {
-      this.partnerForm.controls['ClientSecret'].patchValue(null);
-    }
-
     this.submitSuccess.emit(this.partnerForm.getRawValue());
   }
 
@@ -276,7 +240,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       Phone: [null, [Validators.required, PhoneNumberValidator, LengthValidator(2, 50)]],
       Email: [null, [Validators.required, EmailValidator]],
       ExternalId: [null, [Validators.required, LengthValidator(1, 80)]],
-      AccountingIntegrationCode: [null, [Validators.required, LengthValidator(1, 80)]]
+      AccountingIntegrationCode: [null, [Validators.required, LengthValidator(1, 80)]],
     });
   }
 
@@ -299,58 +263,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.locationsFormArray.removeAt(locationIndex);
   }
 
-  changeClietSecret() {
-    const dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        Message: 'Do you want to generate new partner password?'
-      } as ConfirmationDialogData
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.partnerService.generateClientSecretAsync().subscribe(response => {
-          this.partnerForm.controls['ClientSecret'].patchValue(response);
-          this.revealPasswordField = false;
-          this.copyToClipboardPass = response.toString();
-        });
-      }
-    });
-  }
-
-  changeClietId() {
-    var message =
-      this.type === 'Edit' && this.partnerForm.controls['ClientSecret'].value === this.defaultPasswordValue
-        ? this.translates.editChangeClientLoginMessage
-        : this.translates.createChangeClientLoginMessage;
-
-    const dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        Message: message
-      } as ConfirmationDialogData
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.partnerService.generateClientIdAsync().subscribe(response => {
-          this.partnerForm.controls['ClientId'].patchValue(response);
-          this.copyToClipboardLogin = response.toString();
-        });
-
-        if (this.type === 'Edit' && this.partnerForm.controls['ClientSecret'].value === this.defaultPasswordValue) {
-          this.partnerService.generateClientSecretAsync().subscribe(response => {
-            this.partnerForm.controls['ClientSecret'].patchValue(response);
-
-            this.copyToClipboardPass = response.toString();
-
-            this.revealPasswordField = false;
-          });
-
-          this.hideGeneratePassBtn = true;
-        }
-      }
-    });
-  }
-
   private updateValuesForHiddenLocationFields() {
     if (!this.locationsFormArray.length) {
       return;
@@ -361,7 +273,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     const stubValue = '' + new Date().getTime() + lastItemIndex;
     targetLocationForm.patchValue({
       AccountingIntegrationCode: stubValue,
-      ExternalId: stubValue
+      ExternalId: stubValue,
     });
   }
 }
