@@ -26,13 +26,13 @@
         <source>Redeem Campaigns</source>
         <target state="translated">Kampagnen einlösen</target>
       </trans-unit>
-      <trans-unit id="d84dce0c01da3e8aae98d2960cccbe4dfc098013" datatype="html">
-        <source>Vouchers</source>
-        <target state="translated">Gutscheine</target>
+      <trans-unit id="fee2976b72cbd50e171f7106ec75b93570b7ac9d" datatype="html">
+        <source>Voucher Manager</source>
+        <target state="translated">Gutschein-Manager</target>
       </trans-unit>
-      <trans-unit id="b5300526554fa4c22b96fb5c872339e6b2668500" datatype="html">
-        <source>Program Partners</source>
-        <target state="translated">Programmpartner</target>
+      <trans-unit id="32611dc8cb09807fac3211f1d89591ca0b355e13" datatype="html">
+        <source>My Organizations</source>
+        <target state="translated">Meine Organisationen</target>
       </trans-unit>
       <trans-unit id="b28ff04a44d77d7f802dcdb6705649682ec1d5dc" datatype="html">
         <source>Blockchain and Reports</source>
@@ -71,23 +71,32 @@
         <target state="translated">Admin-Benutzer</target>
       </trans-unit>
       <trans-unit id="081592166711674df5f68ebd41b274a201c72faf" datatype="html">
-        <source>My Profile</source>
+        <source>
+                      My Profile
+                    </source>
         <target state="translated">Mein Profil</target>
       </trans-unit>
       <trans-unit id="cdb0884050332b058e0f50d7b593f0a7b642de7c" datatype="html">
-        <source>Help</source>
+        <source>
+                      Help
+                    </source>
         <target state="translated">Hilfe</target>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
         <target state="translated">Abmelden</target>
       </trans-unit>
+      <trans-unit id="31b2d50b7e24415597c0761630bd32fb5780421e" datatype="html">
+        <source>Vouchers Supply</source>
+        <target state="translated">Gutscheinversorgung</target>
+      </trans-unit>
       <trans-unit id="bb8f59de38734d16af86774b7594de37ea20f33a" datatype="html">
         <source>Something went wrong. Please try again or contact support.</source>
         <target state="translated">Etwas ist schief gelaufen. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.</target>
       </trans-unit>
       <trans-unit id="3213b114739c47b769ecf3b8ce43f78135c4e44e" datatype="html">
-        <source>Error occured during uploading image(s). Please try again or contact support.</source>
+        <source>Error occured during uploading image(s). Please try again or contact
+  support.</source>
         <target state="translated">Beim Hochladen von Bild(n) ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.</target>
       </trans-unit>
       <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
@@ -103,8 +112,7 @@
         <target state="translated">Ungültige Nummer</target>
       </trans-unit>
       <trans-unit id="8b93944cdc6a55f4559084bc3f14904b70c1d4c1" datatype="html">
-        <source>Minimum required number is <x id="INTERPOLATION" equiv-text="{{ctx.min}}"/>
-				</source>
+        <source>Minimum required number is <x id="INTERPOLATION" equiv-text="{{ctx.min}}"/></source>
         <target state="translated">Die Mindestanzahl ist <x id="INTERPOLATION" equiv-text="{{ctx.min}}"/>
 				</target>
       </trans-unit>
@@ -113,8 +121,7 @@
         <target state="translated">Zahl muss größer als 0 sein</target>
       </trans-unit>
       <trans-unit id="71cba68c6a81b31899d99382eff801eecdd71547" datatype="html">
-        <source>Maximum number can be <x id="INTERPOLATION" equiv-text="{{ctx.max}}"/>
-				</source>
+        <source>Maximum number can be <x id="INTERPOLATION" equiv-text="{{ctx.max}}"/></source>
         <target state="translated">Maximale Anzahl kann <x id="INTERPOLATION" equiv-text="{{ctx.max}}"/>
 				</target>
       </trans-unit>
@@ -190,78 +197,412 @@
         <source>Unknown</source>
         <target state="translated">Unbekannt</target>
       </trans-unit>
-      <trans-unit id="4ce35ebc6db0646399d0dedbaea4ec7b7baa90a6" datatype="html">
-        <source>List of Earn Campaigns in OpenMAVN program</source>
-        <target state="translated">Liste der Verdienstkampagnen im OpenMAVN-Programm</target>
+      <trans-unit id="089ad82ce156d9978710fc87d35c70d3077a6698" datatype="html">
+        <source>Statistics and analytics</source>
+        <target state="translated">Statistiken und Analysen</target>
       </trans-unit>
-      <trans-unit id="109ff7f1072fe859255732b5df8b406cd202faf6" datatype="html">
-        <source>Add Earn Campaign</source>
-        <target state="translated">Verdienende Kampagne hinzufügen</target>
+      <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
+        <source>From</source>
+        <target state="translated">Von</target>
       </trans-unit>
-      <trans-unit id="59da7e48be2d5ffa02c0134f906de88efaaae81e" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total earn campaigns</source>
+      <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
+        <source>To</source>
+        <target state="translated">An</target>
+      </trans-unit>
+      <trans-unit id="c2d0ac9f528bbd5f53fd34269fde8b59e029621b" datatype="html">
+        <source>Apply</source>
+        <target state="translated">Anwenden</target>
+      </trans-unit>
+      <trans-unit id="beffdec938d76388fdce6bb2ad815d39f4c239af" datatype="html">
+        <source>
+                Total Customers
+              </source>
         <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> insgesamt verdienen Kampagnen</target>
+                Kunden insgesamt
+              </target>
       </trans-unit>
-      <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
-        <source>Title</source>
-        <target state="translated">Titel</target>
+      <trans-unit id="3342de89d9260c2c04b289821e5ad63a9ac918be" datatype="html">
+        <source>New Customers
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+            +<x id="INTERPOLATION" equiv-text="{{ totalNewCustomers | number }}"/>
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </source>
+        <target state="translated">Neue Kunden<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>+<x id="INTERPOLATION" equiv-text="{{ totalNewCustomers | number }}"/>
+					<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+				</target>
       </trans-unit>
-      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
-        <source>Search</source>
-        <target state="translated">Suchen</target>
+      <trans-unit id="670824c1ca8c9c9c5fbcd4aac764cb1a1fc01dcb" datatype="html">
+        <source>Active and Repeat Customers</source>
+        <target state="translated">Aktive und wiederholte Kunden</target>
       </trans-unit>
-      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
-        <source>Status</source>
-        <target state="translated">Status</target>
+      <trans-unit id="81a80073fa46e7e302e6e7886f03607b292ba936" datatype="html">
+        <source>
+                  Active Customers Share
+                </source>
+        <target state="translated">
+                  Aktive Kunden teilen
+                </target>
       </trans-unit>
-      <trans-unit id="3e6acd589d8b82cafd8546409da0a36469d297a0" datatype="html">
-        <source>Start Date</source>
-        <target state="translated">Startdatum</target>
+      <trans-unit id="07c8168e42bf987c0b512bd1ddbf9a460a690634" datatype="html">
+        <source>
+                  Customers who earned or redeemed points during the period
+                </source>
+        <target state="translated">
+                  Kunden, die während des Zeitraums Punkte verdient oder eingelöst haben
+                </target>
       </trans-unit>
-      <trans-unit id="0f551576faafbd2806d4af653469655f1b35afe1" datatype="html">
-        <source>End Date</source>
-        <target state="translated">Enddatum</target>
+      <trans-unit id="4f912c087d10d7e7ab8473c0d5c638f61d3630b9" datatype="html">
+        <source>
+                    Total Active Customers
+                  </source>
+        <target state="translated">
+                    Aktive Kunden insgesamt
+                  </target>
       </trans-unit>
-      <trans-unit id="62f2b30f59be1acb4a4271973c847e2949e1e7fe" datatype="html">
-        <source>Vertical</source>
-        <target state="translated">Vertikal</target>
+      <trans-unit id="e78798dfc23f5c11ce82c21bc7c024d0c6985ee1" datatype="html">
+        <source>
+                  Repeat Customers Share
+                </source>
+        <target state="translated">
+                  Wiederholen Kunden teilen
+                </target>
       </trans-unit>
-      <trans-unit id="0b0d1974a229bdebed22c653fcf21a26218c2e8c" datatype="html">
-        <source>Award</source>
-        <target state="translated">Auszeichnung</target>
+      <trans-unit id="788d5411d313f3427720bdc63ba9c90f72569ab3" datatype="html">
+        <source>
+                  Customers who made repeat earnings or redemption during the period
+                </source>
+        <target state="translated">
+                  Kunden, die während des Zeitraums wiederholt Einnahmen oder Einlösung gemacht haben
+                </target>
       </trans-unit>
-      <trans-unit id="5704ec2049d007c5f5fb495a5d8b607e68d58081" datatype="html">
-        <source>Order</source>
-        <target state="translated">Sortierung</target>
+      <trans-unit id="9ab35e1aadf4d5f87c2abbbb87f8fde087547d2a" datatype="html">
+        <source>
+                    Total Repeat Customers
+                  </source>
+        <target state="translated">
+                    Gesamte Wiederholen Kunden
+                  </target>
+      </trans-unit>
+      <trans-unit id="9643458184b7ff1eae2b811092dc017460f8db67" datatype="html">
+        <source>TRANSACTIONS</source>
+        <target state="translated">TRANSAKTIONEN</target>
+      </trans-unit>
+      <trans-unit id="8529a0498b177ffe392f1333ea9bd9791ea01992" datatype="html">
+        <source>Number of Transactions</source>
+        <target state="translated">Anzahl der Transaktionen</target>
+      </trans-unit>
+      <trans-unit id="88693b26653fbe0dc25bd8cd80ef89e324db0c57" datatype="html">
+        <source>Total Transactions Cost</source>
+        <target state="translated">Gesamtkosten für Transaktionen</target>
+      </trans-unit>
+      <trans-unit id="d1b73dd523e62a062d448495c9eaef31af50f7e0" datatype="html">
+        <source>Average Transaction</source>
+        <target state="translated">Durchschnittliche Transaktion</target>
+      </trans-unit>
+      <trans-unit id="3e90530a2f8b7323299c15d50f7c625b6e41fd06" datatype="html">
+        <source>Smart Points</source>
+        <target state="translated">Intelligente Punkte</target>
+      </trans-unit>
+      <trans-unit id="73339760fe932d2b494728d4366947755d127e00" datatype="html">
+        <source>Week</source>
+        <target state="translated">Woche</target>
+      </trans-unit>
+      <trans-unit id="5fb104b55feeaa0069c039e20084ff6dc8c87d20" datatype="html">
+        <source>2 Weeks</source>
+        <target state="translated">2 Wochen</target>
+      </trans-unit>
+      <trans-unit id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702" datatype="html">
+        <source>Month</source>
+        <target state="translated">Monat</target>
+      </trans-unit>
+      <trans-unit id="fd273ee9ccd07488548c9b55c8652d39466b1a09" datatype="html">
+        <source>Semester</source>
+        <target state="translated">Semester</target>
+      </trans-unit>
+      <trans-unit id="e74e0e9f9ce10f0b89e5880cc70e3444504047c7" datatype="html">
+        <source>You don&apos;t have access to Dashboard so please select available section from the menu.</source>
+        <target state="translated">Sie haben keinen Zugriff auf das Dashboard. Bitte wählen Sie den verfügbaren Bereich aus dem Menü.</target>
+      </trans-unit>
+      <trans-unit id="f10d937610197bf048aaea217dc2c15e9b7a6103" datatype="html">
+        <source>New leads (referred ones, who haven&apos;t yet confirmed themselves as leads)</source>
+        <target state="translated">Neue Leads (empfohlene Leads, die sich noch nicht als Leads bestätigt haben)</target>
+      </trans-unit>
+      <trans-unit id="c508fd9b8808277e4b1c830827b7b98aebaf58dd" datatype="html">
+        <source>Leads who verified their referral status by confirmation</source>
+        <target state="translated">Leads die ihren Empfehlungsstatus durch Bestätigung verifiziert haben</target>
+      </trans-unit>
+      <trans-unit id="209d739fd772b3403bbea7fbd2e547c39364b145" datatype="html">
+        <source>Leads in the program whose statuses were approved by the Salesforce team</source>
+        <target state="translated">Führt das Programm an, dessen Status vom Salesforce-Team genehmigt wurde</target>
+      </trans-unit>
+      <trans-unit id="1fea25ff9565a27a53a2b97e423423e7e9226c7f" datatype="html">
+        <source>New Customers</source>
+        <target state="translated">Neue Kunden</target>
+      </trans-unit>
+      <trans-unit id="2a2776eeca883a28299f975a91932e2527a2323e" datatype="html">
+        <source>New program members who signed up and confirmed the email</source>
+        <target state="translated">Neue Programmmitglieder, die sich angemeldet und die E-Mail bestätigt haben</target>
+      </trans-unit>
+      <trans-unit id="50d58e5d74c1c69375cd91359e6ceb8197a17029" datatype="html">
+        <source>Active Customers</source>
+        <target state="translated">Aktive Kunden</target>
+      </trans-unit>
+      <trans-unit id="442b1dcdcf78da437f7b1ea5cedac509143fb7cc" datatype="html">
+        <source>Made a purchase during selected period</source>
+        <target state="translated">Kauf während des gewählten Zeitraums gemacht</target>
+      </trans-unit>
+      <trans-unit id="c304657e30d1a6e0095d2ec140ef53f5fc195e4f" datatype="html">
+        <source>Non-Active Customers</source>
+        <target state="translated">Nicht aktive Kunden</target>
+      </trans-unit>
+      <trans-unit id="114a764ed287ace238252906abefab98654c580d" datatype="html">
+        <source>Did not make a purchase during selected period</source>
+        <target state="translated">Kauf während des gewählten Zeitraums nicht gemacht</target>
+      </trans-unit>
+      <trans-unit id="90fd5665231d12875ff8ee8ba7a86de40f27ad80" datatype="html">
+        <source>Earned, $tokenSymbol</source>
+        <target state="translated">Verdient, $tokenSymbol</target>
+      </trans-unit>
+      <trans-unit id="ce52ef030ce3b5958db2ea79b7a006b696c227f3" datatype="html">
+        <source>Spent, $tokenSymbol</source>
+        <target state="translated">Ausgegeben: $tokenSymbol</target>
+      </trans-unit>
+      <trans-unit id="200b4e37c2191ecea734b0e54979c800bb66af95" datatype="html">
+        <source>Sum of Smart Points in all members&apos; wallets, $tokenSymbol</source>
+        <target state="translated">Summe der Smart Points in allen Wallets der Mitglieder, $tokenSymbol</target>
+      </trans-unit>
+      <trans-unit id="54e9e12684cb03c1bedc02455e1d7d0689a43174" datatype="html">
+        <source>Smart Points earned by all customers from day 1, $tokenSymbol</source>
+        <target state="translated">Smarte Punkte, die von allen Kunden vom 1. Tag an gesammelt wurden, $tokenSymbol</target>
+      </trans-unit>
+      <trans-unit id="174d371da8a033394a8a324e47a6240b17cddbd3" datatype="html">
+        <source>Smart Points spent by all customers from day 1, $tokenSymbol</source>
+        <target state="translated">Intelligente Punkte, die von allen Kunden vom 1. Tag an ausgegeben werden, $tokenSymbol</target>
+      </trans-unit>
+      <trans-unit id="6f388de112bb3b0305385d3f659c0d034d220d36" datatype="html">
+        <source>Smart Points Earned</source>
+        <target state="translated">Intelligente Punkte erhalten</target>
+      </trans-unit>
+      <trans-unit id="09aa1099e735dbcf3495422b6f1517386f637391" datatype="html">
+        <source>Smart Points Spent</source>
+        <target state="translated">Intelligente Punkte ausgegeben</target>
+      </trans-unit>
+      <trans-unit id="f0a70f29564d094b7e09d981d5922fd0df448f31" datatype="html">
+        <source>Earned / Spent</source>
+        <target state="translated">Verdientes / Ausgegeben</target>
+      </trans-unit>
+      <trans-unit id="2bd37275d222779abcfbc1f699f5a9e7ea9580e0" datatype="html">
+        <source>Total Balance</source>
+        <target state="translated">Gesamtsaldo</target>
+      </trans-unit>
+      <trans-unit id="c76f7357895d4e37665ef6a2e23724e8159b5b20" datatype="html">
+        <source>
+          <x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
+        </source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
+				</target>
+      </trans-unit>
+      <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
+        <source>Show</source>
+        <target state="translated">Zeigen</target>
+      </trans-unit>
+      <trans-unit id="65361b75d095a88275dceabacb3f2688d84fce11" datatype="html">
+        <source>List of customers in OpenMAVN program</source>
+        <target state="translated">Liste der Kunden im OpenMAVN-Programm</target>
+      </trans-unit>
+      <trans-unit id="fa2f9e98471409d3c62fe70d0c8c4f083be96beb" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total customers</source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Kunden insgesamt</target>
+      </trans-unit>
+      <trans-unit id="c83b838d845690bcb897f775f53b5316535306dc" datatype="html">
+        <source>First Name</source>
+        <target state="translated">Vorname</target>
+      </trans-unit>
+      <trans-unit id="166b2cc65003221ff5f3ec05d5baca41e6821396" datatype="html">
+        <source>Last Name</source>
+        <target state="translated">Nachname</target>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <target state="translated">E-Mail</target>
+      </trans-unit>
+      <trans-unit id="708aab610487ba00a0273f6bb2b61df19505ef70" datatype="html">
+        <source>Search by full email or ID</source>
+        <target state="translated">Suche per vollständige E-Mail oder ID</target>
+      </trans-unit>
+      <trans-unit id="5f4b4e1ad08c33a62b48b5de8b9bc6d29cf59c61" datatype="html">
+        <source>Customer ID</source>
+        <target state="translated">Kunden-ID</target>
       </trans-unit>
       <trans-unit id="030b4423b92167200e39519599f9b863b4f7c62c" datatype="html">
         <source>Actions</source>
         <target state="translated">Aktionen</target>
       </trans-unit>
-      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
-        <source>Delete</source>
-        <target state="translated">Löschen</target>
+      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
+        <source>View</source>
+        <target state="translated">Ansicht</target>
       </trans-unit>
-      <trans-unit id="3f1d72644e79c696ab365d3df437c004c9cda7e9" datatype="html">
-        <source>There are no Earn Campaigns, please create one</source>
-        <target state="translated">Es gibt keine Verdienen-Kampagnen, bitte erstellen Sie eine</target>
+      <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
+        <source>Back</source>
+        <target state="translated">Zurück</target>
       </trans-unit>
-      <trans-unit id="4141df4da14fee25c0436d454d32b57f0416368c" datatype="html">
-        <source>Earn Campaign not found</source>
-        <target state="translated">Verdienende Kampagne nicht gefunden</target>
+      <trans-unit id="310bc4e66ef317ba17bc08278fc2cb7ce893c2db" datatype="html">
+        <source>Customer Details</source>
+        <target state="translated">Kundendetails</target>
       </trans-unit>
-      <trans-unit id="9bca19e0d54644afa07877c651ab56a4713c92d5" datatype="html">
-        <source>Earn Campaign deleted successfully.</source>
-        <target state="translated">Verdienende Kampagne erfolgreich gelöscht.</target>
+      <trans-unit id="9cba4b19410879c2fc85f122a1c8157e4bcebe3e" datatype="html">
+        <source>Proccessing...</source>
+        <target state="translated">Wird ausgeführt...</target>
       </trans-unit>
-      <trans-unit id="5f2746bdb2af8c163b5b35ea6cea2d41bdce126d" datatype="html">
-        <source>Enter Earn Campaign details</source>
-        <target state="translated">Gib Kampagnendetails ein</target>
+      <trans-unit id="46b4d2cfade7876790da1ca88b437610438b1a55" datatype="html">
+        <source>Unblock Access</source>
+        <target state="translated">Zugriff freigeben</target>
+      </trans-unit>
+      <trans-unit id="bd590345d988b075be7bc9aa62df03087ee0f817" datatype="html">
+        <source>Block Access</source>
+        <target state="translated">Zugriff blockieren</target>
+      </trans-unit>
+      <trans-unit id="c7f822e7fd17ad10fd41b924927671bfffd7db72" datatype="html">
+        <source>Unblock Private Wallet</source>
+        <target state="translated">Private Wallet entsperren</target>
+      </trans-unit>
+      <trans-unit id="cdf8ec50abe65626fbfed5a3bde90913255f49e3" datatype="html">
+        <source>Block Private Wallet</source>
+        <target state="translated">Private Wallet blockieren</target>
+      </trans-unit>
+      <trans-unit id="2b374029169bb576659af9ca773ad75abc925a96" datatype="html">
+        <source>Private Wallet address</source>
+        <target state="translated">Private Wallet-Adresse</target>
+      </trans-unit>
+      <trans-unit id="94516fa213706c67ce5a5b5765681d7fb032033a" datatype="html">
+        <source>Loading...</source>
+        <target state="translated">Wird geladen...</target>
+      </trans-unit>
+      <trans-unit id="f60ab30562e5fce82ac66a7b761b9bf178f36ed7" datatype="html">
+        <source>Public Wallet address</source>
+        <target state="translated">Öffentliche Wallet-Adresse</target>
+      </trans-unit>
+      <trans-unit id="0653b6e1fc12248e988c6044a0546b6091a5da79" datatype="html">
+        <source>Not Linked</source>
+        <target state="translated">Nicht verlinkt</target>
+      </trans-unit>
+      <trans-unit id="b93a1182614e7f6f9535f370072a294b79bfaaf7" datatype="html">
+        <source>Pending Customer Approval</source>
+        <target state="translated">Ausstehende Kundengenehmigung</target>
+      </trans-unit>
+      <trans-unit id="b71b3f6774002fcd858c6fb931085949b6e9ee6c" datatype="html">
+        <source>Pending Confirmation</source>
+        <target state="translated">Ausstehende Bestätigung</target>
+      </trans-unit>
+      <trans-unit id="9f73a9bcbb4a132a4adc5497ebf3da8570b3a27c" datatype="html">
+        <source>Registration date</source>
+        <target state="translated">Registrierungsdatum</target>
+      </trans-unit>
+      <trans-unit id="efac3af0b32e953279c25b6519cae256811e0fe8" datatype="html">
+        <source>History</source>
+        <target state="translated">Verlauf</target>
+      </trans-unit>
+      <trans-unit id="45cc8ca94b5a50842a9a8ef804a5ab089a38ae5c" datatype="html">
+        <source>ID</source>
+        <target state="translated">ID</target>
+      </trans-unit>
+      <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
+        <source>Date</source>
+        <target state="translated">Datum</target>
+      </trans-unit>
+      <trans-unit id="b59ea65c89a5ae15b787d8318fdad9edd6fec243" datatype="html">
+        <source>Transaction</source>
+        <target state="translated">Transaktion</target>
+      </trans-unit>
+      <trans-unit id="d70a077aa8d91894ddbd2a967e5e8bea4c59a2ac" datatype="html">
+        <source>Campaign Name</source>
+        <target state="translated">Kampagnenname</target>
+      </trans-unit>
+      <trans-unit id="1c1d901ce2f965a7817438cc6b0efb70ba6afbd3" datatype="html">
+        <source>Wallet Address</source>
+        <target state="translated">Wallet-Adresse</target>
+      </trans-unit>
+      <trans-unit id="dfc2fb58e2a04ed944a4bd80f0a2087775134068" datatype="html">
+        <source>Amount</source>
+        <target state="translated">Betrag</target>
+      </trans-unit>
+      <trans-unit id="d0df56966090f0e8f753b580e7c59f3b55107cf2" datatype="html">
+        <source>P2P</source>
+        <target state="translated">P2P</target>
+      </trans-unit>
+      <trans-unit id="ff84413d2975081b26372fd5fa49a7762d01af2a" datatype="html">
+        <source>Earn</source>
+        <target state="translated">Verdienen</target>
+      </trans-unit>
+      <trans-unit id="8c25ca421c95912b3f7d6a277991c551d5439b4c" datatype="html">
+        <source>Use</source>
+        <target state="translated">Benutzen</target>
+      </trans-unit>
+      <trans-unit id="55fdc1b48d37796e2851110325495f9cc957bd01" datatype="html">
+        <source>Use (Cancelled)</source>
+        <target state="translated">Verwende (geancelled)</target>
+      </trans-unit>
+      <trans-unit id="fc08c15f7eaf79fce5032928fca3e84f316afa96" datatype="html">
+        <source>Voucher purchase</source>
+        <target state="translated">Gutscheinkauf</target>
+      </trans-unit>
+      <trans-unit id="21461d3d263ade3ee97ff256ca2c78a345dfaf9a" datatype="html">
+        <source>Staking</source>
+        <target state="translated">Absteckung</target>
+      </trans-unit>
+      <trans-unit id="b483a43a95b6e2f493d9234986302794aa47e388" datatype="html">
+        <source>Releasing staking amount</source>
+        <target state="translated">Absteckbetrag freigeben</target>
+      </trans-unit>
+      <trans-unit id="b46c77b15df123dcc47b6b35b7d2847118552a81" datatype="html">
+        <source>Linked wallet transfer</source>
+        <target state="translated">Verknüpfte Wallet-Übertragung</target>
+      </trans-unit>
+      <trans-unit id="f237f4f862ad6c7786342bec4627891cc29aec25" datatype="html">
+        <source>Fee collected</source>
+        <target state="translated">Gebühr erhoben</target>
+      </trans-unit>
+      <trans-unit id="fafdc44fd6088af6a755f17f5bfe1c3558c8d437" datatype="html">
+        <source>There are no Customer operations.</source>
+        <target state="translated">Es gibt keine Kundenoperationen.</target>
+      </trans-unit>
+      <trans-unit id="3a6e5a6aa78ca864f6542410c5dafb6334538106" datatype="html">
+        <source>Copy to clipboard</source>
+        <target state="translated">In Zwischenablage kopieren</target>
+      </trans-unit>
+      <trans-unit id="098586247f8300e3a47480afd47642c25af7f798" datatype="html">
+        <source>Do you want to block access to the customer’s account?</source>
+        <target state="translated">Möchten Sie den Zugang zum Kundenkonto blockieren?</target>
+      </trans-unit>
+      <trans-unit id="5a7b07257c1c72a6fe9cb4abd50dad2b81182cb5" datatype="html">
+        <source>Block Wallet</source>
+        <target state="translated">Wallet blockieren</target>
+      </trans-unit>
+      <trans-unit id="17eb76774765b6f4d71b0999e6d48710bf3410e1" datatype="html">
+        <source>Do you want to block the wallet of the customer?</source>
+        <target state="translated">Möchten Sie die Brieftasche des Kunden blockieren?</target>
+      </trans-unit>
+      <trans-unit id="0d748c60c0fe6eee0f41e4e74a29b907f614b2e6" datatype="html">
+        <source>Do you want to unblock access to the customer’s account?</source>
+        <target state="translated">Möchten Sie den Zugriff auf das Kundenkonto freigeben?</target>
+      </trans-unit>
+      <trans-unit id="14e7a979c71fec06eecd59fdd84966938cde9f7f" datatype="html">
+        <source>Unblock Wallet</source>
+        <target state="translated">Wallet entsperren</target>
+      </trans-unit>
+      <trans-unit id="1d74c6efb9482ac4dc301e616e2bc460532b02ba" datatype="html">
+        <source>Do you want to unblock the wallet of the customer?</source>
+        <target state="translated">Möchten Sie die Brieftasche des Kunden entsperren?</target>
       </trans-unit>
       <trans-unit id="e2ef005d44d41a2b8b696c27733fe49e497c6c9b" datatype="html">
         <source>Basic Information</source>
         <target state="translated">Grundlegende Informationen</target>
+      </trans-unit>
+      <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
+        <source>Title</source>
+        <target state="translated">Titel</target>
       </trans-unit>
       <trans-unit id="e8700b64fc04f9540982e7d9da5a74f917680bc6" datatype="html">
         <source>Title of the action rule to be displayed in the admin panel</source>
@@ -380,8 +721,7 @@
         <target state="translated">Feste Prämien/Prozentsatz Auszeichnung („Prozentsatz“ Option ist nur für Veranstaltungen verfügbar, bei denen es sich um Menge/Kauf handelt)</target>
       </trans-unit>
       <trans-unit id="67fb2da31256f1e76fe29227a37a4be8d1340c9a" datatype="html">
-        <source>Award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
-				</source>
+        <source>Award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
         <target state="translated">Auszeichnung, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
 				</target>
       </trans-unit>
@@ -390,14 +730,12 @@
         <target state="translated">Auszeichnung, %</target>
       </trans-unit>
       <trans-unit id="a6a16da49756c6e0e8e8f1fe2f22eece1af3e91e" datatype="html">
-        <source>Approximate award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
-				</source>
+        <source>Approximate award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
         <target state="translated">Ungefähre Auszeichnung, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
 				</target>
       </trans-unit>
       <trans-unit id="e2aca3cd9e0a83630178fdeb915d679d51335f3f" datatype="html">
-        <source>Approximate Award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
-				</source>
+        <source>Approximate Award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
         <target state="translated">Ungefähre Auszeichnung, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
 				</target>
       </trans-unit>
@@ -421,13 +759,16 @@
         <source>Delete Award Ratio</source>
         <target state="translated">Prämienverhältnis löschen</target>
       </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target state="translated">Löschen</target>
+      </trans-unit>
       <trans-unit id="38a57aa6d04465ab54e2eb6507c97e3f3ec123ad" datatype="html">
         <source>Delete Optional Award</source>
         <target state="translated">Optionale Auszeichnung löschen</target>
       </trans-unit>
       <trans-unit id="43ad16ab2a0e59276b83cd213be35ee66de8b200" datatype="html">
-        <source>Amount, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
-				</source>
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
         <target state="translated">Betrag, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
 				</target>
       </trans-unit>
@@ -476,8 +817,7 @@
         <target state="translated">Basispreis</target>
       </trans-unit>
       <trans-unit id="6d3dcc08d6f1c0392322226c7b86d698c445492f" datatype="html">
-        <source>Amount of award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
-				</source>
+        <source>Amount of award, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/></source>
         <target state="translated">Auszeichnungsbetrag, <x id="INTERPOLATION" equiv-text="{{campaign.tokenSymbol}}"/>
 				</target>
       </trans-unit>
@@ -546,23 +886,24 @@
         <target state="translated">Dateianforderungen:</target>
       </trans-unit>
       <trans-unit id="a3c3e14f6e3dda5a7d4458400a12a9559fe433e2" datatype="html">
-        <source>Accepted formats:<x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(&apos;,&apos;).join(&apos;, &apos;)}}"/>
-				</source>
+        <source>Accepted formats:
+                            <x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(&apos;,&apos;).join(&apos;, &apos;)}}"/></source>
         <target state="translated">Akzeptierte Formate:<x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(',').join(', ')}}"/>
 				</target>
       </trans-unit>
       <trans-unit id="70e62b5ee2b1d4d9f490c3097c482d7ae16715b1" datatype="html">
-        <source>Minimum dimensions:<x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{campaign.MobileAppImageMinHeight}}"/> px</source>
+        <source>Minimum dimensions:
+                            <x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{campaign.MobileAppImageMinHeight}}"/> px</source>
         <target state="translated">Minimale Abmessungen:<x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{campaign.MobileAppImageMinHeight}}"/> px</target>
       </trans-unit>
       <trans-unit id="71c1ffcd5704d5cf2fb828e090343074c5463373" datatype="html">
-        <source>Max size: <x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageFileSizeInKB | fileSize}}"/>
-				</source>
+        <source>Max size: <x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageFileSizeInKB | fileSize}}"/></source>
         <target state="translated">Maximale Größe: <x id="INTERPOLATION" equiv-text="{{campaign.MobileAppImageFileSizeInKB | fileSize}}"/>
 				</target>
       </trans-unit>
       <trans-unit id="97c37e054b2ec8fc6df1d2dd48d023fc297c7e11" datatype="html">
-        <source>Image will be automatically resized to width of 1024 px to optimize file size for faster downloading in mobile app.</source>
+        <source>Image will be automatically resized to width of 1024 px to optimize file size for faster
+                      downloading in mobile app.</source>
         <target state="translated">Das Bild wird automatisch auf die Breite von 1024 px verkleinert, um die Dateigröße für ein schnelleres Herunterladen in der mobilen App zu optimieren.</target>
       </trans-unit>
       <trans-unit id="dcb0a18677fd130250915d67e1466d42d5749ccf" datatype="html">
@@ -574,8 +915,66 @@
         <target state="translated">Bild</target>
       </trans-unit>
       <trans-unit id="d5366aabb1def10911942ea877fd0f5cdb054225" datatype="html">
-        <source>Description of campaign purpose and scope to be displayed in customer app comes here</source>
+        <source>Description of campaign purpose and scope to be displayed in customer app comes
+                here</source>
         <target state="translated">Beschreibung von Kampagnenzweck und -umfang, der in der Kunden-App angezeigt werden soll, kommt hier</target>
+      </trans-unit>
+      <trans-unit id="4ce35ebc6db0646399d0dedbaea4ec7b7baa90a6" datatype="html">
+        <source>List of Earn Campaigns in OpenMAVN program</source>
+        <target state="translated">Liste der Verdienstkampagnen im OpenMAVN-Programm</target>
+      </trans-unit>
+      <trans-unit id="109ff7f1072fe859255732b5df8b406cd202faf6" datatype="html">
+        <source>Add Earn Campaign</source>
+        <target state="translated">Verdienende Kampagne hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="59da7e48be2d5ffa02c0134f906de88efaaae81e" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total earn campaigns</source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> insgesamt verdienen Kampagnen</target>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target state="translated">Suchen</target>
+      </trans-unit>
+      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
+        <source>Status</source>
+        <target state="translated">Status</target>
+      </trans-unit>
+      <trans-unit id="3e6acd589d8b82cafd8546409da0a36469d297a0" datatype="html">
+        <source>Start Date</source>
+        <target state="translated">Startdatum</target>
+      </trans-unit>
+      <trans-unit id="0f551576faafbd2806d4af653469655f1b35afe1" datatype="html">
+        <source>End Date</source>
+        <target state="translated">Enddatum</target>
+      </trans-unit>
+      <trans-unit id="62f2b30f59be1acb4a4271973c847e2949e1e7fe" datatype="html">
+        <source>Vertical</source>
+        <target state="translated">Vertikal</target>
+      </trans-unit>
+      <trans-unit id="0b0d1974a229bdebed22c653fcf21a26218c2e8c" datatype="html">
+        <source>Award</source>
+        <target state="translated">Auszeichnung</target>
+      </trans-unit>
+      <trans-unit id="5704ec2049d007c5f5fb495a5d8b607e68d58081" datatype="html">
+        <source>Order</source>
+        <target state="translated">Sortierung</target>
+      </trans-unit>
+      <trans-unit id="3f1d72644e79c696ab365d3df437c004c9cda7e9" datatype="html">
+        <source>There are no Earn Campaigns, please create one</source>
+        <target state="translated">Es gibt keine Verdienen-Kampagnen, bitte erstellen Sie eine</target>
+      </trans-unit>
+      <trans-unit id="4141df4da14fee25c0436d454d32b57f0416368c" datatype="html">
+        <source>Earn Campaign not found</source>
+        <target state="translated">Verdienende Kampagne nicht gefunden</target>
+      </trans-unit>
+      <trans-unit id="9bca19e0d54644afa07877c651ab56a4713c92d5" datatype="html">
+        <source>Earn Campaign deleted successfully.</source>
+        <target state="translated">Verdienende Kampagne erfolgreich gelöscht.</target>
+      </trans-unit>
+      <trans-unit id="5f2746bdb2af8c163b5b35ea6cea2d41bdce126d" datatype="html">
+        <source>Enter Earn Campaign details</source>
+        <target state="translated">Gib Kampagnendetails ein</target>
       </trans-unit>
       <trans-unit id="9de72e904fdf61bf639cfba096c0ae87c585c7e6" datatype="html">
         <source>List of partners in OpenMAVN program</source>
@@ -589,10 +988,6 @@
         <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total partners</source>
         <target state="translated">
 					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamte Partner</target>
-      </trans-unit>
-      <trans-unit id="45cc8ca94b5a50842a9a8ef804a5ab089a38ae5c" datatype="html">
-        <source>ID</source>
-        <target state="translated">ID</target>
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
         <source>Name</source>
@@ -622,14 +1017,6 @@
         <source>Business Vertical</source>
         <target state="translated">Business Vertikal</target>
       </trans-unit>
-      <trans-unit id="787119da3f7995e7d2d17231be68174522449a76" datatype="html">
-        <source>Partner&apos;s Login</source>
-        <target state="translated">Partner-Login</target>
-      </trans-unit>
-      <trans-unit id="eae81dbf41fc4bd96f2a93e9347d8304b28cf890" datatype="html">
-        <source>Partner&apos;s Password</source>
-        <target state="translated">Partnerpasswort</target>
-      </trans-unit>
       <trans-unit id="434c13681c4fcc6191cb057113b7087cb664a60f" datatype="html">
         <source>Locations</source>
         <target state="translated">Standorte</target>
@@ -646,21 +1033,9 @@
         <source>- Contact Person Details ------</source>
         <target state="translated">- Kontaktperson Details ------</target>
       </trans-unit>
-      <trans-unit id="c83b838d845690bcb897f775f53b5316535306dc" datatype="html">
-        <source>First Name</source>
-        <target state="translated">Vorname</target>
-      </trans-unit>
-      <trans-unit id="166b2cc65003221ff5f3ec05d5baca41e6821396" datatype="html">
-        <source>Last Name</source>
-        <target state="translated">Nachname</target>
-      </trans-unit>
       <trans-unit id="db654f91d847f34e71ffb99268ff3a1807913421" datatype="html">
         <source>Phone Number</source>
         <target state="translated">Telefonnummer</target>
-      </trans-unit>
-      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
-        <source>Email</source>
-        <target state="translated">E-Mail</target>
       </trans-unit>
       <trans-unit id="254ad48dc50c572572b8097e6c47ebf116c58d97" datatype="html">
         <source>Delete Location</source>
@@ -671,23 +1046,20 @@
         <target state="translated">Konversionsrate</target>
       </trans-unit>
       <trans-unit id="a89152f1dded354003e4c79655f6d9c18382eb9e" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{partnerForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{assetSymbol}}"/> to<x id="INTERPOLATION_2" equiv-text="{{partnerForm.get(&apos;AmountInCurrency&apos;).value | number}}"/>
-					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/>
-				</source>
+        <source><x id="INTERPOLATION" equiv-text="{{partnerForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{assetSymbol}}"/> to
+            <x id="INTERPOLATION_2" equiv-text="{{partnerForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
         <target state="translated">
 					<x id="INTERPOLATION" equiv-text="{{partnerForm.get('AmountInTokens').value | token}}"/>
 					<x id="INTERPOLATION_1" equiv-text="{{assetSymbol}}"/> Zu <x id="INTERPOLATION_2" equiv-text="{{partnerForm.get('AmountInCurrency').value | number}}"/>
 					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></target>
       </trans-unit>
       <trans-unit id="18e318bbca3f556fcd717311a09fa45c7849858a" datatype="html">
-        <source>Amount, <x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>
-				</source>
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/></source>
         <target state="translated">Betrag, <x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>
 				</target>
       </trans-unit>
       <trans-unit id="521fe0a50caee7ea9c5fceaf3bdb90ba737125c2" datatype="html">
-        <source>Amount, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>
-				</source>
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/></source>
         <target state="translated">Betrag, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>
 				</target>
       </trans-unit>
@@ -719,310 +1091,453 @@
         <source>Enter partner details</source>
         <target state="translated">Partner-Details eingeben</target>
       </trans-unit>
-      <trans-unit id="65361b75d095a88275dceabacb3f2688d84fce11" datatype="html">
-        <source>List of customers in OpenMAVN program</source>
-        <target state="translated">Liste der Kunden im OpenMAVN-Programm</target>
+      <trans-unit id="64aa3c05d5b5678ca0975f23ef57bc090a2df955" datatype="html">
+        <source>List of redeem campaigns in OpenMAVN program</source>
+        <target state="translated">Liste der eingelösten Kampagnen im OpenMAVN-Programm</target>
       </trans-unit>
-      <trans-unit id="fa2f9e98471409d3c62fe70d0c8c4f083be96beb" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total customers</source>
+      <trans-unit id="b0fbceff60ee05e2b880a3eb5e2addfe4824d35f" datatype="html">
+        <source>Add Campaign</source>
+        <target state="translated">Kampagne hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="61856c4b43c26f2f68cb18cb9c2da32c096a995c" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total spend campaigns</source>
         <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Kunden insgesamt</target>
+					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamtausgaben Kampagnen</target>
       </trans-unit>
-      <trans-unit id="708aab610487ba00a0273f6bb2b61df19505ef70" datatype="html">
-        <source>Search by full email or ID</source>
-        <target state="translated">Suche per vollständige E-Mail oder ID</target>
+      <trans-unit id="b36e1450940b7f6028d8587568c7d669b53f7a06" datatype="html">
+        <source>Active</source>
+        <target state="translated">Aktiv</target>
       </trans-unit>
-      <trans-unit id="5f4b4e1ad08c33a62b48b5de8b9bc6d29cf59c61" datatype="html">
-        <source>Customer ID</source>
-        <target state="translated">Kunden-ID</target>
+      <trans-unit id="6b29816059c5b7df0632963955e39869c752e7d5" datatype="html">
+        <source>There are no campaigns, please create one</source>
+        <target state="translated">Es gibt keine Kampagnen, bitte erstellen Sie eine</target>
       </trans-unit>
-      <trans-unit id="6829218544e108e152f5fa72cb79c4ccb82e0d06" datatype="html">
-        <source>View</source>
-        <target state="translated">Ansicht</target>
+      <trans-unit id="5963d468876d2cd10376b8a6a58fc3c0dc05b93e" datatype="html">
+        <source>Campaigns not found</source>
+        <target state="translated">Kampagnen nicht gefunden</target>
       </trans-unit>
-      <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
-        <source>Back</source>
-        <target state="translated">Zurück</target>
+      <trans-unit id="5013cae876379804090ac8666b5b10da22f2c58e" datatype="html">
+        <source>Do you want to delete the campaign &quot;$title&quot;?</source>
+        <target state="translated">Möchten Sie die Kampagne$title "löschen?</target>
       </trans-unit>
-      <trans-unit id="310bc4e66ef317ba17bc08278fc2cb7ce893c2db" datatype="html">
-        <source>Customer Details</source>
-        <target state="translated">Kundendetails</target>
+      <trans-unit id="0167ddbee43a0245f2018fde100077bb4e53fec7" datatype="html">
+        <source>Campaign deleted successfully.</source>
+        <target state="translated">Kampagne erfolgreich gelöscht.</target>
       </trans-unit>
-      <trans-unit id="9cba4b19410879c2fc85f122a1c8157e4bcebe3e" datatype="html">
-        <source>Proccessing...</source>
-        <target state="translated">Wird ausgeführt...</target>
+      <trans-unit id="5406924574e5b7f6f896820c5527099361991264" datatype="html">
+        <source>Redeem Campaign Details</source>
+        <target state="translated">Kampagnendetails einlösen</target>
       </trans-unit>
-      <trans-unit id="46b4d2cfade7876790da1ca88b437610438b1a55" datatype="html">
-        <source>Unblock Access</source>
-        <target state="translated">Zugriff freigeben</target>
+      <trans-unit id="e85a30628b502c939d1ad9f651309a0356f40af8" datatype="html">
+        <source>Partners</source>
+        <target state="translated">Partner</target>
       </trans-unit>
-      <trans-unit id="bd590345d988b075be7bc9aa62df03087ee0f817" datatype="html">
-        <source>Block Access</source>
-        <target state="translated">Zugriff blockieren</target>
+      <trans-unit id="f8b403888712c826f65a73a5e2c8204fa95da187" datatype="html">
+        <source>Select All</source>
+        <target state="translated">Alle auswählen</target>
       </trans-unit>
-      <trans-unit id="c7f822e7fd17ad10fd41b924927671bfffd7db72" datatype="html">
-        <source>Unblock Private Wallet</source>
-        <target state="translated">Private Wallet entsperren</target>
+      <trans-unit id="fdd8c0ec42148f76f93fa98129edf03bb03ac990" datatype="html">
+        <source>Deselect All</source>
+        <target state="translated">Alle abwählen</target>
       </trans-unit>
-      <trans-unit id="cdf8ec50abe65626fbfed5a3bde90913255f49e3" datatype="html">
-        <source>Block Private Wallet</source>
-        <target state="translated">Private Wallet blockieren</target>
+      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+        <source>Type</source>
+        <target state="translated">Typ</target>
       </trans-unit>
-      <trans-unit id="2b374029169bb576659af9ca773ad75abc925a96" datatype="html">
-        <source>Private Wallet address</source>
-        <target state="translated">Private Wallet-Adresse</target>
+      <trans-unit id="d84dce0c01da3e8aae98d2960cccbe4dfc098013" datatype="html">
+        <source>Vouchers</source>
+        <target state="translated">Gutscheine</target>
       </trans-unit>
-      <trans-unit id="94516fa213706c67ce5a5b5765681d7fb032033a" datatype="html">
-        <source>Loading...</source>
-        <target state="translated">Wird geladen...</target>
+      <trans-unit id="59a1df31612f6b0cc2524bdeb14cf1d54694a15e" datatype="html">
+        <source>Vouchers in Stock</source>
+        <target state="translated">Gutscheine auf Lager</target>
       </trans-unit>
-      <trans-unit id="f60ab30562e5fce82ac66a7b761b9bf178f36ed7" datatype="html">
-        <source>Public Wallet address</source>
-        <target state="translated">Öffentliche Wallet-Adresse</target>
+      <trans-unit id="5012bd63ffde2646cf653af9991b08fc2b398b5c" datatype="html">
+        <source>Total Vouchers</source>
+        <target state="translated">Gesamt Gutscheine</target>
       </trans-unit>
-      <trans-unit id="0653b6e1fc12248e988c6044a0546b6091a5da79" datatype="html">
-        <source>Not Linked</source>
-        <target state="translated">Nicht verlinkt</target>
+      <trans-unit id="25f84706d37d08dba5918bd2bf7664f1dae8d346" datatype="html">
+        <source>Upload vouchers:</source>
+        <target state="translated">Gutscheine hochladen:</target>
       </trans-unit>
-      <trans-unit id="b93a1182614e7f6f9535f370072a294b79bfaaf7" datatype="html">
-        <source>Pending Customer Approval</source>
-        <target state="translated">Ausstehende Kundengenehmigung</target>
+      <trans-unit id="6ac96f46f1737325eb7b54a70f50ee9074fca44e" datatype="html">
+        <source>Upload CSV</source>
+        <target state="translated">CSV hochladen</target>
       </trans-unit>
-      <trans-unit id="b71b3f6774002fcd858c6fb931085949b6e9ee6c" datatype="html">
-        <source>Pending Confirmation</source>
-        <target state="translated">Ausstehende Bestätigung</target>
+      <trans-unit id="654d5d703e4679057bf610431abe3b6fb024e7e0" datatype="html">
+        <source>1 column, list of the voucher codes to be applied in this campaign</source>
+        <target state="translated">1 Spalte, Liste der Gutscheincodes für diese Kampagne</target>
       </trans-unit>
-      <trans-unit id="9f73a9bcbb4a132a4adc5497ebf3da8570b3a27c" datatype="html">
-        <source>Registration date</source>
+      <trans-unit id="e30fd1fac2598f8544dba11c75e333bee2658f75" datatype="html">
+        <source>No file chosen</source>
+        <target state="translated">Keine Datei ausgewählt</target>
+      </trans-unit>
+      <trans-unit id="16ecddddb0f3068cff3fd2531290271308d31526" datatype="html">
+        <source>Max size: 1 MB</source>
+        <target state="translated">Maximale Größe: 1 MB</target>
+      </trans-unit>
+      <trans-unit id="4297fe91cf93acb92ce47ac6fe0500ada336c272" datatype="html">
+        <source>Accepted file extension: <x id="INTERPOLATION" equiv-text="{{voucherFileExtension}}"/></source>
+        <target state="translated">Akzeptierte Dateiendung: <x id="INTERPOLATION" equiv-text="{{voucherFileExtension}}"/>
+				</target>
+      </trans-unit>
+      <trans-unit id="6385a9f29fe4499ead1e6d167578f00ff9740d48" datatype="html">
+        <source>Voucher Price, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/> *</source>
+        <target state="translated">Gutscheinpreis, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>*</target>
+      </trans-unit>
+      <trans-unit id="0651285aafaca1d45e0ff7d05ec7adb35887807e" datatype="html">
+        <source>Price for the uploaded voucher codes (what the customers will be asked to pay to use these vouchers)</source>
+        <target state="translated">Preis für die hochgeladenen Gutscheincodes (was die Kunden für die Nutzung dieser Gutscheine bezahlen müssen)</target>
+      </trans-unit>
+      <trans-unit id="72b905f21f64e21119ed5cb910806a7edc071c65" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{actionRuleForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to
+            <x id="INTERPOLATION_2" equiv-text="{{actionRuleForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{actionRuleForm.get('AmountInTokens').value | token}}"/>
+					<x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> Zu <x id="INTERPOLATION_2" equiv-text="{{actionRuleForm.get('AmountInCurrency').value | number}}"/>
+					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></target>
+      </trans-unit>
+      <trans-unit id="624f7e9e2cd0cf45b8a8f4b7f6360c8954b7ae33" datatype="html">
+        <source>Amount, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
+        <target state="translated">Betrag, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
+				</target>
+      </trans-unit>
+      <trans-unit id="aee66bd3dd210584cf9ff3da6708b5eca49f6902" datatype="html">
+        <source>Use Partner/Global Rate</source>
+        <target state="translated">Partner/Globale Rate verwenden</target>
+      </trans-unit>
+      <trans-unit id="5705a0fed6f4f963fed34879abea52451fae6c4a" datatype="html">
+        <source>Partner rate will be used as a priority. In case if more than one Partner selected, Global rate
+            would be applied.</source>
+        <target state="translated">Der Partnerkurs wird als Priorität verwendet. Falls mehr als ein Partner ausgewählt wird, wird der globale Kurs angewendet.</target>
+      </trans-unit>
+      <trans-unit id="7c0ef00563bedb9154db0cef52ad9e1c512e66d2" datatype="html">
+        <source>Accepted formats:
+                              <x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(&apos;,&apos;).join(&apos;, &apos;)}}"/></source>
+        <target state="translated">Akzeptierte Formate:<x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(',').join(', ')}}"/>
+				</target>
+      </trans-unit>
+      <trans-unit id="8cb03f28f60907d0de72d0a767bc1327e40bf5f6" datatype="html">
+        <source>Minimum dimensions: <x id="INTERPOLATION" equiv-text="{{MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{MobileAppImageMinHeight}}"/>
+                              px</source>
+        <target state="translated">Minimale Abmessungen: <x id="INTERPOLATION" equiv-text="{{MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{MobileAppImageMinHeight}}"/>px</target>
+      </trans-unit>
+      <trans-unit id="7705dc7d137b908a50fc9f5ee60577db8e847f8b" datatype="html">
+        <source>Max size: <x id="INTERPOLATION" equiv-text="{{MobileAppImageFileSizeInKB | fileSize}}"/></source>
+        <target state="translated">Maximale Größe: <x id="INTERPOLATION" equiv-text="{{MobileAppImageFileSizeInKB | fileSize}}"/>
+				</target>
+      </trans-unit>
+      <trans-unit id="42a4b24ba314c9c9f0de872b89e3b8474381006d" datatype="html">
+        <source>Image will be automatically resized to width of 1024 px to optimize file size for
+                        faster downloading in mobile app.</source>
+        <target state="translated">Das Bild wird automatisch auf die Breite von 1024 px verkleinert, um die Dateigröße für ein schnelleres Herunterladen in der mobilen App zu optimieren.</target>
+      </trans-unit>
+      <trans-unit id="37cdf67bff6bfba289d023af5fe824d27e4f9acc" datatype="html">
+        <source>Description of campaign purpose and scope to be displayed in customer app comes
+                  here</source>
+        <target state="translated">Beschreibung von Kampagnenzweck und -umfang, der in der Kunden-App angezeigt werden soll, kommt hier</target>
+      </trans-unit>
+      <trans-unit id="985d260af1811990ca72efa1f77058a47e8d605f" datatype="html">
+        <source>Please check the form and fill the required fields</source>
+        <target state="translated">Bitte überprüfen Sie das Formular und füllen Sie die erforderlichen Felder aus</target>
+      </trans-unit>
+      <trans-unit id="c3761924e6e6aa3efc8fcd52064efdc863c51624" datatype="html">
+        <source>Enter redeem campaign details</source>
+        <target state="translated">Kampagnendetails einlösen</target>
+      </trans-unit>
+      <trans-unit id="7cb177a4ad69222697418a5e2dd193725681bc71" datatype="html">
+        <source>Spend action rule has been created successfully</source>
+        <target state="translated">Ausgabe-Regel wurde erfolgreich erstellt</target>
+      </trans-unit>
+      <trans-unit id="2f261e1d14dac850243a539c2099e77e10cd2358" datatype="html">
+        <source>You have edited spend action rule successfully</source>
+        <target state="translated">Sie haben die Ausgaben-Aktionsregel erfolgreich bearbeitet</target>
+      </trans-unit>
+      <trans-unit id="2ae1042597186b6221d5fffe0ef0bec913daa94c" datatype="html">
+        <source>List of Voucher Campaigns in OpenMAVN program</source>
+        <target state="translated">Liste der Gutschein-Kampagnen im OpenMAVN-Programm</target>
+      </trans-unit>
+      <trans-unit id="6050f5fd35cdc19d9d174b12d71bf5b59c2b26fd" datatype="html">
+        <source>New Voucher Campaign</source>
+        <target state="translated">Neue Gutschein-Kampagne</target>
+      </trans-unit>
+      <trans-unit id="e8d8b3cd07350e5017e75e0dfd51fedd92721e1c" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total voucher campaigns</source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamtgutschein-Kampagnen</target>
+      </trans-unit>
+      <trans-unit id="5f251422b3a8369d17adb53288574892f29e4d13" datatype="html">
+        <source>Amount of Vouchers</source>
+        <target state="translated">Anzahl der Gutscheine</target>
+      </trans-unit>
+      <trans-unit id="ac14a8b01cb04edb6b8a11c8e33ac1030d712d12" datatype="html">
+        <source>Bought Vouchers</source>
+        <target state="translated">Gutscheine gekauft</target>
+      </trans-unit>
+      <trans-unit id="f62a8652fd82e61df791e8ae0e306fe5ed6db2de" datatype="html">
+        <source>Voucher Price</source>
+        <target state="translated">Gutscheinpreis</target>
+      </trans-unit>
+      <trans-unit id="32072c7fb0469aaf82d256a59b3e0d6ecce973b9" datatype="html">
+        <source>Currency</source>
+        <target state="translated">Währung</target>
+      </trans-unit>
+      <trans-unit id="78b9ec7078cb3cd81c558bd1d7c2eda23af1fb61" datatype="html">
+        <source>Creation Date</source>
+        <target state="translated">Erstellungsdatum</target>
+      </trans-unit>
+      <trans-unit id="dd9f3264feed4935008861c15d81c947124e4ac3" datatype="html">
+        <source>Published</source>
+        <target state="translated">Veröffentlicht</target>
+      </trans-unit>
+      <trans-unit id="28df1b02fd88d2deb0212bc5d7ff34cf9492fa54" datatype="html">
+        <source>Deleted</source>
+        <target state="translated">Gelöscht</target>
+      </trans-unit>
+      <trans-unit id="81f062bc4f26eb91cfc517791d390937c6c9a5e4" datatype="html">
+        <source>There are no Voucher Campaigns, please create one</source>
+        <target state="translated">Es gibt keine Gutschein-Kampagnen, bitte erstellen Sie eine</target>
+      </trans-unit>
+      <trans-unit id="fb43a52cb57ea3c7bc216cd6ef4e4bd2a16d045e" datatype="html">
+        <source>Voucher Campaign not found</source>
+        <target state="translated">Gutschein-Kampagne nicht gefunden</target>
+      </trans-unit>
+      <trans-unit id="0758443b7151802757c2ab7655086e892fef296a" datatype="html">
+        <source>Voucher Campaigns</source>
+        <target state="translated">Gutschein-Kampagnen</target>
+      </trans-unit>
+      <trans-unit id="f02feee368550d366bb2443c8fdc5cb1e980ae49" datatype="html">
+        <source>Do you want to delete the voucher campaign &quot;$name&quot;?</source>
+        <target state="translated">Möchten Sie die Gutscheinkampagne$name "löschen?</target>
+      </trans-unit>
+      <trans-unit id="22ebed0202f80df41c0879d1662fa750f4dce647" datatype="html">
+        <source>Voucher campaign has been deleted successfully.</source>
+        <target state="translated">Gutschein-Kampagne wurde erfolgreich gelöscht.</target>
+      </trans-unit>
+      <trans-unit id="644cc2172c533feeebe835acf8e88b20594f34a0" datatype="html">
+        <source>Voucher Campaign Details</source>
+        <target state="translated">Gutschein-Kampagnen-Details</target>
+      </trans-unit>
+      <trans-unit id="40a0a67886395048556d0a1f631ed15bcad120d4" datatype="html">
+        <source>The date when the campaign is applicable from</source>
+        <target state="translated">Das Datum, an dem die Kampagne anwendbar ist ab</target>
+      </trans-unit>
+      <trans-unit id="cdc5508a6a408c4beca583d1d83f2ebc49917e80" datatype="html">
+        <source>The date till which the campaign is applicable</source>
+        <target state="translated">Das Datum, bis zu dem die Kampagne anwendbar ist</target>
+      </trans-unit>
+      <trans-unit id="681b0caff79386d86ce7e5387337a68f01f23929" datatype="html">
+        <source>Amount of Vouchers that will be available for customers to buy</source>
+        <target state="translated">Anzahl der Gutscheine, die Kunden kaufen können</target>
+      </trans-unit>
+      <trans-unit id="f49e69f7a1839a0f5fb3a55dc7edcb15f7ce1ba5" datatype="html">
+        <source>Voucher Price, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/></source>
+        <target state="translated">Gutscheinpreis, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/></target>
+      </trans-unit>
+      <trans-unit id="3adad4a42066dc7c0ba83da0e2c46a69749c991c" datatype="html">
+        <source>Price for the voucher (what the customers will be asked to pay to buy the voucher)</source>
+        <target state="translated">Preis für den Gutschein (was die Kunden für den Kauf des Gutscheins bezahlen müssen)</target>
+      </trans-unit>
+      <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
+        <source>Organization</source>
+        <target state="translated">Organisation</target>
+      </trans-unit>
+      <trans-unit id="58dac4a2f8b882407fd622a8038408f62e6cce10" datatype="html">
+        <source>Search Organization</source>
+        <target state="translated">Organisation durchsuchen</target>
+      </trans-unit>
+      <trans-unit id="6bad281bc6d72ec929f4cb59ff9bb1f958f105cd" datatype="html">
+        <source>Organization who owns the current campaign</source>
+        <target state="translated">Organisation, die die aktuelle Kampagne besitzt</target>
+      </trans-unit>
+      <trans-unit id="eb64c04afa79183b2eb12447491c9761e17c2c67" datatype="html">
+        <source>German</source>
+        <target state="translated">Deutsch</target>
+      </trans-unit>
+      <trans-unit id="9188bd2a6f94bfaa21d2ce11018dae8f28a652c5" datatype="html">
+        <source>Russian</source>
+        <target state="translated">Russisch</target>
+      </trans-unit>
+      <trans-unit id="432bc4bb9e1cbf293d6fabd03cd903a72fe4a1be" datatype="html">
+        <source>Description to be displayed in mobile app</source>
+        <target state="translated">Beschreibung in der mobilen App angezeigt werden</target>
+      </trans-unit>
+      <trans-unit id="299deb2e3d61766bed339fb97eae52674aef59f7" datatype="html">
+        <source>Enter Voucher Campaign details</source>
+        <target state="translated">Voucher Kampagnendetails eingeben</target>
+      </trans-unit>
+      <trans-unit id="3c623849be6d3dcd60f4c00ba0715e57420027ae" datatype="html">
+        <source>You have saved campaign successfully.</source>
+        <target state="translated">Sie haben die Kampagne erfolgreich gespeichert.</target>
+      </trans-unit>
+      <trans-unit id="747df86b7aa534605a43b034a25d5a20f77e73e7" datatype="html">
+        <source>You have edited campaign successfully.</source>
+        <target state="translated">Du hast die Kampagne erfolgreich bearbeitet.</target>
+      </trans-unit>
+      <trans-unit id="823bd87a1c7f37f228f4113e907c572b7199744a" datatype="html">
+        <source>Enter user details and submit</source>
+        <target state="translated">Benutzerdetails eingeben und absenden</target>
+      </trans-unit>
+      <trans-unit id="ac6dfd9cbb28c21edcfad6751998e5466bd2fb57" datatype="html">
+        <source>Admin user has been created successfully</source>
+        <target state="translated">Admin-Benutzer wurde erfolgreich erstellt</target>
+      </trans-unit>
+      <trans-unit id="6e16309cbe16a421ec10a6675fcc3b2f4853489e" datatype="html">
+        <source>Admin user with such email is already registered.</source>
+        <target state="translated">Admin-Benutzer mit einer solchen E-Mail ist bereits registriert.</target>
+      </trans-unit>
+      <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
+        <source>New User</source>
+        <target state="translated">Neuer Benutzer</target>
+      </trans-unit>
+      <trans-unit id="34557152cff7bc7db72a2a8706794d7fba4bac86" datatype="html">
+        <source>Reset Password</source>
+        <target state="translated">Passwort zurücksetzen</target>
+      </trans-unit>
+      <trans-unit id="42b46ac3ed8846521a3c271ea555c7965cde0d62" datatype="html">
+        <source>New password will be auto-generated and sent to the admin by the attached email address</source>
+        <target state="translated">Neues Passwort wird automatisch generiert und von der angehängten E-Mail-Adresse an den Administrator gesendet</target>
+      </trans-unit>
+      <trans-unit id="2aa7c4367baad2832cb32bc21ba3b01ef2f278b9" datatype="html">
+        <source>Edit User</source>
+        <target state="translated">Benutzer bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="6ef0619a37140118b9e640c6cc36ee4e9fb4372a" datatype="html">
+        <source>Company</source>
+        <target state="translated">Firma</target>
+      </trans-unit>
+      <trans-unit id="8a6405c2af5225e2f302b76fa98ed13f3eba2b1c" datatype="html">
+        <source>Department</source>
+        <target state="translated">Abteilung</target>
+      </trans-unit>
+      <trans-unit id="20d9489fdbfc121f7c504271b36691515d02f632" datatype="html">
+        <source>Job Title</source>
+        <target state="translated">Job Titel</target>
+      </trans-unit>
+      <trans-unit id="4a5a6f958efc5d950346fdf84427df1bb36d9479" datatype="html">
+        <source>Not active</source>
+        <target state="translated">Nicht aktiv</target>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target state="translated">Passwort</target>
+      </trans-unit>
+      <trans-unit id="b5300526554fa4c22b96fb5c872339e6b2668500" datatype="html">
+        <source>Program Partners</source>
+        <target state="translated">Programmpartner</target>
+      </trans-unit>
+      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
+        <source>Submit</source>
+        <target state="translated">Absenden</target>
+      </trans-unit>
+      <trans-unit id="f4d5ce739fb2898e4024982f61281645b00ba5f0" datatype="html">
+        <source>List of admin users</source>
+        <target state="translated">Liste der Admin-Benutzer</target>
+      </trans-unit>
+      <trans-unit id="94be6ae6ec1f87bedc67020629343b27fdbece0a" datatype="html">
+        <source>Add User</source>
+        <target state="translated">Neuer Benutzer</target>
+      </trans-unit>
+      <trans-unit id="f62cd3bf984d4a85869612f7e13f5475142a6eff" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total users</source>
+        <target state="translated">
+					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamte Benutzer</target>
+      </trans-unit>
+      <trans-unit id="0ae1b8adef560b96a5408861dd75418249a13833" datatype="html">
+        <source>User Id</source>
+        <target state="translated">Benutzer-Id</target>
+      </trans-unit>
+      <trans-unit id="484b0e541230d60ddb5fbd771a34a5c8d90e7a57" datatype="html">
+        <source>Full Name</source>
+        <target state="translated">Voller Name</target>
+      </trans-unit>
+      <trans-unit id="d640cbc619dc98c0deef89ed86026c5804deff20" datatype="html">
+        <source>Search by full email</source>
+        <target state="translated">Suche per vollständige E-Mail</target>
+      </trans-unit>
+      <trans-unit id="5e538d8948a58cc9389f36c011afcbb1e11da0f9" datatype="html">
+        <source>Registration Date</source>
         <target state="translated">Registrierungsdatum</target>
       </trans-unit>
-      <trans-unit id="efac3af0b32e953279c25b6519cae256811e0fe8" datatype="html">
-        <source>History</source>
-        <target state="translated">Verlauf</target>
+      <trans-unit id="182d7a3c918a0d13fb92bc499b28efcb5fba7155" datatype="html">
+        <source>There are no admin users please create one</source>
+        <target state="translated">Es gibt keine Administrator-Benutzer, bitte erstellen Sie einen</target>
       </trans-unit>
-      <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
-        <source>Date</source>
-        <target state="translated">Datum</target>
+      <trans-unit id="83354978ad3a6a1c3e9df18679d1ccadda652a79" datatype="html">
+        <source>Admin user not found</source>
+        <target state="translated">Admin-Benutzer nicht gefunden</target>
       </trans-unit>
-      <trans-unit id="b59ea65c89a5ae15b787d8318fdad9edd6fec243" datatype="html">
-        <source>Transaction</source>
-        <target state="translated">Transaktion</target>
+      <trans-unit id="219846d41780f99f44abe59b1baf09304112ad4b" datatype="html">
+        <source>List of transactions in OpenMAVN program</source>
+        <target state="translated">Liste der Transaktionen im OpenMAVN-Programm</target>
       </trans-unit>
-      <trans-unit id="d70a077aa8d91894ddbd2a967e5e8bea4c59a2ac" datatype="html">
-        <source>Campaign Name</source>
-        <target state="translated">Kampagnenname</target>
+      <trans-unit id="5f19586aba912ec6eb123ec5ab609a3bcc073066" datatype="html">
+        <source>Export</source>
+        <target state="translated">Exportieren</target>
       </trans-unit>
-      <trans-unit id="1c1d901ce2f965a7817438cc6b0efb70ba6afbd3" datatype="html">
-        <source>Wallet Address</source>
-        <target state="translated">Wallet-Adresse</target>
+      <trans-unit id="148442eda49e28e1f5e77ac9d840d91416d928ba" datatype="html">
+        <source>Exporting...</source>
+        <target state="translated">Exportiere...</target>
       </trans-unit>
-      <trans-unit id="dfc2fb58e2a04ed944a4bd80f0a2087775134068" datatype="html">
-        <source>Amount</source>
-        <target state="translated">Betrag</target>
+      <trans-unit id="2798cc1e152b1ec07fd8daf94a2a073d1ba1ebcc" datatype="html">
+        <source>Id</source>
+        <target state="translated">Id</target>
       </trans-unit>
-      <trans-unit id="d0df56966090f0e8f753b580e7c59f3b55107cf2" datatype="html">
-        <source>P2P</source>
-        <target state="translated">P2P</target>
+      <trans-unit id="d784746e2d6234719c097d998fa576b012c0e350" datatype="html">
+        <source>Sender Name</source>
+        <target state="translated">Absendername</target>
       </trans-unit>
-      <trans-unit id="ff84413d2975081b26372fd5fa49a7762d01af2a" datatype="html">
-        <source>Earn</source>
-        <target state="translated">Verdienen</target>
+      <trans-unit id="8b11ab9f0904346b31c74347368e395795256d50" datatype="html">
+        <source>Sender Email</source>
+        <target state="translated">Absender-E-Mail</target>
       </trans-unit>
-      <trans-unit id="8c25ca421c95912b3f7d6a277991c551d5439b4c" datatype="html">
-        <source>Use</source>
-        <target state="translated">Benutzen</target>
+      <trans-unit id="07193288a0312875e18f38c3a2486b927a15520a" datatype="html">
+        <source>Timestamp</source>
+        <target state="translated">Zeitstempel</target>
       </trans-unit>
-      <trans-unit id="55fdc1b48d37796e2851110325495f9cc957bd01" datatype="html">
-        <source>Use (Cancelled)</source>
-        <target state="translated">Verwende (geancelled)</target>
+      <trans-unit id="742127865eef677296cc1bccdb10f6c01b9db4a2" datatype="html">
+        <source>Transaction Type</source>
+        <target state="translated">Transaktionstyp</target>
       </trans-unit>
-      <trans-unit id="fc08c15f7eaf79fce5032928fca3e84f316afa96" datatype="html">
-        <source>Voucher purchase</source>
-        <target state="translated">Gutscheinkauf</target>
+      <trans-unit id="3fe8ff07fb669db59f6b5c9cbf116bbbc2f665ff" datatype="html">
+        <source>Additional Information</source>
+        <target state="translated">Zusätzliche Informationen</target>
       </trans-unit>
-      <trans-unit id="21461d3d263ade3ee97ff256ca2c78a345dfaf9a" datatype="html">
-        <source>Staking</source>
-        <target state="translated">Absteckung</target>
+      <trans-unit id="558c409982bbb57cb7b5bc32f3d8d8999899a2a4" datatype="html">
+        <source>Receiver Name</source>
+        <target state="translated">Empfängername</target>
       </trans-unit>
-      <trans-unit id="b483a43a95b6e2f493d9234986302794aa47e388" datatype="html">
-        <source>Releasing staking amount</source>
-        <target state="translated">Absteckbetrag freigeben</target>
+      <trans-unit id="caed050d4e3e5bd56b5e1915493dc525bde9b86f" datatype="html">
+        <source>Receiver Email</source>
+        <target state="translated">Empfänger E-Mail</target>
       </trans-unit>
-      <trans-unit id="b46c77b15df123dcc47b6b35b7d2847118552a81" datatype="html">
-        <source>Linked wallet transfer</source>
-        <target state="translated">Verknüpfte Wallet-Übertragung</target>
+      <trans-unit id="adadc9e540a5a0f2fd22e4f1aa32bd60d0ff51bf" datatype="html">
+        <source>Transaction Location</source>
+        <target state="translated">Transaktionsort</target>
       </trans-unit>
-      <trans-unit id="f237f4f862ad6c7786342bec4627891cc29aec25" datatype="html">
-        <source>Fee collected</source>
-        <target state="translated">Gebühr erhoben</target>
+      <trans-unit id="0ca6d81038b4d21dab78c8d28e4915cf410ce910" datatype="html">
+        <source>Location External Id</source>
+        <target state="translated">Externe Id Standort</target>
       </trans-unit>
-      <trans-unit id="fafdc44fd6088af6a755f17f5bfe1c3558c8d437" datatype="html">
-        <source>There are no Customer operations.</source>
-        <target state="translated">Es gibt keine Kundenoperationen.</target>
+      <trans-unit id="ebf3f02211474e965200d02cefe90eb4f51b50cd" datatype="html">
+        <source>Location Integration Code</source>
+        <target state="translated">Standortintegration Code</target>
       </trans-unit>
-      <trans-unit id="3a6e5a6aa78ca864f6542410c5dafb6334538106" datatype="html">
-        <source>Copy to clipboard</source>
-        <target state="translated">In Zwischenablage kopieren</target>
+      <trans-unit id="6d493fe7fa20c5c4f06663726e2c3d15d4a9f71c" datatype="html">
+        <source>Business Unit</source>
+        <target state="translated">Geschäftsbereich</target>
       </trans-unit>
-      <trans-unit id="098586247f8300e3a47480afd47642c25af7f798" datatype="html">
-        <source>Do you want to block access to the customer’s account?</source>
-        <target state="translated">Möchten Sie den Zugang zum Kundenkonto blockieren?</target>
+      <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
+        <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
+        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</target>
       </trans-unit>
-      <trans-unit id="5a7b07257c1c72a6fe9cb4abd50dad2b81182cb5" datatype="html">
-        <source>Block Wallet</source>
-        <target state="translated">Wallet blockieren</target>
+      <trans-unit id="54e0a26f5a8ea66466da983c899f7eb2f75301d4" datatype="html">
+        <source>Transaction Category</source>
+        <target state="translated">Transaktionskategorie</target>
       </trans-unit>
-      <trans-unit id="17eb76774765b6f4d71b0999e6d48710bf3410e1" datatype="html">
-        <source>Do you want to block the wallet of the customer?</source>
-        <target state="translated">Möchten Sie die Brieftasche des Kunden blockieren?</target>
-      </trans-unit>
-      <trans-unit id="0d748c60c0fe6eee0f41e4e74a29b907f614b2e6" datatype="html">
-        <source>Do you want to unblock access to the customer’s account?</source>
-        <target state="translated">Möchten Sie den Zugriff auf das Kundenkonto freigeben?</target>
-      </trans-unit>
-      <trans-unit id="14e7a979c71fec06eecd59fdd84966938cde9f7f" datatype="html">
-        <source>Unblock Wallet</source>
-        <target state="translated">Wallet entsperren</target>
-      </trans-unit>
-      <trans-unit id="1d74c6efb9482ac4dc301e616e2bc460532b02ba" datatype="html">
-        <source>Do you want to unblock the wallet of the customer?</source>
-        <target state="translated">Möchten Sie die Brieftasche des Kunden entsperren?</target>
-      </trans-unit>
-      <trans-unit id="089ad82ce156d9978710fc87d35c70d3077a6698" datatype="html">
-        <source>Statistics and analytics</source>
-        <target state="translated">Statistiken und Analysen</target>
-      </trans-unit>
-      <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
-        <source>From</source>
-        <target state="translated">Von</target>
-      </trans-unit>
-      <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
-        <source>To</source>
-        <target state="translated">An</target>
-      </trans-unit>
-      <trans-unit id="c2d0ac9f528bbd5f53fd34269fde8b59e029621b" datatype="html">
-        <source>Apply</source>
-        <target state="translated">Anwenden</target>
-      </trans-unit>
-      <trans-unit id="3342de89d9260c2c04b289821e5ad63a9ac918be" datatype="html">
-        <source>New Customers<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>+<x id="INTERPOLATION" equiv-text="{{ totalNewCustomers | number }}"/>
-					<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
-				</source>
-        <target state="translated">Neue Kunden<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>+<x id="INTERPOLATION" equiv-text="{{ totalNewCustomers | number }}"/>
-					<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="670824c1ca8c9c9c5fbcd4aac764cb1a1fc01dcb" datatype="html">
-        <source>Active and Repeat Customers</source>
-        <target state="translated">Aktive und wiederholte Kunden</target>
-      </trans-unit>
-      <trans-unit id="9643458184b7ff1eae2b811092dc017460f8db67" datatype="html">
-        <source>TRANSACTIONS</source>
-        <target state="translated">TRANSAKTIONEN</target>
-      </trans-unit>
-      <trans-unit id="8529a0498b177ffe392f1333ea9bd9791ea01992" datatype="html">
-        <source>Number of Transactions</source>
-        <target state="translated">Anzahl der Transaktionen</target>
-      </trans-unit>
-      <trans-unit id="88693b26653fbe0dc25bd8cd80ef89e324db0c57" datatype="html">
-        <source>Total Transactions Cost</source>
-        <target state="translated">Gesamtkosten für Transaktionen</target>
-      </trans-unit>
-      <trans-unit id="d1b73dd523e62a062d448495c9eaef31af50f7e0" datatype="html">
-        <source>Average Transaction</source>
-        <target state="translated">Durchschnittliche Transaktion</target>
-      </trans-unit>
-      <trans-unit id="e12a8d95808ef49ba83f39fcb30a44d3cb7af8fd" datatype="html">
-        <source>Smart Points <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
-					<x id="INTERPOLATION" equiv-text="{{ totalNumbers.Tokens | number }}"/>
-					<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
-				</source>
-        <target state="translated">Smart Points <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
-					<x id="INTERPOLATION" equiv-text="{{ totalNumbers.Tokens | number }}"/>
-					<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="e74e0e9f9ce10f0b89e5880cc70e3444504047c7" datatype="html">
-        <source>You don&apos;t have access to Dashboard so please select available section from the menu.</source>
-        <target state="translated">Sie haben keinen Zugriff auf das Dashboard. Bitte wählen Sie den verfügbaren Bereich aus dem Menü.</target>
-      </trans-unit>
-      <trans-unit id="f10d937610197bf048aaea217dc2c15e9b7a6103" datatype="html">
-        <source>New leads (referred ones, who haven&apos;t yet confirmed themselves as leads)</source>
-        <target state="translated">Neue Leads (empfohlene Leads, die sich noch nicht als Leads bestätigt haben)</target>
-      </trans-unit>
-      <trans-unit id="c508fd9b8808277e4b1c830827b7b98aebaf58dd" datatype="html">
-        <source>Leads who verified their referral status by confirmation</source>
-        <target state="translated">Leads die ihren Empfehlungsstatus durch Bestätigung verifiziert haben</target>
-      </trans-unit>
-      <trans-unit id="209d739fd772b3403bbea7fbd2e547c39364b145" datatype="html">
-        <source>Leads in the program whose statuses were approved by the Salesforce team</source>
-        <target state="translated">Führt das Programm an, dessen Status vom Salesforce-Team genehmigt wurde</target>
-      </trans-unit>
-      <trans-unit id="1fea25ff9565a27a53a2b97e423423e7e9226c7f" datatype="html">
-        <source>New Customers</source>
-        <target state="translated">Neue Kunden</target>
-      </trans-unit>
-      <trans-unit id="2a2776eeca883a28299f975a91932e2527a2323e" datatype="html">
-        <source>New program members who signed up and confirmed the email</source>
-        <target state="translated">Neue Programmmitglieder, die sich angemeldet und die E-Mail bestätigt haben</target>
-      </trans-unit>
-      <trans-unit id="50d58e5d74c1c69375cd91359e6ceb8197a17029" datatype="html">
-        <source>Active Customers</source>
-        <target state="translated">Aktive Kunden</target>
-      </trans-unit>
-      <trans-unit id="442b1dcdcf78da437f7b1ea5cedac509143fb7cc" datatype="html">
-        <source>Made a purchase during selected period</source>
-        <target state="translated">Kauf während des gewählten Zeitraums gemacht</target>
-      </trans-unit>
-      <trans-unit id="c304657e30d1a6e0095d2ec140ef53f5fc195e4f" datatype="html">
-        <source>Non-Active Customers</source>
-        <target state="translated">Nicht aktive Kunden</target>
-      </trans-unit>
-      <trans-unit id="114a764ed287ace238252906abefab98654c580d" datatype="html">
-        <source>Did not make a purchase during selected period</source>
-        <target state="translated">Kauf während des gewählten Zeitraums nicht gemacht</target>
-      </trans-unit>
-      <trans-unit id="8ee10e80c98627d8cac73e0a65c404b5a913d34b" datatype="html">
-        <source>Earned, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Verdient, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="541269ff236e5942bc085117c4426beaf2cb228c" datatype="html">
-        <source>Spent, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Ausgegeben: <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="c7c766ff604528116c291d7e1983d7a1eb0b9eda" datatype="html">
-        <source>Sum of Smart Points in all members&apos; wallets, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Summe der Smart Points in allen Wallets, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="fa2696cfa14bddb6bc2adaa64f693a5c5c47f9ea" datatype="html">
-        <source>Smart Points earned by all customers from day 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Smart Points von allen Kunden ab Tag 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="49896e59ea63aeaac9214867094d987da83f1498" datatype="html">
-        <source>Smart Points spent by all customers from day 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Smart Points von allen Kunden ab Tag 1, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="c76f7357895d4e37665ef6a2e23724e8159b5b20" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
-        </source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
-        <source>Show</source>
-        <target state="translated">Zeigen</target>
+      <trans-unit id="65acb48ecdd195f1bae6d846ef90f1cc6d57e26b" datatype="html">
+        <source>Transactions not found</source>
+        <target state="translated">Transaktionen nicht gefunden</target>
       </trans-unit>
       <trans-unit id="9a6bd28966c5224d735c5a04b182c74e23e563ae" datatype="html">
         <source>List of blockchain operations in OpenMAVN program</source>
@@ -1113,12 +1628,10 @@
         <target state="translated">Übertragung abgelehnt</target>
       </trans-unit>
       <trans-unit id="9f52acae4614107148315ea4ba4f3d4140cf50cb" datatype="html">
-        <source>Search</source>
+        <source>
+          Search
+        </source>
         <target state="translated">Suchen</target>
-      </trans-unit>
-      <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
-        <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
-        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</target>
       </trans-unit>
       <trans-unit id="9209d4105b95756f2a2e180b14136fa0e11ca3f2" datatype="html">
         <source>Date-Time</source>
@@ -1164,10 +1677,6 @@
         <source>Parameter details</source>
         <target state="translated">Parameterdetails</target>
       </trans-unit>
-      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
-        <source>Type</source>
-        <target state="translated">Typ</target>
-      </trans-unit>
       <trans-unit id="5049e204c14c648691ac775a64fb504467aeb549" datatype="html">
         <source>Value</source>
         <target state="translated">Wert</target>
@@ -1181,19 +1690,12 @@
         <target state="translated">Globale Konversionsrate</target>
       </trans-unit>
       <trans-unit id="f3d9576a06c0d3595679c0a83aeb9d3f49388ff2" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{rateForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to<x id="INTERPOLATION_2" equiv-text="{{rateForm.get(&apos;AmountInCurrency&apos;).value | number}}"/>
-					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/>
-				</source>
+        <source><x id="INTERPOLATION" equiv-text="{{rateForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to
+                <x id="INTERPOLATION_2" equiv-text="{{rateForm.get(&apos;AmountInCurrency&apos;).value | number}}"/> <x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></source>
         <target state="translated">
 					<x id="INTERPOLATION" equiv-text="{{rateForm.get('AmountInTokens').value | token}}"/>
 					<x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> Zu <x id="INTERPOLATION_2" equiv-text="{{rateForm.get('AmountInCurrency').value | number}}"/>
 					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></target>
-      </trans-unit>
-      <trans-unit id="624f7e9e2cd0cf45b8a8f4b7f6360c8954b7ae33" datatype="html">
-        <source>Amount, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
-        <target state="translated">Betrag, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</target>
       </trans-unit>
       <trans-unit id="31c5fe374bea9df155b82e0f14f18ec009a3d35e" datatype="html">
         <source>Connector</source>
@@ -1204,8 +1706,7 @@
         <target state="translated">Anforderungen</target>
       </trans-unit>
       <trans-unit id="bea1e011385c928ec27c25d93ee3f9db99063808" datatype="html">
-        <source>Required Balance, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
-				</source>
+        <source>Required Balance, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/></source>
         <target state="translated">Benötigter Kontostand, <x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>
 				</target>
       </trans-unit>
@@ -1261,267 +1762,6 @@
         <source>Current Password is not valid</source>
         <target state="translated">Aktuelles Passwort ist ungültig</target>
       </trans-unit>
-      <trans-unit id="c281c9511379a759506f70bea74d08cb9236ab78" datatype="html">
-        <source>Payments</source>
-        <target state="translated">Zahlungen</target>
-      </trans-unit>
-      <trans-unit id="4e6a6338066178d642f0fe14c9abd98019527931" datatype="html">
-        <source>List of payments in referral program</source>
-        <target state="translated">Liste der Zahlungen im Überweisungsprogramm</target>
-      </trans-unit>
-      <trans-unit id="651a051c1fb98987afb87a7734108e148a9a5e1e" datatype="html">
-        <source>Action Rule</source>
-        <target state="translated">Aktionsregel</target>
-      </trans-unit>
-      <trans-unit id="c2362e3c697abc0fd4df62cf7cfbd5c7a5389de1" datatype="html">
-        <source>Amount (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</source>
-        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</target>
-      </trans-unit>
-      <trans-unit id="4889584cbbbdd70da21dc11b0f32e10dbccc315a" datatype="html">
-        <source>Amount (<x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>)</source>
-        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>)</target>
-      </trans-unit>
-      <trans-unit id="ca26c72160572bd7e775118181ca15dfeaf714a2" datatype="html">
-        <source>Payment ID</source>
-        <target state="translated">Zahlungs-ID</target>
-      </trans-unit>
-      <trans-unit id="7714ea0ea5d811e40f910b8ab49bf7fc7774dbd8" datatype="html">
-        <source>Invoice ID</source>
-        <target state="translated">Rechnungsnummer</target>
-      </trans-unit>
-      <trans-unit id="4b26a23577c70d86f366db8a534adca39649c2d9" datatype="html">
-        <source>Time Sent</source>
-        <target state="translated">Sendezeit</target>
-      </trans-unit>
-      <trans-unit id="20c3d69c0b67a74df0aa3920485016b2080578f6" datatype="html">
-        <source>Reject</source>
-        <target state="translated">Ablehnen</target>
-      </trans-unit>
-      <trans-unit id="73a83c0db2dbf61230eba62e1d22a6da3d190c4c" datatype="html">
-        <source>Approve</source>
-        <target state="translated">Bestätigen</target>
-      </trans-unit>
-      <trans-unit id="fa0b21ffcd6d47ca1696dc9a64791459dedc54a9" datatype="html">
-        <source>There are no pending payments</source>
-        <target state="translated">Es gibt keine ausstehenden Zahlungen</target>
-      </trans-unit>
-      <trans-unit id="1bec02ef88316b8b015b74df593360af720c7d7f" datatype="html">
-        <source>Approve Payment</source>
-        <target state="translated">Zahlung genehmigen</target>
-      </trans-unit>
-      <trans-unit id="3f9b9427dec0d4680d4571595aab6ebe59c0871b" datatype="html">
-        <source>Are you sure you want to approve this payment?</source>
-        <target state="translated">Sind Sie sicher, dass Sie diese Zahlung genehmigen möchten?</target>
-      </trans-unit>
-      <trans-unit id="1fbe28899bb6906c73be16627b9124969b14dd63" datatype="html">
-        <source>Yes, Approve Payment</source>
-        <target state="translated">Ja, Zahlung genehmigen</target>
-      </trans-unit>
-      <trans-unit id="a6a9d535d0e4ede8deaaa32d718b7d32be08f142" datatype="html">
-        <source>Payment has been successfully approved</source>
-        <target state="translated">Zahlung wurde erfolgreich genehmigt</target>
-      </trans-unit>
-      <trans-unit id="6ddd25c358ffb06df8ae05157ff550128102ff0e" datatype="html">
-        <source>Reject Payment</source>
-        <target state="translated">Zahlung ablehnen</target>
-      </trans-unit>
-      <trans-unit id="082914e259d2c5ac4554d003d1faf073b5b20c48" datatype="html">
-        <source>Are you sure you want to reject this payment?</source>
-        <target state="translated">Sind Sie sicher, dass Sie diese Zahlung ablehnen möchten?</target>
-      </trans-unit>
-      <trans-unit id="0064866dd3714e37a3a0cd055725e46ee214086d" datatype="html">
-        <source>Yes, Reject Payment</source>
-        <target state="translated">Ja, Zahlung ablehnen</target>
-      </trans-unit>
-      <trans-unit id="21749c7bd8026be656a429d1e44430633e911a12" datatype="html">
-        <source>Payment has been successfully rejected</source>
-        <target state="translated">Zahlung wurde erfolgreich abgelehnt</target>
-      </trans-unit>
-      <trans-unit id="2ae1042597186b6221d5fffe0ef0bec913daa94c" datatype="html">
-        <source>List of Voucher Campaigns in OpenMAVN program</source>
-        <target state="translated">Liste der Gutschein-Kampagnen im OpenMAVN-Programm</target>
-      </trans-unit>
-      <trans-unit id="6050f5fd35cdc19d9d174b12d71bf5b59c2b26fd" datatype="html">
-        <source>New Voucher Campaign</source>
-        <target state="translated">Neue Gutschein-Kampagne</target>
-      </trans-unit>
-      <trans-unit id="e8d8b3cd07350e5017e75e0dfd51fedd92721e1c" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total voucher campaigns</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamtgutschein-Kampagnen</target>
-      </trans-unit>
-      <trans-unit id="78b9ec7078cb3cd81c558bd1d7c2eda23af1fb61" datatype="html">
-        <source>Creation Date</source>
-        <target state="translated">Erstellungsdatum</target>
-      </trans-unit>
-      <trans-unit id="b36e1450940b7f6028d8587568c7d669b53f7a06" datatype="html">
-        <source>Active</source>
-        <target state="translated">Aktiv</target>
-      </trans-unit>
-      <trans-unit id="81f062bc4f26eb91cfc517791d390937c6c9a5e4" datatype="html">
-        <source>There are no Voucher Campaigns, please create one</source>
-        <target state="translated">Es gibt keine Gutschein-Kampagnen, bitte erstellen Sie eine</target>
-      </trans-unit>
-      <trans-unit id="fb43a52cb57ea3c7bc216cd6ef4e4bd2a16d045e" datatype="html">
-        <source>Voucher Campaign not found</source>
-        <target state="translated">Gutschein-Kampagne nicht gefunden</target>
-      </trans-unit>
-      <trans-unit id="0758443b7151802757c2ab7655086e892fef296a" datatype="html">
-        <source>Voucher Campaigns</source>
-        <target state="translated">Gutschein-Kampagnen</target>
-      </trans-unit>
-      <trans-unit id="3c50b1b0edaef348128d9803f41e0b6a85322898" datatype="html">
-        <source>Do you want to delete the voucher campaign &quot;<x id="INTERPOLATION" equiv-text="{{title}}"/>&quot;?</source>
-        <target state="translated">Möchten Sie die Gutscheinkampagne löschen "<x id="INTERPOLATION" equiv-text="{{title}}"/>"?</target>
-      </trans-unit>
-      <trans-unit id="1185802d9d819bf6103b5a3ba0d5b76637336781" datatype="html">
-        <source>Voucher campaign deleted successfully.</source>
-        <target state="translated">Gutschein-Kampagne erfolgreich gelöscht.</target>
-      </trans-unit>
-      <trans-unit id="ab570bfbbdeac601b580119ff690ef0b2ad40cda" datatype="html">
-        <source>Enter spend rule details</source>
-        <target state="translated">Details der Ausgaberegel eingeben</target>
-      </trans-unit>
-      <trans-unit id="7cb177a4ad69222697418a5e2dd193725681bc71" datatype="html">
-        <source>Spend action rule has been created successfully</source>
-        <target state="translated">Ausgabe-Regel wurde erfolgreich erstellt</target>
-      </trans-unit>
-      <trans-unit id="64aa3c05d5b5678ca0975f23ef57bc090a2df955" datatype="html">
-        <source>List of redeem campaigns in OpenMAVN program</source>
-        <target state="translated">Liste der eingelösten Kampagnen im OpenMAVN-Programm</target>
-      </trans-unit>
-      <trans-unit id="b0fbceff60ee05e2b880a3eb5e2addfe4824d35f" datatype="html">
-        <source>Add Campaign</source>
-        <target state="translated">Kampagne hinzufügen</target>
-      </trans-unit>
-      <trans-unit id="61856c4b43c26f2f68cb18cb9c2da32c096a995c" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total spend campaigns</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamtausgaben Kampagnen</target>
-      </trans-unit>
-      <trans-unit id="6b29816059c5b7df0632963955e39869c752e7d5" datatype="html">
-        <source>There are no campaigns, please create one</source>
-        <target state="translated">Es gibt keine Kampagnen, bitte erstellen Sie eine</target>
-      </trans-unit>
-      <trans-unit id="5963d468876d2cd10376b8a6a58fc3c0dc05b93e" datatype="html">
-        <source>Campaigns not found</source>
-        <target state="translated">Kampagnen nicht gefunden</target>
-      </trans-unit>
-      <trans-unit id="67e4c32c01a40a11a0a28199f5a6b15d7d3f696b" datatype="html">
-        <source>Do you want to delete the campaign &quot;<x id="INTERPOLATION" equiv-text="{{title}}"/>&quot;?</source>
-        <target state="translated">Wollen Sie die Kampagne "<x id="INTERPOLATION" equiv-text="{{title}}"/> "löschen?</target>
-      </trans-unit>
-      <trans-unit id="0167ddbee43a0245f2018fde100077bb4e53fec7" datatype="html">
-        <source>Campaign deleted successfully.</source>
-        <target state="translated">Kampagne erfolgreich gelöscht.</target>
-      </trans-unit>
-      <trans-unit id="2f261e1d14dac850243a539c2099e77e10cd2358" datatype="html">
-        <source>You have edited spend action rule successfully</source>
-        <target state="translated">Sie haben die Ausgaben-Aktionsregel erfolgreich bearbeitet</target>
-      </trans-unit>
-      <trans-unit id="5406924574e5b7f6f896820c5527099361991264" datatype="html">
-        <source>Redeem Campaign Details</source>
-        <target state="translated">Kampagnendetails einlösen</target>
-      </trans-unit>
-      <trans-unit id="e85a30628b502c939d1ad9f651309a0356f40af8" datatype="html">
-        <source>Partners</source>
-        <target state="translated">Partner</target>
-      </trans-unit>
-      <trans-unit id="f8b403888712c826f65a73a5e2c8204fa95da187" datatype="html">
-        <source>Select All</source>
-        <target state="translated">Alle auswählen</target>
-      </trans-unit>
-      <trans-unit id="fdd8c0ec42148f76f93fa98129edf03bb03ac990" datatype="html">
-        <source>Deselect All</source>
-        <target state="translated">Alle abwählen</target>
-      </trans-unit>
-      <trans-unit id="59a1df31612f6b0cc2524bdeb14cf1d54694a15e" datatype="html">
-        <source>Vouchers in Stock</source>
-        <target state="translated">Gutscheine auf Lager</target>
-      </trans-unit>
-      <trans-unit id="5012bd63ffde2646cf653af9991b08fc2b398b5c" datatype="html">
-        <source>Total Vouchers</source>
-        <target state="translated">Gesamt Gutscheine</target>
-      </trans-unit>
-      <trans-unit id="25f84706d37d08dba5918bd2bf7664f1dae8d346" datatype="html">
-        <source>Upload vouchers:</source>
-        <target state="translated">Gutscheine hochladen:</target>
-      </trans-unit>
-      <trans-unit id="6ac96f46f1737325eb7b54a70f50ee9074fca44e" datatype="html">
-        <source>Upload CSV</source>
-        <target state="translated">CSV hochladen</target>
-      </trans-unit>
-      <trans-unit id="654d5d703e4679057bf610431abe3b6fb024e7e0" datatype="html">
-        <source>1 column, list of the voucher codes to be applied in this campaign</source>
-        <target state="translated">1 Spalte, Liste der Gutscheincodes für diese Kampagne</target>
-      </trans-unit>
-      <trans-unit id="e30fd1fac2598f8544dba11c75e333bee2658f75" datatype="html">
-        <source>No file chosen</source>
-        <target state="translated">Keine Datei ausgewählt</target>
-      </trans-unit>
-      <trans-unit id="16ecddddb0f3068cff3fd2531290271308d31526" datatype="html">
-        <source>Max size: 1 MB</source>
-        <target state="translated">Maximale Größe: 1 MB</target>
-      </trans-unit>
-      <trans-unit id="4297fe91cf93acb92ce47ac6fe0500ada336c272" datatype="html">
-        <source>Accepted file extension: <x id="INTERPOLATION" equiv-text="{{voucherFileExtension}}"/>
-				</source>
-        <target state="translated">Akzeptierte Dateiendung: <x id="INTERPOLATION" equiv-text="{{voucherFileExtension}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="6385a9f29fe4499ead1e6d167578f00ff9740d48" datatype="html">
-        <source>Voucher Price, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/> *</source>
-        <target state="translated">Gutscheinpreis, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/>*</target>
-      </trans-unit>
-      <trans-unit id="0651285aafaca1d45e0ff7d05ec7adb35887807e" datatype="html">
-        <source>Price for the uploaded voucher codes (what the customers will be asked to pay to use these vouchers)</source>
-        <target state="translated">Preis für die hochgeladenen Gutscheincodes (was die Kunden für die Nutzung dieser Gutscheine bezahlen müssen)</target>
-      </trans-unit>
-      <trans-unit id="72b905f21f64e21119ed5cb910806a7edc071c65" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{actionRuleForm.get(&apos;AmountInTokens&apos;).value | token}}"/><x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> to<x id="INTERPOLATION_2" equiv-text="{{actionRuleForm.get(&apos;AmountInCurrency&apos;).value | number}}"/>
-					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/>
-				</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{actionRuleForm.get('AmountInTokens').value | token}}"/>
-					<x id="INTERPOLATION_1" equiv-text="{{tokenSymbol}}"/> Zu <x id="INTERPOLATION_2" equiv-text="{{actionRuleForm.get('AmountInCurrency').value | number}}"/>
-					<x id="INTERPOLATION_3" equiv-text="{{baseCurrencyCode}}"/></target>
-      </trans-unit>
-      <trans-unit id="aee66bd3dd210584cf9ff3da6708b5eca49f6902" datatype="html">
-        <source>Use Partner/Global Rate</source>
-        <target state="translated">Partner/Globale Rate verwenden</target>
-      </trans-unit>
-      <trans-unit id="5705a0fed6f4f963fed34879abea52451fae6c4a" datatype="html">
-        <source>Partner rate will be used as a priority. In case if more than one Partner selected, Global rate would be applied.</source>
-        <target state="translated">Der Partnerkurs wird als Priorität verwendet. Falls mehr als ein Partner ausgewählt wird, wird der globale Kurs angewendet.</target>
-      </trans-unit>
-      <trans-unit id="7c0ef00563bedb9154db0cef52ad9e1c512e66d2" datatype="html">
-        <source>Accepted formats:<x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(',').join(', ')}}"/>
-				</source>
-        <target state="translated">Akzeptierte Formate:<x id="INTERPOLATION" equiv-text="{{MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION.split(',').join(', ')}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="8cb03f28f60907d0de72d0a767bc1327e40bf5f6" datatype="html">
-        <source>Minimum dimensions: <x id="INTERPOLATION" equiv-text="{{MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{MobileAppImageMinHeight}}"/>px</source>
-        <target state="translated">Minimale Abmessungen: <x id="INTERPOLATION" equiv-text="{{MobileAppImageMinWidth}}"/>x<x id="INTERPOLATION_1" equiv-text="{{MobileAppImageMinHeight}}"/>px</target>
-      </trans-unit>
-      <trans-unit id="7705dc7d137b908a50fc9f5ee60577db8e847f8b" datatype="html">
-        <source>Max size: <x id="INTERPOLATION" equiv-text="{{MobileAppImageFileSizeInKB | fileSize}}"/>
-				</source>
-        <target state="translated">Maximale Größe: <x id="INTERPOLATION" equiv-text="{{MobileAppImageFileSizeInKB | fileSize}}"/>
-				</target>
-      </trans-unit>
-      <trans-unit id="42a4b24ba314c9c9f0de872b89e3b8474381006d" datatype="html">
-        <source>Image will be automatically resized to width of 1024 px to optimize file size for faster downloading in mobile app.</source>
-        <target state="translated">Das Bild wird automatisch auf die Breite von 1024 px verkleinert, um die Dateigröße für ein schnelleres Herunterladen in der mobilen App zu optimieren.</target>
-      </trans-unit>
-      <trans-unit id="37cdf67bff6bfba289d023af5fe824d27e4f9acc" datatype="html">
-        <source>Description of campaign purpose and scope to be displayed in customer app comes here</source>
-        <target state="translated">Beschreibung von Kampagnenzweck und -umfang, der in der Kunden-App angezeigt werden soll, kommt hier</target>
-      </trans-unit>
-      <trans-unit id="985d260af1811990ca72efa1f77058a47e8d605f" datatype="html">
-        <source>Please check the form and fill the required fields</source>
-        <target state="translated">Bitte überprüfen Sie das Formular und füllen Sie die erforderlichen Felder aus</target>
-      </trans-unit>
       <trans-unit id="f06288677a145c9016247a62d21e37d91131ade7" datatype="html">
         <source>Condition Value (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</source>
         <target state="translated">Bedingungswert (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</target>
@@ -1530,254 +1770,81 @@
         <source>Number of Customers</source>
         <target state="translated">Kundenanzahl</target>
       </trans-unit>
-      <trans-unit id="219846d41780f99f44abe59b1baf09304112ad4b" datatype="html">
-        <source>List of transactions in OpenMAVN program</source>
-        <target state="translated">Liste der Transaktionen im OpenMAVN-Programm</target>
-      </trans-unit>
-      <trans-unit id="5f19586aba912ec6eb123ec5ab609a3bcc073066" datatype="html">
-        <source>Export</source>
-        <target state="translated">Exportieren</target>
-      </trans-unit>
-      <trans-unit id="148442eda49e28e1f5e77ac9d840d91416d928ba" datatype="html">
-        <source>Exporting...</source>
-        <target state="translated">Exportiere...</target>
-      </trans-unit>
-      <trans-unit id="2798cc1e152b1ec07fd8daf94a2a073d1ba1ebcc" datatype="html">
-        <source>Id</source>
-        <target state="translated">Id</target>
-      </trans-unit>
-      <trans-unit id="d784746e2d6234719c097d998fa576b012c0e350" datatype="html">
-        <source>Sender Name</source>
-        <target state="translated">Absendername</target>
-      </trans-unit>
-      <trans-unit id="8b11ab9f0904346b31c74347368e395795256d50" datatype="html">
-        <source>Sender Email</source>
-        <target state="translated">Absender-E-Mail</target>
-      </trans-unit>
-      <trans-unit id="07193288a0312875e18f38c3a2486b927a15520a" datatype="html">
-        <source>Timestamp</source>
-        <target state="translated">Zeitstempel</target>
-      </trans-unit>
-      <trans-unit id="742127865eef677296cc1bccdb10f6c01b9db4a2" datatype="html">
-        <source>Transaction Type</source>
-        <target state="translated">Transaktionstyp</target>
-      </trans-unit>
-      <trans-unit id="3fe8ff07fb669db59f6b5c9cbf116bbbc2f665ff" datatype="html">
-        <source>Additional Information</source>
-        <target state="translated">Zusätzliche Informationen</target>
-      </trans-unit>
-      <trans-unit id="558c409982bbb57cb7b5bc32f3d8d8999899a2a4" datatype="html">
-        <source>Receiver Name</source>
-        <target state="translated">Empfängername</target>
-      </trans-unit>
-      <trans-unit id="caed050d4e3e5bd56b5e1915493dc525bde9b86f" datatype="html">
-        <source>Receiver Email</source>
-        <target state="translated">Empfänger E-Mail</target>
-      </trans-unit>
-      <trans-unit id="adadc9e540a5a0f2fd22e4f1aa32bd60d0ff51bf" datatype="html">
-        <source>Transaction Location</source>
-        <target state="translated">Transaktionsort</target>
-      </trans-unit>
-      <trans-unit id="0ca6d81038b4d21dab78c8d28e4915cf410ce910" datatype="html">
-        <source>Location External Id</source>
-        <target state="translated">Externe Id Standort</target>
-      </trans-unit>
-      <trans-unit id="ebf3f02211474e965200d02cefe90eb4f51b50cd" datatype="html">
-        <source>Location Integration Code</source>
-        <target state="translated">Standortintegration Code</target>
-      </trans-unit>
-      <trans-unit id="6d493fe7fa20c5c4f06663726e2c3d15d4a9f71c" datatype="html">
-        <source>Business Unit</source>
-        <target state="translated">Geschäftsbereich</target>
-      </trans-unit>
-      <trans-unit id="54e0a26f5a8ea66466da983c899f7eb2f75301d4" datatype="html">
-        <source>Transaction Category</source>
-        <target state="translated">Transaktionskategorie</target>
-      </trans-unit>
-      <trans-unit id="65acb48ecdd195f1bae6d846ef90f1cc6d57e26b" datatype="html">
-        <source>Transactions not found</source>
-        <target state="translated">Transaktionen nicht gefunden</target>
-      </trans-unit>
-      <trans-unit id="f4d5ce739fb2898e4024982f61281645b00ba5f0" datatype="html">
-        <source>List of admin users</source>
-        <target state="translated">Liste der Admin-Benutzer</target>
-      </trans-unit>
-      <trans-unit id="94be6ae6ec1f87bedc67020629343b27fdbece0a" datatype="html">
-        <source>Add User</source>
-        <target state="translated">Neuer Benutzer</target>
-      </trans-unit>
-      <trans-unit id="f62cd3bf984d4a85869612f7e13f5475142a6eff" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total users</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamte Benutzer</target>
-      </trans-unit>
-      <trans-unit id="0ae1b8adef560b96a5408861dd75418249a13833" datatype="html">
-        <source>User Id</source>
-        <target state="translated">Benutzer-Id</target>
-      </trans-unit>
-      <trans-unit id="484b0e541230d60ddb5fbd771a34a5c8d90e7a57" datatype="html">
-        <source>Full Name</source>
-        <target state="translated">Voller Name</target>
-      </trans-unit>
-      <trans-unit id="d640cbc619dc98c0deef89ed86026c5804deff20" datatype="html">
-        <source>Search by full email</source>
-        <target state="translated">Suche per vollständige E-Mail</target>
-      </trans-unit>
-      <trans-unit id="5e538d8948a58cc9389f36c011afcbb1e11da0f9" datatype="html">
-        <source>Registration Date</source>
-        <target state="translated">Registrierungsdatum</target>
-      </trans-unit>
-      <trans-unit id="4a5a6f958efc5d950346fdf84427df1bb36d9479" datatype="html">
-        <source>Not active</source>
-        <target state="translated">Nicht aktiv</target>
-      </trans-unit>
-      <trans-unit id="182d7a3c918a0d13fb92bc499b28efcb5fba7155" datatype="html">
-        <source>There are no admin users please create one</source>
-        <target state="translated">Es gibt keine Administrator-Benutzer, bitte erstellen Sie einen</target>
-      </trans-unit>
-      <trans-unit id="83354978ad3a6a1c3e9df18679d1ccadda652a79" datatype="html">
-        <source>Admin user not found</source>
-        <target state="translated">Admin-Benutzer nicht gefunden</target>
-      </trans-unit>
-      <trans-unit id="823bd87a1c7f37f228f4113e907c572b7199744a" datatype="html">
-        <source>Enter user details and submit</source>
-        <target state="translated">Benutzerdetails eingeben und absenden</target>
-      </trans-unit>
-      <trans-unit id="ac6dfd9cbb28c21edcfad6751998e5466bd2fb57" datatype="html">
-        <source>Admin user has been created successfully</source>
-        <target state="translated">Admin-Benutzer wurde erfolgreich erstellt</target>
-      </trans-unit>
-      <trans-unit id="6e16309cbe16a421ec10a6675fcc3b2f4853489e" datatype="html">
-        <source>Admin user with such email is already registered.</source>
-        <target state="translated">Admin-Benutzer mit einer solchen E-Mail ist bereits registriert.</target>
-      </trans-unit>
-      <trans-unit id="34557152cff7bc7db72a2a8706794d7fba4bac86" datatype="html">
-        <source>Reset Password</source>
-        <target state="translated">Passwort zurücksetzen</target>
-      </trans-unit>
-      <trans-unit id="42b46ac3ed8846521a3c271ea555c7965cde0d62" datatype="html">
-        <source>New password will be auto-generated and sent to the admin by the attached email address</source>
-        <target state="translated">Neues Passwort wird automatisch generiert und von der angehängten E-Mail-Adresse an den Administrator gesendet</target>
-      </trans-unit>
-      <trans-unit id="6ef0619a37140118b9e640c6cc36ee4e9fb4372a" datatype="html">
-        <source>Company</source>
-        <target state="translated">Firma</target>
-      </trans-unit>
-      <trans-unit id="8a6405c2af5225e2f302b76fa98ed13f3eba2b1c" datatype="html">
-        <source>Department</source>
-        <target state="translated">Abteilung</target>
-      </trans-unit>
-      <trans-unit id="20d9489fdbfc121f7c504271b36691515d02f632" datatype="html">
-        <source>Job Title</source>
-        <target state="translated">Job Titel</target>
-      </trans-unit>
-      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
-        <source>Password</source>
-        <target state="translated">Passwort</target>
-      </trans-unit>
-      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
-        <source>Submit</source>
-        <target state="translated">Absenden</target>
-      </trans-unit>
       <trans-unit id="adf0ded5607251b62488242156591ae67c8faae2" datatype="html">
         <source>Welcome to your community manager</source>
         <target state="translated">Willkommen bei Ihrem Community-Manager</target>
       </trans-unit>
       <trans-unit id="a1ba969fe1b91ff4994dd35b32a9871764948a82" datatype="html">
         <source>Enter Email</source>
-        <target state="translated">Email eingeben</target>
+        <target state="translated">E-Mail eingeben</target>
       </trans-unit>
       <trans-unit id="e13796974274fd6b6bbc61a60fac4e14e6e29b6d" datatype="html">
         <source>Enter Password</source>
         <target state="translated">Passwort eingeben</target>
       </trans-unit>
-      <trans-unit id="e527ace700a5dfcd97e170b854de7b539afacc0c" datatype="html">
-        <source>Please enter a valid email address</source>
-        <target state="translated">Bitte geben Sie eine gültige E-Mail-Adresse ein</target>
-      </trans-unit>
       <trans-unit id="82a5b3bd41a60c73eb81944350e11e1d4ef1d89b" datatype="html">
         <source>Minimum length is 6</source>
         <target state="translated">Minimale Länge ist 6</target>
+      </trans-unit>
+      <trans-unit id="1867ebc30b846b2c364286eb1b9fc9dcb43b1bdb" datatype="html">
+        <source>Register new account</source>
+        <target state="translated">Neues Konto registrieren</target>
       </trans-unit>
       <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
         <source>Login</source>
         <target state="translated">Anmelden</target>
       </trans-unit>
-      <trans-unit id="73339760fe932d2b494728d4366947755d127e00" datatype="html">
-        <source>Week</source>
-        <target state="translated">Woche</target>
+      <trans-unit id="9035828db071290c9e65b0134f117fb00bafadfe" datatype="html">
+        <source>Coming soon!</source>
+        <target state="translated">Kommt bald!</target>
       </trans-unit>
-      <trans-unit id="5fb104b55feeaa0069c039e20084ff6dc8c87d20" datatype="html">
-        <source>2 Weeks</source>
-        <target state="translated">2 Wochen</target>
+      <trans-unit id="69055fe6f31b8476100665df2d6748923c50b422" datatype="html">
+        <source>Company Name</source>
+        <target state="translated">Firmenname</target>
       </trans-unit>
-      <trans-unit id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702" datatype="html">
-        <source>Month</source>
-        <target state="translated">Monat</target>
+      <trans-unit id="f1adeb464690291902a4274d6b90f25e335c2ae6" datatype="html">
+        <source>Repeat Password</source>
+        <target state="translated">Passwort wiederholen</target>
       </trans-unit>
-      <trans-unit id="fd273ee9ccd07488548c9b55c8652d39466b1a09" datatype="html">
-        <source>Semester</source>
-        <target state="translated">Semester</target>
+      <trans-unit id="d8232fba5659ed8bab76517d7cc1263f7e28d2cb" datatype="html">
+        <source>Password requirements:</source>
+        <target state="translated">Passwortanforderungen:</target>
       </trans-unit>
-      <trans-unit id="beffdec938d76388fdce6bb2ad815d39f4c239af" datatype="html">
-        <source>Total Customers</source>
-        <target state="translated">Kunden insgesamt</target>
+      <trans-unit id="b17c891f5dd23f9c6b6301ed7a04d2f827a4bd05" datatype="html">
+        <source>Passwords must match</source>
+        <target state="translated">Passwörter müssen übereinstimmen</target>
       </trans-unit>
-      <trans-unit id="81a80073fa46e7e302e6e7886f03607b292ba936" datatype="html">
-        <source>Active Customers Share</source>
-        <target state="translated">Aktive Kunden teilen</target>
+      <trans-unit id="59b946b11dccc8a794b9ba5b60068de3e30d51b0" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{rules.MinLength}}"/> - <x id="INTERPOLATION_1" equiv-text="{{rules.MaxLength}}"/> symbols</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{rules.MinLength}}"/> - <x id="INTERPOLATION_1" equiv-text="{{rules.MaxLength}}"/> Symbole</target>
       </trans-unit>
-      <trans-unit id="07c8168e42bf987c0b512bd1ddbf9a460a690634" datatype="html">
-        <source>Customers who earned or redeemed points during the period</source>
-        <target state="translated">Kunden, die im Berichtszeitraum Punkte gesammelt oder eingelöst haben</target>
+      <trans-unit id="d8919b119bee01138fa18d34be1cae853955ddfe" datatype="html">
+        <source>Min <x id="INTERPOLATION" equiv-text="{{rules.MinUpperCase}}"/> uppercase letter</source>
+        <target state="translated">Min <x id="INTERPOLATION" equiv-text="{{rules.MinUpperCase}}"/> Großbuchstaben</target>
       </trans-unit>
-      <trans-unit id="4f912c087d10d7e7ab8473c0d5c638f61d3630b9" datatype="html">
-        <source>Total Active Customers</source>
-        <target state="translated">Insgesamt aktive Kunden</target>
+      <trans-unit id="40948a4029a846a5b3b9745ca1ed2fadf601b04e" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{rules.MinLowerCase}}"/> lowercase letter</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{rules.MinLowerCase}}"/> Kleinbuchstaben</target>
       </trans-unit>
-      <trans-unit id="e78798dfc23f5c11ce82c21bc7c024d0c6985ee1" datatype="html">
-        <source>Repeat Customers Share</source>
-        <target state="translated">Kundenfreigabe wiederholen</target>
+      <trans-unit id="03351f0f35d8ec22dee7358eb59893fffc48fa63" datatype="html">
+        <source>Min <x id="INTERPOLATION" equiv-text="{{rules.MinSpecialSymbols}}"/> special symbol (<x id="INTERPOLATION_1" equiv-text="{{rules.AllowedSpecialSymbols}}"/>)</source>
+        <target state="translated">Min. <x id="INTERPOLATION" equiv-text="{{rules.MinSpecialSymbols}}"/> spezielles Symbol (<x id="INTERPOLATION_1" equiv-text="{{rules.AllowedSpecialSymbols}}"/>)</target>
       </trans-unit>
-      <trans-unit id="788d5411d313f3427720bdc63ba9c90f72569ab3" datatype="html">
-        <source>Customers who made repeat earnings or redemption during the period</source>
-        <target state="translated">Kunden, die im Berichtszeitraum wiederholte Einnahmen oder Rücknahmen erzielt haben</target>
+      <trans-unit id="eeffd104bb06df0afec42c60c9069e79a8681773" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{rules.MinNumbers}}"/> number</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{rules.MinNumbers}}"/> Nummer</target>
       </trans-unit>
-      <trans-unit id="9ab35e1aadf4d5f87c2abbbb87f8fde087547d2a" datatype="html">
-        <source>Total Repeat Customers</source>
-        <target state="translated">Total Wiederholungskunden</target>
+      <trans-unit id="a21b4e4b7c48dc611c3774abf8d163519991638d" datatype="html">
+        <source>Already have an account?</source>
+        <target state="translated">Haben Sie bereits ein Konto?</target>
       </trans-unit>
-      <trans-unit id="3e90530a2f8b7323299c15d50f7c625b6e41fd06" datatype="html">
-        <source>Smart Points</source>
-        <target state="translated">Intelligente Punkte</target>
+      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+        <source>Register</source>
+        <target state="translated">Registrieren</target>
       </trans-unit>
-      <trans-unit id="6f388de112bb3b0305385d3f659c0d034d220d36" datatype="html">
-        <source>Smart Points Earned</source>
-        <target state="translated">Intelligente Punkte verdient</target>
-      </trans-unit>
-      <trans-unit id="09aa1099e735dbcf3495422b6f1517386f637391" datatype="html">
-        <source>Smart Points Spent</source>
-        <target state="translated">Intelligente Punkte ausgegeben</target>
-      </trans-unit>
-      <trans-unit id="f0a70f29564d094b7e09d981d5922fd0df448f31" datatype="html">
-        <source>Earned / Spent</source>
-        <target state="translated">Verdient / Ausgegeben</target>
-      </trans-unit>
-      <trans-unit id="2bd37275d222779abcfbc1f699f5a9e7ea9580e0" datatype="html">
-        <source>Total Balance</source>
-        <target state="translated">Gesamtsaldo</target>
-      </trans-unit>
-      <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
-        <source>New User</source>
-        <target state="translated">Neuer Benutzer</target>
-      </trans-unit>
-      <trans-unit id="2aa7c4367baad2832cb32bc21ba3b01ef2f278b9" datatype="html">
-        <source>Edit User</source>
-        <target state="translated">Benutzer bearbeiten</target>
-      </trans-unit>
-      <trans-unit id="c3761924e6e6aa3efc8fcd52064efdc863c51624" datatype="html">
-        <source>Enter redeem campaign details</source>
-        <target state="translated">Geben Sie die Details zum Einlösen der Kampagne ein</target>
+      <trans-unit id="e527ace700a5dfcd97e170b854de7b539afacc0c" datatype="html">
+        <source>Please enter a valid email address</source>
+        <target state="translated">Bitte geben Sie eine gültige E-Mail-Adresse ein</target>
       </trans-unit>
     </body>
   </file>

@@ -981,14 +981,6 @@
         <source>Business Vertical</source>
         
       </trans-unit>
-      <trans-unit id="787119da3f7995e7d2d17231be68174522449a76" datatype="html">
-        <source>Partner&apos;s Login</source>
-        
-      </trans-unit>
-      <trans-unit id="eae81dbf41fc4bd96f2a93e9347d8304b28cf890" datatype="html">
-        <source>Partner&apos;s Password</source>
-        
-      </trans-unit>
       <trans-unit id="434c13681c4fcc6191cb057113b7087cb664a60f" datatype="html">
         <source>Locations</source>
         
