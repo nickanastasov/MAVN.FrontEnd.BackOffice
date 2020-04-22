@@ -1,0 +1,36 @@
+<div class="email-verification-container">
+  <div *ngIf="isLoading">
+    <div class="text-center">
+      <div class="spinner-border text-primary"></div>
+    </div>
+    <div class="text-center">
+      <span class="loading"
+            i18n>Verifying. Please wait...</span>
+    </div>
+  </div>
+
+  <span class="success"
+        *ngIf="isSuccess"
+        i18n>Your email is now verified.</span>
+
+  <span class="error"
+        *ngIf="isError">
+    <ng-container [ngSwitch]="errorCode">
+      <ng-container *ngSwitchCase="'EmailIsAlreadyVerified'">
+        <span i18n>Email has been already verified</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="'VerificationCodeDoesNotExist'">
+        <span i18n>Verification code does not exist</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="'VerificationCodeMismatch'">
+        <span i18n>Verification code mismatch</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="'VerificationCodeExpired'">
+        <span i18n>Verification code has expired</span>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <span i18n>Unknown error</span>
+      </ng-container>
+    </ng-container>
+  </span>
+</div>
