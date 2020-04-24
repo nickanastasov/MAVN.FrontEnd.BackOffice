@@ -53,11 +53,25 @@ $padding: 25px;
   }
 }
 
-.kt-aside--minimize .kt-aside__total_widget {
-  .total-supply-container {
-    display: none;
+.kt-aside .kt-aside-menu {
+  margin: 0;
+}
+
+.kt-aside-menu .kt-menu__nav {
+  padding: 0;
+}
+
+@media (min-width: 1025px) {
+  .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+    padding: 0;
   }
 }
+
+// .kt-aside--minimize .kt-aside__total_widget {
+//   .total-supply-container {
+//     display: none;
+//   }
+// }
 
 /*
 @media (min-width: 1025px) {

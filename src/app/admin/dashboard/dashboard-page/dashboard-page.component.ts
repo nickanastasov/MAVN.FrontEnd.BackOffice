@@ -12,6 +12,7 @@ import {ChartjsDonutChartConfiguration} from '../models/chartjs/chartjs-donut-ch
 import {ChartData} from 'chart.js';
 import * as Chart from 'chart.js';
 import {TopPartner} from '../models/top-partner.interface';
+import {StatisticsService} from 'src/app/shared/services/statistics.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -32,6 +33,8 @@ export class DashboardPageComponent implements OnInit {
   // #region new charts
   isFirstLoading = true;
   totalNewCustomers: number;
+  totalVouchers: string | number;
+  isLoadingTotalVouchers = true;
   totalActiveCustomers: number;
   totalActiveCustomersPercentage: number;
   repeatedCustomers: number;
@@ -119,7 +122,12 @@ export class DashboardPageComponent implements OnInit {
     chartPeriodSemester: '',
   };
 
-  constructor(private chartPeriodService: ChartPeriodService, private headerMenuService: HeaderMenuService) {}
+  constructor(
+    // services
+    private chartPeriodService: ChartPeriodService,
+    private headerMenuService: HeaderMenuService,
+    private statisticService: StatisticsService
+  ) {}
   ngOnInit() {
     this.filtersList = this.chartPeriodService.getChartPeriodsWithNames();
     this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
@@ -150,6 +158,11 @@ export class DashboardPageComponent implements OnInit {
       new ChartjsDonutChartConfiguration(),
       this.activeCustomersDonutChartConfiguration
     );
+
+    this.statisticService.getTotalVoucherCampaignsSupply().subscribe((response) => {
+      this.totalVouchers = response.ActiveCampaignsVouchersTotalCount;
+      this.isLoadingTotalVouchers = false;
+    });
   }
 
   handleTotalCustomersCount(value: CustomersCount) {

@@ -5,7 +5,6 @@ import {SettingsService} from 'src/app/core/settings/settings.service';
 import {BusinessVerticalService} from '../../partners/services/business-vertical.service';
 import {BusinessVerticalType} from '../../partners/models/business-vertical.enum';
 import {User} from '../../user/models/user.interface';
-import {StatisticsService} from 'src/app/shared/services/statistics.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
 
@@ -15,7 +14,7 @@ declare var KTLayout: any;
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit {
   //#region Permissions
@@ -38,8 +37,6 @@ export class AdminLayoutComponent implements OnInit {
   user: User;
   userInitials: string;
   tokenSymbol = TOKEN_SYMBOL;
-  totalTokenSupply: string | number;
-  isLoading = true;
 
   //#region global translates
   @ViewChild('closeSnackbarBtnTextElement', {static: true})
@@ -82,8 +79,7 @@ export class AdminLayoutComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
     private businessVerticalService: BusinessVerticalService,
-    private translateService: TranslateService,
-    private statisticService: StatisticsService
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -154,11 +150,6 @@ export class AdminLayoutComponent implements OnInit {
 
     //#endregion
 
-    this.statisticService.getTotalVoucherCampaignsSupply().subscribe(response => {
-      this.totalTokenSupply = response.ActiveCampaignsVouchersTotalCount;
-      this.isLoading = false;
-    });
-
     const KTAppOptions = {
       colors: {
         state: {
@@ -171,13 +162,13 @@ export class AdminLayoutComponent implements OnInit {
           info: '#36a3f7',
           warning: '#ffb822',
           danger: '#fd3995',
-          focus: '#9816f4'
+          focus: '#9816f4',
         },
         base: {
           label: ['#c5cbe3', '#a1a8c3', '#3d4465', '#3e4466'],
-          shape: ['#f0f3ff', '#d9dffa', '#afb4d4', '#646c9a']
-        }
-      }
+          shape: ['#f0f3ff', '#d9dffa', '#afb4d4', '#646c9a'],
+        },
+      },
     };
 
     (KTLayout as any).init();
@@ -204,7 +195,7 @@ export class AdminLayoutComponent implements OnInit {
     // business vertical
     const businessVerticalItems = this.businessVerticalService.getBusinessVerticalItems();
 
-    businessVerticalItems.forEach(x => {
+    businessVerticalItems.forEach((x) => {
       switch (x.Type) {
         case BusinessVerticalType.Hospitality:
           x.DisplayName = this.BusinessVerticalTypeHospitality.nativeElement.innerText;

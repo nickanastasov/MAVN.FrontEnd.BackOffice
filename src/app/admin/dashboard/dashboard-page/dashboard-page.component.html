@@ -11,8 +11,7 @@
            id="kt_subheader_search">
         <div class="kt-subheader__desc"
              *ngIf="currentFilter !== 'Custom'"
-             id="kt_subheader_filter"
-             >
+             id="kt_subheader_filter">
 
           <button *ngFor="let filterItem of filtersList"
                   type="button"
@@ -85,19 +84,41 @@
 
   <div class="kt-portlet">
     <div class="row row-no-padding">
-      <div class="col-md-12 col-lg-12">
+      <div class="col-md-12 col-lg-6">
         <div class="kt-pricing-v1">
           <div class="kt-pricing-v1__header">
             <div class="kt-iconbox kt-iconbox--no-hover">
               <div class="kt-iconbox__icon">
                 <div class="kt-iconbox__icon-bg"
                      style="background-image: url(assets/media/misc/iconbox_bg.png)"></div>
-                <!-- <i class="flaticon-rocket"></i> -->
+                <i class="flaticon-rocket"></i>
+              </div>
+              <div class="kt-iconbox__title"
+                   i18n>Total Vouchers</div>
+            </div>
+          </div>
+          <div class="kt-pricing-v1__body">
+            <div class="kt-pricing-v1__price">
+              <div class="spinner-container"
+                   *ngIf="isLoadingTotalVouchers">
+                <div class="spinner-border"></div>
+              </div>
+              <span [hidden]="isLoadingTotalVouchers">{{ totalVouchers | number }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <div class="kt-pricing-v1">
+          <div class="kt-pricing-v1__header">
+            <div class="kt-iconbox kt-iconbox--no-hover">
+              <div class="kt-iconbox__icon">
+                <div class="kt-iconbox__icon-bg"
+                     style="background-image: url(assets/media/misc/iconbox_bg.png)"></div>
                 <img src="assets/images/icons/icon-customer.svg" />
               </div>
-              <div class="kt-iconbox__title" i18n>
-                Total Customers
-              </div>
+              <div class="kt-iconbox__title"
+                   i18n>Total Customers</div>
             </div>
           </div>
           <div class="kt-pricing-v1__body">
@@ -250,14 +271,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="active-and-repeat-customers__header" i18n>
+                <div class="active-and-repeat-customers__header"
+                     i18n>
                   Active Customers Share
                 </div>
-                <div class="active-and-repeat-customers__text" i18n>
+                <div class="active-and-repeat-customers__text"
+                     i18n>
                   Customers who earned or redeemed points during the period
                 </div>
                 <div class="active-and-repeat-customers__total">
-                  <div class="active-and-repeat-customers__total-header" i18n>
+                  <div class="active-and-repeat-customers__total-header"
+                       i18n>
                     Total Active Customers
                   </div>
                   <div class="active-and-repeat-customers__total-number">
@@ -277,14 +301,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="active-and-repeat-customers__header" i18n>
+                <div class="active-and-repeat-customers__header"
+                     i18n>
                   Repeat Customers Share
                 </div>
-                <div class="active-and-repeat-customers__text" i18n>
+                <div class="active-and-repeat-customers__text"
+                     i18n>
                   Customers who made repeat earnings or redemption during the period
                 </div>
                 <div class="active-and-repeat-customers__total">
-                  <div class="active-and-repeat-customers__total-header" i18n>
+                  <div class="active-and-repeat-customers__total-header"
+                       i18n>
                     Total Repeat Customers
                   </div>
                   <div class="active-and-repeat-customers__total-number">
@@ -355,7 +382,8 @@
   <div class="kt-portlet">
     <div class="kt-portlet__head">
       <div class="kt-portlet__head-label">
-        <h3 class="kt-portlet__head-title"><span i18n>Smart Points</span> <span class="kt-portlet__head-title-number">{{ totalNumbers.Tokens | number }}</span>
+        <h3 class="kt-portlet__head-title"><span i18n>Smart Points</span> <span
+                class="kt-portlet__head-title-number">{{ totalNumbers.Tokens | number }}</span>
         </h3>
       </div>
     </div>
