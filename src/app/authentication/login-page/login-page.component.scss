@@ -40,11 +40,12 @@ $login-font-size: 16px;
 
     .logo-container {
       @include login-container-items;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
 
-      .token-company-logo {
+      .company-logo {
+        border-radius: 15px;
+        max-height: 60px;
         max-width: 100%;
-        max-height: 40px;
       }
     }
 

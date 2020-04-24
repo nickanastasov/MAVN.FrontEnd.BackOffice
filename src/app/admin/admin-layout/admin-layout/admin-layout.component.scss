@@ -56,17 +56,11 @@ $badge-size-profile: 50px;
 
 .logo-anchor {
   display: flex;
+  margin-right: 15px;
 
   > .logo-image {
-    width: 22px;
-  }
-
-  > .logo-text {
-    color: $kt-brand-color;
-    font-family: Roboto, Arial;
-    font-size: 32px;
-    font-weight: bold;
-    margin-left: 12px;
+    border-radius: 10px;
+    width: 100%;
   }
 }
 
