@@ -9,7 +9,7 @@ import {
   LS_KEY_USER_EMAIL,
   LS_KEY_USER_REGISTERED_DATE,
   LS_KEY_USER_ID,
-  LS_KEY_USER_PERMISSIONS
+  LS_KEY_USER_PERMISSIONS,
 } from '../core/constants/local-storage-keys';
 import {Location} from '@angular/common';
 import {ROUTE_FOR_AUTHENTICATION} from '../core/constants/routes';
@@ -21,7 +21,7 @@ import {PermissionType} from '../admin/user/models/permission-type.enum';
 import {PermissionLevel} from '../admin/user/models/permission-level.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
   isChangingLanguage: boolean;
@@ -39,7 +39,7 @@ export class AuthenticationService {
       FirstName: localStorage.getItem(LS_KEY_USER_FIRST_NAME),
       LastName: localStorage.getItem(LS_KEY_USER_LAST_NAME),
       Email: localStorage.getItem(LS_KEY_USER_EMAIL),
-      Registered: new Date(localStorage.getItem(LS_KEY_USER_REGISTERED_DATE))
+      Registered: new Date(localStorage.getItem(LS_KEY_USER_REGISTERED_DATE)),
     });
 
     return user;
@@ -47,7 +47,7 @@ export class AuthenticationService {
 
   getUserPermissions(): {[key: string]: PermissionRight} {
     if (!this._isInitializedUserPermissions) {
-      var value = localStorage.getItem(LS_KEY_USER_PERMISSIONS);
+      const value = localStorage.getItem(LS_KEY_USER_PERMISSIONS);
       const adminPermissions = value && (JSON.parse(value) as AdminPermission[]);
       const permissions = this.getEmptyPermissions();
       this.fillPermissions(permissions, adminPermissions);
@@ -63,11 +63,12 @@ export class AuthenticationService {
       [PermissionType.Dashboard]: new PermissionRight({IsOnlyView: true}),
       [PermissionType.Customers]: new PermissionRight(),
       [PermissionType.ActionRules]: new PermissionRight(),
+      [PermissionType.VoucherManager]: new PermissionRight(),
       [PermissionType.BlockchainOperations]: new PermissionRight({IsOnlyView: true}),
       [PermissionType.Reports]: new PermissionRight({IsOnlyView: true}),
       [PermissionType.ProgramPartners]: new PermissionRight(),
       [PermissionType.Settings]: new PermissionRight(),
-      [PermissionType.AdminUsers]: new PermissionRight()
+      [PermissionType.AdminUsers]: new PermissionRight(),
     };
 
     return permissions;
@@ -75,14 +76,14 @@ export class AuthenticationService {
 
   fillPermissions(permissions: {[key: string]: PermissionRight}, adminPermissions: AdminPermission[]) {
     if (permissions && adminPermissions) {
-      adminPermissions.forEach(adminPermission => {
+      adminPermissions.forEach((adminPermission) => {
         const permission = permissions[adminPermission.Type];
 
         if (permission) {
-          if (adminPermission.Level == PermissionLevel.Edit) {
+          if (adminPermission.Level === PermissionLevel.Edit) {
             permission.View = true;
             permission.Edit = permission.IsOnlyView ? false : true;
-          } else if (adminPermission.Level == PermissionLevel.View) {
+          } else if (adminPermission.Level === PermissionLevel.View) {
             permission.View = true;
           }
         }
@@ -123,7 +124,7 @@ export class AuthenticationService {
       () => {
         console.warn('logged out');
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -156,7 +157,7 @@ export class AuthenticationService {
       () => {
         console.warn('logout declined');
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -165,7 +166,7 @@ export class AuthenticationService {
   changePassword(currentPassword: string, newPassword: string) {
     return this.apiHttp.post('/api/auth/changePassword', {
       CurrentPassword: currentPassword,
-      NewPassword: newPassword
+      NewPassword: newPassword,
     });
   }
 

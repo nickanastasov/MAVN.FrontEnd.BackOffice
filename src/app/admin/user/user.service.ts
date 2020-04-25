@@ -4,7 +4,9 @@ import {AdminListResponse} from './models/admin-list-response.interface';
 import {User} from './models/user.interface';
 import {toParamsString} from 'src/app/shared/utils/common';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
   apiPath = '/api/admins';
 
@@ -16,7 +18,7 @@ export class UserService {
       pageSize: pageSize,
       currentPage: currentPage,
       searchValue: searchValue,
-      active: active
+      active: active,
     });
   }
 
@@ -36,6 +38,10 @@ export class UserService {
 
   create(userData: User) {
     return this.apiHttp.post<User>(this.apiPath, {...userData});
+  }
+
+  register(model: any) {
+    return this.apiHttp.post<User>(this.apiPath + '/register', {...model}, {headers: this.apiHttp.headersWithNoAuthorization()});
   }
 
   update(userData: User) {

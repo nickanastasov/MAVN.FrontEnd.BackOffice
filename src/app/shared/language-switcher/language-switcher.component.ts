@@ -1,23 +1,23 @@
 import {Component, OnInit, LOCALE_ID, Inject, ViewEncapsulation} from '@angular/core';
 
-import {LOCALES} from 'src/app/core/constants/const';
+import {LANGUAGES} from 'src/app/core/constants/const';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-language-switcher',
   templateUrl: './language-switcher.component.html',
   styleUrls: ['./language-switcher.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LanguageSwitcherComponent implements OnInit {
-  LOCALES = LOCALES;
+  LOCALES = LANGUAGES;
   currentLocale = '';
 
   constructor(private authenticationService: AuthenticationService, @Inject(LOCALE_ID) private locale: string) {
-    if (this.locale.startsWith(LOCALES.English)) {
-      this.currentLocale = LOCALES.English;
-    } else if (this.locale.startsWith(LOCALES.German)) {
-      this.currentLocale = LOCALES.German;
+    if (this.locale.startsWith(LANGUAGES.English)) {
+      this.currentLocale = LANGUAGES.English;
+    } else if (this.locale.startsWith(LANGUAGES.German)) {
+      this.currentLocale = LANGUAGES.German;
     }
   }
 

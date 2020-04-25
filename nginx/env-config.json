@@ -1,7 +1,7 @@
 {
   "BackofficePlatform": {
     "AdminApiGatewayUrl": "https://admin-api.mavn.ch",
-    "AdminApiGatewayUrl_localhost_url_example": "http://localhost:64538",
+    "AdminApiGatewayUrl_": "http://localhost:64538",
     "AdminApiGatewayUrl_vpn_url_example": "http://admin-api.services.svc.cluster.local",
     "HelpDocumentUrl": "https://github.com/OpenMAVN/Welcome/wiki/Environments",
     "BaseCurrencyCode": "CHF",

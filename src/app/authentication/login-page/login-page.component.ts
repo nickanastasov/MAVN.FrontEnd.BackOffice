@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, OnDestroy, LOCALE_ID, Inject} from '@angular/core';
 import {FormBuilder, Validators, FormGroup, ValidationErrors} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {AuthTokenService} from 'ngx-api-utils';
@@ -10,33 +10,39 @@ import {SettingsService} from 'src/app/core/settings/settings.service';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {PasswordValidationRules} from 'src/app/shared/models/password-validation.interface';
 import {Subscription} from 'rxjs';
+import {UserService} from 'src/app/admin/user/user.service';
+import {AdminRegisterRequest} from 'src/app/admin/user/models/admin-register-request.interface';
+import {LANGUAGES} from 'src/app/core/constants/const';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   loading = false;
+  isLoadingRegistration = false;
+  isSuccessfulRegistration = false;
+  registeredEmail = '';
   revealPasswordField = true;
   revealRepeatPasswordField = true;
   loginErrorMessage: string;
   loginFormProps = {
     Email: 'Email',
-    Password: 'Password'
+    Password: 'Password',
   };
-  registerErrorMessage: string;
+  registrationErrorMessage: string;
   registerFormActive = false;
   loginForm = this.fb.group({
     [this.loginFormProps.Email]: ['', [Validators.required, EmailValidator]],
-    [this.loginFormProps.Password]: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+    [this.loginFormProps.Password]: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]],
   });
   registerFormProps = {
     CompanyName: 'CompanyName',
     Email: 'Email',
     Password: 'Password',
-    RepeatPassword: 'RepeatPassword'
+    RepeatPassword: 'RepeatPassword',
   };
   rules: PasswordValidationRules;
   invalidPasswordRules: ValidationErrors = {};
@@ -49,8 +55,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private authTokenService: AuthTokenService,
     private authService: AuthenticationService,
     private fb: FormBuilder,
+    @Inject(LOCALE_ID) private locale: string,
     private settingsService: SettingsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private userService: UserService
   ) {
     this.loginForm.get(this.loginFormProps.Email).setValue(this.settingsService.DemoUserLogin);
     this.loginForm.get(this.loginFormProps.Password).setValue(this.settingsService.DemoUserPassword);
@@ -68,8 +76,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               // validators
               Validators.required,
               LengthValidator(this.rules.MinLength, this.rules.MaxLength),
-              PasswordValidator(this.rules)
-            ]
+              PasswordValidator(this.rules),
+            ],
           ],
           [this.registerFormProps.RepeatPassword]: [
             null,
@@ -77,12 +85,12 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               // validators
               Validators.required,
               LengthValidator(this.rules.MinLength, this.rules.MaxLength),
-              PasswordValidator(this.rules)
-            ]
-          ]
+              PasswordValidator(this.rules),
+            ],
+          ],
         },
         {
-          validator: [PasswordEqualledValidator]
+          validator: [PasswordEqualledValidator],
         }
       );
     }
@@ -131,7 +139,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.authService.login(this.loginForm.value).subscribe(
-      response => {
+      (response) => {
         this.authService.setUserData(response.AdminUser);
         this.authTokenService.value$.next(response.Token);
         this.authService.setCookieToken(response.Token);
@@ -175,7 +183,37 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.registerErrorMessage = '';
-    this.loading = true;
+    this.registrationErrorMessage = '';
+    this.isLoadingRegistration = true;
+
+    const model = this.registerForm.value as AdminRegisterRequest;
+
+    // set localization
+    if (this.locale.startsWith(LANGUAGES.English)) {
+      model.Localization = LANGUAGES.English;
+    } else if (this.locale.startsWith(LANGUAGES.German)) {
+      model.Localization = LANGUAGES.German;
+    }
+
+    this.userService.register(model).subscribe(
+      (_) => {
+        this.isSuccessfulRegistration = true;
+        this.registeredEmail = model.Email;
+        this.isLoadingRegistration = false;
+      },
+      (errorResponse) => {
+        const {error} = errorResponse;
+
+        if (error) {
+          this.registrationErrorMessage = error.error ? error.error + ': ' : '' + error.message ?? error.ErrorMessage;
+        } else {
+          this.registrationErrorMessage = this.translateService.globalTranslates.ErrorMessage;
+        }
+
+        console.error(errorResponse);
+
+        this.isLoadingRegistration = false;
+      }
+    );
   }
 }

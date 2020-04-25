@@ -103,17 +103,36 @@
 
       <div class="form-holder form-holder--registration"
            *ngIf="registerFormActive">
+        <div style="margin: 0 -30px"
+             [hidden]="isSuccessfulRegistration">
+          <div class="alert alert-solid-success alert-bold">
+            <div class="alert-icon"><i class="flaticon-user-ok"></i></div>
+            <div class="alert-text kt-font-bold">
+              <h4 class="alert-heading"
+                  i18n>Thank you for registration.</h4>
+              <hr>
+              <p>
+                <span i18n>We have sent a verification email to:</span>
+                <br>
+                <b>{{registeredEmail}}</b>
+              </p>
+              <p i18n>Please check your email inbox and click on the verification link to continue.</p>
+            </div>
+          </div>
+        </div>
+
         <form [formGroup]="registerForm"
-              (ngSubmit)="onRegisterSubmit()">
+              (ngSubmit)="onRegisterSubmit()"
+              *ngIf="!isSuccessfulRegistration">
           <mat-card-content>
-            <div class="width-100 form-item form-item--registration">
+            <!-- <div class="width-100 form-item form-item--registration">
               <div class="alert alert-outline-danger fade show"
                    role="alert">
                 <div class="alert-icon"><i class="flaticon-warning"></i></div>
                 <div class="alert-text kt-font-bolder"
                      i18n>Coming soon!</div>
               </div>
-            </div>
+            </div> -->
             <mat-form-field class="width-100 form-item form-item--registration">
               <mat-label i18n>Company Name</mat-label>
               <input matInput
@@ -223,19 +242,18 @@
 
             <button type="submit"
                     class="btn btn-brand btn-bold"
-                    [disabled]="loading || true">
-              <span [hidden]="loading || true"
+                    [disabled]="isLoadingRegistration">
+              <span [hidden]="isLoadingRegistration"
                     i18n>Register</span>&nbsp;
-              <span i18n>Coming soon!</span>
-              <div *ngIf="loading"
-                   class="spinner-with-text justify-content-center">
+              <div [hidden]="!isLoadingRegistration"
+                   style="display: inline;">
                 <span class="spinner-border"></span>
               </div>
             </button>
           </mat-card-actions>
 
-          <div *ngIf="registerForm.errors?.invalidLogin || !!registerErrorMessage"
-               class="mat-error server-error">{{registerErrorMessage}}</div>
+          <div *ngIf="!!registrationErrorMessage"
+               class="mat-error server-error">{{registrationErrorMessage}}</div>
 
         </form>
       </div>
