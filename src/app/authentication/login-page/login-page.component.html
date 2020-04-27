@@ -104,7 +104,7 @@
       <div class="form-holder form-holder--registration"
            *ngIf="registerFormActive">
         <div style="margin: 0 -30px"
-             [hidden]="isSuccessfulRegistration">
+             [hidden]="!isSuccessfulRegistration">
           <div class="alert alert-solid-success alert-bold">
             <div class="alert-icon"><i class="flaticon-user-ok"></i></div>
             <div class="alert-text kt-font-bold">
