@@ -62,7 +62,7 @@ export class SmartVoucherListPageComponent implements OnInit {
     private headerMenuService: HeaderMenuService
   ) {
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ActionRules].Edit;
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit;
   }
 
   ngOnInit() {
@@ -132,8 +132,8 @@ export class SmartVoucherListPageComponent implements OnInit {
   deleteCampaign(campaign: SmartVoucherCampaignRow) {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        Message: this.translates.deletePrompt.replace('$name', campaign.Name)
-      } as ConfirmationDialogData
+        Message: this.translates.deletePrompt.replace('$name', campaign.Name),
+      } as ConfirmationDialogData,
     });
 
     dialog.afterClosed().subscribe((result) => {
@@ -144,7 +144,7 @@ export class SmartVoucherListPageComponent implements OnInit {
           () => {
             this.getData(this.pageSize, this.currentPage + 1, this.searchTitleValue);
             this.snackBar.open(this.translates.deletedMessage, this.translateService.translates.CloseSnackbarBtnText, {
-              duration: 5000
+              duration: 5000,
             });
           },
           () => {

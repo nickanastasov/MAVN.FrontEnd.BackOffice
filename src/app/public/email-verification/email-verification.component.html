@@ -9,9 +9,16 @@
     </div>
   </div>
 
-  <span class="success"
-        *ngIf="isSuccess"
-        i18n>Your email is now verified.</span>
+  <div class="success"
+       *ngIf="isSuccess || true">
+    <p i18n>Your email is now verified.</p>
+    <div>
+      <a class="btn btn-brand btn-bold"
+         href="{{loginPath}}">
+        <span i18n>Go to login</span>&nbsp;
+      </a>
+    </div>
+  </div>
 
   <span class="error"
         *ngIf="isError">

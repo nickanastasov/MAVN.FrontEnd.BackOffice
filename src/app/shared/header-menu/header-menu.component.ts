@@ -1,18 +1,18 @@
 import {Component, OnInit, OnDestroy, ViewChild, ElementRef, ViewContainerRef, ViewEncapsulation, Inject, LOCALE_ID} from '@angular/core';
 import {HeaderMenuService} from '../services/header-menu.service';
 import {Subscription} from 'rxjs';
-import {LOCALES} from 'src/app/core/constants/const';
+import {LANGUAGES} from 'src/app/core/constants/const';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-header-menu',
   templateUrl: './header-menu.component.html',
   styleUrls: ['./header-menu.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderMenuComponent implements OnInit, OnDestroy {
   headerTitle: string = '';
-  LOCALES = LOCALES;
+  LOCALES = LANGUAGES;
   currentLocale = '';
 
   @ViewChild('headerWrapper', {static: true}) private headerWrapperRef: ElementRef<HTMLElement>;
@@ -26,10 +26,10 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
     private headerMenuService: HeaderMenuService,
     @Inject(LOCALE_ID) private locale: string
   ) {
-    if (this.locale.startsWith(LOCALES.English)) {
-      this.currentLocale = LOCALES.English;
-    } else if (this.locale.startsWith(LOCALES.German)) {
-      this.currentLocale = LOCALES.German;
+    if (this.locale.startsWith(LANGUAGES.English)) {
+      this.currentLocale = LANGUAGES.English;
+    } else if (this.locale.startsWith(LANGUAGES.German)) {
+      this.currentLocale = LANGUAGES.German;
     }
   }
 

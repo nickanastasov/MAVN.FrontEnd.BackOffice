@@ -12,7 +12,7 @@ export const TOKENS_INPUT_ACCURACY = 18;
 export const TOKENS_INPUT_MAX_NUMBER = 2147483647;
 export const BRAND_COLOR = '#4e3a96';
 export const BRAND_SECOND_CHART_COLOR = '#9883e64d';
-export const LOCALES = {
+export const LANGUAGES = {
   English: 'en',
-  German: 'de'
+  German: 'de',
 };

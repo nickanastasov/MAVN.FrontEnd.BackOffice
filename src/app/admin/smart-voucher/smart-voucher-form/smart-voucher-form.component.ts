@@ -142,7 +142,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar
   ) {
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ActionRules].Edit;
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit;
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
     this.MobileAppImageFileSizeInKB = this.settingsService.MobileAppImageFileSizeInKB;

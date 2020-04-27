@@ -22,6 +22,7 @@ export class AdminLayoutComponent implements OnInit {
   showDashboard = false;
   showCustomers = false;
   showActionRules = false;
+  showVoucherManager = false;
   showBlockchainOperations = false;
   showReports = false;
   showProgramPartners = false;
@@ -108,6 +109,11 @@ export class AdminLayoutComponent implements OnInit {
           case PermissionType.ActionRules:
             if (permission.View) {
               this.showActionRules = true;
+            }
+            break;
+          case PermissionType.VoucherManager:
+            if (permission.View) {
+              this.showVoucherManager = true;
             }
             break;
           case PermissionType.BlockchainOperations:
