@@ -82,7 +82,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   baseCurrencyCode: string;
 
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
-
+  paymentProviders = ['Payrexx', 'Paypal'];
   // #region translates
 
   @ViewChild('editChangeClientLoginMessageTemplate', {static: true})
@@ -100,6 +100,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     BusinessVertical: 'BusinessVertical',
     Description: 'Description',
     Locations: 'Locations',
+    PaymentIntegrations: 'PaymentIntegrations',
     AmountInTokens: 'AmountInTokens',
     AmountInCurrency: 'AmountInCurrency',
     UseGlobalCurrencyRate: 'UseGlobalCurrencyRate',
@@ -110,6 +111,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     [this.partnerFormProps.BusinessVertical]: [null, [Validators.required]],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
+    [this.partnerFormProps.PaymentIntegrations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
       null,
       [
@@ -148,6 +150,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     if (this.partner) {
       this.partner.Locations.forEach(() => {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
+        this.paymentIntegratonsFormArray.push(this.generatePaymentIntegrationsFormGroup());
       });
 
       this.partnerForm.reset(this.partner);
@@ -172,6 +175,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ];
 
     this.previousPage = window.history.state.page;
+    // this.generatePaymentIntegrationsFormGroup();
   }
 
   ngOnDestroy() {
@@ -248,6 +252,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     return this.partnerForm.get('Locations') as FormArray;
   }
 
+  get paymentIntegratonsFormArray() {
+    return this.partnerForm.get('PaymentIntegrations') as FormArray;
+  }
   onAddLocation() {
     markFormControlAsTouched(this.locationsFormArray);
 
@@ -259,6 +266,14 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.updateValuesForHiddenLocationFields();
   }
 
+  generatePaymentIntegrationsFormGroup() {
+    return this.fb.group({
+      Id: [null],
+      InstanceName: [null, [Validators.required, LengthValidator(3, 100)]],
+      PaymentProviders: [null, [Validators.required]],
+      ApiKey: [null, [Validators.required]],
+    });
+  }
   onRemoveLocation(locationIndex: number) {
     this.locationsFormArray.removeAt(locationIndex);
   }
