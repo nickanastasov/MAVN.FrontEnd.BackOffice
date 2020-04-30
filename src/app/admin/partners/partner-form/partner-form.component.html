@@ -271,7 +271,7 @@
     <mat-card-content formArrayName="PaymentIntegrations"
                       id="payment-integrations">
       <div [formGroup]="location"
-           *ngFor="let location of locationsFormArray.controls; let index = index;">
+           *ngFor="let location of paymentIntegrationsFormArray.controls; let index = index;">
 
         <mat-grid-list *ngIf="index > 0"
                        cols="5"
@@ -280,6 +280,22 @@
         </mat-grid-list>
 
         <div class="row">
+          <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Payment Providers</mat-label>
+              <mat-select controlName="PaymentProviders"
+                          [(value)]="paymentProvider"
+                          placeholder="Payment Providers"
+                          i18n-placeholder
+                          required>
+                <mat-option [value]="paymentProvider">{{paymentProvider}}</mat-option>
+              </mat-select>
+              <mat-error>
+                <app-error-message controlName="PaymentProviders"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
           <div class="col-xl-3 col-lg-4 col-md-6">
             <mat-form-field appearance="outline"
                             class="width-100">
@@ -289,27 +305,11 @@
                      controlName="InstanceName"
                      required>
               <mat-error>
-                <app-error-message controlName="Name"></app-error-message>
-                <app-error-message controlName="Name"
+                <app-error-message controlName="InstanceName"></app-error-message>
+                <app-error-message controlName="InstanceName"
                                    key="length"
                                    [template]="templates.lengthError"
                                    [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-xl-3 col-lg-6 col-md-6">
-            <mat-form-field appearance="outline"
-                            class="width-100">
-              <mat-label i18n>Payment Providers</mat-label>
-              <mat-select formControlName="BusinessVertical"
-                          placeholder="Payment Providers"
-                          i18n-placeholder
-                          required>
-                <mat-option *ngFor="let paymentProvider of paymentProviders"
-                            [value]="paymentProvider">{{paymentProvider}}</mat-option>
-              </mat-select>
-              <mat-error>
-                <app-error-message controlName="BusinessVertical"></app-error-message>
               </mat-error>
             </mat-form-field>
           </div>
@@ -318,8 +318,8 @@
                             class="width-100">
               <mat-label i18n>Api key</mat-label>
               <input matInput
-                     id="address"
-                     formControlName="Address"
+                     id="api-key"
+                     formControlName="ApiKey"
                      required>
               <mat-error>
                 <app-error-message controlName="Address"></app-error-message>

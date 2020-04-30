@@ -82,7 +82,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   baseCurrencyCode: string;
 
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
-  paymentProviders = ['Payrexx', 'Paypal'];
+  paymentProvider = 'Payrexx';
   // #region translates
 
   @ViewChild('editChangeClientLoginMessageTemplate', {static: true})
@@ -150,7 +150,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     if (this.partner) {
       this.partner.Locations.forEach(() => {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
-        this.paymentIntegratonsFormArray.push(this.generatePaymentIntegrationsFormGroup());
+        this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
       });
 
       this.partnerForm.reset(this.partner);
@@ -161,6 +161,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     } else {
       this.disableRateFields(true);
       this.locationsFormArray.push(this.generateLocationsFormGroup());
+      this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
       this.updateValuesForHiddenLocationFields();
     }
 
@@ -175,7 +176,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ];
 
     this.previousPage = window.history.state.page;
-    // this.generatePaymentIntegrationsFormGroup();
+    this.generatePaymentIntegrationsFormGroup();
+    console.log(this.paymentIntegrationsFormArray.controls, this.locationsFormArray.controls);
   }
 
   ngOnDestroy() {
@@ -252,7 +254,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     return this.partnerForm.get('Locations') as FormArray;
   }
 
-  get paymentIntegratonsFormArray() {
+  get paymentIntegrationsFormArray() {
     return this.partnerForm.get('PaymentIntegrations') as FormArray;
   }
   onAddLocation() {
