@@ -1,4 +1,5 @@
 export enum PermissionLevel {
   View = 'View',
-  Edit = 'Edit'
+  Edit = 'Edit',
+  PartnerEdit = 'PartnerEdit',
 }

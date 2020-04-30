@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef, ElementRef} from '@angular/core';
 import {PartnersService} from '../partners.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
@@ -20,7 +20,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 @Component({
   selector: 'app-partners-list',
   templateUrl: './partners-list.component.html',
-  styleUrls: ['./partners-list.component.scss']
+  styleUrls: ['./partners-list.component.scss'],
 })
 export class PartnersListComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
@@ -35,11 +35,21 @@ export class PartnersListComponent implements OnInit {
   isVisibleSearchName: boolean;
   currentPage = 0;
   initialPageSize: number;
-  private pageSize: number;
+  pageSize: number;
   private getDataSubscription: Subscription;
   private globalRate: GlobalRate;
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
+  isPartnerAdmin = false;
   hasEditPermission = false;
+
+  // Translates
+  @ViewChild('headerTitle', {static: true})
+  headerTitle: ElementRef<HTMLElement>;
+  @ViewChild('headerTitleForPartner', {static: true})
+  headerTitleForPartner: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: '',
+  };
 
   constructor(
     // services
@@ -55,9 +65,10 @@ export class PartnersListComponent implements OnInit {
   ) {
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
     this.businessVerticalTypes = this.businessVerticalService.getBusinessVerticalItems();
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit || this.isPartnerAdmin;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -72,9 +83,13 @@ export class PartnersListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.headerTitle = this.isPartnerAdmin
+      ? this.headerTitle.nativeElement.innerText
+      : this.headerTitleForPartner.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Partners',
-      subHeaderContent: this.subHeaderTemplate
+      title: this.translates.headerTitle,
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
@@ -94,14 +109,14 @@ export class PartnersListComponent implements OnInit {
 
   private loadRate(callback: Function): void {
     this.globalSettingsService.getGlobalRate().subscribe(
-      response => {
+      (response) => {
         this.globalRate = response;
 
         if (callback) {
           callback();
         }
       },
-      error => {
+      (error) => {
         console.error(error);
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
       }
@@ -114,9 +129,9 @@ export class PartnersListComponent implements OnInit {
     }
 
     this.getDataSubscription = this.partnersService.getAll(pageSize, currentPage, name).subscribe(
-      response => {
+      (response) => {
         // handle global rate
-        response.Partners.forEach(x => {
+        response.Partners.forEach((x) => {
           if (x.UseGlobalCurrencyRate && this.globalRate) {
             x.AmountInTokens = this.globalRate.AmountInTokens;
             x.AmountInCurrency = this.globalRate.AmountInCurrency;

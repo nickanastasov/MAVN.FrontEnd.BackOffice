@@ -87,7 +87,7 @@
     <div class="col-xl-5 col-lg-5">
       <label for="company"
              i18n>Company</label>
-      <mat-form-field appearance="outline"
+      <!-- <mat-form-field appearance="outline"
                       class="width-100">
         <mat-select id="company"
                     formControlName="Company"
@@ -98,13 +98,27 @@
         <mat-error>
           <app-error-message controlName="Company"></app-error-message>
         </mat-error>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="company"
+               matInput
+               formControlName="Company"
+               required>
+        <mat-error>
+          <app-error-message controlName="Company"></app-error-message>
+          <app-error-message controlName="Company"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 50}}"></app-error-message>
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="col-xl-5 col-lg-5 offset-2">
       <label for="department"
              i18n>Department</label>
-      <mat-form-field appearance="outline"
+      <!-- <mat-form-field appearance="outline"
                       class="width-100">
         <mat-select id="department"
                     formControlName="Department"
@@ -114,6 +128,20 @@
         </mat-select>
         <mat-error>
           <app-error-message controlName="Department"></app-error-message>
+        </mat-error>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline"
+                      class="width-100">
+        <input id="department"
+               matInput
+               formControlName="Department"
+               required>
+        <mat-error>
+          <app-error-message controlName="Department"></app-error-message>
+          <app-error-message controlName="Department"
+                             key="length"
+                             [template]="templates.lengthError"
+                             [templateContext]="{$implicit: {min: 1, max: 25}}"></app-error-message>
         </mat-error>
       </mat-form-field>
     </div>
@@ -138,7 +166,8 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="col-xl-5 col-lg-5 offset-2">
+    <div class="col-xl-5 col-lg-5 offset-2"
+         [hidden]="isPartnerAdmin">
       <label for="isActive"
              i18n>Status</label>
       <div class="d-flex align-content-center"
@@ -182,7 +211,8 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row"
+       [hidden]="isPartnerAdmin">
     <div class="col-md-12">
       <table id="permissions-table"
              class="table table-hover">
@@ -277,6 +307,7 @@
             routerLink="/admin/platform/users"
             [queryParams]="{ page: previousPage, pageSize: previousPageSize }"
             [disabled]="isSaving"
+            [hidden]="isPartnerAdmin"
             i18n>Cancel</button>
 
     <button type="submit"

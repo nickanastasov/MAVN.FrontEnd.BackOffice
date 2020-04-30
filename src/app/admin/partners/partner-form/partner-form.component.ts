@@ -62,6 +62,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   private get currencyControl() {
     return this.partnerForm.get(this.partnerFormProps.AmountInCurrency);
   }
+  isPartnerAdmin = false;
   hasEditPermission = false;
 
   constructor(
@@ -75,7 +76,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   ) {
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsSetvice.baseCurrencyCode;
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit || this.isPartnerAdmin;
   }
 
   FormMode = FormMode;
@@ -107,7 +109,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   partnerForm = this.fb.group({
     [this.partnerFormProps.Name]: [null, [Validators.required, LengthValidator(3, 50)]],
-    [this.partnerFormProps.BusinessVertical]: [null, [Validators.required]],
+    [this.partnerFormProps.BusinessVertical]: [BusinessVerticalType.Retail, [Validators.required]],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
@@ -151,6 +153,11 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       });
 
       this.partnerForm.reset(this.partner);
+
+      if (!this.partner.Locations.length) {
+        this.locationsFormArray.push(this.generateLocationsFormGroup());
+        this.updateValuesForHiddenLocationFields();
+      }
 
       if (!this.hasEditPermission) {
         this.partnerForm.disable();
@@ -237,7 +244,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       Address: [null, [Validators.required, LengthValidator(3, 100)]],
       FirstName: [null, [Validators.required, OnlyLettersValidator, LengthValidator(2, 50)]],
       LastName: [null, [Validators.required, OnlyLettersValidator, LengthValidator(2, 50)]],
-      Phone: [null, [Validators.required, PhoneNumberValidator, LengthValidator(2, 50)]],
+      Phone: [null, [Validators.required, PhoneNumberValidator, LengthValidator(3, 50)]],
       Email: [null, [Validators.required, EmailValidator]],
       ExternalId: [null, [Validators.required, LengthValidator(1, 80)]],
       AccountingIntegrationCode: [null, [Validators.required, LengthValidator(1, 80)]],
