@@ -12,16 +12,18 @@
         <div class="col-xl-3 col-lg-6 col-md-6">
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label i18n>Partner Name</mat-label>
+            <mat-label [hidden]="!isPartnerAdmin"
+                       i18n>Business Unit Name</mat-label>
+            <mat-label [hidden]="isPartnerAdmin"
+                       i18n>Program Member Name</mat-label>
             <input matInput
                    formControlName="Name"
-                   placeholder="Partner Name"
                    required>
             <mat-error>
               <app-error-message controlName="Name"></app-error-message>
               <app-error-message controlName="Name"
-                                 key="length"
-                                 message="Field has to be between 3 and 50 characters long">
+                                 [template]="templates.lengthError"
+                                 [templateContext]="{$implicit: {min: 3, max: 50}}">
               </app-error-message>
             </mat-error>
           </mat-form-field>
@@ -102,7 +104,7 @@
                 <app-error-message controlName="Name"
                                    key="length"
                                    [template]="templates.lengthError"
-                                   [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
+                                   [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
               </mat-error>
             </mat-form-field>
           </div>
@@ -123,41 +125,41 @@
               </mat-error>
             </mat-form-field>
           </div>
-<!--  hide ExternalId and AccountingIntegrationCode fields for now-->
-<!--          <div class="col-xl-3 col-lg-4 col-md-6">-->
-<!--            <mat-form-field appearance="outline"-->
-<!--                            class="width-100">-->
-<!--              <mat-label i18n>External ID</mat-label>-->
-<!--              <input matInput-->
-<!--                     id="externalId"-->
-<!--                     formControlName="ExternalId"-->
-<!--                     required>-->
-<!--              <mat-error>-->
-<!--                <app-error-message controlName="ExternalId"></app-error-message>-->
-<!--                <app-error-message controlName="ExternalId"-->
-<!--                                   key="length"-->
-<!--                                   [template]="templates.lengthError"-->
-<!--                                   [templateContext]="{$implicit: {min: 1, max: 80}}"></app-error-message>-->
-<!--              </mat-error>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div class="col-xl-3 col-lg-4 col-md-6">-->
-<!--            <mat-form-field appearance="outline"-->
-<!--                            class="width-100">-->
-<!--              <mat-label i18n>Accounting Integration Code</mat-label>-->
-<!--              <input matInput-->
-<!--                     id="externalId"-->
-<!--                     formControlName="AccountingIntegrationCode"-->
-<!--                     required>-->
-<!--              <mat-error>-->
-<!--                <app-error-message controlName="AccountingIntegrationCode"></app-error-message>-->
-<!--                <app-error-message controlName="AccountingIntegrationCode"-->
-<!--                                   key="length"-->
-<!--                                   [template]="templates.lengthError"-->
-<!--                                   [templateContext]="{$implicit: {min: 1, max: 80}}"></app-error-message>-->
-<!--              </mat-error>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
+          <!--  hide ExternalId and AccountingIntegrationCode fields for now-->
+          <!--          <div class="col-xl-3 col-lg-4 col-md-6">-->
+          <!--            <mat-form-field appearance="outline"-->
+          <!--                            class="width-100">-->
+          <!--              <mat-label i18n>External ID</mat-label>-->
+          <!--              <input matInput-->
+          <!--                     id="externalId"-->
+          <!--                     formControlName="ExternalId"-->
+          <!--                     required>-->
+          <!--              <mat-error>-->
+          <!--                <app-error-message controlName="ExternalId"></app-error-message>-->
+          <!--                <app-error-message controlName="ExternalId"-->
+          <!--                                   key="length"-->
+          <!--                                   [template]="templates.lengthError"-->
+          <!--                                   [templateContext]="{$implicit: {min: 1, max: 80}}"></app-error-message>-->
+          <!--              </mat-error>-->
+          <!--            </mat-form-field>-->
+          <!--          </div>-->
+          <!--          <div class="col-xl-3 col-lg-4 col-md-6">-->
+          <!--            <mat-form-field appearance="outline"-->
+          <!--                            class="width-100">-->
+          <!--              <mat-label i18n>Accounting Integration Code</mat-label>-->
+          <!--              <input matInput-->
+          <!--                     id="externalId"-->
+          <!--                     formControlName="AccountingIntegrationCode"-->
+          <!--                     required>-->
+          <!--              <mat-error>-->
+          <!--                <app-error-message controlName="AccountingIntegrationCode"></app-error-message>-->
+          <!--                <app-error-message controlName="AccountingIntegrationCode"-->
+          <!--                                   key="length"-->
+          <!--                                   [template]="templates.lengthError"-->
+          <!--                                   [templateContext]="{$implicit: {min: 1, max: 80}}"></app-error-message>-->
+          <!--              </mat-error>-->
+          <!--            </mat-form-field>-->
+          <!--          </div>-->
         </div>
         <div style="height: 30px;">
           <span i18n>- Contact Person Details ------</span>
@@ -217,7 +219,7 @@
                 <app-error-message controlName="Phone"
                                    key="phone"
                                    [template]="templates.lengthError"
-                                   [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
+                                   [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
               </mat-error>
             </mat-form-field>
           </div>

@@ -7,7 +7,7 @@
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
                 id="kt_subheader_total"
-                i18n>Profile settings and basic info</span>
+                i18n>Profile settings</span>
         </div>
       </div>
 
@@ -16,7 +16,7 @@
           <button (click)="save()"
                   [hidden]="!this.changePasswordForm"
                   class="btn-action btn-submit"
-                  [disabled]="isSavingChangePassword"
+                  [disabled]="isSavingChangePassword || !hasPermission"
                   i18n>Save</button>
         </div>
       </div>
@@ -139,7 +139,12 @@
     </div>
   </div>
 </div>
+
 <!-- Translates -->
+
+<div #headerTitle
+     hidden
+     i18n>Change Password</div>
 
 <div #passwordSuccessfullyMessage
      hidden

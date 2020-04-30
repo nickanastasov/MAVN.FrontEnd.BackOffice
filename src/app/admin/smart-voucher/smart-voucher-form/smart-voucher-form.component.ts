@@ -132,6 +132,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   templates: GlobalTemplates;
   // #endregion
   hasEditPermission = false;
+  isPartnerAdmin = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -142,7 +143,8 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private snackBar: MatSnackBar
   ) {
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit || this.isPartnerAdmin;
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
     this.MobileAppImageFileSizeInKB = this.settingsService.MobileAppImageFileSizeInKB;
@@ -286,6 +288,11 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
           this.partners = this.partners.sort((a, b) => (a.Name > b.Name ? 1 : -1));
           this.isLoadingPartners = false;
           this.rateDependencyLoadedEventEmitter.emit();
+
+          // autoselect if there is only 1 partner
+          if (this.partners.length === 1) {
+            this.smartVoucherForm.get(this.voucherFormProps.PartnerId).setValue(this.partners[0].Id);
+          }
         } else {
           page++;
           this.loadPagedPartners(page);

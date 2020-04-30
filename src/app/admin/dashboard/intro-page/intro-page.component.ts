@@ -6,16 +6,23 @@ import {PermissionType} from '../../user/models/permission-type.enum';
 @Component({
   selector: 'app-intro-page',
   templateUrl: './intro-page.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class IntroPageComponent implements OnInit {
   isLoading = true;
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  private hasPermission = false;
+
+  constructor(
+    // services
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
+    const isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasPermission = this.authenticationService.getUserPermissions()[PermissionType.Dashboard].View || isPartnerAdmin;
+  }
 
   ngOnInit() {
-    const permissions = this.authenticationService.getUserPermissions();
-
-    if (permissions[PermissionType.Dashboard] && permissions[PermissionType.Dashboard].View) {
+    if (this.hasPermission) {
       this.router.navigate(['admin/platform/dashboard']);
     } else {
       this.isLoading = false;

@@ -64,7 +64,11 @@
               </li>
               <li class="kt-menu__section ">
                 <h4 class="kt-menu__section-text"
+                    [hidden]="!showCustomers"
                     i18n>Customers and Campaigns</h4>
+                <h4 class="kt-menu__section-text"
+                    [hidden]="showCustomers"
+                    i18n>Campaigns</h4>
                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
               </li>
               <li class="kt-menu__item "
@@ -138,12 +142,20 @@
                    routerLink="partners">
                   <mat-icon class="kt-menu__link-icon material-icons-outlined">supervisor_account</mat-icon>
                   <span class="kt-menu__link-text"
-                        i18n>My Organizations</span>
+                        [hidden]="!isPartnerAdmin"
+                        i18n>My Business Entities</span>
+                  <span class="kt-menu__link-text"
+                        [hidden]="isPartnerAdmin"
+                        i18n>Program Members</span>
                 </a>
               </li>
               <li class="kt-menu__section ">
                 <h4 class="kt-menu__section-text"
+                    [hidden]="!showBlockchainOperations"
                     i18n>Blockchain and Reports</h4>
+                <h4 class="kt-menu__section-text"
+                    [hidden]="showBlockchainOperations"
+                    i18n>Reports</h4>
                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
               </li>
               <li class="kt-menu__item "
@@ -205,7 +217,7 @@
                     <li class="kt-menu__item "
                         routerLinkActive="kt-menu__item--active">
                       <a class="kt-menu__link "
-                         routerLink="global-settings/my-profile">
+                         [routerLink]="['users/edit-admin-user', user.Id]">
                         <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
                           <span></span>
                         </i>
@@ -213,10 +225,21 @@
                               i18n>My Profile</span>
                       </a>
                     </li>
+                    <li class="kt-menu__item "
+                        routerLinkActive="kt-menu__item--active">
+                      <a class="kt-menu__link "
+                         routerLink="global-settings/my-profile">
+                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot">
+                          <span></span>
+                        </i>
+                        <span class="kt-menu__link-text"
+                              i18n>Change Password</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </li>
-              <li class="kt-menu__item "
+              <!-- <li class="kt-menu__item "
                   routerLinkActive="kt-menu__item--active"
                   [hidden]="!showSegmentMenu">
                 <a class="kt-menu__link "
@@ -238,7 +261,7 @@
                   <span class="kt-menu__link-text"
                         i18n>Tiers</span>
                 </a>
-              </li>
+              </li> -->
               <li class="kt-menu__item "
                   routerLinkActive="kt-menu__item--active"
                   [hidden]="!showAdminUsers">
@@ -267,8 +290,11 @@
                  data-toggle="dropdown"
                  data-offset="2px,0px">
               <div class="kt-header__topbar-user">
-                <span class="kt-header__topbar-username kt-hidden-mobile">
+                <!-- <span class="kt-header__topbar-username kt-hidden-mobile">
                   {{user.FirstName}} {{user.LastName}}
+                </span> -->
+                <span class="kt-header__topbar-username kt-hidden-mobile">
+                  {{user.Email}}
                 </span>
                 <span class="kt-header__topbar-icon"
                       style="height: 25px; width: 25px;">
@@ -287,8 +313,8 @@
                 <!-- style="background-image: url(assets/media/misc/head_bg_sm.jpg)"> -->
                 <div class="kt-user-card__wrapper">
                   <div class="kt-user-card__pic">
-                    <span class="badge badge-secondary badge-user-initials badge-user-initials--profile"
-                          >{{userInitials}}</span>
+                    <span
+                          class="badge badge-secondary badge-user-initials badge-user-initials--profile">{{userInitials}}</span>
                   </div>
                   <div class="kt-user-card__details">
                     <div class="kt-user-card__name">{{user.FirstName}} {{user.LastName}}</div>
@@ -301,7 +327,7 @@
               </div>
               <ul class="kt-nav kt-margin-b-10">
                 <li class="kt-nav__custom kt-space-between top-menu">
-                  <div [routerLink]="['/admin/platform/global-settings/my-profile']">
+                  <div [routerLink]="['users/edit-admin-user', user.Id]">
                     <span class="icon-container">
                       <mat-icon class="material-icons-outlined">person</mat-icon>
                     </span>
