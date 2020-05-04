@@ -1,3 +1,4 @@
+import {PaymentProvidersService} from './../services/payment-providers.service';
 import {Component, OnInit, EventEmitter, Input, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
 import * as constants from 'src/app/core/constants/const';
@@ -27,7 +28,7 @@ import {SettingsService} from 'src/app/core/settings/settings.service';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {BusinessVerticalType} from '../models/business-vertical.enum';
-
+import {ProviderOptions} from '../models/provider-options.interface';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -36,7 +37,7 @@ import {BusinessVerticalType} from '../models/business-vertical.enum';
 export class PartnerFormComponent implements OnInit, OnDestroy {
   @Input()
   type: FormMode = FormMode.Create;
-
+  paymentProviders: ProviderOptions[];
   @Output()
   submitSuccess: EventEmitter<Partner> = new EventEmitter<Partner>();
 
@@ -53,7 +54,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   templates: GlobalTemplates;
   previousPage = '';
   previousPageSize = '';
-
+  isLoadingProviders: boolean;
   globalRate: GlobalRate;
   private subscriptions: Subscription[] = [];
   private get tokensControl() {
@@ -66,6 +67,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private paymentService: PaymentProvidersService,
     private settingsSetvice: SettingsService,
     private fb: FormBuilder,
     private globalSettingsService: GlobalSettingsService,
@@ -82,7 +84,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   baseCurrencyCode: string;
 
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
-  paymentProvider = 'Payrexx';
   // #region translates
 
   @ViewChild('editChangeClientLoginMessageTemplate', {static: true})
@@ -104,6 +105,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     AmountInTokens: 'AmountInTokens',
     AmountInCurrency: 'AmountInCurrency',
     UseGlobalCurrencyRate: 'UseGlobalCurrencyRate',
+    test: 'test',
   };
 
   partnerForm = this.fb.group({
@@ -137,6 +139,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit() {
+    this.isLoadingProviders = true;
     this.previousPage = window.history.state.page;
     this.previousPageSize = window.history.state.pageSize;
     this.businessVerticalTypes = this.businessVerticalService
@@ -177,13 +180,19 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
     this.previousPage = window.history.state.page;
     this.generatePaymentIntegrationsFormGroup();
-    console.log(this.paymentIntegrationsFormArray.controls, this.locationsFormArray.controls);
+    this.loadPaymentProviders();
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
-
+  private loadPaymentProviders() {
+    return this.paymentService.getAll().subscribe((response) => {
+      this.paymentProviders = response.ProvidersRequirements;
+      this.isLoadingProviders = false;
+      console.log(this.paymentProviders);
+    });
+  }
   private loadRate(): void {
     this.globalSettingsService.getGlobalRate().subscribe(
       (response) => {
@@ -268,18 +277,32 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.updateValuesForHiddenLocationFields();
   }
 
+  onAddPaymentProviders() {
+    markFormControlAsTouched(this.paymentIntegrationsFormArray);
+
+    if (this.paymentIntegrationsFormArray.invalid) {
+      return;
+    }
+
+    this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
+    // this.updateValuesForHiddenLocationFields();
+  }
+
   generatePaymentIntegrationsFormGroup() {
     return this.fb.group({
       Id: [null],
       InstanceName: [null, [Validators.required, LengthValidator(3, 100)]],
-      PaymentProviders: [null, [Validators.required]],
       ApiKey: [null, [Validators.required]],
+      PaymentProviders: [null, [Validators.required]],
     });
   }
   onRemoveLocation(locationIndex: number) {
     this.locationsFormArray.removeAt(locationIndex);
   }
 
+  onRemovePayment(paymentIndex: number) {
+    this.paymentIntegrationsFormArray.removeAt(paymentIndex);
+  }
   private updateValuesForHiddenLocationFields() {
     if (!this.locationsFormArray.length) {
       return;
