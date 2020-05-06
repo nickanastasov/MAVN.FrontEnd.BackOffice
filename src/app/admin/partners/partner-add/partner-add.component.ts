@@ -3,12 +3,18 @@ import {PartnersService} from '../partners.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {Partner} from '../models/partner.interface';
+import {Provider} from '../models/provider.interface';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
-
+import {PaymentProvidersService} from '../services/payment-providers.service';
+import {forkJoin} from 'rxjs';
+interface PartnerInfo {
+  partnerDetails: Partner;
+  partnerProviderDetails: Provider;
+}
 @Component({
   selector: 'app-partner-add',
   templateUrl: './partner-add.component.html',
-  styleUrls: ['./partner-add.component.scss']
+  styleUrls: ['./partner-add.component.scss'],
 })
 export class PartnerAddComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
@@ -18,6 +24,7 @@ export class PartnerAddComponent implements OnInit {
 
   constructor(
     private partnersService: PartnersService,
+    private paymentProvidersService: PaymentProvidersService,
     private snackBar: MatSnackBar,
     private router: Router,
     private headerMenuService: HeaderMenuService
@@ -26,18 +33,17 @@ export class PartnerAddComponent implements OnInit {
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
       title: 'New Partner',
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
-  onFormSubmit(partner: Partner) {
+  onFormSubmit(partner: PartnerInfo) {
     this.isFormDisabled = true;
     this.loading = true;
-
-    this.partnersService.add(partner).subscribe(
+    forkJoin([this.partnersService.add(partner.partner), this.paymentProvidersService.create(partner.provider)]).subscribe(
       () => {
         this.snackBar.open('You have created partner successfully ', 'Close', {
-          duration: 5000
+          duration: 5000,
         });
 
         this.router.navigate(['/admin/platform/partners']);
@@ -46,7 +52,7 @@ export class PartnerAddComponent implements OnInit {
         this.loading = false;
         this.isFormDisabled = false;
         this.snackBar.open('Something went wrong. Please try again', 'Close', {
-          duration: 5000
+          duration: 5000,
         });
       }
     );

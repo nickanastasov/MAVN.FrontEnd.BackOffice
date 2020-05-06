@@ -29,6 +29,7 @@ import {AuthenticationService} from 'src/app/authentication/authentication.servi
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {BusinessVerticalType} from '../models/business-vertical.enum';
 import {ProviderOptions} from '../models/provider-options.interface';
+import {Provider} from '../models/provider.interface';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -39,11 +40,15 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   type: FormMode = FormMode.Create;
   paymentProviders: ProviderOptions[];
   @Output()
-  submitSuccess: EventEmitter<Partner> = new EventEmitter<Partner>();
+  submitSuccess: EventEmitter<{partnerDetails: Partner; partnerProviderDetails: Provider}> = new EventEmitter<{
+    partnerDetails: Partner;
+    partnerProviderDetails: Provider;
+  }>();
 
   @Input()
   partner: Partner;
-
+  providerDetails: Provider;
+  partnerInfo: Partner;
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
   CURRENCY_INPUT_MAX_NUMBER = constants.CURRENCY_INPUT_MAX_NUMBER;
@@ -101,11 +106,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     BusinessVertical: 'BusinessVertical',
     Description: 'Description',
     Locations: 'Locations',
-    PaymentIntegrations: 'PaymentIntegrations',
     AmountInTokens: 'AmountInTokens',
     AmountInCurrency: 'AmountInCurrency',
     UseGlobalCurrencyRate: 'UseGlobalCurrencyRate',
-    test: 'test',
   };
 
   partnerForm = this.fb.group({
@@ -113,7 +116,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     [this.partnerFormProps.BusinessVertical]: [null, [Validators.required]],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
-    [this.partnerFormProps.PaymentIntegrations]: this.fb.array([]),
+    // [this.partnerFormProps.PaymentIntegrations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
       null,
       [
@@ -137,7 +140,12 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ],
     [this.partnerFormProps.UseGlobalCurrencyRate]: [true],
   });
-
+  paymentProviderProps = {
+    Provider: 'Provider',
+  };
+  paymentProvidersForm = this.fb.group({
+    [this.paymentProviderProps.Provider]: this.fb.array([]),
+  });
   ngOnInit() {
     this.isLoadingProviders = true;
     this.previousPage = window.history.state.page;
@@ -153,6 +161,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     if (this.partner) {
       this.partner.Locations.forEach(() => {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
+
         this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
       });
 
@@ -181,6 +190,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.previousPage = window.history.state.page;
     this.generatePaymentIntegrationsFormGroup();
     this.loadPaymentProviders();
+    console.log(this.paymentIntegrationsFormArray);
   }
 
   ngOnDestroy() {
@@ -232,6 +242,23 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.partnerInfo = this.partnerForm.getRawValue();
+    const providerInfo = this.paymentProvidersForm.getRawValue();
+
+    const {
+      Provider: [providerProperties],
+    } = providerInfo;
+    const {PartnerId, InstanceName, ApiKey, PaymentProvider: PaymentIntegrationProvider} = providerProperties;
+
+    const PaymentIntegrationProperties = JSON.stringify({
+      InstanceName,
+      ApiKey,
+    });
+    this.providerDetails = {
+      PartnerId,
+      PaymentIntegrationProvider,
+      PaymentIntegrationProperties,
+    };
     if (!this.hasEditPermission) {
       return;
     }
@@ -241,8 +268,11 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     if (!this.partnerForm.valid) {
       return;
     }
-
-    this.submitSuccess.emit(this.partnerForm.getRawValue());
+    const ob = {
+      partner: this.partnerInfo,
+      provider: this.providerDetails,
+    };
+    this.submitSuccess.emit(ob);
   }
 
   generateLocationsFormGroup() {
@@ -264,7 +294,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   get paymentIntegrationsFormArray() {
-    return this.partnerForm.get('PaymentIntegrations') as FormArray;
+    return this.paymentProvidersForm.get('Provider') as FormArray;
   }
   onAddLocation() {
     markFormControlAsTouched(this.locationsFormArray);
@@ -290,10 +320,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   generatePaymentIntegrationsFormGroup() {
     return this.fb.group({
-      Id: [null],
+      PartnerId: [null],
       InstanceName: [null, [Validators.required, LengthValidator(3, 100)]],
       ApiKey: [null, [Validators.required]],
-      PaymentProviders: [null, [Validators.required]],
+      PaymentProvider: [null, [Validators.required]],
     });
   }
   onRemoveLocation(locationIndex: number) {
