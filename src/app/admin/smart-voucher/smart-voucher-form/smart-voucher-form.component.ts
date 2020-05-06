@@ -110,6 +110,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   contentPreviewImageUrl: string;
   mobileLanguages = MobileLanguage;
   availableMobileLanguages: MobileLanguage[] = [];
+  todayDate = new Date();
 
   // private
   private subscriptions: Subscription[] = [];
@@ -194,6 +195,18 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     return this.mobileContentsFormArray.controls
       ? this.mobileContentsFormArray.controls.filter((x) => x.get(this.mobileContentFormProps.MobileLanguage).value === MobileLanguage.En)
       : this.mobileContentsFormArray.controls;
+  }
+
+  get minFromDate() {
+    return this.isFromDateDisabled ? this.smartVoucherForm.get(this.voucherFormProps.FromDate).value : this.todayDate;
+  }
+
+  get isFromDateDisabled() {
+    return (
+      this.smartVoucherForm.get(this.voucherFormProps.IsPublished).value &&
+      this.smartVoucherForm.get(this.voucherFormProps.FromDate).value &&
+      new Date(this.smartVoucherForm.get(this.voucherFormProps.FromDate).value).setHours(0, 0, 0, 0) < this.todayDate.setHours(0, 0, 0, 0)
+    );
   }
 
   previousPage = '';
