@@ -255,6 +255,173 @@
       </div>
     </mat-card-content>
   </mat-card>
+  <mat-card>
+    <mat-card-title class="d-flex justify-content-between align-items-center">
+      <span class=""
+            i18n>Payment integrations</span>
+      <button mat-button
+              type="button"
+              color="primary"
+              class="font-weight-bold text-uppercase letter-spacing-1-3"
+              [disabled]="paymentIntegrationsFormArray.disabled"
+              (click)="onAddPaymentProviders()">
+        <mat-icon>add</mat-icon>
+        <span i18n>Add Payment</span>
+      </button>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content formArrayName="PaymentIntegrations"
+                      id="payment-integrations">
+      <div [formGroup]="payment"
+           *ngFor="let payment of paymentIntegrationsFormArray.controls; let index = index;">
+
+        <mat-grid-list *ngIf="index > 0"
+                       cols="5"
+                       rowHeight="15px">
+          <mat-divider inset="true"></mat-divider>
+        </mat-grid-list>
+
+        <div class="row">
+          <div *ngIf="isLoadingProviders">
+            <div class="text-center">
+              <div class="spinner-border"></div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Payment Providers</mat-label>
+              <mat-select formControlName="PaymentProviders"
+                          placeholder="Payment Providers"
+                          i18n-placeholder
+                          required>
+                <mat-option *ngFor="let provider of paymentProviders" [value]='provider.PaymentProvider'>{{provider.PaymentProvider}}</mat-option>
+              </mat-select>
+              <mat-error>
+                <app-error-message controlName="PaymentProviders"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Instance Name</mat-label>
+              <input matInput
+                     id="instance-name"
+                     formControlName="InstanceName"
+                     required>
+              <mat-error>
+                <app-error-message controlName="InstanceName"></app-error-message>
+                <app-error-message controlName="InstanceName"
+                                   key="length"
+                                   [template]="templates.lengthError"
+                                   [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Api key</mat-label>
+              <input matInput
+                     id="api-key"
+                     formControlName="ApiKey"
+                     required>
+              <mat-error>
+                <app-error-message controlName="Address"></app-error-message>
+                <app-error-message controlName="Address"
+                                   key="length"
+                                   [template]="templates.lengthError"
+                                   [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-12 text-right location-delete">
+            <button *ngIf="index > 0"
+                    mat-button
+                    color="primary"
+                    type="button"
+                    (click)="onRemovePayment(index)">
+              <span class="text-uppercase letter-spacing-1-3 font-weight-bold"
+                    i18n>Delete Payment</span>
+            </button>
+          </div>
+        </div>
+        <!-- <div style="height: 30px;">
+          <span i18n>- Contact Person Details ------</span>
+        </div> -->
+        <!-- <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>First Name</mat-label>
+              <input matInput
+                     formControlName="FirstName"
+                     required>
+              <mat-error>
+                <app-error-message controlName="FirstName"></app-error-message>
+                <app-error-message controlName="FirstName"
+                                   key="text"
+                                   [template]="onlyLetters"></app-error-message>
+                <app-error-message controlName="FirstName"
+                                   key="length"
+                                   [template]="templates.lengthError"
+                                   [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Last Name</mat-label>
+              <input matInput
+                     formControlName="LastName"
+                     required>
+              <mat-error>
+                <app-error-message controlName="LastName"></app-error-message>
+                <app-error-message controlName="LastName"
+                                   key="text"
+                                   [template]="onlyLetters"></app-error-message>
+                <app-error-message controlName="LastName"
+                                   key="length"
+                                   [template]="templates.lengthError"
+                                   [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <mat-form-field appearance="outline"
+                            class="width-100">
+              <mat-label i18n>Email</mat-label>
+              <input matInput
+                     type="email"
+                     formControlName="Email"
+                     required>
+              <mat-error>
+                <app-error-message controlName="Email"></app-error-message>
+                <app-error-message controlName="Email"
+                                   key="email"
+                                   [template]="emailError"></app-error-message>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xl-12 text-right location-delete">
+            <button *ngIf="index > 0"
+                    mat-button
+                    color="primary"
+                    type="button"
+                    (click)="onRemoveLocation(index)">
+              <span class="text-uppercase letter-spacing-1-3 font-weight-bold"
+                    i18n>Delete Location</span>
+            </button>
+          </div>
+        </div> -->
+
+      </div>
+    </mat-card-content>
+  </mat-card>
 
   <mat-card hidden>
     <mat-card-title>
