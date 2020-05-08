@@ -20,7 +20,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 @Component({
   selector: 'app-partners-list',
   templateUrl: './partners-list.component.html',
-  styleUrls: ['./partners-list.component.scss']
+  styleUrls: ['./partners-list.component.scss'],
 })
 export class PartnersListComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
@@ -57,7 +57,7 @@ export class PartnersListComponent implements OnInit {
     this.businessVerticalTypes = this.businessVerticalService.getBusinessVerticalItems();
     this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
       const pageSize = +params['pageSize'];
 
@@ -74,7 +74,7 @@ export class PartnersListComponent implements OnInit {
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
       title: 'Partners',
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
   }
 
@@ -88,20 +88,20 @@ export class PartnersListComponent implements OnInit {
       this.loading = true;
       const callback = () => this.getData(pageEvent.PageSize, this.currentPage + 1);
 
-      this.globalRate ? callback() : this.loadRate(callback);
+      !this.globalRate ? callback() : this.loadRate(callback);
     }
   }
 
   private loadRate(callback: Function): void {
     this.globalSettingsService.getGlobalRate().subscribe(
-      response => {
+      (response) => {
         this.globalRate = response;
 
         if (callback) {
           callback();
         }
       },
-      error => {
+      (error) => {
         console.error(error);
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
       }
@@ -114,9 +114,9 @@ export class PartnersListComponent implements OnInit {
     }
 
     this.getDataSubscription = this.partnersService.getAll(pageSize, currentPage, name).subscribe(
-      response => {
+      (response) => {
         // handle global rate
-        response.Partners.forEach(x => {
+        response.Partners.forEach((x) => {
           if (x.UseGlobalCurrencyRate && this.globalRate) {
             x.AmountInTokens = this.globalRate.AmountInTokens;
             x.AmountInCurrency = this.globalRate.AmountInCurrency;

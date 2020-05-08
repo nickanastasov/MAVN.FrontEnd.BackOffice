@@ -18,8 +18,9 @@
   <div class="kt-portlet">
     <div class="kt-portlet__body">
       <app-partner-form (submitSuccess)="onFormSubmit($event)"
-                        [partner]="partner"></app-partner-form>
-
+                        [partner]="partner"
+                        [provider]="provider"
+                        ></app-partner-form>
       <div class="spinner-container"
            *ngIf="loading">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>

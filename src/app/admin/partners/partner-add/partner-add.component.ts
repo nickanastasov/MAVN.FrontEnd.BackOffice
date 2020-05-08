@@ -3,14 +3,10 @@ import {PartnersService} from '../partners.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {Partner} from '../models/partner.interface';
-import {Provider} from '../models/provider.interface';
+import {PartnerInfo} from '../models/partner-info.interface';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {PaymentProvidersService} from '../services/payment-providers.service';
-import {forkJoin} from 'rxjs';
-interface PartnerInfo {
-  partnerDetails: Partner;
-  partnerProviderDetails: Provider;
-}
+import {Provider} from '../models/provider.interface';
 @Component({
   selector: 'app-partner-add',
   templateUrl: './partner-add.component.html',
@@ -21,7 +17,8 @@ export class PartnerAddComponent implements OnInit {
   isFormDisabled = false;
   loading = false;
   partner: Partner;
-
+  provider: Provider;
+  partnerId: string;
   constructor(
     private partnersService: PartnersService,
     private paymentProvidersService: PaymentProvidersService,
@@ -38,23 +35,27 @@ export class PartnerAddComponent implements OnInit {
   }
 
   onFormSubmit(partner: PartnerInfo) {
+    const {partnerDetails, partnerProviderDetails} = partner;
     this.isFormDisabled = true;
     this.loading = true;
-    forkJoin([this.partnersService.add(partner.partner), this.paymentProvidersService.create(partner.provider)]).subscribe(
-      () => {
-        this.snackBar.open('You have created partner successfully ', 'Close', {
-          duration: 5000,
-        });
+    this.partnersService.add(partnerDetails).subscribe((result: any) => {
+      partnerProviderDetails.PartnerId = result.PartnerId;
+      this.paymentProvidersService.create(partnerProviderDetails).subscribe(
+        () => {
+          this.snackBar.open('You have created partner successfully ', 'Close', {
+            duration: 5000,
+          });
 
-        this.router.navigate(['/admin/platform/partners']);
-      },
-      () => {
-        this.loading = false;
-        this.isFormDisabled = false;
-        this.snackBar.open('Something went wrong. Please try again', 'Close', {
-          duration: 5000,
-        });
-      }
-    );
+          this.router.navigate(['/admin/platform/partners']);
+        },
+        () => {
+          this.loading = false;
+          this.isFormDisabled = false;
+          this.snackBar.open('Something went wrong. Please try again', 'Close', {
+            duration: 5000,
+          });
+        }
+      );
+    });
   }
 }

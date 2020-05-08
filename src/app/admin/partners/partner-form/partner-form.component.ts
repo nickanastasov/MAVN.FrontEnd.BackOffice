@@ -44,10 +44,13 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     partnerDetails: Partner;
     partnerProviderDetails: Provider;
   }>();
+  @Input()
+  provider: Provider;
 
   @Input()
   partner: Partner;
   providerDetails: Provider;
+
   partnerInfo: Partner;
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
@@ -58,6 +61,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   templates: GlobalTemplates;
   previousPage = '';
+
+  partnerId: string;
   previousPageSize = '';
   isLoadingProviders: boolean;
   globalRate: GlobalRate;
@@ -166,9 +171,11 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       });
 
       this.partnerForm.reset(this.partner);
+      this.providerFormValuesForPartnerEdit();
 
       if (!this.hasEditPermission) {
         this.partnerForm.disable();
+        this.paymentProvidersForm.disable();
       }
     } else {
       this.disableRateFields(true);
@@ -188,19 +195,37 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ];
 
     this.previousPage = window.history.state.page;
-    this.generatePaymentIntegrationsFormGroup();
     this.loadPaymentProviders();
-    console.log(this.paymentIntegrationsFormArray);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
+  providerFormValuesForPartnerEdit() {
+    const providerFormRawValue = this.paymentProvidersForm.getRawValue();
+    if (this.provider) {
+      const {PartnerId, PaymentIntegrationProvider: PaymentProvider, PaymentIntegrationProperties} = this.provider;
+      const providerProperties = JSON.parse(PaymentIntegrationProperties);
+      const {InstanceName, ApiKey} = providerProperties;
+      const propertiesForResettingProviderForm = {
+        Provider: [
+          {
+            PartnerId,
+            PaymentProvider,
+            InstanceName,
+            ApiKey,
+          },
+        ],
+      };
+      this.paymentProvidersForm.reset(propertiesForResettingProviderForm);
+    } else {
+      this.paymentProvidersForm.reset(providerFormRawValue);
+    }
+  }
   private loadPaymentProviders() {
     return this.paymentService.getAll().subscribe((response) => {
       this.paymentProviders = response.ProvidersRequirements;
       this.isLoadingProviders = false;
-      console.log(this.paymentProviders);
     });
   }
   private loadRate(): void {
@@ -248,14 +273,15 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     const {
       Provider: [providerProperties],
     } = providerInfo;
-    const {PartnerId, InstanceName, ApiKey, PaymentProvider: PaymentIntegrationProvider} = providerProperties;
+
+    const {InstanceName, ApiKey, PaymentProvider: PaymentIntegrationProvider} = providerProperties;
 
     const PaymentIntegrationProperties = JSON.stringify({
       InstanceName,
       ApiKey,
     });
     this.providerDetails = {
-      PartnerId,
+      PartnerId: null,
       PaymentIntegrationProvider,
       PaymentIntegrationProperties,
     };
@@ -264,13 +290,13 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     }
 
     markFormControlAsTouched(this.partnerForm);
-
+    markFormControlAsTouched(this.paymentProvidersForm);
     if (!this.partnerForm.valid) {
       return;
     }
     const ob = {
-      partner: this.partnerInfo,
-      provider: this.providerDetails,
+      partnerDetails: this.partnerInfo,
+      partnerProviderDetails: this.providerDetails,
     };
     this.submitSuccess.emit(ob);
   }

@@ -21,7 +21,8 @@
       <app-partner-form *ngIf="!loading"
                         [type]="FormMode.Edit"
                         (submitSuccess)="onFormSubmit($event)"
-                        [partner]="partner">
+                        [partner]="partner"
+                        [provider]="provider">
       </app-partner-form>
 
       <div class="spinner-container"

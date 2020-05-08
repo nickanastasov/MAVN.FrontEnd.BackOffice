@@ -5,7 +5,7 @@ import {HttpParams} from '@angular/common/http';
 import {PartnersListResponse} from './models/partners-list-response.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PartnersService {
   apiPath = '/api/partners';
@@ -13,10 +13,7 @@ export class PartnersService {
   constructor(private apiHttp: ApiHttpService) {}
 
   getAll(pageSize: number, currentPage: number, name: string) {
-    const params = new HttpParams()
-      .set('pageSize', pageSize.toString())
-      .set('currentPage', currentPage.toString())
-      .set('name', name);
+    const params = new HttpParams().set('pageSize', pageSize.toString()).set('currentPage', currentPage.toString()).set('name', name);
 
     return this.apiHttp.get<PartnersListResponse>(this.apiPath, {params: params});
   }
@@ -30,7 +27,6 @@ export class PartnersService {
   add(partner: Partner) {
     return this.apiHttp.post('/api/partners', partner);
   }
-
   update(partner: Partner) {
     return this.apiHttp.put('/api/partners', partner);
   }
