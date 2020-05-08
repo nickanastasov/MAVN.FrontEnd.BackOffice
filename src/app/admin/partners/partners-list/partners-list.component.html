@@ -6,8 +6,11 @@
         <div class="kt-subheader__toolbar"
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
-                id="kt_subheader_total"
-                i18n>List of partners in OpenMAVN program</span>
+                [hidden]="!isPartnerAdmin"
+                i18n>List of Business Units in OpenMAVN program</span>
+          <span class="kt-subheader__desc"
+                [hidden]="isPartnerAdmin"
+                i18n>List of Program Members in OpenMAVN program</span>
         </div>
       </div>
 
@@ -16,7 +19,10 @@
                 [hidden]="!hasEditPermission"
                 class="btn btn-brand btn-bold"
                 routerLink="add-partner">
-          <span i18n>Add Partner</span>
+          <span [hidden]="!isPartnerAdmin"
+                i18n>Add Business Unit</span>
+          <span [hidden]="isPartnerAdmin"
+                i18n>Add Program Member</span>
         </button>
       </div>
     </div>
@@ -33,7 +39,7 @@
         </div>
         <h3 class="kt-portlet__head-title"
             [hidden]="loading || isSearching"
-            i18n>{{totalCount}} total partners</h3>
+            i18n>{{totalCount}} total</h3>
       </div>
     </div>
     <div class="kt-portlet__body">
@@ -159,3 +165,11 @@
     </div>
   </div>
 </div>
+
+<div #headerTitle
+     hidden
+     i18n>Business Units</div>
+
+<div #headerTitleForPartner
+     hidden
+     i18n>Program Members</div>

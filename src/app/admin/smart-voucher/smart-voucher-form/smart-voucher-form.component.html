@@ -37,6 +37,9 @@
                    formControlName="FromDate"
                    matTooltip="The date when the campaign is applicable from"
                    i18n-matTooltip
+                   [min]="minFromDate"
+                   [readonly]="isFromDateDisabled"
+                   [disabled]="isFromDateDisabled"
                    required>
             <mat-datepicker-toggle matSuffix
                                    [for]="picker"></mat-datepicker-toggle>
@@ -53,6 +56,7 @@
             <input matInput
                    [matDatepicker]="endDatePicker"
                    formControlName="ToDate"
+                   [min]="todayDate"
                    matTooltip="The date till which the campaign is applicable"
                    i18n-matTooltip>
             <mat-datepicker-toggle matSuffix
@@ -127,12 +131,13 @@
           <mat-form-field *ngIf="partners.length && !isLoadingPartners"
                           appearance="outline"
                           class="width-100">
-            <mat-label i18n>Organization</mat-label>
+            <mat-label [hidden]="!isPartnerAdmin"
+                       i18n>Business Unit</mat-label>
+            <mat-label [hidden]="isPartnerAdmin"
+                       i18n>Program Member</mat-label>
             <mat-select id="partners"
                         formControlName="PartnerId"
                         required
-                        matTooltip="Organization who owns the current campaign"
-                        i18n-matTooltip
                         panelClass="token-select-panel"
                         disableRipple>
               <mat-option class="multiple-select-custom-option multiple-select-search-option"

@@ -18,7 +18,7 @@ import {PermissionLevel} from '../models/permission-level.enum';
   selector: 'app-users-form',
   templateUrl: './users-form.component.html',
   styleUrls: ['./users-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class UsersFormComponent implements OnInit {
   @Input()
@@ -32,6 +32,7 @@ export class UsersFormComponent implements OnInit {
 
   PermissionType = PermissionType;
   hasEditPermission = false;
+  isPartnerAdmin = false;
 
   userFormProps = {
     FirstName: 'FirstName',
@@ -42,7 +43,7 @@ export class UsersFormComponent implements OnInit {
     Company: 'Company',
     Department: 'Department',
     JobTitle: 'JobTitle',
-    Password: 'Password'
+    Password: 'Password',
   };
 
   companies = [
@@ -55,7 +56,7 @@ export class UsersFormComponent implements OnInit {
     {Type: 'Technologies', DisplayName: 'Technologies'},
     {Type: 'Industries and Investments', DisplayName: 'Industries and Investments'},
     {Type: 'Finance', DisplayName: 'Finance'},
-    {Type: 'Investment Holdings', DisplayName: 'Investment Holdings'}
+    {Type: 'Investment Holdings', DisplayName: 'Investment Holdings'},
   ];
 
   departments = [
@@ -63,7 +64,7 @@ export class UsersFormComponent implements OnInit {
     {Type: 'Finance', DisplayName: 'Finance'},
     {Type: 'Sales', DisplayName: 'Sales'},
     {Type: 'HR', DisplayName: 'HR'},
-    {Type: 'Operations', DisplayName: 'Operations'}
+    {Type: 'Operations', DisplayName: 'Operations'},
   ];
 
   permissions: {[key: string]: PermissionRight};
@@ -76,7 +77,7 @@ export class UsersFormComponent implements OnInit {
   @ViewChild('fillRequiredFieldsMessage', {static: true})
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
   private translates = {
-    fillRequiredFieldsMessage: ''
+    fillRequiredFieldsMessage: '',
   };
 
   templates: GlobalTemplates;
@@ -91,7 +92,8 @@ export class UsersFormComponent implements OnInit {
   ) {
     this.templates = this.translateService.templates;
     this.permissions = this.authenticationService.getEmptyPermissions();
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.AdminUsers].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.AdminUsers].Edit || this.isPartnerAdmin;
   }
 
   userForm = this.fb.group({
@@ -106,10 +108,10 @@ export class UsersFormComponent implements OnInit {
     [this.userFormProps.Password]: [
       {
         value: '',
-        disabled: true
+        disabled: true,
       },
-      [Validators.required, LengthValidator(8, 25)]
-    ]
+      [Validators.required, LengthValidator(8, 25)],
+    ],
   });
   previousPage = '';
   previousPageSize = '';
@@ -281,7 +283,7 @@ export class UsersFormComponent implements OnInit {
 
     if (!this.userForm.valid) {
       this.snackBar.open(this.translates.fillRequiredFieldsMessage, this.translateService.translates.CloseSnackbarBtnText, {
-        duration: 5000
+        duration: 5000,
       });
       return;
     }
@@ -298,12 +300,12 @@ export class UsersFormComponent implements OnInit {
         if (permission.Edit) {
           adminPermissions.push({
             Type: key as PermissionType,
-            Level: permission.IsOnlyView ? PermissionLevel.View : PermissionLevel.Edit
+            Level: permission.IsOnlyView ? PermissionLevel.View : PermissionLevel.Edit,
           });
         } else if (permission.View) {
           adminPermissions.push({
             Type: key as PermissionType,
-            Level: PermissionLevel.View
+            Level: PermissionLevel.View,
           });
         }
       }

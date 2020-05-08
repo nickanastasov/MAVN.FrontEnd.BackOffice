@@ -49,6 +49,7 @@ export class SmartVoucherListPageComponent implements OnInit {
     deletedMessage: '',
   };
   hasEditPermission = false;
+  isPartnerAdmin = false;
 
   constructor(
     // services
@@ -62,7 +63,8 @@ export class SmartVoucherListPageComponent implements OnInit {
     private headerMenuService: HeaderMenuService
   ) {
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.VoucherManager].Edit || this.isPartnerAdmin;
   }
 
   ngOnInit() {

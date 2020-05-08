@@ -8,17 +8,16 @@ const routes: Routes = [
   {
     path: 'system-settings',
     component: GlobalSettingsPageComponent,
-    canActivate: [InaccessibleRouteGuard]
+    canActivate: [InaccessibleRouteGuard],
   },
   {
     path: 'my-profile',
     component: MyProfilePageComponent,
-    canActivate: [InaccessibleRouteGuard]
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class GlobalSettingsRoutingModule {}

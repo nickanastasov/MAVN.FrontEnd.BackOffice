@@ -6,8 +6,11 @@
         <div class="kt-subheader__toolbar"
              id="kt_subheader_search">
           <span class="kt-subheader__desc"
-                id="kt_subheader_total"
-                i18n>Enter partner details</span>
+                [hidden]="!isPartnerAdmin"
+                i18n>Enter Business Unit details</span>
+          <span class="kt-subheader__desc"
+                [hidden]="isPartnerAdmin"
+                i18n>Enter Program Member details</span>
         </div>
       </div>
     </div>
@@ -28,3 +31,15 @@
     </div>
   </div>
 </div>
+
+<div #headerTitle
+     hidden
+     i18n>New Business Unit</div>
+
+<div #headerTitleForPartner
+     hidden
+     i18n>New Program Member</div>
+
+<div #successMessage
+     hidden
+     i18n>Created successfully.</div>

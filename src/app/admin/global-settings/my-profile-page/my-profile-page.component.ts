@@ -14,7 +14,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 @Component({
   selector: 'app-my-profile-page',
   templateUrl: './my-profile-page.component.html',
-  styleUrls: ['./my-profile-page.component.scss']
+  styleUrls: ['./my-profile-page.component.scss'],
 })
 export class MyProfilePageComponent implements OnInit, OnDestroy {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
@@ -22,25 +22,28 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
   changePasswordFormProps = {
     CurrentPassword: 'CurrentPassword',
     Password: 'Password',
-    RepeatPassword: 'RepeatPassword'
+    RepeatPassword: 'RepeatPassword',
   };
   rules: PasswordValidationRules;
   invalidPasswordRules: any = {};
-  passwordMeterText: string = '';
+  passwordMeterText = '';
   changePasswordForm: FormGroup;
   isInitialized = false;
+  hasPermission = true;
 
   private changePasswordFieldSubscription: Subscription;
   private changePasswordFormSubscription: Subscription;
 
   // #region translates
+  @ViewChild('headerTitle', {static: true})
+  headerTitle: ElementRef<HTMLElement>;
   @ViewChild('passwordSuccessfullyMessage', {static: true})
   passwordSuccessfullyMessage: ElementRef<HTMLElement>;
   @ViewChild('currentPasswordInvalidMessage', {static: true})
   currentPasswordInvalidMessage: ElementRef<HTMLElement>;
   private translates = {
     passwordSuccessfullyMessage: '',
-    currentPasswordInvalidMessage: ''
+    currentPasswordInvalidMessage: '',
   };
 
   templates: GlobalTemplates;
@@ -56,6 +59,12 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
   ) {
     this.templates = this.translateService.templates;
 
+    const userEmail = this.authenticationService.getUserData().Email;
+
+    if (userEmail && this.settingsService.DemoUserLogin) {
+      this.hasPermission = userEmail !== this.settingsService.DemoUserLogin;
+    }
+
     if (this.settingsService.PasswordValidationRules) {
       this.rules = this.settingsService.PasswordValidationRules;
 
@@ -67,8 +76,8 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
               // validators
               Validators.required,
               LengthValidator(this.rules.MinLength, this.rules.MaxLength),
-              PasswordValidator(this.rules)
-            ]
+              PasswordValidator(this.rules),
+            ],
           ],
           [this.changePasswordFormProps.Password]: [
             null,
@@ -76,8 +85,8 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
               // validators
               Validators.required,
               LengthValidator(this.rules.MinLength, this.rules.MaxLength),
-              PasswordValidator(this.rules)
-            ]
+              PasswordValidator(this.rules),
+            ],
           ],
           [this.changePasswordFormProps.RepeatPassword]: [
             null,
@@ -85,12 +94,12 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
               // Validators
               Validators.required,
               LengthValidator(this.rules.MinLength, this.rules.MaxLength),
-              PasswordValidator(this.rules)
-            ]
-          ]
+              PasswordValidator(this.rules),
+            ],
+          ],
         },
         {
-          validator: [PasswordEqualledValidator]
+          validator: [PasswordEqualledValidator],
         }
       );
 
@@ -105,8 +114,8 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.headerMenuService.headerMenuContent = {
-      title: 'My Profile',
-      subHeaderContent: this.subHeaderTemplate
+      title: this.headerTitle.nativeElement.innerText,
+      subHeaderContent: this.subHeaderTemplate,
     };
 
     // translates
@@ -174,11 +183,11 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
     this.authenticationService.changePassword(model.CurrentPassword, model.Password).subscribe(
       () => {
         this.snackBar.open(this.translates.passwordSuccessfullyMessage, this.translateService.translates.CloseSnackbarBtnText, {
-          duration: 5000
+          duration: 5000,
         });
         this.isSavingChangePassword = false;
       },
-      httpError => {
+      (httpError) => {
         console.error(httpError);
         const errorCode = httpError && httpError.error && httpError.error.error ? httpError.error.error : '';
         let errorMessage = this.translateService.translates.ErrorMessage;
@@ -188,7 +197,7 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
         }
 
         this.snackBar.open(errorMessage, this.translateService.translates.CloseSnackbarBtnText, {
-          duration: 5000
+          duration: 5000,
         });
         this.isSavingChangePassword = false;
       }
@@ -196,8 +205,6 @@ export class MyProfilePageComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    if (this.changePasswordForm.dirty) {
-      this.saveChangePassword();
-    }
+    this.saveChangePassword();
   }
 }

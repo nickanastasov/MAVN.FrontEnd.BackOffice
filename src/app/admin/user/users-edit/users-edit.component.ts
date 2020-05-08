@@ -23,6 +23,7 @@ export class UsersEditComponent implements OnInit {
   isSaving: boolean;
   isProcessingResetPassword = false;
   hasEditPermission = false;
+  isPartnerAdmin = false;
   user: User;
   private userId: string;
   private previousPage = '';
@@ -44,7 +45,8 @@ export class UsersEditComponent implements OnInit {
     private router: Router,
     private headerMenuService: HeaderMenuService
   ) {
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.AdminUsers].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.AdminUsers].Edit || this.isPartnerAdmin;
   }
 
   ngOnInit() {
@@ -64,14 +66,17 @@ export class UsersEditComponent implements OnInit {
         this.isLoading = false;
       },
       () => {
-        this.navigateToList();
+        if (!this.isPartnerAdmin) {
+          this.navigateToList();
+        }
+
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
       }
     );
   }
 
   resetPassword() {
-    if (!this.hasEditPermission) {
+    if (!this.hasEditPermission || this.isPartnerAdmin) {
       return;
     }
 
@@ -113,7 +118,11 @@ export class UsersEditComponent implements OnInit {
 
     this.userService.update(formData).subscribe(
       () => {
-        this.updatePermissions(this.userId, permissions);
+        if (this.isPartnerAdmin) {
+          this.handleSuccess();
+        } else {
+          this.updatePermissions(this.userId, permissions);
+        }
       },
       () => {
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
@@ -138,11 +147,16 @@ export class UsersEditComponent implements OnInit {
   }
 
   private handleSuccess() {
+    // TODO: i18n
     this.snackBar.open('Admin user has been edited successfully', this.translateService.translates.CloseSnackbarBtnText, {
       duration: 5000,
     });
 
-    this.navigateToList();
+    if (this.isPartnerAdmin) {
+      this.isSaving = false;
+    } else {
+      this.navigateToList();
+    }
   }
 
   private navigateToList() {

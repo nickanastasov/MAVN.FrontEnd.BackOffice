@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import {Component, OnInit, ViewChild, TemplateRef, ElementRef} from '@angular/core';
 import {PartnersService} from '../partners.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TOKEN_SYMBOL} from 'src/app/core/constants/const';
@@ -35,11 +35,21 @@ export class PartnersListComponent implements OnInit {
   isVisibleSearchName: boolean;
   currentPage = 0;
   initialPageSize: number;
-  private pageSize: number;
+  pageSize: number;
   private getDataSubscription: Subscription;
   private globalRate: GlobalRate;
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
+  isPartnerAdmin = false;
   hasEditPermission = false;
+
+  // Translates
+  @ViewChild('headerTitle', {static: true})
+  headerTitle: ElementRef<HTMLElement>;
+  @ViewChild('headerTitleForPartner', {static: true})
+  headerTitleForPartner: ElementRef<HTMLElement>;
+  private translates = {
+    headerTitle: '',
+  };
 
   constructor(
     // services
@@ -55,7 +65,8 @@ export class PartnersListComponent implements OnInit {
   ) {
     this.baseCurrencyCode = this.settingsService.baseCurrencyCode;
     this.businessVerticalTypes = this.businessVerticalService.getBusinessVerticalItems();
-    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit;
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.hasEditPermission = this.authenticationService.getUserPermissions()[PermissionType.ProgramPartners].Edit || this.isPartnerAdmin;
 
     this.route.queryParams.subscribe((params) => {
       const page = +params['page'];
@@ -72,8 +83,12 @@ export class PartnersListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translates.headerTitle = this.isPartnerAdmin
+      ? this.headerTitle.nativeElement.innerText
+      : this.headerTitleForPartner.nativeElement.innerText;
+
     this.headerMenuService.headerMenuContent = {
-      title: 'Partners',
+      title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate,
     };
   }

@@ -36,6 +36,7 @@ export class AdminLayoutComponent implements OnInit {
   //#endregion
 
   user: User;
+  isPartnerAdmin = false;
   userInitials: string;
   tokenSymbol = TOKEN_SYMBOL;
 
@@ -81,7 +82,9 @@ export class AdminLayoutComponent implements OnInit {
     private settingsService: SettingsService,
     private businessVerticalService: BusinessVerticalService,
     private translateService: TranslateService
-  ) {}
+  ) {
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+  }
 
   ngOnInit() {
     this.user = this.authenticationService.getUserData();
@@ -97,7 +100,7 @@ export class AdminLayoutComponent implements OnInit {
 
         switch (key) {
           case PermissionType.Dashboard:
-            if (permission.View) {
+            if (permission.View || permission.PartnerEdit) {
               this.showDashboard = true;
             }
             break;
@@ -112,7 +115,7 @@ export class AdminLayoutComponent implements OnInit {
             }
             break;
           case PermissionType.VoucherManager:
-            if (permission.View) {
+            if (permission.View || permission.PartnerEdit) {
               this.showVoucherManager = true;
             }
             break;
@@ -122,12 +125,12 @@ export class AdminLayoutComponent implements OnInit {
             }
             break;
           case PermissionType.Reports:
-            if (permission.View) {
+            if (permission.View || permission.PartnerEdit) {
               this.showReports = true;
             }
             break;
           case PermissionType.ProgramPartners:
-            if (permission.View) {
+            if (permission.View || permission.PartnerEdit) {
               this.showProgramPartners = true;
             }
             break;

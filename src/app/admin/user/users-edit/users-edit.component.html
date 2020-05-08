@@ -16,6 +16,7 @@
                 matTooltip="New password will be auto-generated and sent to the admin by the attached email address"
                 i18n-matTooltip
                 [disabled]="isProcessingResetPassword || !hasEditPermission"
+                [hidden]="isPartnerAdmin"
                 (click)="resetPassword()">
           <div *ngIf="isProcessingResetPassword"
                class="spinner-with-text">

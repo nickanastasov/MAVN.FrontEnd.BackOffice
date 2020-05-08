@@ -27,6 +27,8 @@ export class AuthenticationService {
   isChangingLanguage: boolean;
   private _isInitializedUserPermissions = false;
   private _permissions: {[key: string]: PermissionRight};
+  private _isInitializedIsPartnerAdmin = false;
+  private _isPartnerAdmin = false;
 
   constructor(private apiHttp: ApiHttpService, private location: Location) {}
 
@@ -58,6 +60,16 @@ export class AuthenticationService {
     return this._permissions;
   }
 
+  isPartnerAdmin(): boolean {
+    if (!this._isInitializedIsPartnerAdmin) {
+      this._isPartnerAdmin = Object.values(this.getUserPermissions()).some((permissionRight) => {
+        return permissionRight.PartnerEdit;
+      });
+    }
+    // log(this._permissions, this._isPartnerAdmin)
+    return this._isPartnerAdmin;
+  }
+
   getEmptyPermissions(): {[key: string]: PermissionRight} {
     const permissions = {
       [PermissionType.Dashboard]: new PermissionRight({IsOnlyView: true}),
@@ -80,11 +92,19 @@ export class AuthenticationService {
         const permission = permissions[adminPermission.Type];
 
         if (permission) {
-          if (adminPermission.Level === PermissionLevel.Edit) {
-            permission.View = true;
-            permission.Edit = permission.IsOnlyView ? false : true;
-          } else if (adminPermission.Level === PermissionLevel.View) {
-            permission.View = true;
+          switch (adminPermission.Level) {
+            case PermissionLevel.Edit:
+              permission.View = true;
+              permission.Edit = permission.IsOnlyView ? false : true;
+              break;
+            case PermissionLevel.View:
+              permission.View = true;
+              break;
+            case PermissionLevel.PartnerEdit:
+              permission.PartnerEdit = true;
+              break;
+            default:
+              break;
           }
         }
       });
