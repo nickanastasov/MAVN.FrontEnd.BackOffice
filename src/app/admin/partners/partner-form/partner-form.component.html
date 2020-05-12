@@ -255,7 +255,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card>
+  <mat-card [formGroup]="paymentProvidersForm">
     <mat-card-title class="d-flex justify-content-between align-items-center">
       <span class=""
             i18n>Payment integrations</span>
@@ -270,7 +270,7 @@
       </button>
     </mat-card-title>
     <mat-divider></mat-divider>
-    <mat-card-content formArrayName="PaymentIntegrations"
+    <mat-card-content formArrayName="Provider"
                       id="payment-integrations">
       <div [formGroup]="payment"
            *ngFor="let payment of paymentIntegrationsFormArray.controls; let index = index;">
@@ -291,7 +291,7 @@
             <mat-form-field appearance="outline"
                             class="width-100">
               <mat-label i18n>Payment Providers</mat-label>
-              <mat-select formControlName="PaymentProviders"
+              <mat-select formControlName="PaymentProvider"
                           placeholder="Payment Providers"
                           i18n-placeholder
                           required>

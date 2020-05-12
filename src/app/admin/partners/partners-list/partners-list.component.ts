@@ -103,7 +103,7 @@ export class PartnersListComponent implements OnInit {
       this.loading = true;
       const callback = () => this.getData(pageEvent.PageSize, this.currentPage + 1);
 
-      this.globalRate ? callback() : this.loadRate(callback);
+      !this.globalRate ? callback() : this.loadRate(callback);
     }
   }
 

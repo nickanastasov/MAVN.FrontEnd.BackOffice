@@ -5,9 +5,13 @@ import {PartnersService} from '../partners.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router, ActivatedRoute} from '@angular/router';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
+import {Provider} from '../models/provider.interface';
+import {PaymentProvidersService} from '../services/payment-providers.service';
+import {PartnerInfo} from '../models/partner-info.interface';
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 
+import {forkJoin} from 'rxjs';
 @Component({
   selector: 'app-partner-edit',
   templateUrl: './partner-edit.component.html',
@@ -17,6 +21,7 @@ export class PartnerEditComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   partnerId: string;
   partner: Partner;
+  provider: Provider;
   isPartnerAdmin = false;
   FormMode = FormMode;
   isFormDisabled = false;
@@ -43,6 +48,7 @@ export class PartnerEditComponent implements OnInit {
     private translateService: TranslateService,
     private router: Router,
     private route: ActivatedRoute,
+    private paymentProvidersService: PaymentProvidersService,
     private headerMenuService: HeaderMenuService
   ) {
     this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
@@ -63,14 +69,15 @@ export class PartnerEditComponent implements OnInit {
     this.previousPage = window.history.state.page;
     this.previousPageSize = window.history.state.pageSize;
     this.partnerId = this.route.snapshot.params.id;
-    this.partnersService.getById(this.partnerId).subscribe(
-      (partner) => {
-        this.partner = partner;
+
+    forkJoin([this.partnersService.getById(this.partnerId), this.paymentProvidersService.getById(this.partnerId)]).subscribe(
+      (result) => {
+        this.partner = result[0];
+        this.provider = result[1].PaymentProviderDetails[0];
         this.loading = false;
       },
       () => {
         this.navigateToList();
-
         this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText, {
           duration: 5000,
         });
@@ -78,11 +85,15 @@ export class PartnerEditComponent implements OnInit {
     );
   }
 
-  onFormSubmit(partner: Partner) {
+  onFormSubmit(partner: PartnerInfo) {
     this.isFormDisabled = true;
     this.loading = true;
-
-    this.partnersService.update({...this.partner, ...partner}).subscribe(
+    console.log(partner.partnerProviderDetails);
+    partner.partnerProviderDetails.PartnerId = this.partnerId;
+    forkJoin([
+      this.partnersService.update({...this.partner, ...partner.partnerDetails}),
+      this.paymentProvidersService.update({...this.provider, ...partner.partnerProviderDetails}),
+    ]).subscribe(
       () => {
         this.snackBar.open(this.translates.successMessage, this.translateService.translates.CloseSnackbarBtnText, {
           duration: 5000,
