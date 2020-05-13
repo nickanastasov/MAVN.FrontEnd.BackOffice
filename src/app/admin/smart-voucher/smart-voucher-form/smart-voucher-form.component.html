@@ -37,9 +37,7 @@
                    formControlName="FromDate"
                    matTooltip="The date when the campaign is applicable from"
                    i18n-matTooltip
-                   [min]="minFromDate"
-                   [readonly]="isFromDateDisabled"
-                   [disabled]="isFromDateDisabled"
+                   [min]="todayDate"
                    required>
             <mat-datepicker-toggle matSuffix
                                    [for]="picker"></mat-datepicker-toggle>

@@ -197,18 +197,6 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       : this.mobileContentsFormArray.controls;
   }
 
-  get minFromDate() {
-    return this.isFromDateDisabled ? this.smartVoucherForm.get(this.voucherFormProps.FromDate).value : this.todayDate;
-  }
-
-  get isFromDateDisabled() {
-    return (
-      this.smartVoucherForm.get(this.voucherFormProps.IsPublished).value &&
-      this.smartVoucherForm.get(this.voucherFormProps.FromDate).value &&
-      new Date(this.smartVoucherForm.get(this.voucherFormProps.FromDate).value).setHours(0, 0, 0, 0) < this.todayDate.setHours(0, 0, 0, 0)
-    );
-  }
-
   previousPage = '';
   previousPageSize = '';
 
@@ -240,9 +228,6 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
       this.smartVoucherForm.reset(this.voucher);
       this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
-
-      // disable fields in order to defence from human mistake of changing VoucherPrice for already imported vouchers
-      this.smartVoucherForm.get(this.voucherFormProps.VoucherPrice).disable();
       this.smartVoucherForm.get(this.voucherFormProps.VouchersTotalCount).disable();
 
       this.VouchersCount = this.voucher.VouchersTotalCount;
@@ -250,6 +235,10 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       this.VouchersInStockCount = this.VouchersCount - this.BoughtVouchersCount;
 
       this.smartVoucherForm.get(this.voucherFormProps.IsPublished).setValue(this.voucher.State === SmartVoucherCampaignState.Published);
+
+      if (this.voucher.State === SmartVoucherCampaignState.Published) {
+        this.smartVoucherForm.get(this.voucherFormProps.FromDate).disable();
+      }
 
       if (!this.hasEditPermission || this.voucher.State === SmartVoucherCampaignState.Deleted) {
         this.smartVoucherForm.disable();
