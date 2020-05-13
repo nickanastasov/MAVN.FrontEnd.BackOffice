@@ -1,8 +1,6 @@
-import {PaymentProvidersType} from './payment-providers.enum';
+import {PaymentProvidersType} from './payment-providers-type.enum';
+import {ProviderProperties} from './provider-properties.interface';
 export interface ProviderOptions {
-  name: string;
-  description: string;
-  isOptional: boolean;
-  isSecret: boolean;
+  Properties: ProviderProperties[];
   PaymentProvider: PaymentProvidersType;
 }

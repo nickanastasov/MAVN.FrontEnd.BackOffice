@@ -88,12 +88,17 @@ export class PartnerEditComponent implements OnInit {
   onFormSubmit(partner: PartnerInfo) {
     this.isFormDisabled = true;
     this.loading = true;
-    console.log(partner.partnerProviderDetails);
     partner.partnerProviderDetails.PartnerId = this.partnerId;
-    forkJoin([
-      this.partnersService.update({...this.partner, ...partner.partnerDetails}),
-      this.paymentProvidersService.update({...this.provider, ...partner.partnerProviderDetails}),
-    ]).subscribe(
+
+    const requests = [this.partnersService.update({...this.partner, ...partner.partnerDetails})];
+
+    if (this.provider) {
+      requests.push(this.paymentProvidersService.update({...this.provider, ...partner.partnerProviderDetails}));
+    } else {
+      requests.push(this.paymentProvidersService.create(partner.partnerProviderDetails));
+    }
+
+    forkJoin(requests).subscribe(
       () => {
         this.snackBar.open(this.translates.successMessage, this.translateService.translates.CloseSnackbarBtnText, {
           duration: 5000,

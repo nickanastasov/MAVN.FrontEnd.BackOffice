@@ -30,6 +30,9 @@ import {PermissionType} from '../../user/models/permission-type.enum';
 import {BusinessVerticalType} from '../models/business-vertical.enum';
 import {ProviderOptions} from '../models/provider-options.interface';
 import {Provider} from '../models/provider.interface';
+import {PartnerInfo} from '../models/partner-info.interface';
+import {PayrexxProviderProperties} from '../models/payrexx-provider-properties.interface';
+import {PaymentProvidersType} from '../models/payment-providers-type.enum';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -38,20 +41,21 @@ import {Provider} from '../models/provider.interface';
 export class PartnerFormComponent implements OnInit, OnDestroy {
   @Input()
   type: FormMode = FormMode.Create;
-  paymentProviders: ProviderOptions[];
+
   @Output()
   submitSuccess: EventEmitter<{partnerDetails: Partner; partnerProviderDetails: Provider}> = new EventEmitter<{
     partnerDetails: Partner;
     partnerProviderDetails: Provider;
   }>();
+
   @Input()
   provider: Provider;
 
   @Input()
   partner: Partner;
-  providerDetails: Provider;
 
-  partnerInfo: Partner;
+  paymentProviders: ProviderOptions[] = [];
+  PaymentProvidersType = PaymentProvidersType;
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
   CURRENCY_INPUT_MAX_NUMBER = constants.CURRENCY_INPUT_MAX_NUMBER;
@@ -59,7 +63,15 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   TOKENS_INPUT_ACCURACY = constants.TOKENS_INPUT_ACCURACY;
   TOKENS_INPUT_MAX_NUMBER = constants.TOKENS_INPUT_MAX_NUMBER;
 
+  // #region translates
+  @ViewChild('fillRequiredFieldsMessage', {static: true})
+  fillRequiredFieldsMessage: ElementRef<HTMLElement>;
+  private translates = {
+    fillRequiredFieldsMessage: '',
+  };
+
   templates: GlobalTemplates;
+  // #endregion
   previousPage = '';
 
   partnerId: string;
@@ -94,20 +106,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   FormMode = FormMode;
   baseCurrencyCode: string;
-
   businessVerticalTypes: BusinessVerticalTypeItem[] = [];
-  // #region translates
-
-  @ViewChild('editChangeClientLoginMessageTemplate', {static: true})
-  editChangeClientLoginMessageTemplate: ElementRef<HTMLElement>;
-  @ViewChild('createChangeClientLoginMessageTemplate', {static: true})
-  createChangeClientLoginMessageTemplate: ElementRef<HTMLElement>;
-
-  private translates = {
-    editChangeClientLoginMessage: '',
-    createChangeClientLoginMessage: '',
-  };
-
   partnerFormProps = {
     Name: 'Name',
     BusinessVertical: 'BusinessVertical',
@@ -147,11 +146,14 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ],
     [this.partnerFormProps.UseGlobalCurrencyRate]: [true],
   });
-  paymentProviderProps = {
-    Provider: 'Provider',
+  paymentProvidersFormProps = {
+    Providers: 'Providers',
+    PaymentProvider: 'PaymentProvider',
+    InstanceName: 'InstanceName',
+    ApiKey: 'ApiKey',
   };
   paymentProvidersForm = this.fb.group({
-    [this.paymentProviderProps.Provider]: this.fb.array([]),
+    [this.paymentProvidersFormProps.Providers]: this.fb.array([]),
   });
   ngOnInit() {
     this.isLoadingProviders = true;
@@ -160,8 +162,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.businessVerticalTypes = this.businessVerticalService
       .getBusinessVerticalItems()
       .filter((x) => x.Type !== BusinessVerticalType.RealEstate);
-    this.translates.createChangeClientLoginMessage = this.createChangeClientLoginMessageTemplate.nativeElement.innerText;
-    this.translates.editChangeClientLoginMessage = this.editChangeClientLoginMessageTemplate.nativeElement.innerText;
+
+    // translates
+    this.translates.fillRequiredFieldsMessage = this.fillRequiredFieldsMessage.nativeElement.innerText;
 
     this.loadRate();
 
@@ -210,17 +213,17 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
   providerFormValuesForPartnerEdit() {
     const providerFormRawValue = this.paymentProvidersForm.getRawValue();
+
     if (this.provider) {
-      const {PartnerId, PaymentIntegrationProvider: PaymentProvider, PaymentIntegrationProperties} = this.provider;
-      const providerProperties = JSON.parse(PaymentIntegrationProperties);
-      const {InstanceName, ApiKey} = providerProperties;
+      const providerProperties = JSON.parse(this.provider.PaymentIntegrationProperties) as PayrexxProviderProperties;
+
       const propertiesForResettingProviderForm = {
-        Provider: [
+        // TODO: rework when there will be 2 or more payment providers
+        [this.paymentProvidersFormProps.Providers]: [
           {
-            PartnerId,
-            PaymentProvider,
-            InstanceName,
-            ApiKey,
+            [this.paymentProvidersFormProps.PaymentProvider]: this.provider.PaymentIntegrationProvider,
+            [this.paymentProvidersFormProps.InstanceName]: providerProperties.InstanceName,
+            [this.paymentProvidersFormProps.ApiKey]: providerProperties.ApiKey,
           },
         ],
       };
@@ -232,6 +235,14 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   private loadPaymentProviders() {
     return this.paymentService.getAll().subscribe((response) => {
       this.paymentProviders = response.ProvidersRequirements;
+
+      // autoselect by default if there is only one provider
+      if (this.paymentProviders && this.paymentProviders.length === 1) {
+        this.paymentIntegrationsFormArray.controls[0]
+          .get(this.paymentProvidersFormProps.PaymentProvider)
+          .setValue(this.paymentProviders[0].PaymentProvider);
+      }
+
       this.isLoadingProviders = false;
     });
   }
@@ -274,38 +285,44 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.partnerInfo = this.partnerForm.getRawValue();
-    const providerInfo = this.paymentProvidersForm.getRawValue();
-
-    const {
-      Provider: [providerProperties],
-    } = providerInfo;
-
-    const {InstanceName, ApiKey, PaymentProvider: PaymentIntegrationProvider} = providerProperties;
-
-    const PaymentIntegrationProperties = JSON.stringify({
-      InstanceName,
-      ApiKey,
-    });
-    this.providerDetails = {
-      PartnerId: null,
-      PaymentIntegrationProvider,
-      PaymentIntegrationProperties,
-    };
     if (!this.hasEditPermission) {
       return;
     }
 
     markFormControlAsTouched(this.partnerForm);
     markFormControlAsTouched(this.paymentProvidersForm);
-    if (!this.partnerForm.valid) {
+
+    if (!this.partnerForm.valid || !this.paymentProvidersForm.valid) {
+      this.snackBar.open(this.translates.fillRequiredFieldsMessage, this.translateService.translates.CloseSnackbarBtnText, {
+        duration: 5000,
+      });
       return;
     }
-    const ob = {
-      partnerDetails: this.partnerInfo,
-      partnerProviderDetails: this.providerDetails,
-    };
-    this.submitSuccess.emit(ob);
+
+    const partnerValue = this.partnerForm.getRawValue() as Partner;
+    const providerValue: {Providers: Array<any>} = this.paymentProvidersForm.getRawValue();
+
+    const providerProperties = providerValue.Providers[0] as PayrexxProviderProperties;
+
+    const {InstanceName, ApiKey} = providerProperties;
+
+    const PaymentIntegrationProperties = JSON.stringify({
+      InstanceName,
+      ApiKey,
+    });
+
+    const providerDetails = {
+      PartnerId: null,
+      PaymentIntegrationProvider: ((providerProperties as any) as ProviderOptions).PaymentProvider,
+      PaymentIntegrationProperties,
+    } as Provider;
+
+    const partnerInfo = {
+      partnerDetails: partnerValue,
+      partnerProviderDetails: providerDetails,
+    } as PartnerInfo;
+
+    this.submitSuccess.emit(partnerInfo);
   }
 
   generateLocationsFormGroup() {
@@ -323,11 +340,11 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   get locationsFormArray() {
-    return this.partnerForm.get('Locations') as FormArray;
+    return this.partnerForm.get(this.partnerFormProps.Locations) as FormArray;
   }
 
   get paymentIntegrationsFormArray() {
-    return this.paymentProvidersForm.get('Provider') as FormArray;
+    return this.paymentProvidersForm.get(this.paymentProvidersFormProps.Providers) as FormArray;
   }
   onAddLocation() {
     markFormControlAsTouched(this.locationsFormArray);
@@ -348,15 +365,13 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     }
 
     this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
-    // this.updateValuesForHiddenLocationFields();
   }
 
   generatePaymentIntegrationsFormGroup() {
     return this.fb.group({
-      PartnerId: [null],
-      InstanceName: [null, [Validators.required, LengthValidator(3, 100)]],
-      ApiKey: [null, [Validators.required]],
-      PaymentProvider: [null, [Validators.required]],
+      [this.paymentProvidersFormProps.PaymentProvider]: [null, [Validators.required]],
+      [this.paymentProvidersFormProps.InstanceName]: [null, [Validators.required, LengthValidator(3, 50)]],
+      [this.paymentProvidersFormProps.ApiKey]: [null, [Validators.required, LengthValidator(3, 100)]],
     });
   }
   onRemoveLocation(locationIndex: number) {
