@@ -17,5 +17,6 @@ export interface Settings {
     IsPublicBlockchainFeatureDisabled: boolean;
     DemoUserLogin: string;
     DemoUserPassword: string;
+    GoogleAPIKey: string;
   };
 }

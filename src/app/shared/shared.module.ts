@@ -92,7 +92,7 @@ import {LocationMapComponent} from './location-map/location-map.component';
     MatToolbarModule,
     MatTooltipModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk',
+      apiKey: '',
     }),
   ],
   exports: [

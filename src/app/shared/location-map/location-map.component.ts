@@ -8,10 +8,9 @@ import {Marker} from './marker.interface';
 })
 export class LocationMapComponent implements OnInit {
   @Input() mapAddress: string;
-
-  lat: number = 48.856614;
-  lng: number = 2.3522219;
-  zoom: number = 15;
+  lat = 48.856614;
+  lng = 2.3522219;
+  zoom = 15;
 
   markers: Marker[] = [];
   map: any;
@@ -29,13 +28,13 @@ export class LocationMapComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName === 'mapAddress') {
         // update the component here
 
         if (changes[propName].currentValue) {
           this.geocoder.geocode({address: changes[propName].currentValue}, (results: any, status: any) => {
-            if (status == 'OK') {
+            if (status === 'OK') {
               this.map.setCenter(results[0].geometry.location);
 
               this.lat = results[0].geometry.location.lat();
@@ -69,7 +68,7 @@ export class LocationMapComponent implements OnInit {
     this.lng = $event.coords.lng;
 
     this.geocoder.geocode({location: {lat: this.lat, lng: this.lng}}, (results: any, status: any) => {
-      if (status == 'OK') {
+      if (status === 'OK') {
         this.map.setCenter(results[0].geometry.location);
 
         this.lat = results[0].geometry.location.lat();

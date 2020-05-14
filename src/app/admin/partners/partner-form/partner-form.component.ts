@@ -56,7 +56,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   paymentProviders: ProviderOptions[] = [];
   PaymentProvidersType = PaymentProvidersType;
-  mapAddress: string = '';
+  mapAddress = '';
 
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
@@ -402,7 +402,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
 
   handleMapMarkerAddress(address: string, locationIndex: number) {
-    let locationsValue = this.partnerForm.get(this.partnerFormProps.Locations).value;
+    const locationsValue = this.partnerForm.get(this.partnerFormProps.Locations).value;
 
     locationsValue[locationIndex].Address = address;
 
