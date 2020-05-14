@@ -56,6 +56,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   paymentProviders: ProviderOptions[] = [];
   PaymentProvidersType = PaymentProvidersType;
+  mapAddress: string = '';
+
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
   CURRENCY_INPUT_MAX_NUMBER = constants.CURRENCY_INPUT_MAX_NUMBER;
@@ -393,5 +395,17 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       AccountingIntegrationCode: stubValue,
       ExternalId: stubValue,
     });
+  }
+
+  handleAddressBlur(event: any) {
+    this.mapAddress = event.target.value;
+  }
+
+  handleMapMarkerAddress(address: string, locationIndex: number) {
+    let locationsValue = this.partnerForm.get(this.partnerFormProps.Locations).value;
+
+    locationsValue[locationIndex].Address = address;
+
+    this.partnerForm.get(this.partnerFormProps.Locations).setValue(locationsValue);
   }
 }
