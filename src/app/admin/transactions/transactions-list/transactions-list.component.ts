@@ -20,6 +20,7 @@ import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 export class TransactionsListComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
   pageSize = 0;
+  businessVerticals: string[] = [];
   currentPage = 0;
   totalCount = Infinity;
   assetSymbol = TOKEN_SYMBOL;
@@ -74,6 +75,7 @@ export class TransactionsListComponent implements OnInit {
           this.transactions = transactions.Items;
           this.isLoading = false;
           this.isSearching = false;
+          this.removeBusinessUnitDuplicate();
         },
         (error) => {
           this.isLoading = false;
@@ -82,6 +84,13 @@ export class TransactionsListComponent implements OnInit {
           this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
         }
       );
+  }
+  removeBusinessUnitDuplicate() {
+    this.transactions.forEach((obj) => {
+      if (!this.businessVerticals.includes(obj.Vertical)) {
+        this.businessVerticals.push(obj.Vertical);
+      }
+    });
   }
 
   onFilter() {

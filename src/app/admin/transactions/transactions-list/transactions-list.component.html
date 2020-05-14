@@ -63,6 +63,19 @@
                                  [for]="toPicker"></mat-datepicker-toggle>
           <mat-datepicker #toPicker></mat-datepicker>
         </mat-form-field>
+        <mat-form-field appearance="outline"
+                        class="col-xl-2 col-lg-3">
+          <mat-label i18n>Business Unit</mat-label>
+          <mat-select
+                placeholder="Business Unit"
+                i18n-placeholder>
+            <mat-option *ngFor="let vertical of businessVerticals"
+                        [value]="vertical">{{vertical}}</mat-option>   
+          </mat-select>
+          <mat-error>
+            <app-error-message></app-error-message>
+          </mat-error>
+        </mat-form-field>
         <button class="btn btn-brand btn-upper"
                 id="customers-chart-apply-btn"
                 style="min-width: 100px; margin-top: 8px;"
@@ -100,6 +113,7 @@
                 <th i18n>Business Unit</th>
                 <th i18n>Amount ({{assetSymbol}})</th>
                 <th i18n>Transaction Category</th>
+                <th i18n>Partner id</th>
               </tr>
             </thead>
             <tbody>
@@ -153,6 +167,9 @@
                 </td>
                 <td data-id="TransactionCategory">
                   <span>{{row.TransactionCategory}}</span>
+                </td>
+                <td data-id="PartnerId">
+                  <span>Partner id</span>
                 </td>
               </tr>
             </tbody>
