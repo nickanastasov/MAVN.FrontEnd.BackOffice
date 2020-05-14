@@ -11,6 +11,11 @@ import * as moment from 'moment';
 import {DATE_ONLY_FORMAT} from '../../dashboard/models/chart-constants';
 import {saveAs} from 'file-saver';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
+import {FormBuilder} from '@angular/forms';
+import {PartnersService} from '../../partners/partners.service';
+import {PartnerRowResponse} from '../../partners/models/partner-row.interface';
+import * as constants from 'src/app/core/constants/const';
+import {AuthenticationService} from 'src/app/authentication/authentication.service';
 
 @Component({
   selector: 'app-transactions-list',
@@ -39,13 +44,30 @@ export class TransactionsListComponent implements OnInit {
     headerTitle: '',
   };
 
+  partnerFormProps = {
+    PartnerId: 'PartnerId',
+    PartnersSearch: 'PartnersSearch',
+  };
+  partnerForm = this.fb.group({
+    [this.partnerFormProps.PartnerId]: [null],
+    [this.partnerFormProps.PartnersSearch]: [null],
+  });
+  isLoadingPartners = false;
+  partners: PartnerRowResponse[] = [];
+  isPartnerAdmin = false;
+
   constructor(
     // services
+    private authenticationService: AuthenticationService,
+    private fb: FormBuilder,
+    private partnersService: PartnersService,
     private snackBar: MatSnackBar,
     private transactionsService: TransactionsService,
     private translateService: TranslateService,
     private headerMenuService: HeaderMenuService
-  ) {}
+  ) {
+    this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+  }
 
   ngOnInit() {
     this.translates.headerTitle = this.headerTitle.nativeElement.innerText;
@@ -54,6 +76,8 @@ export class TransactionsListComponent implements OnInit {
       title: this.translates.headerTitle,
       subHeaderContent: this.subHeaderTemplate,
     };
+
+    this.loadAllPartners();
   }
 
   private getData(pageSize: number, currentPage: number) {
@@ -61,6 +85,7 @@ export class TransactionsListComponent implements OnInit {
       .getAll({
         From: this.timestampFromDate.format(DATE_ONLY_FORMAT),
         To: this.timestampToDate.format(DATE_ONLY_FORMAT),
+        PartnerId: this.partnerForm.get(this.partnerFormProps.PartnerId).value,
         PageSize: pageSize,
         CurrentPage: currentPage,
       })
@@ -110,14 +135,17 @@ export class TransactionsListComponent implements OnInit {
   exportToCsv() {
     this.isExporting = true;
 
-    const from = this.timestampFromDate.format(DATE_ONLY_FORMAT);
-    const to = this.timestampToDate.format(DATE_ONLY_FORMAT);
+    const model = {
+      From: this.timestampFromDate.format(DATE_ONLY_FORMAT),
+      To: this.timestampToDate.format(DATE_ONLY_FORMAT),
+      PartnerId: this.partnerForm.get(this.partnerFormProps.PartnerId).value,
+    };
 
-    this.transactionsService.exportToCsv(from, to).subscribe(
+    this.transactionsService.exportToCsv(model).subscribe(
       (blobResponse) => {
         this.isExporting = false;
         const blobObject = new Blob([blobResponse], {type: 'text/csv'});
-        const filename = `transactions_from_${from}_to_${to}.csv`;
+        const filename = `transactions_from_${model.From}_to_${model.To}.csv`;
         saveAs(blobObject, filename);
       },
       (error) => {
@@ -127,4 +155,35 @@ export class TransactionsListComponent implements OnInit {
       }
     );
   }
+
+  // #region Partners
+
+  private loadAllPartners() {
+    this.isLoadingPartners = true;
+
+    const page = 1;
+    this.loadPagedPartners(page);
+  }
+
+  private loadPagedPartners(page: number) {
+    this.partnersService.getAll(constants.MAX_PAGE_SIZE, page, '').subscribe(
+      (response) => {
+        this.partners = [...this.partners, ...response.Partners];
+
+        if (this.partners.length >= response.PagedResponse.TotalCount) {
+          this.partners = this.partners.sort((a, b) => (a.Name > b.Name ? 1 : -1));
+          this.isLoadingPartners = false;
+        } else {
+          page++;
+          this.loadPagedPartners(page);
+        }
+      },
+      () => {
+        this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
+        this.isLoadingPartners = false;
+      }
+    );
+  }
+
+  // #endregion Partners
 }

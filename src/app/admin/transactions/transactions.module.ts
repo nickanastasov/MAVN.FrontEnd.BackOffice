@@ -6,7 +6,17 @@ import {SharedModule} from '../../shared/shared.module';
 import {TransactionsRoutingModule} from './transactions-routing.module';
 
 @NgModule({
-  declarations: [TransactionsListComponent],
-  imports: [CommonModule, TransactionsRoutingModule, SharedModule, FormsModule, ReactiveFormsModule]
+  declarations: [
+    // components
+    TransactionsListComponent,
+  ],
+  imports: [
+    // Modules
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    TransactionsRoutingModule,
+  ],
 })
 export class TransactionsModule {}

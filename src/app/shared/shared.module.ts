@@ -39,6 +39,8 @@ import {HighlightPipe} from './pipes/highlight.pipe';
 import {HeaderMenuComponent} from './header-menu/header-menu.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
 import {LanguageSwitcherComponent} from './language-switcher/language-switcher.component';
+import {PartnersByVerticalPipe} from '../admin/partners/pipes/partner-by-vertical.pipe';
+import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import {LanguageSwitcherComponent} from './language-switcher/language-switcher.c
     TokenPipe,
     HighlightPipe,
     HeaderMenuComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    PartnersByVerticalPipe,
+    SearchPartnersPipe,
   ],
   imports: [
     CommonModule,
@@ -87,7 +91,7 @@ import {LanguageSwitcherComponent} from './language-switcher/language-switcher.c
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     FormControlErrorMessageComponent,
@@ -101,6 +105,8 @@ import {LanguageSwitcherComponent} from './language-switcher/language-switcher.c
     TokenPipe,
     HighlightPipe,
     HideRulesPipe,
+    PartnersByVerticalPipe,
+    SearchPartnersPipe,
     // Material
     MatButtonModule,
     MatButtonModule,
@@ -132,9 +138,9 @@ import {LanguageSwitcherComponent} from './language-switcher/language-switcher.c
     MatToolbarModule,
     MatTooltipModule,
     HeaderMenuComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
-  providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}]
+  providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}],
 })
 export class SharedModule {}

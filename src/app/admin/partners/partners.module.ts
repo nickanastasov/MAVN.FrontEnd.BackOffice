@@ -7,19 +7,14 @@ import {PartnerAddComponent} from './partner-add/partner-add.component';
 import {PartnersRoutingModule} from './partners-routing.module';
 import {SharedModule} from 'src/app/shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PartnersByVerticalPipe} from './pipes/partner-by-vertical.pipe';
-import {SearchPartnersPipe} from './pipes/search-partners.pipe';
-import {TokenPipe} from 'src/app/shared/pipes/token.pipe';
 
 @NgModule({
   declarations: [
+    // components
     PartnersListComponent,
     PartnerFormComponent,
     PartnerEditComponent,
     PartnerAddComponent,
-    // pipes
-    PartnersByVerticalPipe,
-    SearchPartnersPipe
   ],
   imports: [
     // modules
@@ -27,13 +22,7 @@ import {TokenPipe} from 'src/app/shared/pipes/token.pipe';
     PartnersRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  exports: [
-    // pipes
-    PartnersByVerticalPipe,
-    SearchPartnersPipe,
-    TokenPipe
-  ]
 })
 export class PartnersModule {}
