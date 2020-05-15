@@ -2,7 +2,7 @@ import {PaymentProvidersService} from './../services/payment-providers.service';
 import {Component, OnInit, EventEmitter, Input, Output, OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import {FormMode} from 'src/app/shared/models/form-mode.interface';
 import * as constants from 'src/app/core/constants/const';
-import {Validators, FormBuilder, FormArray} from '@angular/forms';
+import {Validators, FormBuilder, FormArray, AbstractControl} from '@angular/forms';
 import {
   // validators
   AccuracyValidator,
@@ -90,7 +90,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private paymentService: PaymentProvidersService,
+    private paymentProvidersService: PaymentProvidersService,
     private settingsSetvice: SettingsService,
     private fb: FormBuilder,
     private globalSettingsService: GlobalSettingsService,
@@ -150,6 +150,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     PaymentProvider: 'PaymentProvider',
     InstanceName: 'InstanceName',
     ApiKey: 'ApiKey',
+    IsCheckingPaymentIntegration: 'IsCheckingPaymentIntegration',
+    HasCheckingAttempt: 'HasCheckingAttempt',
+    IsFailedPaymentIntegration: 'IsFailedPaymentIntegration',
+    IsValidPaymentIntegration: 'IsValidPaymentIntegration',
   };
   paymentProvidersForm = this.fb.group({
     [this.paymentProvidersFormProps.Providers]: this.fb.array([]),
@@ -233,7 +237,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     }
   }
   private loadPaymentProviders() {
-    return this.paymentService.getAll().subscribe((response) => {
+    return this.paymentProvidersService.getAll().subscribe((response) => {
       this.paymentProviders = response.ProvidersRequirements;
 
       // autoselect by default if there is only one provider
@@ -284,22 +288,69 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit() {
-    if (!this.hasEditPermission) {
+  // #region Payment Integrations
+
+  checkPaymentIntegration(index: number) {
+    if (!this.isPartnerAdmin || !this.paymentProvidersForm.valid) {
       return;
     }
 
-    markFormControlAsTouched(this.partnerForm);
-    markFormControlAsTouched(this.paymentProvidersForm);
+    this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.HasCheckingAttempt).setValue(true);
+    this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsCheckingPaymentIntegration).setValue(true);
+    this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsFailedPaymentIntegration).setValue(false);
 
-    if (!this.partnerForm.valid || !this.paymentProvidersForm.valid) {
-      this.snackBar.open(this.translates.fillRequiredFieldsMessage, this.translateService.translates.CloseSnackbarBtnText, {
-        duration: 5000,
-      });
-      return;
+    const model = this.getProviderDetails();
+
+    this.paymentProvidersService.checkPaymentIntegration(model).subscribe(
+      (result) => {
+        if (result.IsConfiguredCorrectly) {
+          this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsValidPaymentIntegration).setValue(true);
+        } else {
+          this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsFailedPaymentIntegration).setValue(true);
+        }
+      },
+      () => {
+        this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText, {
+          duration: 5000,
+        });
+
+        this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsFailedPaymentIntegration).setValue(true);
+      },
+      () => {
+        this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsCheckingPaymentIntegration).setValue(false);
+      }
+    );
+  }
+
+  isCheckingPaymentIntegration(index: number): boolean {
+    const result = this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsCheckingPaymentIntegration).value;
+    return result;
+  }
+
+  hasCheckingAttempt(index: number): boolean {
+    const result = this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.HasCheckingAttempt).value;
+    return result;
+  }
+
+  isValidPaymentIntegration(index: number): boolean {
+    const result = this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsValidPaymentIntegration).value;
+    return result;
+  }
+
+  isFailedPaymentIntegration(index: number): boolean {
+    const result = this.getPaymentIntegrationControl(index).get(this.paymentProvidersFormProps.IsFailedPaymentIntegration).value;
+    return result;
+  }
+
+  private getPaymentIntegrationControl(index: number): AbstractControl {
+    if (!this.paymentIntegrationsFormArray || !this.paymentIntegrationsFormArray.controls.length || index < 0) {
+      return null;
     }
 
-    const partnerValue = this.partnerForm.getRawValue() as Partner;
+    return this.paymentIntegrationsFormArray.controls[index];
+  }
+
+  private getProviderDetails(): Provider {
     const providerValue: {Providers: Array<any>} = this.paymentProvidersForm.getRawValue();
 
     const providerProperties = providerValue.Providers[0] as PayrexxProviderProperties;
@@ -312,10 +363,36 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     });
 
     const providerDetails = {
-      PartnerId: null,
       PaymentIntegrationProvider: ((providerProperties as any) as ProviderOptions).PaymentProvider,
       PaymentIntegrationProperties,
     } as Provider;
+
+    return providerDetails;
+  }
+
+  // #endregion Payment Integrations
+
+  onSubmit() {
+    if (!this.hasEditPermission) {
+      return;
+    }
+
+    const isValidPaymentIntegration = this.paymentProvidersForm.dirty
+      ? this.paymentIntegrationsFormArray.controls.every((x) => x.get(this.paymentProvidersFormProps.IsValidPaymentIntegration).value)
+      : true;
+
+    markFormControlAsTouched(this.partnerForm);
+    markFormControlAsTouched(this.paymentProvidersForm);
+
+    if (!this.partnerForm.valid || !this.paymentProvidersForm.valid || !isValidPaymentIntegration) {
+      this.snackBar.open(this.translates.fillRequiredFieldsMessage, this.translateService.translates.CloseSnackbarBtnText, {
+        duration: 5000,
+      });
+      return;
+    }
+
+    const partnerValue = this.partnerForm.getRawValue() as Partner;
+    const providerDetails = this.paymentProvidersForm.dirty ? this.getProviderDetails() : null;
 
     const partnerInfo = {
       partnerDetails: partnerValue,
@@ -346,6 +423,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   get paymentIntegrationsFormArray() {
     return this.paymentProvidersForm.get(this.paymentProvidersFormProps.Providers) as FormArray;
   }
+
   onAddLocation() {
     markFormControlAsTouched(this.locationsFormArray);
 
@@ -372,6 +450,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
       [this.paymentProvidersFormProps.PaymentProvider]: [null, [Validators.required]],
       [this.paymentProvidersFormProps.InstanceName]: [null, [Validators.required, LengthValidator(3, 50)]],
       [this.paymentProvidersFormProps.ApiKey]: [null, [Validators.required, LengthValidator(3, 100)]],
+      [this.paymentProvidersFormProps.IsCheckingPaymentIntegration]: [false],
+      [this.paymentProvidersFormProps.HasCheckingAttempt]: [false],
+      [this.paymentProvidersFormProps.IsFailedPaymentIntegration]: [false],
+      [this.paymentProvidersFormProps.IsValidPaymentIntegration]: [false],
     });
   }
   onRemoveLocation(locationIndex: number) {

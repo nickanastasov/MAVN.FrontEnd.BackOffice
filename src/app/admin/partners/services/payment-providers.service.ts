@@ -3,6 +3,7 @@ import {ApiHttpService} from 'ngx-api-utils';
 import {PaymentProvidersResponse} from '../models/payment-providers-response.interface';
 import {HttpParams} from '@angular/common/http';
 import {Provider} from '../models/provider.interface';
+import {CheckPaymentIntegrationResponse} from '../models/check-payment-integration-response.inteface';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,9 +17,8 @@ export class PaymentProvidersService {
   create(model: Provider) {
     return this.apiHttp.post<Provider>(this.apiPath, model);
   }
-  checkPaymentIntegration(id: string) {
-    const params = new HttpParams().set('PartnerId', encodeURIComponent(id));
-    return this.apiHttp.get<any>(`${this.apiPath}/integration/check`, {params: params});
+  checkPaymentIntegration(model: any) {
+    return this.apiHttp.post<CheckPaymentIntegrationResponse>(`${this.apiPath}/integration/check`, model);
   }
   getById(id: string) {
     const params = new HttpParams().set('partnerId', encodeURIComponent(id));

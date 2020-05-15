@@ -1,4 +1,5 @@
 @import '../utils/rtl-mixins';
+@import '../utils/variables';
 @import '../template/template';
 
 .spinner-border {
@@ -8,8 +9,9 @@
 }
 
 .spinner-with-text {
-  display: flex;
   align-items: center;
+  display: flex;
+  justify-content: center;
 
   > .spinner-text {
     @include margin-start(5px);
@@ -41,4 +43,18 @@
     margin-bottom: $padding;
     margin-top: $padding;
   }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 85%;
+  margin-top: 0.25em;
+}
+
+i.success {
+  color: $green;
+}
+
+i.fail {
+  color: $error-color;
 }
