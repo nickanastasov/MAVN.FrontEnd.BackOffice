@@ -122,7 +122,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     [this.partnerFormProps.BusinessVertical]: [BusinessVerticalType.Retail, [Validators.required]],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
-    // [this.partnerFormProps.PaymentIntegrations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
       null,
       [
@@ -171,9 +170,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     if (this.partner) {
       this.partner.Locations.forEach(() => {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
-
-        this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
       });
+
+      // TODO: rework when there will be 2 or more payment providers
+      this.paymentIntegrationsFormArray.push(this.generatePaymentIntegrationsFormGroup());
 
       this.partnerForm.reset(this.partner);
       this.providerFormValuesForPartnerEdit();
