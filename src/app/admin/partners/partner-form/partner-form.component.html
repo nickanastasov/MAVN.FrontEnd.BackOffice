@@ -118,6 +118,7 @@
               <input matInput
                      id="address"
                      formControlName="Address"
+                     (blur)="handleAddressBlur($event)"
                      required>
               <mat-error>
                 <app-error-message controlName="Address"></app-error-message>
@@ -255,6 +256,9 @@
           </div>
         </div>
 
+
+        <app-location-map [mapAddress]="mapAddress" (mapMarkerAddress)="handleMapMarkerAddress($event, index)"></app-location-map>
+        
       </div>
     </mat-card-content>
   </mat-card>

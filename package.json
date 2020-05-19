@@ -24,6 +24,7 @@
     }
   },
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular-devkit/build-angular": "^0.901.1",
     "@angular/animations": "^9.1.1",
     "@angular/cdk": "^9.2.1",

@@ -24,6 +24,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {AgmCoreModule} from '@agm/core';
 import {BeautifiedPaginatorComponent} from './beautified-paginator/beautified-paginator.component';
 import {FormControlErrorMessageComponent} from './form-control-error-message-component/form-control-error-message.component';
 import {PaginationContainerComponent} from './pagination-container/pagination-container.component';
@@ -39,6 +40,7 @@ import {HighlightPipe} from './pipes/highlight.pipe';
 import {HeaderMenuComponent} from './header-menu/header-menu.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
 import {LanguageSwitcherComponent} from './language-switcher/language-switcher.component';
+import {LocationMapComponent} from './location-map/location-map.component';
 import {PartnersByVerticalPipe} from '../admin/partners/pipes/partner-by-vertical.pipe';
 import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
 
@@ -58,6 +60,7 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     HighlightPipe,
     HeaderMenuComponent,
     LanguageSwitcherComponent,
+    LocationMapComponent,
     PartnersByVerticalPipe,
     SearchPartnersPipe,
   ],
@@ -92,6 +95,9 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
+    AgmCoreModule.forRoot({
+      apiKey: '',
+    }),
   ],
   exports: [
     FormControlErrorMessageComponent,
@@ -139,6 +145,7 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     MatTooltipModule,
     HeaderMenuComponent,
     LanguageSwitcherComponent,
+    LocationMapComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
   providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}],

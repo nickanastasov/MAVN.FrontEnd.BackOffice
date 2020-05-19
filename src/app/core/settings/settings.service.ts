@@ -5,7 +5,7 @@ import {Settings} from './settings.interface';
 import {environment} from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
   static appInitializerProviders: Provider[] = [
@@ -14,8 +14,8 @@ export class SettingsService {
       provide: APP_INITIALIZER,
       useFactory: SettingsService.loadSettingsFactoryProvider,
       deps: [SettingsService],
-      multi: true
-    }
+      multi: true,
+    },
   ];
 
   get apiUrl() {
@@ -78,10 +78,14 @@ export class SettingsService {
     return this._settings && this._settings.BackofficePlatform.DemoUserPassword;
   }
 
+  get GoogleAPIKey() {
+    return this._settings && this._settings.BackofficePlatform.GoogleAPIKey;
+  }
+
   private _settings: Readonly<Settings>;
 
   readonly baseSettings$ = this.getSettings().pipe(
-    tap(settings => {
+    tap((settings) => {
       this._settings = Object.freeze(settings);
     }),
     shareReplay(1)

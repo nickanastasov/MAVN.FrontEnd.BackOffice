@@ -19,6 +19,7 @@
     "MobileAppImageMinWidth": 1024,
     "MobileAppImageMinHeight": 683,
     "IsRealEstateFeatureDisabled": true,
-    "IsPublicBlockchainFeatureDisabled": true
+    "IsPublicBlockchainFeatureDisabled": true,
+    "GoogleAPIKey": "AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk"
   }
 }
