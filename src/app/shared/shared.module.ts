@@ -41,6 +41,8 @@ import {HeaderMenuComponent} from './header-menu/header-menu.component';
 import {FileSizePipe} from './pipes/file-size.pipe';
 import {LanguageSwitcherComponent} from './language-switcher/language-switcher.component';
 import {LocationMapComponent} from './location-map/location-map.component';
+import {PartnersByVerticalPipe} from '../admin/partners/pipes/partner-by-vertical.pipe';
+import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import {LocationMapComponent} from './location-map/location-map.component';
     HeaderMenuComponent,
     LanguageSwitcherComponent,
     LocationMapComponent,
+    PartnersByVerticalPipe,
+    SearchPartnersPipe,
   ],
   imports: [
     CommonModule,
@@ -107,6 +111,8 @@ import {LocationMapComponent} from './location-map/location-map.component';
     TokenPipe,
     HighlightPipe,
     HideRulesPipe,
+    PartnersByVerticalPipe,
+    SearchPartnersPipe,
     // Material
     MatButtonModule,
     MatButtonModule,

@@ -1,13 +1,18 @@
 @import '~src/scss/token-theme/utils/rtl-mixins';
+@import '~src/scss/token-theme/utils/variables';
+
+.context-badge {
+  margin-top: -4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
 .form-navigation {
   padding: 10px 0;
 
   .slide-toggle {
     font-size: 16px;
-    @include margin-end(30px);
-    position: relative;
-    top: 4px;
+    @include margin-end(15px);
   }
 }
 
@@ -42,4 +47,28 @@
       }
     }
   }
+}
+
+.restriction {
+  &-wrapper {
+    @include margin-end(15px);
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+
+    .fa {
+      color: red;
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  border: 1px solid $red;
+  border-radius: 5px;
+  bottom: -7px;
+  cursor: not-allowed;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -7px;
 }

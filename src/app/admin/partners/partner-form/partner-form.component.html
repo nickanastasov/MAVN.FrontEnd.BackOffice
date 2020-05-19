@@ -12,16 +12,19 @@
         <div class="col-xl-3 col-lg-6 col-md-6">
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label [hidden]="!isPartnerAdmin"
-                       i18n>Business Unit Name</mat-label>
-            <mat-label [hidden]="isPartnerAdmin"
-                       i18n>Program Member Name</mat-label>
+            <mat-label>
+              <span [hidden]="!isPartnerAdmin"
+                    i18n>Business Unit Name</span>
+              <span [hidden]="isPartnerAdmin"
+                    i18n>Program Member Name</span>
+            </mat-label>
             <input matInput
                    formControlName="Name"
                    required>
             <mat-error>
               <app-error-message controlName="Name"></app-error-message>
               <app-error-message controlName="Name"
+                                 key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 50}}">
               </app-error-message>
@@ -218,7 +221,7 @@
                                    key="phone"
                                    [template]="phoneNumberError"></app-error-message>
                 <app-error-message controlName="Phone"
-                                   key="phone"
+                                   key="length"
                                    [template]="templates.lengthError"
                                    [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
               </mat-error>
@@ -287,7 +290,7 @@
         </mat-grid-list>
 
         <div class="row">
-          <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="col-xl-3 col-lg-6 col-md-6">
             <div *ngIf="isLoadingProviders">
               <div class="text-center">
                 <div class="spinner-border"></div>
@@ -309,7 +312,7 @@
           </div>
           <ng-container [ngSwitch]="payment.get(paymentProvidersFormProps.PaymentProvider).value">
             <ng-container *ngSwitchCase="PaymentProvidersType.Payrexx.toString()">
-              <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="col-xl-3 col-lg-6 col-md-6">
                 <mat-form-field appearance="outline"
                                 class="width-100">
                   <mat-label i18n>Instance Name</mat-label>
@@ -326,7 +329,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="col-xl-3 col-lg-6 col-md-6">
                 <mat-form-field appearance="outline"
                                 class="width-100">
                   <mat-label i18n>Api Key</mat-label>
@@ -342,6 +345,60 @@
                                        [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
                   </mat-error>
                 </mat-form-field>
+              </div>
+              <div class="col-xl-3 col-lg-6 col-md-6"
+                   [hidden]="!isPartnerAdmin">
+                <div [hidden]="paymentProvidersForm.invalid || paymentProvidersForm.pristine"
+                     style="padding-top: 8px;">
+                  <button type="button"
+                          class="btn btn-outline-brand btn-bold"
+                          style="min-width: 120px;"
+                          (click)="checkPaymentIntegration(index)"
+                          [disabled]="isCheckingPaymentIntegration(index) || isValidPaymentIntegration(index)">
+                    <div *ngIf="isCheckingPaymentIntegration(index)"
+                         class="spinner-with-text"
+                         style="height: 1.5em;">
+                      <span class="spinner-border"></span>
+                      <span class="spinner-text">Checking...</span>
+                    </div>
+                    <i *ngIf="isValidPaymentIntegration(index)"
+                       class="fa fa-check success"></i>
+                    <i [hidden]="isValidPaymentIntegration(index) || isCheckingPaymentIntegration(index)"
+                       class="fa fa-exclamation-circle"
+                       style="vertical-align: text-bottom;"></i>
+                    <span [hidden]="isCheckingPaymentIntegration(index)"
+                          i18n>Check Integration</span>
+                  </button>
+                </div>
+                <div class="error-message kt-font-bold"
+                     [hidden]="paymentProvidersForm.invalid || paymentProvidersForm.pristine || isValidPaymentIntegration(index) || isFailedPaymentIntegration(index)">
+                  <span i18n>Please check your payment integration before Saving.</span>
+                </div>
+                <div *ngIf="hasCheckingAttempt(index) && isFailedPaymentIntegration(index)"
+                     class="alert alert-outline-danger"
+                     style="margin-top: 0.25em">
+                  <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                  <div class="alert-text kt-font-bold">
+                    <span i18n>Please correct your payment integration details and check again.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="row">
+                  <div class="col-xl-7 col-lg-9 col-md-12">
+                    <div class="alert alert-light alert-elevate">
+                      <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                      <div class="alert-text kt-font-bold">
+                        <span i18n>Please register on <a href="https://payrexx.com"
+                             target="_blank"
+                             rel="noopener noreferrer">https://payrexx.com</a> and provide
+                          necessary information.</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
             </ng-container>
             <ng-container *ngSwitchDefault></ng-container>

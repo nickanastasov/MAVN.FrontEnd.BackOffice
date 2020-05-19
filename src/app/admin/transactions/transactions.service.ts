@@ -5,7 +5,7 @@ import {ApiHttpService} from 'ngx-api-utils';
 import {toParamsString} from 'src/app/shared/utils/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransactionsService {
   constructor(private apiHttp: ApiHttpService) {}
@@ -14,14 +14,11 @@ export class TransactionsService {
     return this.apiHttp.post<TransactionListResponse>('/api/Reports', request);
   }
 
-  exportToCsv(from: string, to: string) {
-    const paramsStr = toParamsString({
-      from: from,
-      to: to
-    });
+  exportToCsv(model: any) {
+    const paramsStr = toParamsString(model);
 
     return this.apiHttp.get<Blob>('/api/Reports/exportToCsv' + paramsStr, {
-      responseType: 'blob' as any
+      responseType: 'blob' as any,
     });
   }
 }

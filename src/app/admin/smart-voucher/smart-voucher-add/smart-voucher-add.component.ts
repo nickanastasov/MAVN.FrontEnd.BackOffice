@@ -8,7 +8,7 @@ import {ImageContentCreatedResponse} from '../../action-rule/models/image-conten
 import {TranslateService} from 'src/app/shared/services/translate.service';
 import {ROUTE_ADMIN_ROOT} from 'src/app/core/constants/routes';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
-import {SmartVoucher} from '../models/smart-voucher.interface';
+import {SmartVoucherCampaign} from '../models/smart-voucher.interface';
 import {SmartVoucherCampaignSetImageRequest} from '../models/set-image-request.interface';
 
 @Component({
@@ -67,7 +67,7 @@ export class SmartVoucherAddComponent implements OnInit {
     );
   }
 
-  private saveImages(formData: SmartVoucher, createdImageContents: ImageContentCreatedResponse[]) {
+  private saveImages(formData: SmartVoucherCampaign, createdImageContents: ImageContentCreatedResponse[]) {
     const mobileContentsWithImages = formData.MobileContents.filter((mobContent) => mobContent.File && mobContent.File.size > 0);
 
     const requests = mobileContentsWithImages.map((mobContent) => {

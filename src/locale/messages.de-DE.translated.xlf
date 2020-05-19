@@ -10,13 +10,14 @@
         <source>Customers and Campaigns</source>
         <target state="translated">Kunden und Kampagnen</target>
       </trans-unit>
-      <trans-unit id="dd5bba9d8d3f50c9a9928405a8b2f1d44547efc0" datatype="html">
-        <source>Customers</source>
-        <target state="translated">Kunden</target>
-      </trans-unit>
+
       <trans-unit id="58cdefc1266b9d4378588aea6cfb38053e7dc634" datatype="html">
         <source>Campaigns</source>
         <target state="translated">Kampagnen</target>
+      </trans-unit>
+      <trans-unit id="dd5bba9d8d3f50c9a9928405a8b2f1d44547efc0" datatype="html">
+        <source>Customers</source>
+        <target state="translated">Kunden</target>
       </trans-unit>
       <trans-unit id="d24b9e4a53840a1832c961a91f6cbeafc0b7bf7a" datatype="html">
         <source>Earn Campaigns</source>
@@ -30,13 +31,21 @@
         <source>Voucher Manager</source>
         <target state="translated">Gutschein-Manager</target>
       </trans-unit>
-      <trans-unit id="32611dc8cb09807fac3211f1d89591ca0b355e13" datatype="html">
-        <source>My Organizations</source>
-        <target state="translated">Meine Organisationen</target>
+      <trans-unit id="24fdfdbc2ceb2e91f3a1c1f265f9e90289de49e6" datatype="html">
+        <source>My Business Entities</source>
+        <target state="translated">Meine Geschäftseinheiten</target>
+      </trans-unit>
+      <trans-unit id="32ee1130795118960431f5b29bc25678b7c06ce4" datatype="html">
+        <source>Program Members</source>
+        <target state="translated">Programmmitglieder</target>
       </trans-unit>
       <trans-unit id="b28ff04a44d77d7f802dcdb6705649682ec1d5dc" datatype="html">
         <source>Blockchain and Reports</source>
         <target state="translated">Blockchain und Berichte</target>
+      </trans-unit>
+      <trans-unit id="24968c3b9f7cb940df7e5bf46f61a11710481829" datatype="html">
+        <source>Reports</source>
+        <target state="translated">Berichte</target>vvvv
       </trans-unit>
       <trans-unit id="19b5a67aab244f4128c7923078d332284cfe24c6" datatype="html">
         <source>Blockchain Operations</source>
@@ -62,9 +71,9 @@
         <source>My Profile</source>
         <target state="translated">Mein Profil</target>
       </trans-unit>
-      <trans-unit id="04a6113dfb7f6c8ced20bc8b1329241864c71625" datatype="html">
-        <source>Tiers</source>
-        <target state="translated">Stufen</target>
+      <trans-unit id="5edf054f14aa57bc25a28cb7db01956fee53dac8" datatype="html">
+        <source>Change Password</source>
+        <target state="translated">Passwort ändern</target>
       </trans-unit>
       <trans-unit id="3e09ff151c3ffac9dc687aa06ea671a0f45e35d7" datatype="html">
         <source>Admin Users</source>
@@ -85,10 +94,6 @@
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
         <target state="translated">Abmelden</target>
-      </trans-unit>
-      <trans-unit id="31b2d50b7e24415597c0761630bd32fb5780421e" datatype="html">
-        <source>Vouchers Supply</source>
-        <target state="translated">Gutscheinversorgung</target>
       </trans-unit>
       <trans-unit id="bb8f59de38734d16af86774b7594de37ea20f33a" datatype="html">
         <source>Something went wrong. Please try again or contact support.</source>
@@ -213,13 +218,13 @@
         <source>Apply</source>
         <target state="translated">Anwenden</target>
       </trans-unit>
-      <trans-unit id="beffdec938d76388fdce6bb2ad815d39f4c239af" datatype="html">
-        <source>
-                Total Customers
-              </source>
-        <target state="translated">
-                Kunden insgesamt
-              </target>
+      <trans-unit id="5012bd63ffde2646cf653af9991b08fc2b398b5c" datatype="html">
+        <source>Total Vouchers</source>
+        <target state="translated">Gesamtgutscheine</target>
+      </trans-unit>
+      <trans-unit id="760560c8076833308233370b4e20845424a522fa" datatype="html">
+        <source>Total Customers</source>
+        <target state="translated">Kunden insgesamt</target>
       </trans-unit>
       <trans-unit id="3342de89d9260c2c04b289821e5ad63a9ac918be" datatype="html">
         <source>New Customers
@@ -396,12 +401,8 @@
         <target state="translated">Gesamtsaldo</target>
       </trans-unit>
       <trans-unit id="c76f7357895d4e37665ef6a2e23724e8159b5b20" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
-        </source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/>
-				</target>
+        <source><x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/></source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ smallGraphicItem.title }}"/></target>
       </trans-unit>
       <trans-unit id="2aba1e87039819aca3b70faa9aa848c12bf139ca" datatype="html">
         <source>Show</source>
@@ -413,8 +414,7 @@
       </trans-unit>
       <trans-unit id="fa2f9e98471409d3c62fe70d0c8c4f083be96beb" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total customers</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Kunden insgesamt</target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Kunden insgesamt</target>
       </trans-unit>
       <trans-unit id="c83b838d845690bcb897f775f53b5316535306dc" datatype="html">
         <source>First Name</source>
@@ -976,18 +976,25 @@
         <source>Enter Earn Campaign details</source>
         <target state="translated">Gib Kampagnendetails ein</target>
       </trans-unit>
-      <trans-unit id="9de72e904fdf61bf639cfba096c0ae87c585c7e6" datatype="html">
-        <source>List of partners in OpenMAVN program</source>
-        <target state="translated">Liste der Partner im OpenMAVN-Programm</target>
+      <trans-unit id="634b074d06241be9b714f13aaebd337d40ea8f4e" datatype="html">
+        <source>List of Business Units in OpenMAVN program</source>
+        <target state="translated">Liste der Geschäftsbereiche im OpenMAVN-Programm</target>
       </trans-unit>
-      <trans-unit id="8de6a7c2f9eb9ebda51b063d6b05793ce613c93a" datatype="html">
-        <source>Add Partner</source>
-        <target state="translated">Partner hinzufügen</target>
+      <trans-unit id="9b1b368009497002276cfc98e36306005920b81c" datatype="html">
+        <source>List of Program Members in OpenMAVN program</source>
+        <target state="translated">Liste der Programmmitglieder im OpenMAVN-Programm</target>
       </trans-unit>
-      <trans-unit id="fa96c2cb8d1292e4b22a786377c8279c3ec0912d" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total partners</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamte Partner</target>
+      <trans-unit id="dfe5be5f5e0fe245847d9a66c778fb5ea15eb425" datatype="html">
+        <source>Add Business Unit</source>
+        <target state="translated">Geschäftsbereich hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="07cfc8c3d71350c81494eab9a4e32408268ef80c" datatype="html">
+        <source>Add Program Member</source>
+        <target state="translated">Programmmitglied hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="e64cd92eb0383147687946fbe22912b12662aac8" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total</source>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total</target>
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
         <source>Name</source>
@@ -1009,9 +1016,17 @@
         <source>Partners not found</source>
         <target state="translated">Partner nicht gefunden</target>
       </trans-unit>
-      <trans-unit id="a98ca502cd98981e1ccb30376d6138d12872d10b" datatype="html">
-        <source>Partner Name</source>
-        <target state="translated">Partner-Name</target>
+      <trans-unit id="aff709e8d4dd0605b1d56ee04218646a5b06c142" datatype="html">
+        <source>Business Units</source>
+        <target state="translated">Geschäftsbereiche</target>
+      </trans-unit>
+      <trans-unit id="12173aaf994c8adc7e39bfc768052e1d4c9f7a8f" datatype="html">
+        <source>Business Unit Name</source>
+        <target state="translated">Name der Geschäftseinheit</target>
+      </trans-unit>
+      <trans-unit id="4bb50c4abe6441601bba90be07b60ea7b8109ff9" datatype="html">
+        <source>Program Member Name</source>
+        <target state="translated">Name des Programmmitglieds</target>
       </trans-unit>
       <trans-unit id="8caf9487715e342f17d96b00eaa9863661d363cb" datatype="html">
         <source>Business Vertical</source>
@@ -1040,6 +1055,50 @@
       <trans-unit id="254ad48dc50c572572b8097e6c47ebf116c58d97" datatype="html">
         <source>Delete Location</source>
         <target state="translated">Standort löschen</target>
+      </trans-unit>
+      <trans-unit id="66ef2dc4ecb22aca92008bdfb0e369ed317b119c" datatype="html">
+        <source>Payment Integrations</source>
+        <target state="translated">Zahlungsintegrationen</target>
+      </trans-unit>
+      <trans-unit id="9cc8e136575434642b8b4cc3e82df6c87f032f95" datatype="html">
+        <source>Add Payment Integration</source>
+        <target state="translated">Zahlungsintegration hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="3d52d2e7d33076e0b4cdbd67328efbf69ee236c4" datatype="html">
+        <source>Payment Provider</source>
+        <target state="translated">Zahlungsanbieter</target>
+
+      </trans-unit>
+      <trans-unit id="0923464bbb996ba8048b05d1f844f22dbc679a96" datatype="html">
+        <source>Instance Name</source>
+        <target state="translated">Instanzname</target>
+
+      </trans-unit>
+      <trans-unit id="7be12b524953f1826979fff2f3e2d311f2be9f3a" datatype="html">
+        <source>Api Key</source>
+        <target state="translated">API-Schlüssel</target>
+      </trans-unit>
+      <trans-unit id="b99e762e60d60be76a6c1e776c948054a3f94464" datatype="html">
+        <source>Check Integration</source>
+        <target state="translated">Überprüfen Sie die Integration</target>
+      </trans-unit>
+      <trans-unit id="1857db3ae69cf218e5728fec939a8d8ef681afd6" datatype="html">
+        <source>Please check your payment integration before Saving.</source>
+        <target state="translated">Bitte überprüfen Sie Ihre Zahlungsintegration vor dem Speichern.</target>
+      </trans-unit>
+      <trans-unit id="3974762f76740a92e9d711319fbe7903e8d83344" datatype="html">
+        <source>Please correct your payment integration details and check again.</source>
+        <target state="translated">Bitte korrigieren Sie Ihre Zahlungsintegrationsdaten und überprüfen Sie diese erneut.</target>
+      </trans-unit>
+      <trans-unit id="c72e9926aa5685a3ca9089213915bd4c6c80ea48" datatype="html">
+        <source>Please register on <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>https://payrexx.com<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> and provide
+                          necessary information.</source>
+        <target state="translated">Bitte registrieren Sie sich auf <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>https://payrexx.com<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> und geben Sie an
+                           notwendige Informationen.</target>
+      </trans-unit>
+      <trans-unit id="23ddcff452ab5569d056b0797f77315186c2b276" datatype="html">
+        <source>Delete Payment Integration</source>
+        <target state="translated">INSERT_TRANSLATION</target>
       </trans-unit>
       <trans-unit id="5c3872e7e8771e1cf8b1f02ee4f9c996f131bf48" datatype="html">
         <source>Conversion Rate</source>
@@ -1079,17 +1138,41 @@
         <source>Please enter a valid email address.</source>
         <target state="translated">Bitte geben Sie eine gültige E-Mail-Adresse ein.</target>
       </trans-unit>
-      <trans-unit id="eabdb7f4554f094b030d84ceeb9a7dc9621e0de5" datatype="html">
-        <source>Do you want to generate new partner login? Keep in mind that the password will be changed as well!</source>
-        <target state="translated">Möchtest du einen neuen Partner-Login erstellen? Denke daran, dass das Passwort auch geändert wird!</target>
+      <trans-unit id="985d260af1811990ca72efa1f77058a47e8d605f" datatype="html">
+        <source>Please check the form and fill the required fields</source>
+        <target state="translated">Bitte überprüfen Sie das Formular und füllen Sie die erforderlichen Felder aus</target>
       </trans-unit>
-      <trans-unit id="dcfd98c036edbe3fd143d722a889f8cfc9c79d4f" datatype="html">
-        <source>Do you want to generate new partner login?</source>
-        <target state="translated">Möchten Sie einen neuen Partner-Login erstellen?</target>
+      <trans-unit id="660a41b8d678f76d866e574dffb65614b6354679" datatype="html">
+        <source>Enter Business Unit details</source>
+        <target state="translated">Geben Sie die Details der Geschäftseinheit ein</target>
       </trans-unit>
-      <trans-unit id="6c441fd1dd0721d405ea40ef415a0d2b0a29a007" datatype="html">
-        <source>Enter partner details</source>
-        <target state="translated">Partner-Details eingeben</target>
+      <trans-unit id="5996e1be75d084dc041b3e7d723d7f6528a183a3" datatype="html">
+        <source>Enter Program Member details</source>
+        <target state="translated">Geben Sie die Details des Programmmitglieds ein</target>
+      </trans-unit>
+      <trans-unit id="87839fe23f3876021f49f1f158c383584dfc68c2" datatype="html">
+        <source>Edit Business Unit</source>
+        <target state="translated">Geschäftsbereich bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="9aeb262f8aaac2fef870e9f1370291a3b7d3a0fc" datatype="html">
+        <source>Edit Program Member</source>
+        <target state="translated">Programmmitglied bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="9bbd83e973caa57e068ecf8aef1f515a825c9530" datatype="html">
+        <source>Edited successfully.</source>
+        <target state="translated">Erfolgreich bearbeitet.</target>
+      </trans-unit>
+      <trans-unit id="afbe1c941ec1325e74077f8934f7393a9b0e06b6" datatype="html">
+        <source>New Business Unit</source>
+        <target state="translated">Neuer Geschäftsbereich</target>
+      </trans-unit>
+      <trans-unit id="d6797a6fdb4d134d02083f416a9aba0d5354762a" datatype="html">
+        <source>New Program Member</source>
+        <target state="translated">Neues Programmmitglied</target>
+      </trans-unit>
+      <trans-unit id="4d8ad00e363758b5142f94816786ea10c681e0c3" datatype="html">
+        <source>Created successfully.</source>
+        <target state="translated">Erfolgreich erstellt.</target>
       </trans-unit>
       <trans-unit id="64aa3c05d5b5678ca0975f23ef57bc090a2df955" datatype="html">
         <source>List of redeem campaigns in OpenMAVN program</source>
@@ -1151,10 +1234,6 @@
       <trans-unit id="59a1df31612f6b0cc2524bdeb14cf1d54694a15e" datatype="html">
         <source>Vouchers in Stock</source>
         <target state="translated">Gutscheine auf Lager</target>
-      </trans-unit>
-      <trans-unit id="5012bd63ffde2646cf653af9991b08fc2b398b5c" datatype="html">
-        <source>Total Vouchers</source>
-        <target state="translated">Gesamt Gutscheine</target>
       </trans-unit>
       <trans-unit id="25f84706d37d08dba5918bd2bf7664f1dae8d346" datatype="html">
         <source>Upload vouchers:</source>
@@ -1237,10 +1316,6 @@
                   here</source>
         <target state="translated">Beschreibung von Kampagnenzweck und -umfang, der in der Kunden-App angezeigt werden soll, kommt hier</target>
       </trans-unit>
-      <trans-unit id="985d260af1811990ca72efa1f77058a47e8d605f" datatype="html">
-        <source>Please check the form and fill the required fields</source>
-        <target state="translated">Bitte überprüfen Sie das Formular und füllen Sie die erforderlichen Felder aus</target>
-      </trans-unit>
       <trans-unit id="c3761924e6e6aa3efc8fcd52064efdc863c51624" datatype="html">
         <source>Enter redeem campaign details</source>
         <target state="translated">Kampagnendetails einlösen</target>
@@ -1261,11 +1336,6 @@
         <source>New Voucher Campaign</source>
         <target state="translated">Neue Gutschein-Kampagne</target>
       </trans-unit>
-      <trans-unit id="e8d8b3cd07350e5017e75e0dfd51fedd92721e1c" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{totalCount}}"/> total voucher campaigns</source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{totalCount}}"/> Gesamtgutschein-Kampagnen</target>
-      </trans-unit>
       <trans-unit id="5f251422b3a8369d17adb53288574892f29e4d13" datatype="html">
         <source>Amount of Vouchers</source>
         <target state="translated">Anzahl der Gutscheine</target>
@@ -1274,9 +1344,9 @@
         <source>Bought Vouchers</source>
         <target state="translated">Gutscheine gekauft</target>
       </trans-unit>
-      <trans-unit id="f62a8652fd82e61df791e8ae0e306fe5ed6db2de" datatype="html">
-        <source>Voucher Price</source>
-        <target state="translated">Gutscheinpreis</target>
+      <trans-unit id="4d6ee53858628de558a18623894a03c8673bce9e" datatype="html">
+        <source>Price</source>
+        <target state="translated">Preis</target>
       </trans-unit>
       <trans-unit id="32072c7fb0469aaf82d256a59b3e0d6ecce973b9" datatype="html">
         <source>Currency</source>
@@ -1338,17 +1408,13 @@
         <source>Price for the voucher (what the customers will be asked to pay to buy the voucher)</source>
         <target state="translated">Preis für den Gutschein (was die Kunden für den Kauf des Gutscheins bezahlen müssen)</target>
       </trans-unit>
-      <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
-        <source>Organization</source>
-        <target state="translated">Organisation</target>
+      <trans-unit id="6d493fe7fa20c5c4f06663726e2c3d15d4a9f71c" datatype="html">
+        <source>Business Unit</source>
+        <target state="translated">Geschäftsbereich</target>
       </trans-unit>
-      <trans-unit id="58dac4a2f8b882407fd622a8038408f62e6cce10" datatype="html">
-        <source>Search Organization</source>
-        <target state="translated">Organisation durchsuchen</target>
-      </trans-unit>
-      <trans-unit id="6bad281bc6d72ec929f4cb59ff9bb1f958f105cd" datatype="html">
-        <source>Organization who owns the current campaign</source>
-        <target state="translated">Organisation, die die aktuelle Kampagne besitzt</target>
+      <trans-unit id="aa7e42ea1f3cee9a6640b0a7c0ed57a0fc666ff7" datatype="html">
+        <source>Program Member</source>
+        <target state="translated">Programmmitglied</target>
       </trans-unit>
       <trans-unit id="eb64c04afa79183b2eb12447491c9761e17c2c67" datatype="html">
         <source>German</source>
@@ -1523,10 +1589,6 @@
         <source>Location Integration Code</source>
         <target state="translated">Standortintegration Code</target>
       </trans-unit>
-      <trans-unit id="6d493fe7fa20c5c4f06663726e2c3d15d4a9f71c" datatype="html">
-        <source>Business Unit</source>
-        <target state="translated">Geschäftsbereich</target>
-      </trans-unit>
       <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
         <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
         <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</target>
@@ -1534,6 +1596,14 @@
       <trans-unit id="54e0a26f5a8ea66466da983c899f7eb2f75301d4" datatype="html">
         <source>Transaction Category</source>
         <target state="translated">Transaktionskategorie</target>
+      </trans-unit>
+      <trans-unit id="c809399919d17fb6ef7d3939d247bf8a99377cf8" datatype="html">
+        <source>Under construction.</source>
+        <target state="translated">Bauarbeiten im Gange.</target>
+      </trans-unit>
+      <trans-unit id="9035828db071290c9e65b0134f117fb00bafadfe" datatype="html">
+        <source>Coming soon!</source>
+        <target state="translated">Demnächst!</target>
       </trans-unit>
       <trans-unit id="65acb48ecdd195f1bae6d846ef90f1cc6d57e26b" datatype="html">
         <source>Transactions not found</source>
@@ -1657,14 +1727,6 @@
         <source>Ownership Transferred</source>
         <target state="translated">Besitz übertragen</target>
       </trans-unit>
-      <trans-unit id="35e36325d2a6ed90822db6b032a51018346aaca6" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{row.EventName}}"/>
-        </source>
-        <target state="translated">
-					<x id="INTERPOLATION" equiv-text="{{row.EventName}}"/>
-				</target>
-      </trans-unit>
       <trans-unit id="d66772d2184624d69b72c2af10360967d0d5afc8" datatype="html">
         <source>There are no blockchain operations</source>
         <target state="translated">Keine Blockchain Operationen vorhanden</target>
@@ -1730,13 +1792,9 @@
         <source>Saved successfully</source>
         <target state="translated">Erfolgreich gespeichert</target>
       </trans-unit>
-      <trans-unit id="0ca36990d90309e663142a8a0ae9849b08b1aea7" datatype="html">
-        <source>Profile settings and basic info</source>
-        <target state="translated">Profileinstellungen und Basisinformationen</target>
-      </trans-unit>
-      <trans-unit id="5edf054f14aa57bc25a28cb7db01956fee53dac8" datatype="html">
-        <source>Change Password</source>
-        <target state="translated">Passwort ändern</target>
+      <trans-unit id="015e45e21b86e81108cda9cd0e74a9a0cdd986f0" datatype="html">
+        <source>Profile settings</source>
+        <target state="translated">Profileinstellungen</target>
       </trans-unit>
       <trans-unit id="1ae3dcf96b494406b6fd6fbd2f15f7259553bf4d" datatype="html">
         <source>Current Password</source>
@@ -1761,6 +1819,10 @@
       <trans-unit id="1200158c4f0aaf58d6aa267339f368c84827045a" datatype="html">
         <source>Current Password is not valid</source>
         <target state="translated">Aktuelles Passwort ist ungültig</target>
+      </trans-unit>
+      <trans-unit id="04a6113dfb7f6c8ced20bc8b1329241864c71625" datatype="html">
+        <source>Tiers</source>
+        <target state="translated">Ebenen</target>
       </trans-unit>
       <trans-unit id="f06288677a145c9016247a62d21e37d91131ade7" datatype="html">
         <source>Condition Value (<x id="INTERPOLATION" equiv-text="{{tokenSymbol}}"/>)</source>
@@ -1794,9 +1856,17 @@
         <source>Login</source>
         <target state="translated">Anmelden</target>
       </trans-unit>
-      <trans-unit id="9035828db071290c9e65b0134f117fb00bafadfe" datatype="html">
-        <source>Coming soon!</source>
-        <target state="translated">Kommt bald!</target>
+      <trans-unit id="8eabf3a801f2d0da831a862ae044c1c6e733b566" datatype="html">
+        <source>Thank you for registration.</source>
+        <target state="translated">Vielen Dank für die Registrierung.</target>
+      </trans-unit>
+      <trans-unit id="4a12d54c0d2578b9e8d53a7cad8f3915ca823ea3" datatype="html">
+        <source>We have sent a verification email to:</source>
+        <target state="translated">Wir haben eine Bestätigungs-E-Mail an folgende Adresse gesendet:</target>
+      </trans-unit>
+      <trans-unit id="5099d39218c87c61ebfce56c8593064fca63634e" datatype="html">
+        <source>Please check your email inbox and click on the verification link to continue.</source>
+        <target state="translated">Bitte überprüfen Sie Ihren E-Mail-Posteingang und klicken Sie auf den Bestätigungslink, um fortzufahren.</target>
       </trans-unit>
       <trans-unit id="69055fe6f31b8476100665df2d6748923c50b422" datatype="html">
         <source>Company Name</source>
@@ -1845,6 +1915,38 @@
       <trans-unit id="e527ace700a5dfcd97e170b854de7b539afacc0c" datatype="html">
         <source>Please enter a valid email address</source>
         <target state="translated">Bitte geben Sie eine gültige E-Mail-Adresse ein</target>
+      </trans-unit>
+      <trans-unit id="199d95857c74b0945b5c7130051a9ad293fc141b" datatype="html">
+        <source>Verifying. Please wait...</source>
+        <target state="translated">Überprüfen. Warten Sie mal...</target>
+      </trans-unit>
+      <trans-unit id="51ef91163c4348c73657271b3c18614dea5d26f7" datatype="html">
+        <source>Your email is now verified.</source>
+        <target state="translated">Ihre E-Mail-Adresse wurde jetzt überprüft.</target>
+      </trans-unit>
+      <trans-unit id="4575dcf8e78ff7d01757ff886b10bf98bb936f10" datatype="html">
+        <source>Go to login</source>
+        <target state="translated">Gehen Sie zum Login</target>
+      </trans-unit>
+      <trans-unit id="734122328b5b89dd77f95fb88c749b84682c63c6" datatype="html">
+        <source>Email has been already verified</source>
+        <target state="translated">E-Mail wurde bereits verifiziert</target>
+      </trans-unit>
+      <trans-unit id="f5fa36a9569c07faba3ec105c5f5387ba52f5f4c" datatype="html">
+        <source>Verification code does not exist</source>
+        <target state="translated">Bestätigungscode existiert nicht</target>
+      </trans-unit>
+      <trans-unit id="7865f43c526db9c5707cc3a9c14441bef16ed695" datatype="html">
+        <source>Verification code mismatch</source>
+        <target state="translated">Nicht übereinstimmender Bestätigungscode</target>
+      </trans-unit>
+      <trans-unit id="37fb6f8467e1847ae2563e2603f1e3280e072b6f" datatype="html">
+        <source>Verification code has expired</source>
+        <target state="translated">Bestätigungscode ist abgelaufen</target>
+      </trans-unit>
+      <trans-unit id="b0c63e3c398d5d20ae7b05e1ba6dbea59c54cdb9" datatype="html">
+        <source>Unknown error</source>
+        <target state="translated">Unbekannter Fehler</target>
       </trans-unit>
     </body>
   </file>

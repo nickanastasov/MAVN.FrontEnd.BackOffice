@@ -36,7 +36,7 @@
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
   <div class="kt-portlet">
     <div class="kt-portlet__body">
-      <div class="filter-wrapper">
+      <div class="filter-wrapper row">
         <mat-form-field appearance="outline"
                         class="col-xl-2 col-lg-3">
           <mat-label i18n>From</mat-label>
@@ -63,12 +63,66 @@
                                  [for]="toPicker"></mat-datepicker-toggle>
           <mat-datepicker #toPicker></mat-datepicker>
         </mat-form-field>
-        <button class="btn btn-brand btn-upper"
-                id="customers-chart-apply-btn"
-                style="min-width: 100px; margin-top: 8px;"
-                (click)="onFilter()"
-                [disabled]="isSearching || !timestampFromDate || !timestampToDate"
-                i18n>Apply</button>
+
+        <form class="col-xl-2 col-lg-3"
+              [formGroup]="partnerForm">
+          <div *ngIf="isLoadingPartners">
+            <div class="text-center">
+              <div class="spinner-border"></div>
+            </div>
+          </div>
+          <mat-form-field [hidden]="!(partners.length && !isLoadingPartners)"
+                          appearance="outline"
+                          class="width-100">
+            <mat-label>
+              <span [hidden]="!isPartnerAdmin"
+                    i18n>Business Unit</span>
+              <span [hidden]="isPartnerAdmin"
+                    i18n>Program Member</span>
+            </mat-label>
+            <mat-select id="partners"
+                        formControlName="PartnerId"
+                        panelClass="token-select-panel"
+                        [disabled]="isSearching"
+                        disableRipple>
+              <mat-option class="multiple-select-custom-option multiple-select-search-option"
+                          [hidden]="partners.length <= 5"
+                          disabled>
+                <mat-form-field appearance="standard"
+                                style="padding: 0 16px; width: 100%; position: relative; top: 6px; color: #000;">
+                  <mat-label i18n>Search</mat-label>
+                  <input type="text"
+                         matInput
+                         id="partnersSearch"
+                         formControlName="PartnersSearch"
+                         (keydown)="$event.stopPropagation()"
+                         (click)="$event.stopPropagation()">
+                  <mat-icon id="clearPartnersSearchBtn"
+                            *ngIf="partnerForm.get(partnerFormProps.PartnersSearch).value"
+                            (click)="partnerForm.get(partnerFormProps.PartnersSearch).setValue('')"
+                            style="margin-right: 0; cursor: pointer;"
+                            matSuffix>clear</mat-icon>
+                </mat-form-field>
+              </mat-option>
+              <mat-option [value]="null">
+                <span></span>
+              </mat-option>
+              <mat-option *ngFor="let partner of partners | searchPartners : partnerForm.get(partnerFormProps.PartnersSearch).value"
+                          [hidden]="partner.IsHidden"
+                          [value]="partner.Id">{{partner.Name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+
+        <div class="col-xl-2 col-lg-3">
+          <button class="btn btn-brand btn-upper"
+                  id="customers-chart-apply-btn"
+                  style="min-width: 100px; margin-top: 8px;"
+                  (click)="onFilter()"
+                  [disabled]="isSearching || !timestampFromDate || !timestampToDate"
+                  i18n>Apply</button>
+        </div>
+
       </div>
 
       <div class="spinner-wrapper">
@@ -159,7 +213,8 @@
           </table>
         </div>
 
-        <div class="row">
+        <div class="row"
+             hidden>
           <div class="col-lg-4 offset-lg-4">
             <div class="alert alert-outline-danger fade show">
               <div class="alert-icon"><i class="flaticon-warning"></i></div>

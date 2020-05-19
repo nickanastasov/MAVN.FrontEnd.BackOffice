@@ -1,5 +1,5 @@
 import {Component, Input, Optional, TemplateRef} from '@angular/core';
-import {AbstractControl, ControlContainer, FormGroupDirective} from '@angular/forms';
+import {AbstractControl, ControlContainer, FormGroupDirective, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-error-message',
@@ -15,22 +15,25 @@ export class ErrorMessageComponent {
   @Input() template: TemplateRef<any>;
   @Input() templateContext: any;
 
-  @Input() showByDefault: boolean = false;
+  @Input() showByDefault = false;
 
-  @Input('controlName')
-  set formControlName(controlName: string) {
-    if (!this.controlContainer.control) {
-      return;
-    }
-    this.formControl = this.controlContainer.control.get(controlName);
-    if (!this.formControl) {
-      throw new Error('This component and the associated control should be used within a formGroup');
-    }
+  @Input()
+  controlName: string;
+
+  constructor(
+    // injected props
+    @Optional() private controlContainer: ControlContainer,
+    @Optional() private formGroupDirective: FormGroupDirective
+  ) {}
+
+  get formControl(): AbstractControl {
+    return (
+      this.controlName &&
+      this.controlContainer &&
+      this.controlContainer.control &&
+      (this.controlContainer.control as FormGroup).controls[this.controlName]
+    );
   }
-
-  constructor(@Optional() public controlContainer: ControlContainer, @Optional() public formGroupDirective: FormGroupDirective) {}
-
-  formControl: AbstractControl;
 
   error: string;
 
@@ -38,6 +41,7 @@ export class ErrorMessageComponent {
     if (this.formControl && this.formControl.invalid && this.formControl.errors && Object.keys(this.formControl.errors).length) {
       if (this.formControl.touched || this.formControl.dirty || (this.formGroupDirective && this.formGroupDirective['submitted'])) {
         this.error = Object.keys(this.formControl.errors)[0];
+        // log(this.controlName, this.key, Object.keys(this.formControl.errors));
         return !this.key || this.error === this.key;
       }
     }

@@ -14,6 +14,7 @@ $theme: mat-light-theme($primary, $accent);
 @import 'layout/general';
 @import 'layout/typings';
 
+@import 'components/alert';
 @import 'components/btn';
 @import 'components/common';
 @import 'components/context_badge';
