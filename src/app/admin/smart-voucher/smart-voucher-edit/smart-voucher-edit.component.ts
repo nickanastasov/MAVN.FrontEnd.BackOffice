@@ -9,7 +9,7 @@ import {DeepCopy} from 'src/app/shared/utils/common';
 import {ROUTE_ADMIN_ROOT, ROUTE_SMART_VOUCHERS} from 'src/app/core/constants/routes';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
 import {SmartVoucherService} from '../smart-voucher.service';
-import {SmartVoucher} from '../models/smart-voucher.interface';
+import {SmartVoucherCampaign} from '../models/smart-voucher.interface';
 import {SmartVoucherCampaignSetImageRequest} from '../models/set-image-request.interface';
 
 @Component({
@@ -21,11 +21,11 @@ export class SmartVoucherEditComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true})
   private subHeaderTemplate: TemplateRef<any>;
   campaignId: string;
-  campaignForEdit: SmartVoucher;
+  campaignForEdit: SmartVoucherCampaign;
   FormMode = FormMode;
   isLoading = true;
   isSaving = false;
-  private campaign: SmartVoucher;
+  private campaign: SmartVoucherCampaign;
   private previousPage = '';
   private previousPageSize = '';
 
@@ -70,7 +70,7 @@ export class SmartVoucherEditComponent implements OnInit {
     this.successMessage = (this.successMessageElement.nativeElement as HTMLElement).innerText;
   }
 
-  onFormSubmit(formData: SmartVoucher) {
+  onFormSubmit(formData: SmartVoucherCampaign) {
     this.isSaving = true;
 
     const editModel = {...this.campaign, ...formData};
@@ -107,7 +107,7 @@ export class SmartVoucherEditComponent implements OnInit {
     );
   }
 
-  private saveImages(formData: SmartVoucher) {
+  private saveImages(formData: SmartVoucherCampaign) {
     const mobileContentsWithImages = formData.MobileContents.filter((mobContent) => mobContent.File && mobContent.File.size > 0);
 
     if (mobileContentsWithImages.length) {

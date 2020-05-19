@@ -12,16 +12,19 @@
         <div class="col-xl-3 col-lg-6 col-md-6">
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label [hidden]="!isPartnerAdmin"
-                       i18n>Business Unit Name</mat-label>
-            <mat-label [hidden]="isPartnerAdmin"
-                       i18n>Program Member Name</mat-label>
+            <mat-label>
+              <span [hidden]="!isPartnerAdmin"
+                    i18n>Business Unit Name</span>
+              <span [hidden]="isPartnerAdmin"
+                    i18n>Program Member Name</span>
+            </mat-label>
             <input matInput
                    formControlName="Name"
                    required>
             <mat-error>
               <app-error-message controlName="Name"></app-error-message>
               <app-error-message controlName="Name"
+                                 key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 50}}">
               </app-error-message>
@@ -217,7 +220,7 @@
                                    key="phone"
                                    [template]="phoneNumberError"></app-error-message>
                 <app-error-message controlName="Phone"
-                                   key="phone"
+                                   key="length"
                                    [template]="templates.lengthError"
                                    [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
               </mat-error>

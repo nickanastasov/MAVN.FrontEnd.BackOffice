@@ -18,11 +18,11 @@
   <div class="kt-portlet">
     <div class="kt-portlet__body">
       <app-smart-voucher-form *ngIf="!isLoading"
-                                  [isSaving]="isSaving"
-                                  [type]="FormMode.Edit"
-                                  (submitSuccess)="onFormSubmit($event)"
-                                  [voucher]="campaignForEdit">
-    </app-smart-voucher-form>
+                              [isSaving]="isSaving"
+                              [type]="FormMode.Edit"
+                              (submitSuccess)="onFormSubmit($event)"
+                              [voucherCampaign]="campaignForEdit">
+      </app-smart-voucher-form>
 
       <div class="spinner-container"
            *ngIf="isLoading || isSaving">

@@ -1,11 +1,29 @@
-<form [formGroup]="smartVoucherForm"
+<form [formGroup]="voucherCampaignForm"
       (ngSubmit)="onSubmit()"
       class="voucher-campaign-form">
 
   <mat-card>
     <mat-card-title>
-      <span class=""
-            i18n>Voucher Campaign Details</span>
+      <span i18n>Voucher Campaign Details</span>
+      <span *ngIf="!voucherCampaign"
+            class="float-right context-badge draft"
+            i18n>Draft</span>
+      <ng-container *ngIf="voucherCampaign">
+        <ng-container [ngSwitch]="voucherCampaign.State">
+          <ng-container *ngSwitchCase="SmartVoucherCampaignState.Draft">
+            <span class="float-right context-badge draft"
+                  i18n>Draft</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="SmartVoucherCampaignState.Published">
+            <span class="float-right context-badge published"
+                  i18n>Published</span>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <span class="float-right context-badge draft"
+                  i18n>Unknown</span>
+          </ng-container>
+        </ng-container>
+      </ng-container>
     </mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
@@ -16,12 +34,12 @@
             <mat-label i18n>Name</mat-label>
             <input id="name"
                    matInput
-                   formControlName="Name"
+                   [formControlName]="voucherCampaignFormProps.Name"
                    (blur)="onTitleBlur()"
                    required>
             <mat-error>
-              <app-error-message controlName="Name"></app-error-message>
-              <app-error-message controlName="Name"
+              <app-error-message [controlName]="voucherCampaignFormProps.Name"></app-error-message>
+              <app-error-message [controlName]="voucherCampaignFormProps.Name"
                                  key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
@@ -34,7 +52,7 @@
             <mat-label i18n>Start date</mat-label>
             <input matInput
                    [matDatepicker]="picker"
-                   formControlName="FromDate"
+                   [formControlName]="voucherCampaignFormProps.FromDate"
                    matTooltip="The date when the campaign is applicable from"
                    i18n-matTooltip
                    [min]="todayDate"
@@ -43,7 +61,7 @@
                                    [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error>
-              <app-error-message controlName="FromDate"></app-error-message>
+              <app-error-message [controlName]="voucherCampaignFormProps.FromDate"></app-error-message>
             </mat-error>
           </mat-form-field>
         </div>
@@ -53,7 +71,7 @@
             <mat-label i18n>End date</mat-label>
             <input matInput
                    [matDatepicker]="endDatePicker"
-                   formControlName="ToDate"
+                   [formControlName]="voucherCampaignFormProps.ToDate"
                    [min]="todayDate"
                    matTooltip="The date till which the campaign is applicable"
                    i18n-matTooltip>
@@ -72,18 +90,18 @@
             <mat-label i18n>Amount of Vouchers</mat-label>
             <input id="vouchersAmount"
                    matInput
-                   formControlName="VouchersTotalCount"
+                   [formControlName]="voucherCampaignFormProps.VouchersTotalCount"
                    required
                    matTooltip="Amount of Vouchers that will be available for customers to buy"
                    i18n-matTooltip>
             <mat-error>
-              <app-error-message controlName="VouchersTotalCount"></app-error-message>
-              <app-error-message controlName="VouchersTotalCount"
+              <app-error-message [controlName]="voucherCampaignFormProps.VouchersTotalCount"></app-error-message>
+              <app-error-message [controlName]="voucherCampaignFormProps.VouchersTotalCount"
                                  key="min"
                                  [template]="templates.minNumberError"
                                  [templateContext]="{$implicit: {min: 1}}">
               </app-error-message>
-              <app-error-message controlName="VouchersTotalCount"
+              <app-error-message [controlName]="voucherCampaignFormProps.VouchersTotalCount"
                                  key="max"
                                  [template]="templates.maxNumberError"
                                  [templateContext]="{$implicit: {max: INTEGER_MAX_NUMBER}}">
@@ -97,7 +115,7 @@
                           class="width-100">
             <mat-label i18n>Voucher Price, {{baseCurrencyCode}}</mat-label>
             <input matInput
-                   formControlName="VoucherPrice"
+                   [formControlName]="voucherCampaignFormProps.VoucherPrice"
                    type="number"
                    matTooltip="Price for the voucher (what the customers will be asked to pay to buy the voucher)"
                    i18n-matTooltip
@@ -105,13 +123,13 @@
                    min="0"
                    step="1">
             <mat-error>
-              <app-error-message controlName="VoucherPrice"></app-error-message>
-              <app-error-message controlName="VoucherPrice"
+              <app-error-message [controlName]="voucherCampaignFormProps.VoucherPrice"></app-error-message>
+              <app-error-message [controlName]="voucherCampaignFormProps.VoucherPrice"
                                  key="min"
                                  [template]="templates.minNumberError"
-                                 [templateContext]="{$implicit: {min: 1}}">
+                                 [templateContext]="{$implicit: {min: 0}}">
               </app-error-message>
-              <app-error-message controlName="VoucherPrice"
+              <app-error-message [controlName]="voucherCampaignFormProps.VoucherPrice"
                                  key="max"
                                  [template]="templates.maxNumberError"
                                  [templateContext]="{$implicit: {max: INTEGER_MAX_NUMBER}}">
@@ -136,7 +154,7 @@
                     i18n>Program Member</span>
             </mat-label>
             <mat-select id="partners"
-                        formControlName="PartnerId"
+                        [formControlName]="voucherCampaignFormProps.PartnerId"
                         required
                         panelClass="token-select-panel"
                         disableRipple>
@@ -153,13 +171,13 @@
                          (keydown)="$event.stopPropagation()"
                          (click)="$event.stopPropagation()">
                   <mat-icon id="clearPartnersSearchBtn"
-                            *ngIf="smartVoucherForm.get(voucherFormProps.PartnersSearch).value"
-                            (click)="smartVoucherForm.get(voucherFormProps.PartnersSearch).setValue('')"
+                            *ngIf="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
+                            (click)="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).setValue('')"
                             style="margin-right: 0; cursor: pointer;"
                             matSuffix>clear</mat-icon>
                 </mat-form-field>
               </mat-option>
-              <mat-option *ngFor="let partner of partners | searchPartners : smartVoucherForm.get(voucherFormProps.PartnersSearch).value"
+              <mat-option *ngFor="let partner of partners | searchPartners : voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
                           [hidden]="partner.IsHidden"
                           [value]="partner.Id">{{partner.Name}}</mat-option>
             </mat-select>
@@ -201,15 +219,15 @@
             <mat-label i18n>Description</mat-label>
             <textarea id="description"
                       matInput
-                      formControlName="Description"
+                      [formControlName]="voucherCampaignFormProps.Description"
                       i18n-placeholder
                       placeholder="Description"
                       (blur)="onDescriptionBlur()"
                       style="min-height: 60px">
             </textarea>
             <mat-error>
-              <app-error-message controlName="Description"></app-error-message>
-              <app-error-message controlName="Description"
+              <app-error-message [controlName]="voucherCampaignFormProps.Description"></app-error-message>
+              <app-error-message [controlName]="voucherCampaignFormProps.Description"
                                  key="length"
                                  [template]="templates.lengthError"
                                  [templateContext]="{$implicit: {min: 3, max: 1000}}"></app-error-message>
@@ -264,13 +282,13 @@
                   <mat-form-field appearance="outline"
                                   class="width-100">
                     <mat-label i18n>Title</mat-label>
-                    <input id="mobileContentTitle-{{mobContent.get('MobileLanguage').value}}"
+                    <input id="mobileContentTitle-{{mobContent.get(mobileContentFormProps.MobileLanguage).value}}"
                            matInput
-                           formControlName="Title"
-                           [required]="mobContent.get('MobileLanguage').value === mobileLanguages.En">
+                           [formControlName]="mobileContentFormProps.Title"
+                           [required]="mobContent.get(mobileContentFormProps.MobileLanguage).value === mobileLanguages.En">
                     <mat-error>
-                      <app-error-message controlName="Title"></app-error-message>
-                      <app-error-message controlName="Title"
+                      <app-error-message [controlName]="mobileContentFormProps.Title"></app-error-message>
+                      <app-error-message [controlName]="mobileContentFormProps.Title"
                                          key="length"
                                          [template]="templates.lengthError"
                                          [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
@@ -284,15 +302,15 @@
                   <mat-form-field appearance="outline"
                                   class="width-100">
                     <mat-label i18n>Description</mat-label>
-                    <textarea id="mobileContentDescription-{{mobContent.get('MobileLanguage').value}}"
+                    <textarea id="mobileContentDescription-{{mobContent.get(mobileContentFormProps.MobileLanguage).value}}"
                               matInput
-                              formControlName="Description"
-                              [required]="mobContent.get('MobileLanguage').value === mobileLanguages.En"
+                              [formControlName]="mobileContentFormProps.Description"
+                              [required]="mobContent.get(mobileContentFormProps.MobileLanguage).value === mobileLanguages.En"
                               style="min-height: 60px">
                     </textarea>
                     <mat-error>
-                      <app-error-message controlName="Description"></app-error-message>
-                      <app-error-message controlName="Description"
+                      <app-error-message [controlName]="mobileContentFormProps.Description"></app-error-message>
+                      <app-error-message [controlName]="mobileContentFormProps.Description"
                                          key="length"
                                          [template]="templates.lengthError"
                                          [templateContext]="{$implicit: {min: 3, max: 1000}}">
@@ -318,24 +336,24 @@
                               onclick="this.blur()"
                               (click)="fileInput.click()"
                               i18n>Choose image</button>
-                      <input id="mobileContentFile-{{mobContent.get('MobileLanguage').value}}"
+                      <input id="mobileContentFile-{{mobContent.get(mobileContentFormProps.MobileLanguage).value}}"
                              type="file"
                              [disabled]="!hasEditPermission"
                              #fileInput
                              (change)="addFiles($event.target.files, index)"
                              [attr.accept]="getAcceptFilesExtensions()" />
-                      <span *ngIf="!mobContent.get('File').value"
+                      <span *ngIf="!mobContent.get(mobileContentFormProps.File).value"
                             class="file-name"
                             i18n>No image chosen</span>
-                      <span *ngIf="mobContent.get('File').value"
-                            class="file-name">{{mobContent.get('File').value.name}}</span>
+                      <span *ngIf="mobContent.get(mobileContentFormProps.File).value"
+                            class="file-name">{{mobContent.get(mobileContentFormProps.File).value.name}}</span>
                     </div>
                     <div class="requirements-wrapper mt-4">
                       <span style="font-weight: bold;"
                             i18n>File Requirements:</span>
                       <ul style="padding-left: 15px;">
                         <li>
-                          <app-error-message controlName="File"
+                          <app-error-message [controlName]="mobileContentFormProps.File"
                                              key="fileExtension"
                                              [showByDefault]="true"
                                              [template]="fileExtensionError"></app-error-message>
@@ -345,7 +363,7 @@
                           </ng-template>
                         </li>
                         <li>
-                          <app-error-message controlName="File"
+                          <app-error-message [controlName]="mobileContentFormProps.File"
                                              key="fileDimensions"
                                              [showByDefault]="true"
                                              [template]="fileDimensionsError"></app-error-message>
@@ -355,7 +373,7 @@
                           </ng-template>
                         </li>
                         <li>
-                          <app-error-message controlName="File"
+                          <app-error-message [controlName]="mobileContentFormProps.File"
                                              key="fileSize"
                                              [showByDefault]="true"
                                              [template]="fileSizeError"></app-error-message>
@@ -436,21 +454,37 @@
             [disabled]="isSaving"
             i18n>Cancel</button>
 
-    <div [hidden]="voucher && voucher.State === SmartVoucherCampaignState.Deleted">
-      <mat-slide-toggle id="slide_IsPublished"
-                        class="slide-toggle"
-                        [hidden]="type === FormMode.Create"
-                        formControlName="IsPublished">
-        <span *ngIf="isPublishedControl.value"
-              i18n>Publish</span>
-        <span *ngIf="!isPublishedControl.value"
-              i18n>Draft</span>
-      </mat-slide-toggle>
+    <div [hidden]="voucherCampaign && voucherCampaign.State !== SmartVoucherCampaignState.Deleted"
+         class="d-flex align-items-center">
+      <div [hidden]="type === FormMode.Create || !hasEditPermission"
+           class="restriction-wrapper">
+        <mat-slide-toggle id="slide_IsPublished"
+                          [hidden]="isCheckingAbilityToPublish"
+                          class="slide-toggle"
+                          [formControlName]="voucherCampaignFormProps.IsPublished">
+          <span *ngIf="isPublishedControl.value"
+                i18n>Publish</span>
+          <span *ngIf="!isPublishedControl.value"
+                i18n>Draft</span>
+        </mat-slide-toggle>
+        <i [hidden]="isEnabledToPublish || isCheckingAbilityToPublish"
+           class="fa fa-exclamation-circle"></i>
+        <div [hidden]="isEnabledToPublish || isCheckingAbilityToPublish"
+             class="restriction"
+             matTooltip="To proceed with campaigns, complete providing required information in your Business Unit"
+             i18n-matTooltip></div>
+        <div [hidden]="!isCheckingAbilityToPublish"
+             class="spinner-with-text"
+             style="height: 1.5em;">
+          <span class="spinner-border"></span>
+          <span class="spinner-text">Checking...</span>
+        </div>
+      </div>
       <button type="submit"
               [hidden]="!hasEditPermission"
               class="btn btn-brand btn-upper btn-bold"
               style="min-width: 120px;"
-              [disabled]="isSaving || smartVoucherForm.disabled"
+              [disabled]="isSaving || voucherCampaignForm.disabled"
               i18n>Save</button>
     </div>
   </div>

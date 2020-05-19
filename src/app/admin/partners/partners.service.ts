@@ -3,6 +3,8 @@ import {ApiHttpService} from 'ngx-api-utils';
 import {Partner} from './models/partner.interface';
 import {HttpParams} from '@angular/common/http';
 import {PartnersListResponse} from './models/partners-list-response.interface';
+import {toParamsString} from 'src/app/shared/utils/common';
+import {CheckPartnerAbilityResponse} from './models/response/check-partner-ability-respnse.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,21 +23,32 @@ export class PartnersService {
   getById(id: string) {
     const params = new HttpParams().set('id', encodeURIComponent(id));
 
-    return this.apiHttp.get<Partner>(`/api/partners/query`, {params: params});
+    return this.apiHttp.get<Partner>(this.apiPath + '/query', {params: params});
   }
 
   add(partner: Partner) {
-    return this.apiHttp.post('/api/partners', partner);
+    return this.apiHttp.post(this.apiPath, partner);
   }
   update(partner: Partner) {
-    return this.apiHttp.put('/api/partners', partner);
+    return this.apiHttp.put(this.apiPath, partner);
   }
 
   generateClientIdAsync() {
-    return this.apiHttp.post('/api/partners/generateClientId', null);
+    return this.apiHttp.post(this.apiPath + '/generateClientId', null);
   }
 
   generateClientSecretAsync() {
-    return this.apiHttp.post('/api/partners/generateClientSecret', null);
+    return this.apiHttp.post(this.apiPath + '/generateClientSecret', null);
+  }
+
+  checkAbilityToPublish(partnerId: string) {
+    const model = {
+      PartnerAbility: 'PublishSmartVoucherCampaign',
+      PartnerId: partnerId,
+    };
+
+    const paramsStr = toParamsString(model);
+
+    return this.apiHttp.get<CheckPartnerAbilityResponse>(this.apiPath + '/ability/check' + paramsStr);
   }
 }

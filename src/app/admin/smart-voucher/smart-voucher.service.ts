@@ -6,10 +6,10 @@ import {toParamsString} from 'src/app/shared/utils/common';
 import {SmartVoucherCampaignSetImageRequest} from './models/set-image-request.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SmartVoucherService {
-  apiPath = '/api/voucherCampaigns';
+  private apiPath = '/api/voucherCampaigns';
 
   constructor(private apiHttp: ApiHttpService) {}
 
