@@ -96,7 +96,7 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     MatToolbarModule,
     MatTooltipModule,
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: 'AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk', // TODO: need to be consumed from settings
     }),
   ],
   exports: [

@@ -1,5 +1,6 @@
 <form [formGroup]="partnerForm"
       (ngSubmit)="onSubmit()"
+      (keydown.enter)="$event.preventDefault()"
       class="basic-campaign-form">
   <mat-card>
     <mat-card-title>
@@ -118,7 +119,8 @@
               <input matInput
                      id="address"
                      formControlName="Address"
-                     (blur)="handleAddressBlur($event)"
+                     (blur)="handleAddressBlur($event, index)"
+                     (keyup.enter)="handleAddressBlur($event, index)"
                      required>
               <mat-error>
                 <app-error-message controlName="Address"></app-error-message>
@@ -165,6 +167,13 @@
           <!--            </mat-form-field>-->
           <!--          </div>-->
         </div>
+
+        <app-location-map [mapAddress]="location.get(locationFormProps.MapAddress).value"
+                          [lat]="location.get(locationFormProps.Latitude).value"
+                          [lng]="location.get(locationFormProps.Longitude).value"
+                          (mapMarkerAddress)="handleMapMarkerAddress($event, index)"></app-location-map>
+
+        <div style="height: 30px;"></div>
         <div style="height: 30px;">
           <span i18n>- Contact Person Details ------</span>
         </div>
@@ -256,9 +265,6 @@
           </div>
         </div>
 
-
-        <app-location-map [mapAddress]="mapAddress" (mapMarkerAddress)="handleMapMarkerAddress($event, index)"></app-location-map>
-        
       </div>
     </mat-card-content>
   </mat-card>

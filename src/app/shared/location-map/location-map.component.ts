@@ -1,22 +1,27 @@
-import {Component, OnInit, Output, EventEmitter, Input, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges} from '@angular/core';
 import {Marker} from './marker.interface';
+import {AddressChangedEvent} from './models/address-changed-event.interface';
 
 @Component({
   selector: 'app-location-map',
   templateUrl: './location-map.component.html',
   styleUrls: ['./location-map.component.scss'],
 })
-export class LocationMapComponent implements OnInit {
+export class LocationMapComponent implements OnInit, OnChanges {
   @Input() mapAddress: string;
-  lat = 48.856614;
-  lng = 2.3522219;
-  zoom = 15;
+  // lat = 48.856614;
+  // lng = 2.3522219;
+  @Input()
+  lat: number = null;
+  @Input()
+  lng: number = null;
+  zoom = 1.5;
 
   markers: Marker[] = [];
   map: any;
   geocoder: any;
 
-  @Output() mapMarkerAddress = new EventEmitter();
+  @Output() mapMarkerAddress = new EventEmitter<AddressChangedEvent>();
 
   constructor() {}
   ngOnInit(): void {}
@@ -46,12 +51,22 @@ export class LocationMapComponent implements OnInit {
                 draggable: true,
               });
 
-              console.log(this.lat, this.lng);
+              this.mapMarkerAddress.emit({
+                Address: null,
+                Latitude: this.lat,
+                Longitude: this.lng,
+              });
+
+              this.zoom = 15;
             } else {
               console.error('Geocode was not successful for the following reason: ' + status);
               // alert('Geocode was not successful for the following reason: ' + status);
             }
           });
+        }
+      } else if (propName === 'lat' && changes[propName].firstChange) {
+        if (changes[propName].currentValue) {
+          this.zoom = 15;
         }
       }
     }
@@ -74,7 +89,11 @@ export class LocationMapComponent implements OnInit {
         this.lat = results[0].geometry.location.lat();
         this.lng = results[0].geometry.location.lng();
 
-        this.mapMarkerAddress.emit(results[0].formatted_address);
+        this.mapMarkerAddress.emit({
+          Address: results[0].formatted_address,
+          Latitude: this.lat,
+          Longitude: this.lng,
+        });
       } else {
         console.error('Geocode was not successful for the following reason: ' + status);
       }

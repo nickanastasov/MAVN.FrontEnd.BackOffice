@@ -33,6 +33,7 @@ import {Provider} from '../models/provider.interface';
 import {PartnerInfo} from '../models/partner-info.interface';
 import {PayrexxProviderProperties} from '../models/payrexx-provider-properties.interface';
 import {PaymentProvidersType} from '../models/payment-providers-type.enum';
+import {AddressChangedEvent} from 'src/app/shared/location-map/models/address-changed-event.interface';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -56,7 +57,6 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   paymentProviders: ProviderOptions[] = [];
   PaymentProvidersType = PaymentProvidersType;
-  mapAddress = '';
 
   assetSymbol = constants.TOKEN_SYMBOL;
   CURRENCY_INPUT_ACCURACY = constants.CURRENCY_INPUT_ACCURACY;
@@ -147,6 +147,12 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     ],
     [this.partnerFormProps.UseGlobalCurrencyRate]: [true],
   });
+  locationFormProps = {
+    Address: 'Address',
+    MapAddress: 'MapAddress',
+    Latitude: 'Latitude',
+    Longitude: 'Longitude',
+  };
   paymentProvidersFormProps = {
     Providers: 'Providers',
     PaymentProvider: 'PaymentProvider',
@@ -408,7 +414,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     return this.fb.group({
       Id: [null],
       Name: [null, [Validators.required, LengthValidator(3, 100)]],
-      Address: [null, [Validators.required, LengthValidator(3, 100)]],
+      [this.locationFormProps.Address]: [null, [Validators.required, LengthValidator(3, 100)]],
+      [this.locationFormProps.MapAddress]: [null],
+      [this.locationFormProps.Latitude]: [null],
+      [this.locationFormProps.Longitude]: [null],
       FirstName: [null, [Validators.required, OnlyLettersValidator, LengthValidator(2, 50)]],
       LastName: [null, [Validators.required, OnlyLettersValidator, LengthValidator(2, 50)]],
       Phone: [null, [Validators.required, PhoneNumberValidator, LengthValidator(3, 50)]],
@@ -479,15 +488,18 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleAddressBlur(event: any) {
-    this.mapAddress = event.target.value;
+  handleAddressBlur(event: any, locationIndex: number) {
+    this.locationsFormArray.at(locationIndex).get(this.locationFormProps.MapAddress).setValue(event.target.value);
   }
 
-  handleMapMarkerAddress(address: string, locationIndex: number) {
-    const locationsValue = this.partnerForm.get(this.partnerFormProps.Locations).value;
+  handleMapMarkerAddress(event: AddressChangedEvent, locationIndex: number) {
+    // log(event);
+    if (event.Address) {
+      this.locationsFormArray.at(locationIndex).get(this.locationFormProps.Address).setValue(event.Address);
+    }
 
-    locationsValue[locationIndex].Address = address;
-
-    this.partnerForm.get(this.partnerFormProps.Locations).setValue(locationsValue);
+    // set coordinates
+    this.locationsFormArray.at(locationIndex).get(this.locationFormProps.Latitude).setValue(event.Latitude);
+    this.locationsFormArray.at(locationIndex).get(this.locationFormProps.Longitude).setValue(event.Longitude);
   }
 }
