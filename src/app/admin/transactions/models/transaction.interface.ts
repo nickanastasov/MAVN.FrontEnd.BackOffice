@@ -2,6 +2,7 @@ export interface Transaction {
   Id: string;
   Timestamp: Date;
   Amount: string;
+  Currency: string;
   TransactionType: string;
   Status: string;
   Vertical: string;

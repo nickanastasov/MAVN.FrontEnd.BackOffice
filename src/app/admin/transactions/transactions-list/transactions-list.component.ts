@@ -16,6 +16,7 @@ import {PartnersService} from '../../partners/partners.service';
 import {PartnerRowResponse} from '../../partners/models/partner-row.interface';
 import * as constants from 'src/app/core/constants/const';
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
+import {SettingsService} from 'src/app/core/settings/settings.service';
 
 @Component({
   selector: 'app-transactions-list',
@@ -28,6 +29,7 @@ export class TransactionsListComponent implements OnInit {
   businessVerticals: string[] = [];
   currentPage = 0;
   totalCount = Infinity;
+  baseCurrencyCode: string;
   assetSymbol = TOKEN_SYMBOL;
   isLoading = true;
   isSearching = false;
@@ -61,12 +63,14 @@ export class TransactionsListComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
     private partnersService: PartnersService,
+    private settingsSetvice: SettingsService,
     private snackBar: MatSnackBar,
     private transactionsService: TransactionsService,
     private translateService: TranslateService,
     private headerMenuService: HeaderMenuService
   ) {
     this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
+    this.baseCurrencyCode = this.settingsSetvice.baseCurrencyCode;
   }
 
   ngOnInit() {

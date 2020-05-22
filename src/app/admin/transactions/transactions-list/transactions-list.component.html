@@ -138,7 +138,7 @@
                  class="block-transactions table table-hover">
             <thead>
               <tr>
-                <th i18n>Id</th>
+                <th i18n>Transaction ID</th>
                 <th i18n>Sender Name</th>
                 <th i18n>Sender Email</th>
                 <th i18n>Timestamp</th>
@@ -149,10 +149,8 @@
                 <th i18n>Receiver Name</th>
                 <th i18n>Receiver Email</th>
                 <th i18n>Transaction Location</th>
-                <th i18n>Location External Id</th>
-                <th i18n>Location Integration Code</th>
                 <th i18n>Business Unit</th>
-                <th i18n>Amount ({{assetSymbol}})</th>
+                <th i18n>Amount</th>
                 <th i18n>Transaction Category</th>
               </tr>
             </thead>
@@ -192,18 +190,20 @@
                 <td data-id="LocationInfo">
                   <span>{{row.LocationInfo}}</span>
                 </td>
-                <td data-id="LocationExternalId">
-                  <span>{{row.LocationExternalId}}</span>
-                </td>
-                <td data-id="LocationIntegrationCode">
-                  <span>{{row.LocationIntegrationCode}}</span>
-                </td>
                 <td data-id="Vertical">
                   <span>{{row.Vertical}}</span>
                 </td>
                 <td data-id="Amount"
                     class="text-right">
-                  <span>{{row.Amount | token}}</span>
+                  <!-- TODO: when Currency will be added on backend use this {{row.Currency ? row.Currency : assetSymbol}} -->
+                  <ng-container [ngSwitch]="row.TransactionType">
+                    <ng-container *ngSwitchCase="'Smart Voucher'">
+                      <span>{{row.Amount | token}} {{baseCurrencyCode}}</span>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <span>{{row.Amount | token}} {{assetSymbol}}</span>
+                    </ng-container>
+                  </ng-container>
                 </td>
                 <td data-id="TransactionCategory">
                   <span>{{row.TransactionCategory}}</span>
