@@ -83,7 +83,8 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row"
+       [hidden]="isPartnerAdmin">
     <div class="col-xl-5 col-lg-5">
       <label for="company"
              i18n>Company</label>
@@ -147,7 +148,8 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row"
+       [hidden]="isPartnerAdmin">
     <div class="col-xl-5 col-lg-5">
       <label for="jobTitle"
              i18n>Job Title</label>
@@ -166,8 +168,7 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="col-xl-5 col-lg-5 offset-2"
-         [hidden]="isPartnerAdmin">
+    <div class="col-xl-5 col-lg-5 offset-2">
       <label for="isActive"
              i18n>Status</label>
       <div class="d-flex align-content-center"
