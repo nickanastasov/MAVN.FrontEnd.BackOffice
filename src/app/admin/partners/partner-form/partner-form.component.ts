@@ -68,8 +68,16 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   // #region translates
   @ViewChild('fillRequiredFieldsMessage', {static: true})
   fillRequiredFieldsMessage: ElementRef<HTMLElement>;
+
+  @ViewChild('addressTooltipMessage', {static: true})
+  addressTooltipMessage: ElementRef<HTMLElement>;
+
   private translates = {
     fillRequiredFieldsMessage: '',
+  };
+
+  translatesTemplates = {
+    addressTooltipMessage: '',
   };
 
   templates: GlobalTemplates;
@@ -176,6 +184,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
     // translates
     this.translates.fillRequiredFieldsMessage = this.fillRequiredFieldsMessage.nativeElement.innerText;
+    this.translatesTemplates.addressTooltipMessage = this.addressTooltipMessage.nativeElement.innerText;
 
     this.loadRate();
 
