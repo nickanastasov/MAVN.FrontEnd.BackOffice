@@ -1044,6 +1044,10 @@
         <source>Address</source>
         <target state="translated">Adresse</target>
       </trans-unit>
+      <trans-unit id="bf88a17321e71f2815d032eb51e4ae64755ef660" datatype="html">
+        <source>Input address or mark point on the map</source>
+        <target state="translated">Geben Sie die Adresse oder den Markierungspunkt auf der Karte ein</target>
+      </trans-unit>
       <trans-unit id="e7eca0245a55919566e2f9bad33a280b51b65461" datatype="html">
         <source>- Contact Person Details ------</source>
         <target state="translated">- Kontaktperson Details ------</target>
@@ -1074,9 +1078,17 @@
         <target state="translated">Instanzname</target>
 
       </trans-unit>
+      <trans-unit id="224623aadd88430826b0d71747d7002dffe9eedf" datatype="html">
+        <source>If the url for accessing Payrexx is example.payrexx.com, then instance name would be &quot;example&quot;</source>
+        <target state="translated">Wenn die URL für den Zugriff auf Payrexx example.payrexx.com lautet, lautet der Instanzname 'example'</target>
+      </trans-unit>
       <trans-unit id="7be12b524953f1826979fff2f3e2d311f2be9f3a" datatype="html">
         <source>Api Key</source>
         <target state="translated">API-Schlüssel</target>
+      </trans-unit>
+      <trans-unit id="9f8ba05d71b0dc477afa59f712e58dad29b796f0" datatype="html">
+        <source>In Payrexx Administration website go to menu item &quot;API &amp; Integrations&quot; and copy &quot;Default API Key&quot;</source>
+        <target state="translated">Gehen Sie auf der Payrexx Administration-Website zum Menüpunkt "API & Integrations" und kopieren Sie "Standard-API-Schlüssel"</target>
       </trans-unit>
       <trans-unit id="b99e762e60d60be76a6c1e776c948054a3f94464" datatype="html">
         <source>Check Integration</source>
@@ -1428,6 +1440,10 @@
         <source>Description to be displayed in mobile app</source>
         <target state="translated">Beschreibung in der mobilen App angezeigt werden</target>
       </trans-unit>
+      <trans-unit id="4a30eba33a2452e6471474e2d72f1d45fe7aecb5" datatype="html">
+        <source>To proceed with campaigns, complete providing required information in your Business Unit</source>
+        <target state="translated">Um mit den Kampagnen fortzufahren, geben Sie die erforderlichen Informationen in Ihrem Geschäftsbereich ein</target>
+      </trans-unit>
       <trans-unit id="299deb2e3d61766bed339fb97eae52674aef59f7" datatype="html">
         <source>Enter Voucher Campaign details</source>
         <target state="translated">Voucher Kampagnendetails eingeben</target>
@@ -1545,9 +1561,9 @@
         <source>Exporting...</source>
         <target state="translated">Exportiere...</target>
       </trans-unit>
-      <trans-unit id="2798cc1e152b1ec07fd8daf94a2a073d1ba1ebcc" datatype="html">
-        <source>Id</source>
-        <target state="translated">Id</target>
+      <trans-unit id="86d3519a5cbe6335bb7dcea8772fafaa953d8fc1" datatype="html">
+        <source>Transaction ID</source>
+        <target state="translated">Transaktions-ID</target>
       </trans-unit>
       <trans-unit id="d784746e2d6234719c097d998fa576b012c0e350" datatype="html">
         <source>Sender Name</source>
@@ -1580,18 +1596,6 @@
       <trans-unit id="adadc9e540a5a0f2fd22e4f1aa32bd60d0ff51bf" datatype="html">
         <source>Transaction Location</source>
         <target state="translated">Transaktionsort</target>
-      </trans-unit>
-      <trans-unit id="0ca6d81038b4d21dab78c8d28e4915cf410ce910" datatype="html">
-        <source>Location External Id</source>
-        <target state="translated">Externe Id Standort</target>
-      </trans-unit>
-      <trans-unit id="ebf3f02211474e965200d02cefe90eb4f51b50cd" datatype="html">
-        <source>Location Integration Code</source>
-        <target state="translated">Standortintegration Code</target>
-      </trans-unit>
-      <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
-        <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
-        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</target>
       </trans-unit>
       <trans-unit id="54e0a26f5a8ea66466da983c899f7eb2f75301d4" datatype="html">
         <source>Transaction Category</source>
@@ -1702,6 +1706,10 @@
           Search
         </source>
         <target state="translated">Suchen</target>
+      </trans-unit>
+      <trans-unit id="e80c73e08011907e472122df1abfcc6ded36042f" datatype="html">
+        <source>Amount (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</source>
+        <target state="translated">Betrag (<x id="INTERPOLATION" equiv-text="{{assetSymbol}}"/>)</target>
       </trans-unit>
       <trans-unit id="9209d4105b95756f2a2e180b14136fa0e11ca3f2" datatype="html">
         <source>Date-Time</source>

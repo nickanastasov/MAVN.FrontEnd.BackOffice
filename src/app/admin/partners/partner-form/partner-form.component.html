@@ -90,8 +90,8 @@
 
         <div class="location-field-container">
           <mat-grid-list *ngIf="index > 0"
-                        cols="5"
-                        rowHeight="15px">
+                         cols="5"
+                         rowHeight="15px">
             <mat-divider inset="true"></mat-divider>
           </mat-grid-list>
 
@@ -101,36 +101,37 @@
                               class="width-100">
                 <mat-label i18n>Name</mat-label>
                 <input matInput
-                      id="locationName"
-                      formControlName="Name"
-                      required>
+                       id="locationName"
+                       formControlName="Name"
+                       required>
                 <mat-error>
                   <app-error-message controlName="Name"></app-error-message>
                   <app-error-message controlName="Name"
-                                    key="length"
-                                    [template]="templates.lengthError"
-                                    [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6">
               <mat-form-field appearance="outline"
                               class="width-100"
-                              [matTooltip]="translatesTemplates.addressTooltipMessage"
+                              matTooltip="Input address or mark point on the map"
+                              i18n-matTooltip
                               matTooltipPosition="above">
                 <mat-label i18n>Address</mat-label>
                 <input matInput
-                      id="address"
-                      formControlName="Address"
-                      (blur)="handleAddressBlur($event, index)"
-                      (keyup.enter)="handleAddressBlur($event, index)"
-                      required>
+                       id="address"
+                       formControlName="Address"
+                       (blur)="handleAddressBlur($event, index)"
+                       (keyup.enter)="handleAddressBlur($event, index)"
+                       required>
                 <mat-error>
                   <app-error-message controlName="Address"></app-error-message>
                   <app-error-message controlName="Address"
-                                    key="length"
-                                    [template]="templates.lengthError"
-                                    [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 3, max: 100}}"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -181,17 +182,17 @@
                               class="width-100">
                 <mat-label i18n>First Name</mat-label>
                 <input matInput
-                      formControlName="FirstName"
-                      required>
+                       formControlName="FirstName"
+                       required>
                 <mat-error>
                   <app-error-message controlName="FirstName"></app-error-message>
                   <app-error-message controlName="FirstName"
-                                    key="text"
-                                    [template]="onlyLetters"></app-error-message>
+                                     key="text"
+                                     [template]="onlyLetters"></app-error-message>
                   <app-error-message controlName="FirstName"
-                                    key="length"
-                                    [template]="templates.lengthError"
-                                    [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -200,17 +201,17 @@
                               class="width-100">
                 <mat-label i18n>Last Name</mat-label>
                 <input matInput
-                      formControlName="LastName"
-                      required>
+                       formControlName="LastName"
+                       required>
                 <mat-error>
                   <app-error-message controlName="LastName"></app-error-message>
                   <app-error-message controlName="LastName"
-                                    key="text"
-                                    [template]="onlyLetters"></app-error-message>
+                                     key="text"
+                                     [template]="onlyLetters"></app-error-message>
                   <app-error-message controlName="LastName"
-                                    key="length"
-                                    [template]="templates.lengthError"
-                                    [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 2, max: 50}}"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -219,18 +220,18 @@
                               class="width-100">
                 <mat-label i18n>Phone Number</mat-label>
                 <input matInput
-                      type="tel"
-                      formControlName="Phone"
-                      required>
+                       type="tel"
+                       formControlName="Phone"
+                       required>
                 <mat-error>
                   <app-error-message controlName="Phone"></app-error-message>
                   <app-error-message controlName="Phone"
-                                    key="phone"
-                                    [template]="phoneNumberError"></app-error-message>
+                                     key="phone"
+                                     [template]="phoneNumberError"></app-error-message>
                   <app-error-message controlName="Phone"
-                                    key="length"
-                                    [template]="templates.lengthError"
-                                    [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 3, max: 50}}"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -239,14 +240,14 @@
                               class="width-100">
                 <mat-label i18n>Email</mat-label>
                 <input matInput
-                      type="email"
-                      formControlName="Email"
-                      required>
+                       type="email"
+                       formControlName="Email"
+                       required>
                 <mat-error>
                   <app-error-message controlName="Email"></app-error-message>
                   <app-error-message controlName="Email"
-                                    key="email"
-                                    [template]="emailError"></app-error-message>
+                                     key="email"
+                                     [template]="emailError"></app-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -266,9 +267,9 @@
 
         <div class="map-container">
           <app-location-map [mapAddress]="location.get(locationFormProps.MapAddress).value"
-            [lat]="location.get(locationFormProps.Latitude).value"
-            [lng]="location.get(locationFormProps.Longitude).value"
-            (mapMarkerAddress)="handleMapMarkerAddress($event, index)"></app-location-map>
+                            [lat]="location.get(locationFormProps.Latitude).value"
+                            [lng]="location.get(locationFormProps.Longitude).value"
+                            (mapMarkerAddress)="handleMapMarkerAddress($event, index)"></app-location-map>
         </div>
       </div>
     </mat-card-content>
@@ -325,6 +326,9 @@
             <ng-container *ngSwitchCase="PaymentProvidersType.Payrexx.toString()">
               <div class="col-xl-3 col-lg-6 col-md-6">
                 <mat-form-field appearance="outline"
+                                matTooltip='If the url for accessing Payrexx is example.payrexx.com, then instance name would be "example"'
+                                i18n-matTooltip
+                                matTooltipPosition="above"
                                 class="width-100">
                   <mat-label i18n>Instance Name</mat-label>
                   <input matInput
@@ -342,6 +346,9 @@
               </div>
               <div class="col-xl-3 col-lg-6 col-md-6">
                 <mat-form-field appearance="outline"
+                                matTooltip='In Payrexx Administration website go to menu item "API & Integrations" and copy "Default API Key"'
+                                i18n-matTooltip
+                                matTooltipPosition="above"
                                 class="width-100">
                   <mat-label i18n>Api Key</mat-label>
                   <input matInput
@@ -561,7 +568,3 @@
 <div #createChangeClientLoginMessageTemplate
      hidden
      i18n>Do you want to generate new partner login?</div> -->
-
-<div #addressTooltipMessage
-      hidden
-      i18n>Input address or mark point on the map</div>
