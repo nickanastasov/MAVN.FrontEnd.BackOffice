@@ -16,6 +16,7 @@ import {BusinessVerticalTypeItem} from '../models/business-vertical-type-item.in
 import {AuthenticationService} from 'src/app/authentication/authentication.service';
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {HeaderMenuService} from 'src/app/shared/services/header-menu.service';
+import {KycStatusState} from '../models/kyc-status-state.enum';
 
 @Component({
   selector: 'app-partners-list',
@@ -30,6 +31,7 @@ export class PartnersListComponent implements OnInit {
   isSearching: boolean;
   dataSource: PartnerRowResponse[] = [];
   BusinessVertical = BusinessVerticalType;
+  KycStatusState = KycStatusState;
   totalCount: number;
   searchNameValue: string;
   isVisibleSearchName: boolean;
