@@ -24,7 +24,7 @@ import {TOKEN_SYMBOL} from '../../../core/constants/const';
 @Component({
   selector: 'app-customer-details-page',
   templateUrl: './customer-details-page.component.html',
-  styleUrls: ['./customer-details-page.component.scss']
+  styleUrls: ['./customer-details-page.component.scss'],
 })
 export class CustomerDetailsPageComponent implements OnInit {
   @ViewChild('subHeaderTemplate', {static: true}) private subHeaderTemplate: TemplateRef<any>;
@@ -67,25 +67,25 @@ export class CustomerDetailsPageComponent implements OnInit {
   tokenSymbol = TOKEN_SYMBOL;
 
   // #region translates
-  //Block Access
+  // Block Access
   @ViewChild('blockAccessDialogHeaderTemplate', {static: true})
   blockAccessDialogHeaderTemplate: ElementRef<HTMLElement>;
   @ViewChild('blockAccessDialogMessageTemplate', {static: true})
   blockAccessDialogMessageTemplate: ElementRef<HTMLElement>;
 
-  //Block Wallet
+  // Block Wallet
   @ViewChild('blockWalletDialogHeaderTemplate', {static: true})
   blockWalletDialogHeaderTemplate: ElementRef<HTMLElement>;
   @ViewChild('blockWalletDialogMessageTemplate', {static: true})
   blockWalletDialogMessageTemplate: ElementRef<HTMLElement>;
 
-  //Unblock Access
+  // Unblock Access
   @ViewChild('unblockAccessDialogHeaderTemplate', {static: true})
   unblockAccessDialogHeaderTemplate: ElementRef<HTMLElement>;
   @ViewChild('unblockAccessDialogMessageTemplate', {static: true})
   unblockAccessDialogMessageTemplate: ElementRef<HTMLElement>;
 
-  //Unblock Wallet
+  // Unblock Wallet
   @ViewChild('unblockWalletDialogHeaderTemplate', {static: true})
   unblockWalletDialogHeaderTemplate: ElementRef<HTMLElement>;
   @ViewChild('unblockWalletDialogMessageTemplate', {static: true})
@@ -99,7 +99,7 @@ export class CustomerDetailsPageComponent implements OnInit {
     unblockAccessDialogHeader: '',
     unblockAccessDialogMessage: '',
     unblockWalletDialogHeader: '',
-    unblockWalletDialogMessage: ''
+    unblockWalletDialogMessage: '',
   };
   // #endregion
   hasEditPermission = false;
@@ -136,7 +136,7 @@ export class CustomerDetailsPageComponent implements OnInit {
     this.previousPageSize = window.history.state.pageSize;
 
     this.customersService.getBalance(this.customerId).subscribe(
-      balance => {
+      (balance) => {
         this.balance = balance;
         this.isLoadingBalance = false;
       },
@@ -147,14 +147,14 @@ export class CustomerDetailsPageComponent implements OnInit {
 
     this.headerMenuService.headerMenuContent = {
       title: 'Customers',
-      subHeaderContent: this.subHeaderTemplate
+      subHeaderContent: this.subHeaderTemplate,
     };
 
     this.customersService.getCustomerById(this.customerId).subscribe(
-      customer => {
+      (customer) => {
         if (customer) {
           this.customer = customer;
-          this.isCustomerVerified = customer.IsPhoneVerified && customer.IsEmailVerified;
+          this.isCustomerVerified = customer.IsEmailVerified;
 
           if (customer.CustomerStatus == CustomerActivityStatus.Blocked) {
             this.isCustomerBlocked = true;
@@ -173,7 +173,7 @@ export class CustomerDetailsPageComponent implements OnInit {
     );
 
     this.customersService.getWalletAddress(this.customerId).subscribe(
-      res => {
+      (res) => {
         this.walletAddress = res.WalletAddress;
         this.isLoadingWalletAddress = false;
       },
@@ -189,7 +189,7 @@ export class CustomerDetailsPageComponent implements OnInit {
 
   private getPublicWalletAddress(): void {
     this.customersService.getPublicWalletAddress(this.customerId).subscribe(
-      res => {
+      (res) => {
         this.publicWalletAddress = res.PublicAddress;
         this.publicWalletAddressStatus = res.Status;
         this.isLoadingPublicWalletAddress = false;
@@ -210,7 +210,7 @@ export class CustomerDetailsPageComponent implements OnInit {
     this.isLoadingCustomerOperations = true;
 
     this.customersService.getCustomerOperationsById(pageSize, currentPage, this.customerId).subscribe(
-      response => {
+      (response) => {
         if (response) {
           this.customerOperations = response.Operations;
           this.customerOperationsTotalCount = response.PagedResponse.TotalCount;
@@ -257,11 +257,11 @@ export class CustomerDetailsPageComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         Header: this.translates.blockAccessDialogHeader,
-        Message: this.translates.blockAccessDialogMessage
-      } as ConfirmationDialogData
+        Message: this.translates.blockAccessDialogMessage,
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isProcessingCustomer = true;
 
@@ -286,11 +286,11 @@ export class CustomerDetailsPageComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         Header: this.translates.unblockAccessDialogHeader,
-        Message: this.translates.unblockAccessDialogMessage
-      } as ConfirmationDialogData
+        Message: this.translates.unblockAccessDialogMessage,
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isProcessingCustomer = true;
 
@@ -316,11 +316,11 @@ export class CustomerDetailsPageComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         Header: this.translates.blockWalletDialogHeader,
-        Message: this.translates.blockWalletDialogMessage
-      } as ConfirmationDialogData
+        Message: this.translates.blockWalletDialogMessage,
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isProcessingWallet = true;
         this.customersService.blockWallet(this.customerId).subscribe(
@@ -344,11 +344,11 @@ export class CustomerDetailsPageComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         Header: this.translates.unblockWalletDialogHeader,
-        Message: this.translates.unblockWalletDialogMessage
-      } as ConfirmationDialogData
+        Message: this.translates.unblockWalletDialogMessage,
+      } as ConfirmationDialogData,
     });
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe((result) => {
       if (result) {
         this.isProcessingWallet = true;
         this.customersService.unblockWallet(this.customerId).subscribe(
