@@ -24,7 +24,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {AgmCoreModule} from '@agm/core';
+import {AgmCoreModule, LAZY_MAPS_API_CONFIG} from '@agm/core';
 import {BeautifiedPaginatorComponent} from './beautified-paginator/beautified-paginator.component';
 import {FormControlErrorMessageComponent} from './form-control-error-message-component/form-control-error-message.component';
 import {PaginationContainerComponent} from './pagination-container/pagination-container.component';
@@ -43,6 +43,7 @@ import {LanguageSwitcherComponent} from './language-switcher/language-switcher.c
 import {LocationMapComponent} from './location-map/location-map.component';
 import {PartnersByVerticalPipe} from '../admin/partners/pipes/partner-by-vertical.pipe';
 import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
+import {SettingsService} from '../core/settings/settings.service';
 
 @NgModule({
   declarations: [
@@ -95,9 +96,7 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk', // TODO: need to be consumed from settings
-    }),
+    AgmCoreModule.forRoot(),
   ],
   exports: [
     FormControlErrorMessageComponent,
@@ -148,6 +147,18 @@ import {SearchPartnersPipe} from '../admin/partners/pipes/search-partners.pipe';
     LocationMapComponent,
   ],
   entryComponents: [ConfirmationDialogComponent],
-  providers: [{provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}],
+  providers: [
+    // providers
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},
+    {
+      provide: LAZY_MAPS_API_CONFIG,
+      useFactory: (settings: SettingsService) => {
+        return {
+          apiKey: settings.GoogleMapsApiKey,
+        };
+      },
+      deps: [SettingsService],
+    },
+  ],
 })
 export class SharedModule {}

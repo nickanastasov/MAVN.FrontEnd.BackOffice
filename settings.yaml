@@ -50,3 +50,5 @@ BackofficePlatform:
     settings-key: BackofficePlatform-DemoUserPassword
     types:
       - Optional
+  GoogleMapsApiKey:
+    settings-key: BackofficePlatform-GoogleMapsApiKey

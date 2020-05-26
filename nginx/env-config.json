@@ -20,6 +20,6 @@
     "MobileAppImageMinHeight": 683,
     "IsRealEstateFeatureDisabled": true,
     "IsPublicBlockchainFeatureDisabled": true,
-    "GoogleAPIKey": "AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk"
+    "GoogleMapsApiKey": "AIzaSyAZki6XjpJwn7iBCScxpww6GaPqP7TqsLk"
   }
 }

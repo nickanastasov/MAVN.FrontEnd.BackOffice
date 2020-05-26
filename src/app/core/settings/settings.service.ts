@@ -78,8 +78,8 @@ export class SettingsService {
     return this._settings && this._settings.BackofficePlatform.DemoUserPassword;
   }
 
-  get GoogleAPIKey() {
-    return this._settings && this._settings.BackofficePlatform.GoogleAPIKey;
+  get GoogleMapsApiKey() {
+    return this._settings && this._settings.BackofficePlatform.GoogleMapsApiKey;
   }
 
   private _settings: Readonly<Settings>;
