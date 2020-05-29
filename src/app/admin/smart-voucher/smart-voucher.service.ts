@@ -4,6 +4,7 @@ import {HttpParams} from '@angular/common/http';
 import {SmartVoucherListResponse} from './models/smart-voucher-list-response.interface';
 import {toParamsString} from 'src/app/shared/utils/common';
 import {SmartVoucherCampaignSetImageRequest} from './models/set-image-request.interface';
+import {CurrenciesResponse} from './models/currencies-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -43,5 +44,13 @@ export class SmartVoucherService {
 
   edit(model: any) {
     return this.apiHttp.put(this.apiPath, model);
+  }
+
+  getCurrenciesForPartner(partnerId: string) {
+    const paramsStr = toParamsString({
+      partnerId: partnerId,
+    });
+
+    return this.apiHttp.get<CurrenciesResponse>(this.apiPath + '/currencies' + paramsStr);
   }
 }

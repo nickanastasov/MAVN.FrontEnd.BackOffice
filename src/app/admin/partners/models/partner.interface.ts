@@ -1,4 +1,5 @@
 import {BusinessVerticalType} from './business-vertical.enum';
+import {Location} from './location.interface';
 
 export class Partner {
   Id: string;

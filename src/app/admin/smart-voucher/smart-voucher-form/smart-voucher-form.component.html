@@ -85,6 +85,53 @@
 
       <div class="row">
         <div class="col-xl-3 col-lg-4">
+          <div *ngIf="isLoadingPartners"
+               class="spinner-centered">
+            <div class="spinner-container spinner-container--top">
+              <div class="spinner-border"></div>
+            </div>
+          </div>
+          <mat-form-field appearance="outline"
+                          class="width-100">
+            <mat-label>
+              <span [hidden]="!isPartnerAdmin"
+                    i18n>Business Unit</span>
+              <span [hidden]="isPartnerAdmin"
+                    i18n>Program Member</span>
+            </mat-label>
+            <mat-select id="partners"
+                        [formControlName]="voucherCampaignFormProps.PartnerId"
+                        (selectionChange)="partnersChanged()"
+                        required
+                        panelClass="token-select-panel"
+                        disableRipple>
+              <mat-option class="multiple-select-custom-option multiple-select-search-option"
+                          [hidden]="partners.length <= 5"
+                          disabled>
+                <mat-form-field appearance="standard"
+                                style="padding: 0 16px; width: 100%; position: relative; top: 6px; color: #000;">
+                  <mat-label i18n>Search</mat-label>
+                  <input type="text"
+                         matInput
+                         id="partnersSearch"
+                         formControlName="PartnersSearch"
+                         (keydown)="$event.stopPropagation()"
+                         (click)="$event.stopPropagation()">
+                  <mat-icon id="clearPartnersSearchBtn"
+                            *ngIf="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
+                            (click)="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).setValue('')"
+                            style="margin-right: 0; cursor: pointer;"
+                            matSuffix>clear</mat-icon>
+                </mat-form-field>
+              </mat-option>
+              <mat-option *ngFor="let partner of partners | searchPartners : voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
+                          [hidden]="partner.IsHidden"
+                          [value]="partner.Id">{{partner.Name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-3 col-lg-4">
           <mat-form-field appearance="outline"
                           class="width-100">
             <mat-label i18n>Amount of Vouchers</mat-label>
@@ -113,7 +160,7 @@
         <div class="col-xl-3 col-lg-4">
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label i18n>Voucher Price, {{baseCurrencyCode}}</mat-label>
+            <mat-label i18n>Voucher Price</mat-label>
             <input matInput
                    [formControlName]="voucherCampaignFormProps.VoucherPrice"
                    type="number"
@@ -139,47 +186,26 @@
         </div>
 
         <div class="col-xl-3 col-lg-4">
-          <div *ngIf="isLoadingPartners">
-            <div class="text-center">
+          <div *ngIf="isLoadingCurrencies"
+               class="spinner-centered">
+            <div class="spinner-container spinner-container--top">
               <div class="spinner-border"></div>
             </div>
           </div>
-          <mat-form-field [hidden]="!(partners.length && !isLoadingPartners)"
-                          appearance="outline"
+          <mat-form-field appearance="outline"
                           class="width-100">
             <mat-label>
-              <span [hidden]="!isPartnerAdmin"
-                    i18n>Business Unit</span>
-              <span [hidden]="isPartnerAdmin"
-                    i18n>Program Member</span>
+              <span i18n>Currency</span>
             </mat-label>
-            <mat-select id="partners"
-                        [formControlName]="voucherCampaignFormProps.PartnerId"
+            <mat-select id="currencies"
+                        [formControlName]="voucherCampaignFormProps.Currency"
                         required
-                        panelClass="token-select-panel"
                         disableRipple>
-              <mat-option class="multiple-select-custom-option multiple-select-search-option"
-                          [hidden]="partners.length <= 5"
-                          disabled>
-                <mat-form-field appearance="standard"
-                                style="padding: 0 16px; width: 100%; position: relative; top: 6px; color: #000;">
-                  <mat-label i18n>Search</mat-label>
-                  <input type="text"
-                         matInput
-                         id="partnersSearch"
-                         formControlName="PartnersSearch"
-                         (keydown)="$event.stopPropagation()"
-                         (click)="$event.stopPropagation()">
-                  <mat-icon id="clearPartnersSearchBtn"
-                            *ngIf="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
-                            (click)="voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).setValue('')"
-                            style="margin-right: 0; cursor: pointer;"
-                            matSuffix>clear</mat-icon>
-                </mat-form-field>
+              <mat-option [value]="null">
+                <span></span>
               </mat-option>
-              <mat-option *ngFor="let partner of partners | searchPartners : voucherCampaignForm.get(voucherCampaignFormProps.PartnersSearch).value"
-                          [hidden]="partner.IsHidden"
-                          [value]="partner.Id">{{partner.Name}}</mat-option>
+              <mat-option *ngFor="let currency of voucherCampaignForm.get(voucherCampaignFormProps.Currencies).value"
+                          [value]="currency">{{currency}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -451,12 +477,16 @@
             style="min-width: 120px;"
             [routerLink]="[navigateToListUrl]"
             [queryParams]="{ page: previousPage, pageSize: previousPageSize }"
-            [disabled]="isSaving"
-            i18n>Cancel</button>
+            [disabled]="isSaving && type === FormMode.Create">
+      <span *ngIf="type === FormMode.Create"
+            i18n>Cancel</span>
+      <span *ngIf="type === FormMode.Edit"
+            i18n>Back</span>
+    </button>
 
     <div [hidden]="voucherCampaign && voucherCampaign.State !== SmartVoucherCampaignState.Deleted"
          class="d-flex align-items-center">
-      <div [hidden]="type === FormMode.Create || !hasEditPermission"
+      <div [hidden]="type === FormMode.Create || !hasEditPermission || voucherCampaign.State === SmartVoucherCampaignState.Published"
            class="restriction-wrapper">
         <mat-slide-toggle id="slide_IsPublished"
                           [hidden]="isCheckingAbilityToPublish"
