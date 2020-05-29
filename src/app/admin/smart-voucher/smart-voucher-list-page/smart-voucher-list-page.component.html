@@ -92,8 +92,9 @@
               <th style="width: 150px"
                   class="text-right">
                 <span i18n>Price</span>
-                <span>, {{baseCurrencyCode}}</span>
               </th>
+              <th style="width: 100px"
+                  i18n>Currency</th>
               <th style="width: 120px"
                   i18n>Start Date</th>
               <th style="width: 120px"
@@ -124,6 +125,9 @@
               <td data-id="VoucherPrice"
                   class="text-right">
                 <span>{{campaign.VoucherPrice | number}}</span>
+              </td>
+              <td>
+                <span>{{campaign.Currency ? campaign.Currency : baseCurrencyCode}}</span>
               </td>
               <td data-id="FromDate">
                 <span>{{campaign.FromDate | date:'dd/MM/yyyy':'+0000'}}</span>

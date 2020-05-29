@@ -39,6 +39,8 @@ import {AuthenticationService} from 'src/app/authentication/authentication.servi
 import {PermissionType} from '../../user/models/permission-type.enum';
 import {ROUTE_ADMIN_ROOT, ROUTE_SMART_VOUCHERS} from 'src/app/core/constants/routes';
 import {SmartVoucherCampaignState} from '../models/smart-voucher-campaign-state.enum';
+import {SmartVoucherService} from '../smart-voucher.service';
+import {CountriesService} from 'src/app/shared/services/countries.service';
 
 @Component({
   selector: 'app-smart-voucher-form',
@@ -72,9 +74,11 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
   TOKENS_INPUT_MAX_NUMBER = constants.TOKENS_INPUT_MAX_NUMBER;
   MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION = actionRulesConstants.MOBILE_APP_IMAGE_ACCEPTED_FILE_EXTENSION;
   baseCurrencyCode: string;
+  isLoadingCurrencies: boolean;
   // partners
   isLoadingPartners: boolean;
   partners: PartnerRowResponse[] = [];
+  partnersDict: {[Id: string]: PartnerRowResponse} = null;
   voucherCampaignFormProps = {
     Name: 'Name',
     FromDate: 'FromDate',
@@ -82,6 +86,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
     VouchersTotalCount: 'VouchersTotalCount',
     VoucherPrice: 'VoucherPrice',
     Currency: 'Currency',
+    Currencies: 'Currencies',
     PartnerId: 'PartnerId',
     PartnersSearch: 'PartnersSearch',
     Description: 'Description',
@@ -143,11 +148,13 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private countriesService: CountriesService,
     private dictionaryService: DictionaryService,
     private fb: FormBuilder,
     private partnersService: PartnersService,
     private settingsService: SettingsService,
     private snackBar: MatSnackBar,
+    private smartVoucherService: SmartVoucherService,
     private translateService: TranslateService
   ) {
     this.isPartnerAdmin = this.authenticationService.isPartnerAdmin();
@@ -184,6 +191,7 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       ],
     ],
     [this.voucherCampaignFormProps.Currency]: [null],
+    [this.voucherCampaignFormProps.Currencies]: [null],
     [this.voucherCampaignFormProps.PartnersSearch]: [null],
     [this.voucherCampaignFormProps.PartnerId]: [this.emptyPartnerIdValue, [Validators.required]],
     [this.voucherCampaignFormProps.Description]: [null, [LengthValidator(3, 1000)]],
@@ -233,8 +241,6 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       //#endregion
 
       this.voucherCampaignForm.reset(this.voucherCampaign);
-      this.voucherCampaignForm.get(this.voucherCampaignFormProps.VoucherPrice).disable();
-      this.voucherCampaignForm.get(this.voucherCampaignFormProps.VouchersTotalCount).disable();
 
       this.VouchersCount = this.voucherCampaign.VouchersTotalCount;
       this.BoughtVouchersCount = this.voucherCampaign.BoughtVouchersCount;
@@ -253,15 +259,22 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
       }
 
       if (this.voucherCampaign.State === SmartVoucherCampaignState.Published) {
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.PartnerId).disable();
         this.voucherCampaignForm.get(this.voucherCampaignFormProps.FromDate).disable();
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.VoucherPrice).disable();
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.VouchersTotalCount).disable();
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currency).disable();
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.IsPublished).disable();
+      }
+
+      if (!this.voucherCampaign.Currency) {
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currency).setValue(this.baseCurrencyCode);
       }
 
       if (!this.hasEditPermission || this.voucherCampaign.State === SmartVoucherCampaignState.Deleted) {
         this.voucherCampaignForm.disable();
       }
     } else {
-      this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currency).setValue(this.baseCurrencyCode);
-
       //#region mobile content related
       this.availableMobileLanguages = this.dictionaryService.getMobileLanguages();
       this.availableMobileLanguages.forEach((language) => {
@@ -314,6 +327,12 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
 
         if (this.partners.length >= response.PagedResponse.TotalCount) {
           this.partners = this.partners.sort((a, b) => (a.Name > b.Name ? 1 : -1));
+
+          this.partnersDict = this.partners.reduce((obj, item) => {
+            obj[item.Id] = item;
+            return obj;
+          }, {} as {[Id: string]: PartnerRowResponse});
+
           this.isLoadingPartners = false;
           this.rateDependencyLoadedEventEmitter.emit();
 
@@ -321,6 +340,8 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
           if (this.partners.length === 1) {
             this.voucherCampaignForm.get(this.voucherCampaignFormProps.PartnerId).setValue(this.partners[0].Id);
           }
+
+          this.partnersChanged();
         } else {
           page++;
           this.loadPagedPartners(page);
@@ -331,6 +352,82 @@ export class SmartVoucherFormComponent implements OnInit, OnDestroy {
         this.isLoadingPartners = false;
       }
     );
+  }
+
+  partnersChanged() {
+    const partnerId = this.voucherCampaignForm.get(this.voucherCampaignFormProps.PartnerId).value;
+
+    if (partnerId) {
+      const partner = this.partnersDict[partnerId];
+
+      if (!partner) {
+        return;
+      }
+
+      // #region load currencies for certain partner
+      if (partner.ProvidersSupportedCurrencies) {
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currencies).setValue(partner.ProvidersSupportedCurrencies);
+        this.setDefaultCurrency(partner);
+      } else {
+        this.isLoadingCurrencies = true;
+
+        this.smartVoucherService.getCurrenciesForPartner(partnerId).subscribe(
+          (response) => {
+            if (response.ProvidersSupportedCurrencies) {
+              partner.ProvidersSupportedCurrencies = response.ProvidersSupportedCurrencies.sort((a, b) => (a > b ? 1 : -1));
+              this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currencies).setValue(partner.ProvidersSupportedCurrencies);
+              this.setDefaultCurrency(partner);
+            } else {
+              this.isLoadingCurrencies = false;
+            }
+          },
+          () => {
+            this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText, {
+              duration: 5000,
+            });
+
+            this.isLoadingCurrencies = false;
+          }
+        );
+      }
+      //#endregion
+    }
+  }
+
+  // set default currency based on partner's country
+  private setDefaultCurrency(partner: PartnerRowResponse) {
+    if (partner.CountryIso3Code) {
+      this.setCurrencyWhenDataLoaded(partner);
+    } else {
+      this.partnersService.getById(partner.Id).subscribe(
+        (response) => {
+          if (response.Locations && response.Locations.length) {
+            partner.CountryIso3Code = response.Locations[0].CountryIso3Code;
+            this.setCurrencyWhenDataLoaded(partner);
+          } else {
+            this.isLoadingCurrencies = false;
+          }
+        },
+        () => {
+          this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText, {
+            duration: 5000,
+          });
+          this.isLoadingCurrencies = false;
+        }
+      );
+    }
+  }
+
+  private setCurrencyWhenDataLoaded(partner: PartnerRowResponse) {
+    if (partner.CountryIso3Code) {
+      const currency = this.countriesService.getCurrencyByCountryIso3Code(partner.CountryIso3Code);
+
+      if (partner.ProvidersSupportedCurrencies && partner.ProvidersSupportedCurrencies.some((x) => x === currency)) {
+        this.voucherCampaignForm.get(this.voucherCampaignFormProps.Currency).setValue(currency);
+      }
+    }
+
+    this.isLoadingCurrencies = false;
   }
 
   private checkAbilityToPublish(partnerId: string) {

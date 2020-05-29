@@ -10,6 +10,8 @@ export interface PartnerRowResponse {
   CreatedBy: string;
   BusinessVertical?: BusinessVerticalType;
   IsHidden: boolean;
-
   Currency: number;
+  // load additionally
+  ProvidersSupportedCurrencies: string[];
+  CountryIso3Code: string;
 }

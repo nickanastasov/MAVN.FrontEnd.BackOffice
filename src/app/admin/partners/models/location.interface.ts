@@ -8,4 +8,5 @@ export interface Location {
   Email: string;
   ExternalId: string;
   AccountingIntegrationCode: string;
+  CountryIso3Code: string;
 }

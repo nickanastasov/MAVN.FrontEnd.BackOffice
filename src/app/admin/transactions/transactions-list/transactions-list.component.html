@@ -195,10 +195,9 @@
                 </td>
                 <td data-id="Amount"
                     class="text-right">
-                  <!-- TODO: when Currency will be added on backend use this {{row.Currency ? row.Currency : assetSymbol}} -->
                   <ng-container [ngSwitch]="row.TransactionType">
                     <ng-container *ngSwitchCase="'Smart Voucher'">
-                      <span>{{row.Amount | token}} {{baseCurrencyCode}}</span>
+                      <span>{{row.Amount | token}} {{row.Currency ? row.Currency : baseCurrencyCode}}</span>
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                       <span>{{row.Amount | token}} {{assetSymbol}}</span>
