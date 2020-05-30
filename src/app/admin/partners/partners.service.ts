@@ -5,6 +5,7 @@ import {HttpParams} from '@angular/common/http';
 import {PartnersListResponse} from './models/partners-list-response.interface';
 import {toParamsString} from 'src/app/shared/utils/common';
 import {CheckPartnerAbilityResponse} from './models/response/check-partner-ability-respnse.interface';
+import {LinkingInfoResponse} from './models/response/linking-info-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +51,21 @@ export class PartnersService {
     const paramsStr = toParamsString(model);
 
     return this.apiHttp.get<CheckPartnerAbilityResponse>(this.apiPath + '/ability/check' + paramsStr);
+  }
+
+  getLinkingInfo(partnerId: string) {
+    const paramsStr = toParamsString({
+      PartnerId: partnerId,
+    });
+
+    return this.apiHttp.get<LinkingInfoResponse>(this.apiPath + '/linking/info' + paramsStr);
+  }
+
+  regenerateLinkingInfo(partnerId: string) {
+    const model = {
+      PartnerId: partnerId,
+    };
+
+    return this.apiHttp.post(this.apiPath + '/linking/info', model);
   }
 }

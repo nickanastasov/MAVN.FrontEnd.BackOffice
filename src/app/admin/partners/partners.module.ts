@@ -7,6 +7,7 @@ import {PartnerAddComponent} from './partner-add/partner-add.component';
 import {PartnersRoutingModule} from './partners-routing.module';
 import {SharedModule} from 'src/app/shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {QRCodeModule} from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
   ],
 })
 export class PartnersModule {}

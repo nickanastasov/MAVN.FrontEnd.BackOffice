@@ -34,6 +34,8 @@ import {PartnerInfo} from '../models/partner-info.interface';
 import {PayrexxProviderProperties} from '../models/payrexx-provider-properties.interface';
 import {PaymentProvidersType} from '../models/payment-providers-type.enum';
 import {AddressChangedEvent} from 'src/app/shared/location-map/models/address-changed-event.interface';
+import {LinkingInfoResponse} from '../models/response/linking-info-response.interface';
+import {PartnersService} from '../partners.service';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -90,6 +92,13 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   }
   isPartnerAdmin = false;
   hasEditPermission = false;
+  isLoadingLinkingInfo = true;
+  isRegeneratingLinkingInfo = false;
+  linkingInfoModel: LinkingInfoResponse = {
+    PartnerCode: '',
+    PartnerLinkingCode: '',
+  };
+  linkingInfoQrCodeText = '';
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -97,6 +106,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     private settingsSetvice: SettingsService,
     private fb: FormBuilder,
     private globalSettingsService: GlobalSettingsService,
+    private partnersService: PartnersService,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
     private businessVerticalService: BusinessVerticalService
@@ -200,6 +210,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
         this.partnerForm.disable();
         this.paymentProvidersForm.disable();
       }
+
+      this.loadLinkingInfo();
     } else {
       this.disableRateFields(true);
       this.locationsFormArray.push(this.generateLocationsFormGroup());
@@ -502,5 +514,46 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     // set coordinates
     this.locationsFormArray.at(locationIndex).get(this.locationFormProps.Latitude).setValue(event.Latitude);
     this.locationsFormArray.at(locationIndex).get(this.locationFormProps.Longitude).setValue(event.Longitude);
+  }
+
+  loadLinkingInfo() {
+    if (!this.partner) {
+      return;
+    }
+
+    this.partnersService.getLinkingInfo(this.partner.Id).subscribe(
+      (response) => {
+        this.linkingInfoModel.PartnerCode = response.PartnerCode.toUpperCase();
+        this.linkingInfoModel.PartnerLinkingCode = response.PartnerLinkingCode.toUpperCase();
+
+        // qr code
+        this.linkingInfoQrCodeText = `PartnerCode=${this.linkingInfoModel.PartnerCode}&PartnerLinkingCode=${this.linkingInfoModel.PartnerLinkingCode}`;
+
+        this.isLoadingLinkingInfo = false;
+        this.isRegeneratingLinkingInfo = false;
+      },
+      (error) => {
+        console.error(error);
+        this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
+      }
+    );
+  }
+
+  regenerateLinkingInfo() {
+    if (!this.partner) {
+      return;
+    }
+
+    this.isRegeneratingLinkingInfo = true;
+
+    this.partnersService.regenerateLinkingInfo(this.partner.Id).subscribe(
+      () => {
+        this.loadLinkingInfo();
+      },
+      (error) => {
+        console.error(error);
+        this.snackBar.open(this.translateService.translates.ErrorMessage, this.translateService.translates.CloseSnackbarBtnText);
+      }
+    );
   }
 }

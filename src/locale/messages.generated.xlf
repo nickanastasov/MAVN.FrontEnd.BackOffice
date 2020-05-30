@@ -1003,6 +1003,22 @@
         <source>Business Vertical</source>
         
       </trans-unit>
+      <trans-unit id="4546e2f755bd8bb1343d4636aac0ad65fb08b9a8" datatype="html">
+        <source>Linking to Mobile App</source>
+        
+      </trans-unit>
+      <trans-unit id="a73947e7f888a126de9f311462d2613335f85832" datatype="html">
+        <source>Regenerate</source>
+        
+      </trans-unit>
+      <trans-unit id="46e0486ff7e7fda712362bfc45693c25ba6a5b88" datatype="html">
+        <source>Business Unit Code</source>
+        
+      </trans-unit>
+      <trans-unit id="e5a7d1a4191b339d42c55f439a8c4359e1df1944" datatype="html">
+        <source>Linking Code</source>
+        
+      </trans-unit>
       <trans-unit id="434c13681c4fcc6191cb057113b7087cb664a60f" datatype="html">
         <source>Locations</source>
         
@@ -1315,6 +1331,10 @@
         <source>Price</source>
         
       </trans-unit>
+      <trans-unit id="32072c7fb0469aaf82d256a59b3e0d6ecce973b9" datatype="html">
+        <source>Currency</source>
+        
+      </trans-unit>
       <trans-unit id="78b9ec7078cb3cd81c558bd1d7c2eda23af1fb61" datatype="html">
         <source>Creation Date</source>
         
@@ -1359,24 +1379,24 @@
         <source>The date till which the campaign is applicable</source>
         
       </trans-unit>
-      <trans-unit id="681b0caff79386d86ce7e5387337a68f01f23929" datatype="html">
-        <source>Amount of Vouchers that will be available for customers to buy</source>
-        
-      </trans-unit>
-      <trans-unit id="f49e69f7a1839a0f5fb3a55dc7edcb15f7ce1ba5" datatype="html">
-        <source>Voucher Price, <x id="INTERPOLATION" equiv-text="{{baseCurrencyCode}}"/></source>
-        
-      </trans-unit>
-      <trans-unit id="3adad4a42066dc7c0ba83da0e2c46a69749c991c" datatype="html">
-        <source>Price for the voucher (what the customers will be asked to pay to buy the voucher)</source>
-        
-      </trans-unit>
       <trans-unit id="6d493fe7fa20c5c4f06663726e2c3d15d4a9f71c" datatype="html">
         <source>Business Unit</source>
         
       </trans-unit>
       <trans-unit id="aa7e42ea1f3cee9a6640b0a7c0ed57a0fc666ff7" datatype="html">
         <source>Program Member</source>
+        
+      </trans-unit>
+      <trans-unit id="681b0caff79386d86ce7e5387337a68f01f23929" datatype="html">
+        <source>Amount of Vouchers that will be available for customers to buy</source>
+        
+      </trans-unit>
+      <trans-unit id="f62a8652fd82e61df791e8ae0e306fe5ed6db2de" datatype="html">
+        <source>Voucher Price</source>
+        
+      </trans-unit>
+      <trans-unit id="3adad4a42066dc7c0ba83da0e2c46a69749c991c" datatype="html">
+        <source>Price for the voucher (what the customers will be asked to pay to buy the voucher)</source>
         
       </trans-unit>
       <trans-unit id="eb64c04afa79183b2eb12447491c9761e17c2c67" datatype="html">
