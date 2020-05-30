@@ -1,11 +1,22 @@
-$disabled-color: rgba(0, 0, 0, 0.55);
+$disabled-font-color: rgba(0, 0, 0, 0.7);
 
 :host ::ng-deep .mat-form-field-appearance-outline {
+  .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.24);
+  }
+
+  &.mat-form-field-disabled {
+    .mat-form-field-outline {
+      color: rgba(0, 0, 0, 0.06);
+    }
+  }
+
   .mat-form-field-outline-thick {
     .mat-form-field-outline-end,
     .mat-form-field-outline-gap,
     .mat-form-field-outline-start {
       border-width: 1px;
+      color: rgba(0, 0, 0, 0.87);
     }
   }
 
@@ -24,16 +35,16 @@ $disabled-color: rgba(0, 0, 0, 0.55);
   /* disabled */
   &.mat-form-field-disabled {
     .mat-form-field-label {
-      color: $disabled-color;
+      color: $disabled-font-color;
     }
   }
 
   .mat-input-element:disabled {
-    color: $disabled-color;
+    color: $disabled-font-color;
   }
 
   .mat-select-disabled .mat-select-value {
-    color: $disabled-color;
+    color: $disabled-font-color;
   }
 }
 

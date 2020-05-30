@@ -18,21 +18,16 @@
 </ng-template>
 
 <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
-  <div class="kt-portlet">
-    <div class="kt-portlet__body">
+  <app-partner-form *ngIf="!loading"
+                    [type]="FormMode.Edit"
+                    (submitSuccess)="onFormSubmit($event)"
+                    [partner]="partner"
+                    [provider]="provider">
+  </app-partner-form>
 
-      <app-partner-form *ngIf="!loading"
-                        [type]="FormMode.Edit"
-                        (submitSuccess)="onFormSubmit($event)"
-                        [partner]="partner"
-                        [provider]="provider">
-      </app-partner-form>
-
-      <div class="spinner-container"
-           *ngIf="loading">
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </div>
-    </div>
+  <div class="spinner-container"
+       *ngIf="loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 </div>
 

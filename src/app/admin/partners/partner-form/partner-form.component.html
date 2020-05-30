@@ -2,71 +2,144 @@
       (ngSubmit)="onSubmit()"
       (keydown.enter)="$event.preventDefault()"
       class="basic-campaign-form">
-  <mat-card>
-    <mat-card-title>
-      <span class=""
-            i18n>Basic Information</span>
-    </mat-card-title>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <div class="row">
-        <div class="col-xl-3 col-lg-6 col-md-6">
+
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="kt-portlet kt-portlet--height-fluid">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+          <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-title"
+                  i18n>Basic Information</span>
+          </div>
+        </div>
+        <div class="kt-portlet__body">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label>
+                  <span [hidden]="!isPartnerAdmin"
+                        i18n>Business Unit Name</span>
+                  <span [hidden]="isPartnerAdmin"
+                        i18n>Program Member Name</span>
+                </mat-label>
+                <input matInput
+                       formControlName="Name"
+                       required>
+                <mat-error>
+                  <app-error-message controlName="Name"></app-error-message>
+                  <app-error-message controlName="Name"
+                                     key="length"
+                                     [template]="templates.lengthError"
+                                     [templateContext]="{$implicit: {min: 3, max: 50}}">
+                  </app-error-message>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label i18n>Business Vertical</mat-label>
+                <mat-select formControlName="BusinessVertical"
+                            placeholder="Business Vertical"
+                            i18n-placeholder
+                            required>
+                  <mat-option *ngFor="let vertical of businessVerticalTypes"
+                              [value]="vertical.Type">{{vertical.DisplayName}}</mat-option>
+                </mat-select>
+                <mat-error>
+                  <app-error-message controlName="BusinessVertical"></app-error-message>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
           <mat-form-field appearance="outline"
                           class="width-100">
-            <mat-label>
-              <span [hidden]="!isPartnerAdmin"
-                    i18n>Business Unit Name</span>
-              <span [hidden]="isPartnerAdmin"
-                    i18n>Program Member Name</span>
-            </mat-label>
-            <input matInput
-                   formControlName="Name"
-                   required>
+            <mat-label i18n>Description</mat-label>
+            <textarea matInput
+                      formControlName="Description"
+                      i18n-placeholder
+                      placeholder="Description"
+                      style="min-height: 60px">
+                </textarea>
             <mat-error>
-              <app-error-message controlName="Name"></app-error-message>
-              <app-error-message controlName="Name"
+              <app-error-message controlName="Description"
                                  key="length"
                                  [template]="templates.lengthError"
-                                 [templateContext]="{$implicit: {min: 3, max: 50}}">
-              </app-error-message>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6">
-          <mat-form-field appearance="outline"
-                          class="width-100">
-            <mat-label i18n>Business Vertical</mat-label>
-            <mat-select formControlName="BusinessVertical"
-                        placeholder="Business Vertical"
-                        i18n-placeholder
-                        required>
-              <mat-option *ngFor="let vertical of businessVerticalTypes"
-                          [value]="vertical.Type">{{vertical.DisplayName}}</mat-option>
-            </mat-select>
-            <mat-error>
-              <app-error-message controlName="BusinessVertical"></app-error-message>
+                                 [templateContext]="{$implicit: {min: 3, max: 1000}}"></app-error-message>
             </mat-error>
           </mat-form-field>
         </div>
       </div>
-      <mat-form-field appearance="outline"
-                      class="width-100">
-        <mat-label i18n>Description</mat-label>
-        <textarea matInput
-                  formControlName="Description"
-                  i18n-placeholder
-                  placeholder="Description"
-                  style="min-height: 60px">
-                </textarea>
-        <mat-error>
-          <app-error-message controlName="Description"
-                             key="length"
-                             [template]="templates.lengthError"
-                             [templateContext]="{$implicit: {min: 3, max: 1000}}"></app-error-message>
-        </mat-error>
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
+    </div>
+
+    <div *ngIf="partner && isLoadingLinkingInfo"
+         class="col-xl-6">
+      <div class="text-center">
+        <div class="spinner-border"></div>
+      </div>
+    </div>
+
+    <div [hidden]="isLoadingLinkingInfo"
+         class="col-xl-6">
+      <div class="kt-portlet kt-portlet--height-fluid">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+          <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-title"
+                  i18n>Linking to Mobile App</span>
+          </div>
+          <div class="kt-portlet__head-label">
+            <div class="spinner-container"
+                 *ngIf="isRegeneratingLinkingInfo">
+              <div class="spinner-border"></div>
+            </div>
+            <button class="btn btn-link btn-bold refresh-btn"
+                    type="button"
+                    [disabled]="isRegeneratingLinkingInfo"
+                    (click)="regenerateLinkingInfo()">
+              <i class="flaticon-refresh"></i>
+              <span i18n>Regenerate</span>
+            </button>
+          </div>
+        </div>
+        <div class="kt-portlet__body">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label>
+                  <span i18n>Business Unit Code</span>
+                </mat-label>
+                <input matInput
+                       [ngModel]="linkingInfoModel.PartnerCode"
+                       [ngModelOptions]="{standalone: true}"
+                       disabled>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label>
+                  <span i18n>Linking Code</span>
+                </mat-label>
+                <input matInput
+                       [ngModel]="linkingInfoModel.PartnerLinkingCode"
+                       [ngModelOptions]="{standalone: true}"
+                       disabled>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <qrcode [qrdata]="linkingInfoQrCodeText"
+                    [width]="180"
+                    margin="0"
+                    [errorCorrectionLevel]="'M'"></qrcode>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <mat-card>
     <mat-card-title class="d-flex justify-content-between align-items-center">
@@ -483,7 +556,8 @@
               <app-error-message controlName="AmountInTokens"
                                  key="accuracy"
                                  [template]="templates.invalidAccuracyError"
-                                 [templateContext]="{$implicit: {accuracy: TOKENS_INPUT_ACCURACY}}"></app-error-message>
+                                 [templateContext]="{$implicit: {accuracy: TOKENS_INPUT_ACCURACY}}">
+              </app-error-message>
             </mat-error>
           </mat-form-field>
         </div>
@@ -504,11 +578,13 @@
               <app-error-message controlName="AmountInCurrency"
                                  key="min"
                                  [template]="templates.minNumberError"
-                                 [templateContext]="{$implicit: {min: CURRENCY_INPUT_MIN_NUMBER}}"></app-error-message>
+                                 [templateContext]="{$implicit: {min: CURRENCY_INPUT_MIN_NUMBER}}">
+              </app-error-message>
               <app-error-message controlName="AmountInCurrency"
                                  key="max"
                                  [template]="templates.maxNumberError"
-                                 [templateContext]="{$implicit: {max: CURRENCY_INPUT_MAX_NUMBER}}"></app-error-message>
+                                 [templateContext]="{$implicit: {max: CURRENCY_INPUT_MAX_NUMBER}}">
+              </app-error-message>
               <app-error-message controlName="AmountInCurrency"
                                  key="accuracy"
                                  [template]="templates.invalidAccuracyError"
