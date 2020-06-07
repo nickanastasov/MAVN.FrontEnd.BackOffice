@@ -1,7 +1,7 @@
 export enum KycStatusState {
   Pending = 'Pending',
-  InReview = 'InReview',
+  InReview = 'In Review',
   Rejected = 'Rejected',
   Accepted = 'Accepted',
-  RequiresData = 'RequiresData',
+  RequiresData = 'Requires Data',
 }

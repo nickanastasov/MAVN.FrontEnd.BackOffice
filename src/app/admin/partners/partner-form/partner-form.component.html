@@ -53,6 +53,24 @@
               </mat-form-field>
             </div>
           </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <mat-form-field appearance="outline"
+                              class="width-100">
+                <mat-label i18n>Status</mat-label>
+                <mat-select formControlName="KycStatus"
+                            placeholder="Status"
+                            i18n-placeholder
+                            required>
+                  <mat-option *ngFor="let kycState of kycStatusStateKeys"
+                              [value]="kycState">{{KycStatusState[kycState]}}</mat-option>
+                </mat-select>
+                <mat-error>
+                  <app-error-message controlName="KycStatus"></app-error-message>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
           <mat-form-field appearance="outline"
                           class="width-100">
             <mat-label i18n>Description</mat-label>

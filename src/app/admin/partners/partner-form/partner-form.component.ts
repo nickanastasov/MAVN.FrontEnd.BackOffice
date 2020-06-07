@@ -36,6 +36,8 @@ import {PaymentProvidersType} from '../models/payment-providers-type.enum';
 import {AddressChangedEvent} from 'src/app/shared/location-map/models/address-changed-event.interface';
 import {LinkingInfoResponse} from '../models/response/linking-info-response.interface';
 import {PartnersService} from '../partners.service';
+import {KycStatusState} from '../models/kyc-status-state.enum';
+import {KycService} from '../services/kyc.service';
 @Component({
   selector: 'app-partner-form',
   templateUrl: './partner-form.component.html',
@@ -56,6 +58,9 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
 
   @Input()
   partner: Partner;
+  KycStatusState = KycStatusState;
+  kycStatusStateKeys: string[] = Object.keys(KycStatusState);
+  kycStatusStateValues: string[] = Object.keys(KycStatusState);
 
   paymentProviders: ProviderOptions[] = [];
   PaymentProvidersType = PaymentProvidersType;
@@ -109,7 +114,8 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     private partnersService: PartnersService,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
-    private businessVerticalService: BusinessVerticalService
+    private businessVerticalService: BusinessVerticalService,
+    private kycService: KycService
   ) {
     this.templates = this.translateService.templates;
     this.baseCurrencyCode = this.settingsSetvice.baseCurrencyCode;
@@ -123,6 +129,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   partnerFormProps = {
     Name: 'Name',
     BusinessVertical: 'BusinessVertical',
+    KycStatus: 'KycStatus',
     Description: 'Description',
     Locations: 'Locations',
     AmountInTokens: 'AmountInTokens',
@@ -133,6 +140,7 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
   partnerForm = this.fb.group({
     [this.partnerFormProps.Name]: [null, [Validators.required, LengthValidator(3, 50)]],
     [this.partnerFormProps.BusinessVertical]: [BusinessVerticalType.Retail, [Validators.required]],
+    [this.partnerFormProps.KycStatus]: [Validators.required],
     [this.partnerFormProps.Description]: [null, LengthValidator(3, 1000)],
     [this.partnerFormProps.Locations]: this.fb.array([]),
     [this.partnerFormProps.AmountInTokens]: [
@@ -191,6 +199,10 @@ export class PartnerFormComponent implements OnInit, OnDestroy {
     this.loadRate();
 
     if (this.partner) {
+      this.kycService.getById(this.partner.Id).subscribe((result: any) => {
+        console.log('result', result);
+      });
+
       this.partner.Locations.forEach(() => {
         this.locationsFormArray.push(this.generateLocationsFormGroup());
       });
